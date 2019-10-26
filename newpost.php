@@ -6,29 +6,16 @@
     <body>
         <?php include('resources/templates/header.php'); ?>
 
-        Welcome!
-
-        <div id="content">
-            <div id="information">
-                <h2>Information</h2>
-                <div id="information_content" class="content">
-                    <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
-                    <h3 class="group_name">Group Name</h3>
-                    <p id="Nusers">X users</p>
-                    <p id="Nposts">X posts</p>
-                    <p id="join">Join</p>
-                </div>
-            </div>
-            <div id="activity">
-                <h2>Activities</h2>
-                <div id="activity_content" class="content">
-                    <ul>
-                        <li>....shirleyismygirly....</li>
-                        <li>...._______:)_______....</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <form>
+            Event Name:
+            <input type="text" name="eventName"><br>
+            Start Time:
+            <input type="time" name="startTime"><br>
+            End Time:
+            <input type="time" name="endTime"><br>
+            Street Address:
+            <input type="text" name="location"><br>
+        </form>
 
         <?php include('resources/templates/footer.php'); ?>
     </body>
