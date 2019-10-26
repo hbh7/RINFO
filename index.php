@@ -1,6 +1,8 @@
 <html>
-    <?php include('resources/templates/head.php'); ?>
-    <title> RINFO Home </title>
+    <head>
+        <?php include('resources/templates/head.php'); ?>
+        <title> RINFO Home </title>
+    </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
 
