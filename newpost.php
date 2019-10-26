@@ -16,8 +16,10 @@
             <input type="time" name="startTime"><br>
             End Time:
             <input type="time" name="endTime"><br>
-            Street Address:
+            Location:
             <input type="text" name="location"><br>
+            Room Number:
+            <input type="text" name="roomNum"><br>
             Description:
             <input type="text" name="description"><br>
         </form>
