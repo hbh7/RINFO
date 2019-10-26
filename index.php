@@ -10,7 +10,7 @@
             <div id="information">
                 <h2>Information</h2>
                 <div id="information_content" class="content">
-                    <img id="group_logo" src="group_logo.jpg" alt="Group_Logo">
+                    <img id="group_logo" src="resources/images/logo.png" alt="Group Logo">
                     <h3 class="group_name">Group Name</h3>
                     <p id="Nusers">X users</p>
                     <p id="Nposts">X posts</p>
