@@ -23,8 +23,8 @@
                 <h2>Activities</h2>
                 <div id="activity_content" class="content">
                     <ul>
-                        <li>...........</li>
-                        <li>...........</li>
+                        <li>....shirleyismygirly....</li>
+                        <li>...._______:)_______....</li>
                     </ul>
                 </div>
             </div>
