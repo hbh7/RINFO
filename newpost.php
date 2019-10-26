@@ -2,6 +2,7 @@
     <head>
         <?php include('resources/templates/head.php'); ?>
         <title> RINFO Home </title>
+         <link rel="stylesheet" type="text/css" href="resources/styles/styles-newpost.css" />
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
