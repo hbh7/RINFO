@@ -24,7 +24,7 @@
                 <div id="activity_content" class="content">
                     <ul>
                         <li>....shirleyismygirly....</li>
-                        <li>...._______:)_______....</li>
+                        <li>....______:)______....</li>
                     </ul>
                 </div>
             </div>
