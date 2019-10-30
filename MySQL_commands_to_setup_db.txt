@@ -1,13 +1,14 @@
 /* Run with 'mysql -u root -p < MySQL_commands_to_setup_db.txt' */
 
 CREATE USER IF NOT EXISTS 'rinfo'@'localhost' IDENTIFIED BY 'RINFOServerPassword10302019';
-CREATE DATABASE IF NOT EXISTS RINFO;
+DROP DATABASE RINFO;
+CREATE DATABASE RINFO;
 GRANT ALL PRIVILEGES ON RINFO.* TO 'rinfo'@'localhost';
 FLUSH PRIVILEGES;
 
 USE RINFO;
 
-CREATE TABLE IF NOT EXISTS r_users(
+CREATE TABLE r_users(
    user_id INT NOT NULL AUTO_INCREMENT,
    username VARCHAR(32) NOT NULL,
    password VARCHAR(128) NOT NULL,
@@ -17,7 +18,7 @@ CREATE TABLE IF NOT EXISTS r_users(
    PRIMARY KEY ( user_id )
 );
 
-CREATE TABLE IF NOT EXISTS r_permissions(
+CREATE TABLE r_permissions(
     permission_id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     group_id INT NOT NULL,
@@ -25,30 +26,40 @@ CREATE TABLE IF NOT EXISTS r_permissions(
     PRIMARY KEY ( permission_id )
 );
 
-CREATE TABLE IF NOT EXISTS r_subscriptions(
+CREATE TABLE r_subscriptions(
     subscription_id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     group_id INT NOT NULL,
     PRIMARY KEY ( subscription_id )
 );
 
-CREATE TABLE IF NOT EXISTS r_groups(
+CREATE TABLE r_groups(
     group_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(128) NOT NULL,
     tagline VARCHAR(256) NOT NULL,
-    logo VARCHAR(1024) NOT NULL,
+    logo VARCHAR(1024),
     PRIMARY KEY ( group_id )
 );
 
-CREATE TABLE IF NOT EXISTS r_posts(
+CREATE TABLE r_posts(
     post_id INT NOT NULL AUTO_INCREMENT,
     group_id INT NOT NULL,
     user_id INT NOT NULL,
     title VARCHAR(128) NOT NULL,
     body VARCHAR(1024) NOT NULL,
-    date DATE,
+    date DATE NOT NULL,
     PRIMARY KEY ( post_id )
 );
+
+
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Studenttester1', 'RPI_tester1', 'RPITester', '1', 'studenttester1@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', 'Re@11y_Secure', 'Admin', 'Tester', 'sisman@rpi.edu');
+
+INSERT INTO r_groups(name, tagline) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.');
+
+INSERT INTO r_posts(group_id, user_id, title, body, date) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30');
+INSERT INTO r_posts(group_id, user_id, title, body, date) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30');
+INSERT INTO r_posts(group_id, user_id, title, body, date) VALUES('1', '1', 'Sample Activity 3', 'CTF Competition from Tue, 22 Oct. 2019, 10:00 UTC — Thu, 24 Oct. 2019, 10:00 UTC', '2019-10-30');
 
 
 quit
