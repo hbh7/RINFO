@@ -1,0 +1,54 @@
+/* Run with 'mysql -u root -p < MySQL_commands_to_setup_db.txt' */
+
+CREATE USER IF NOT EXISTS 'rinfo'@'localhost' IDENTIFIED BY 'RINFOServerPassword10302019';
+CREATE DATABASE IF NOT EXISTS RINFO;
+GRANT ALL PRIVILEGES ON RINFO.* TO 'rinfo'@'localhost';
+FLUSH PRIVILEGES;
+
+USE RINFO;
+
+CREATE TABLE IF NOT EXISTS users(
+   user_id INT NOT NULL AUTO_INCREMENT,
+   username VARCHAR(32) NOT NULL,
+   password VARCHAR(128) NOT NULL,
+   firstname VARCHAR(128) NOT NULL,
+   lastname VARCHAR(128) NOT NULL,
+   email VARCHAR(256) NOT NULL,
+   PRIMARY KEY ( user_id )
+);
+
+CREATE TABLE IF NOT EXISTS permissions(
+    permission_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    group_id INT NOT NULL,
+    description VARCHAR(128) NOT NULL,
+    PRIMARY KEY ( permission_id )
+);
+
+CREATE TABLE IF NOT EXISTS subscriptions(
+    subscription_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    group_id INT NOT NULL,
+    PRIMARY KEY ( subscription_id )
+);
+
+CREATE TABLE IF NOT EXISTS groups(
+    group_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128) NOT NULL,
+    tagline VARCHAR(256) NOT NULL,
+    logo VARCHAR(1024) NOT NULL,
+    PRIMARY KEY ( group_id )
+);
+
+CREATE TABLE IF NOT EXISTS posts(
+    post_id INT NOT NULL AUTO_INCREMENT,
+    group_id INT NOT NULL,
+    user_id INT NOT NULL,
+    title VARCHAR(128) NOT NULL,
+    body VARCHAR(1024) NOT NULL,
+    date DATE,
+    PRIMARY KEY ( post_id )
+);
+
+
+quit
