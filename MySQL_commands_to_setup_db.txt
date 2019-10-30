@@ -7,7 +7,7 @@ FLUSH PRIVILEGES;
 
 USE RINFO;
 
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE IF NOT EXISTS r_users(
    user_id INT NOT NULL AUTO_INCREMENT,
    username VARCHAR(32) NOT NULL,
    password VARCHAR(128) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users(
    PRIMARY KEY ( user_id )
 );
 
-CREATE TABLE IF NOT EXISTS permissions(
+CREATE TABLE IF NOT EXISTS r_permissions(
     permission_id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     group_id INT NOT NULL,
@@ -25,14 +25,14 @@ CREATE TABLE IF NOT EXISTS permissions(
     PRIMARY KEY ( permission_id )
 );
 
-CREATE TABLE IF NOT EXISTS subscriptions(
+CREATE TABLE IF NOT EXISTS r_subscriptions(
     subscription_id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     group_id INT NOT NULL,
     PRIMARY KEY ( subscription_id )
 );
 
-CREATE TABLE IF NOT EXISTS groups(
+CREATE TABLE IF NOT EXISTS r_groups(
     group_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(128) NOT NULL,
     tagline VARCHAR(256) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS groups(
     PRIMARY KEY ( group_id )
 );
 
-CREATE TABLE IF NOT EXISTS posts(
+CREATE TABLE IF NOT EXISTS r_posts(
     post_id INT NOT NULL AUTO_INCREMENT,
     group_id INT NOT NULL,
     user_id INT NOT NULL,
