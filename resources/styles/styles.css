@@ -8,6 +8,14 @@ h1{
     margin-right: auto;
     text-align: center;
 }
+/* Clearfix needed because all children of #content are floated */
+#content::after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+}
 .content{
     border: 2px dotted black;
     _height:50%;
