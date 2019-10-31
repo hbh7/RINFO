@@ -1,0 +1,18 @@
+#global_footer {
+    text-align: center;
+    /*
+    margins are relative to the element's parent's WIDTH
+        (yes, even top and bottom margins are relative to the width)
+        because thanks box model you're a real gem :/
+    */
+    margin-top: 10%;
+}
+
+#global_footer > span {
+    border-right: 1px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#global_footer > span:last-child {
+    border-right: none;
+}
