@@ -10,9 +10,9 @@
 		<div id="content">
 			<div class="display">
 				<ul>
-                    <li id="activity_tab" class="homepage"><a class="active" href="#activity_feed" onclick="activity()">Activity Feed</a></li>
-  					<li id="group_tab" class="homepage"><a href="#groups" onclick="group()">My Groups</a></li>
-  					<li id="post_tab" class="homepage"><a href="#posts" onclick="post()">My Posts</a></li>
+                    <li id="activity_tab" class="homepage" onclick="activity()"><a class="active" href="#activity_feed">Activity Feed</a></li>
+  					<li id="group_tab" class="homepage" onclick="group()"><a href="#groups" >My Groups</a></li>
+  					<li id="post_tab" class="homepage" onclick="post()"><a href="#posts">My Posts</a></li>
 				</ul>
 				<div class="tab_content">
 					<div id="hp_activities">
