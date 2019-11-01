@@ -1,31 +1,25 @@
 <html>
     <head>
         <?php include('resources/templates/head.php'); ?>
-        <title> RINFO Home </title>
+        <title> RINFO Login </title>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
 
-        Welcome!
-
-        <div id="content">
-            <div id="information">
-                <h2>Information</h2>
-                <div id="information_content" class="content">
-                    <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
-                    <h3 class="group_name">Group Name</h3>
-                    <p id="Nusers">X users</p>
-                    <p id="Nposts">X posts</p>
-                    <p id="join">Join</p>
-                </div>
+        <div id="login_content">
+            <div id="info_panel">
+                <h2>Subscribe to groups</h2>
+                <h2>Browse personalized event feeds</h2>
+                <h2>Discover new interests</h2>
+                <h2>Get to know your campus better</h2>
             </div>
-            <div id="activity">
-                <h2>Activities</h2>
-                <div id="activity_content" class="content">
-                    <ul>
-                        <li>....shirleyismygirly....</li>
-                        <li>...._______:)_______....</li>
-                    </ul>
+            <div id="login_panel">
+                <div id="login_box">
+                    Username
+                    <input type = "text" id = "username" value = "Username">
+                    <br>
+                    Password 
+                    <input type = "text" id = "password" value = "Password">
                 </div>
             </div>
         </div>
