@@ -6,6 +6,7 @@
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
+        <?php  include('db.php'); ?>
 
         <form>
             Event Name:
@@ -23,6 +24,12 @@
             Description:
             <input type="text" name="description"><br>
         </form>
+
+        <?php
+
+        // Idk, when the button is pushed, call the insertDB(); function or something
+
+        ?>
 
         <?php include('resources/templates/footer.php'); ?>
     </body>
