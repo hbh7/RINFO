@@ -8,7 +8,7 @@
         <div calss="search-box">
           <input calss="search-txt"type = "text" name="" placeholder="Type to search">
 		  <a class="search-btn">
-		  
+		  	<i class="far fa-search"></i>
 		  </a>
         </div>
 
