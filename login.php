@@ -19,7 +19,10 @@
                     <p>Username <input type = "text" id = "username" value = "Username"></p>
                     <br>
                     <p>Password   <input type = "text" id = "password" value = "Password"></p>
-                    <p>Forgot Password</p>
+                    <p class="small_link">Forgot Password</p>
+                </div>
+                <div id="account_box">
+                    <p>Don't have an account? Click here to join.</p>
                 </div>
             </div>
         </div>

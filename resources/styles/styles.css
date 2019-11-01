@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 h1{
     border-bottom: 2px double black;
     text-align: center;
@@ -59,9 +63,16 @@ h2 {
     margin: 0px;
     width: 100%;
     height: 650px;
+    background: linear-gradient(
+    to right, 
+    #eb4747 0%, 
+    #eb4747 50%, 
+    #ffffff 50%, 
+    #ffffff 100%
+  );
 }
 #info_panel {
-    background-color: rgb(236, 76, 76);
+    
     height: 100%;
     text-align: left;
     float: left;
@@ -81,4 +92,15 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     width: 30%;
+}
+#account_box {
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 100%;
+}
+.small_link {
+    text-align: center;
+    font-size: 80%;
 }
