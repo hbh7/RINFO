@@ -2,6 +2,7 @@
 	<head>
         <?php include('resources/templates/head.php'); ?>
         <title> RINFO Home Page </title>
+        <script type="text/javascript" src="homepage.js"></script>
     </head>
 
     <body>
@@ -34,12 +35,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="homepage.js">
-			$(document).ready(function () {
-    			document.getElementById("my_groups").style.display = "none";
-    			document.getElementById("my_posts").style.display = "none";
-			});
-		</script>
 		<?php include('resources/templates/footer.php'); ?>
 	</body>
 </html>
