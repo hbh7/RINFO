@@ -44,5 +44,10 @@ li a.active {
 }
 .activity {
 	color: white;
-	background: null;
+}
+.group {
+	color: white;
+}
+.post {
+	color: white;
 }
