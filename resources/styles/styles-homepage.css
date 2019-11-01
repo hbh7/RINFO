@@ -39,5 +39,11 @@ li a.active {
     background-color: rgb(233, 81, 81);
 }
 .display {
+	height: 65%;
+	margin-top: 60px;
 	background: rgba(255, 255, 255, 0.3);
+}
+.activity {
+	color: white;
+	background: null;
 }

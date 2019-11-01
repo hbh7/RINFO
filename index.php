@@ -9,15 +9,16 @@
 
 
 		<div id="content">
-			<h2>Current Activity</h2>
 			<div class="display">
-				<ul class="homepage">
-                    <li><a class="active" href="#home">Activity Feed</a></li>
-  					<li><a href="#news">My Groups</a></li>
-  					<li><a href="#contact">My Posts</a></li>
+				<ul>
+                    <li class="homepage"><a class="active" href="#activity_feed">Activity Feed</a></li>
+  					<li class="homepage"><a href="#groups">My Groups</a></li>
+  					<li class="homepage"><a href="#posts">My Posts</a></li>
 				</ul>
-				<div>
-
+				<div class="tab_content">
+					<ul id="hp_activities">
+						<li class="activity">Activity 1</li>
+					</ul>
 				</div>
 			</div>
 		</div>
