@@ -1,35 +1,27 @@
 <html>
-    <head>
+	<head>
         <?php include('resources/templates/head.php'); ?>
-        <title> RINFO Home </title>
+        <title> RINFO Home Page </title>
     </head>
+
     <body>
         <?php include('resources/templates/header.php'); ?>
 
-        Welcome!
 
-        <div id="content">
-            <div id="information">
-                <h2>Information</h2>
-                <div id="information_content" class="content">
-                    <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
-                    <h3 class="group_name">Group Name</h3>
-                    <p id="Nusers">X users</p>
-                    <p id="Nposts">X posts</p>
-                    <p id="join">Join</p>
-                </div>
-            </div>
-            <div id="activity">
-                <h2>Activities</h2>
-                <div id="activity_content" class="content">
-                    <ul>
-                        <li>....shirleyismygirly....</li>
-                        <li>....______:)______....</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+		<div id="content">
+			<h2>Current Activity</h2>
+			<div class="display">
+				<ul class="homepage">
+                    <li><a class="active" href="#home">Activity Feed</a></li>
+  					<li><a href="#news">My Groups</a></li>
+  					<li><a href="#contact">My Posts</a></li>
+				</ul>
+				<div>
 
-        <?php include('resources/templates/footer.php'); ?>
-    </body>
+				</div>
+			</div>
+		</div>
+
+		<?php include('resources/templates/footer.php'); ?>
+	</body>
 </html>
