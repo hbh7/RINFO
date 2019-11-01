@@ -12,10 +12,13 @@
 			<h2>Current Activity</h2>
 			<div class="display">
 				<ul class="homepage">
-                    <li class="homepage"><a class="active" href="#home">Activity Feed</a></li>
-  					<li class="homepage"><a href="#news">News</a></li>
-  					<li class="homepage"><a href="#contact">Contact</a></li>
-                </ul>
+                    <li><a class="active" href="#home">Activity Feed</a></li>
+  					<li><a href="#news">My Groups</a></li>
+  					<li><a href="#contact">My Posts</a></li>
+				</ul>
+				<div>
+
+				</div>
 			</div>
 		</div>
 

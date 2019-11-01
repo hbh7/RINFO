@@ -1,12 +1,16 @@
 body {
 	margin: 0;
-	background: grey;
+	color: white;
+	background: rgb(59, 59, 59);
 }
 /* homepage css */
+h2 {
+	color: white;
+}
 ul {
-    font-size: 200%;
+    font-size: 150%;
     list-style-type: none;
-    margin: 0;
+    margin: auto;
     padding: 0;
     overflow: hidden;
     border: 1px solid #e7e7e7;
@@ -14,7 +18,8 @@ ul {
 }
 
 li {
-    float: left;
+	float: left;
+	width: 33%;
 }
 
 li a {
@@ -31,5 +36,8 @@ li a:hover:not(.active) {
 
 li a.active {
     color: white;
-    background-color: #4CAF50;
+    background-color: rgb(233, 81, 81);
+}
+.display {
+	background: rgba(255, 255, 255, 0.3);
 }
