@@ -23,7 +23,8 @@ h1{
     height: 0;
 }
 .content{
-    border: 2px dotted black;
+    border: 2px solid red;
+    box-shadow: 0 5px 5px #000;
     _height:50%;
     min-height:50%;
 }
