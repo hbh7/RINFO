@@ -1,7 +1,7 @@
 <html>
 	<head>
         <?php include('resources/templates/head.php'); ?>
-        <title> RINFO</title>
+        <title> RINFO Home Page </title>
     </head>
 
     <body>
@@ -10,10 +10,11 @@
 
 		<div id="content">
 			<h2>Current Activity</h2>
-			<div class="content">
-				<ul>
-                    <li>....shirleyismygirly....</li>
-                    <li>....______:)______....</li>
+			<div class="display">
+				<ul class="homepage">
+                    <li class="homepage"><a class="active" href="#home">Activity Feed</a></li>
+  					<li class="homepage"><a href="#news">News</a></li>
+  					<li class="homepage"><a href="#contact">Contact</a></li>
                 </ul>
 			</div>
 		</div>
