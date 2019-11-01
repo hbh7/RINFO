@@ -1,0 +1,16 @@
+h1{
+    text-align: center;
+}
+#global_header {
+    border-bottom: 2px double black;
+}
+#search, #login {
+    float: right;
+}
+#global_header::after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+}
