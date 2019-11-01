@@ -26,7 +26,7 @@
                 <div id="activity_content" class="content">
                     <ul>
                         <li>There will be no classes on Jan. 17th due to a snow day!</li>
-                        <li>RPI ALERT: A student on 15th street was apprached by a man in an elmo costume. Witnesses say, "It may have been Halloween"</li>
+                        <li>RPI ALERT: A student on 15th street was apprached by a 2'4" man wearing an Elmo costume. Witnesses say, "It may have been an infant on Halloween"</li>
                     </ul>
                 </div>
             </div>
