@@ -3,6 +3,7 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-login.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/search_styles.css">
+<link rel="stylesheet" type="text/css" href="/resources/styles/styles-group.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-homepage.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">

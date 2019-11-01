@@ -1,0 +1,17 @@
+body {
+	margin: 0;
+	color: white;
+}
+/* homepage css */
+#information {
+    color: white;
+    border-style: solid;
+    border-color: rgb(252, 54, 54);
+    background: rgba(255, 255, 255, 0.3);
+}
+#activity {
+    color: white;
+    border-style: solid;
+    border-color: rgb(252, 54, 54);
+    background: rgba(255, 255, 255, 0.3);
+}

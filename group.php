@@ -5,14 +5,14 @@
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
-        Welcome!
+        <p>Welcome!</p>
 
         <div id="content">
             <div id="information">
                 <h2>Information</h2>
                 <div id="information_content" class="content">
                     <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
-                    <h3 class="group_name">RPISEC</h3>
+                    <h3 id="group_name">RPISEC</h3>
                     <p id="Nusers">866 users</p>
                     <p id="Nposts">70 posts</p>
                     <p id="join">Join</p>
