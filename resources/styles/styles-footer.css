@@ -12,7 +12,7 @@
     text-align: center;
 }
 #global_footer {
-    color: #515154;
+    color: white;
     position: absolute;
     top: 50%;
     left: 0;
@@ -44,7 +44,7 @@ One thing to note however - the short version does make the footer seem kind of 
 
 
 #global_footer > span {
-    border-right: 1px solid black;
+    border-right: 1px solid white;
     margin-left: 2px;
     margin-right: 2px;
 }
@@ -53,11 +53,11 @@ One thing to note however - the short version does make the footer seem kind of 
 }
 
 #global_footer a {
-    color: #515154;
+    color: white;
     text-decoration: none;
 }
 
 #global_footer a:hover {
-    color: #1d1d1f;
+    color: black;
     text-decoration: underline;
 }
