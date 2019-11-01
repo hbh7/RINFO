@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background: rgb(59, 59, 59);
 }
 /*I am not sure if this is used anywhere else outside the header, so I won't delete it*/
 h1{

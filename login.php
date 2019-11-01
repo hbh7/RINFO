@@ -4,7 +4,7 @@
         <title> RINFO Login </title>
     </head>
     <body>
-
+        <?php include('resources/templates/header.php'); ?>
         <div id="login_content">
             <div id="info_panel">
                 <div class="tips">
@@ -16,10 +16,11 @@
             </div>
             <div id="login_panel">
                 <div id="login_box">
-                    <p>Username <input type = "text" id = "username" value = "Username"></p>
+                    <p>Username <input type="text" id="username" value="Username"></p>
                     <br>
-                    <p>Password   <input type = "text" id = "password" value = "Password"></p>
+                    <p>Password   <input type="text" id="password" value="Password"></p>
                     <p class="small_link">Forgot Password</p>
+                    <button type="button" id="login_button">Log In</button>
                 </div>
                 <div id="account_box">
                     <p>Don't have an account? Click here to join.</p>

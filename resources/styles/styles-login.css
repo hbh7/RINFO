@@ -1,4 +1,7 @@
 /* for login page */
+body {
+	color: black;
+}
 h2 {
     color: white;
     text-align: center;
@@ -26,7 +29,6 @@ h2 {
   );
 }
 #info_panel {
-    
     height: 100%;
     text-align: left;
     float: left;
@@ -55,6 +57,10 @@ h2 {
     width: 100%;
 }
 .small_link {
+	color: black;
     text-align: center;
     font-size: 80%;
+}
+p {
+	color: black;
 }

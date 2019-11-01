@@ -16,9 +16,12 @@
   					<li class="homepage"><a href="#posts">My Posts</a></li>
 				</ul>
 				<div class="tab_content">
-					<ul id="hp_activities">
-						<li class="activity">Activity 1</li>
-					</ul>
+					<div id="hp_activities">
+						<p class="activity">Example Activity 1</p>
+						<p class="activity">Example Activity 2</p>
+						<p class="activity">Example Activity 3</p>
+						<p class="activity">Example Activity 4</p>
+					</div>
 				</div>
 			</div>
 		</div>
