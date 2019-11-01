@@ -17,6 +17,7 @@
 				</ul>
 				<div class="tab_content">
 					<div id="hp_activities">
+						<p id="banner" class="activity">Example Admin Notification</p>
 						<p class="activity">Example Activity 1</p>
 						<p class="activity">Example Activity 2</p>
 						<p class="activity">Example Activity 3</p>

@@ -35,10 +35,23 @@ h1{
     width:65%;
     float:right;
 }
+#pin{
+    height: 20px;
+}
+#banner {
+    background-color: yellow;
+    margin: 0 0;
+    padding: 16px 0 8px 0;
+    color: red;
+}
 /*The following block is for the activities box in group.php
     not sure if this is what we wanted, but at least the text is readable for now*/
 #activity_content {
     color: black;
+}
+#activity_content>ul>li {
+    width: 100%;
+    margin: 15px 0;
 }
 /*The following block is for the links in the information column of group.php
     again, not sure if this is the desired appearance, but for now it will do*/
