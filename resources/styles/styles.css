@@ -2,11 +2,9 @@ body {
     margin: 0;
     padding: 0;
 }
+/*I am not sure if this is used anywhere else outside the header, so I won't delete it*/
 h1{
     text-align: center;
-}
-#global_header {
-    border-bottom: 2px double black;
 }
 #content{
     width:85%;
@@ -35,6 +33,21 @@ h1{
 #activity{
     width:65%;
     float:right;
+}
+/*The following block is for the activities box in group.php
+    not sure if this is what we wanted, but at least the text is readable for now*/
+#activity_content {
+    color: black;
+}
+/*The following block is for the links in the information column of group.php
+    again, not sure if this is the desired appearance, but for now it will do*/
+#information_content>p>a {
+    color: white;
+    text-decoration: none;
+}
+#information_content>p>a:hover {
+    text-decoration: underline;
+    color: black;
 }
 #join{
     border-top: 2px double black;
