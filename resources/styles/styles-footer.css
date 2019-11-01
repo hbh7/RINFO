@@ -1,0 +1,63 @@
+/*
+    margins and padding are relative to the parent element's WIDTH
+        (yes, even top and bottom margin/padding are relative to the width)
+        because thanks box model you're a real gem :/
+    Obviously I don't want this (it looks strange), so to fix it I will wrap the footer
+        in a div, set the div to position:absolute; and then position the footer relative to its parent
+        (the "top" attribute does not rely on the parent's width)
+*/
+#wrap_footer {
+    position: relative;
+    height: 10%;
+    text-align: center;
+}
+#global_footer {
+    color: #515154;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    /* The following makes the footer be exactly the width of its content while still being centered */
+    /*
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    */
+}
+/*
+As far as I can tell, the following block does pretty much the same thing as the 2 blocks above
+However, I have only tested this on a (mainly blank) group page, so more testing is required before
+    coming to a decision (the commented-out version is shorter and requires less
+    elements in the footer, but the uncommented version is more robust)
+One thing to note however - the short version does make the footer seem kind of squished against
+    the content at higher resolutions, while the longer version starts out kind of squished at smaller
+    resolutions and gets slightly further away from the content as the resolution goes up
+*/
+/*
+#global_footer {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+*/
+
+
+#global_footer > span {
+    border-right: 1px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#global_footer > span:last-child {
+    border-right: none;
+}
+
+#global_footer a {
+    color: #515154;
+    text-decoration: none;
+}
+
+#global_footer a:hover {
+    color: #1d1d1f;
+    text-decoration: underline;
+}
