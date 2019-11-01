@@ -1,6 +1,6 @@
 <!-- Everything in this file is placed at the very top of the <body> tag in every page on the site -->
     <header id="global_header">
-        <img id="logo" src="/resources/images/logo.png" width=50px height=50px alt="Logo">
+        <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=50px height=50px alt="Logo" /></a>
         <?php
             $doc = new DomDocument();
             // the following line assigns the absolute path of the currently executing script to $file
