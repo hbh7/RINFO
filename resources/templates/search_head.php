@@ -3,4 +3,4 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/search_styles.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
-<script src="https://kit.fontawesome.com/11bb9a7ed5.js" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
