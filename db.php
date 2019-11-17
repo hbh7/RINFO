@@ -6,10 +6,13 @@ use function Sodium\add;
 function dbPut($tablename, $dbdata) {
     $conn = dbConnect();
 
-    $dbdata_string = implode(", ", $dbdata);
+    $dbdata_string = "'" . implode("', '", $dbdata) . "'" ;
+
+
+    error_log($dbdata_string);
 
     if($tablename == "r_users") {
-        $sql = "INSERT INTO r_users (username, password, firstname, lastname, email) VALUES (" . $dbdata_string . ")";
+        $sql = "INSERT INTO r_users (username, password, firstname, lastname, email) VALUES (" . $dbdata_string . ");";
     } elseif ($tablename == "r_groups") {
         $sql = "INSERT INTO r_groups (name, tagline) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_permissions") {
@@ -22,9 +25,11 @@ function dbPut($tablename, $dbdata) {
         return false;
     }
 
+    error_log($sql);
+
     if ($conn->query($sql) === TRUE) {
         $conn->close();
-        return true;
+        return "success";
     } else {
         return $conn->error;
     }

@@ -35,10 +35,11 @@ if($action == "register") {
         $result = [false, "Already Registered"];
     } else {
         // Register them if not
-        if(dbPut("r_users", [$username, $hash, $firstname, $lastname, $email])) {
+        $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
+        if($dbres == "success") {
             $result = [true, "Registered Successfully"];
         } else {
-            $result = [false, "Failed to register"];
+            $result = [false, "Failed to register. Error: " . $dbres];
         }
 
     }
