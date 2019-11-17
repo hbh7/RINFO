@@ -61,7 +61,7 @@ if(isset($action)) {
                 $result = [true, "Logged in Successfully"];
 
                 // Setting cookie
-                $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['$lastname']];
+                $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['lastname']];
                 // Cookie expires after 1 month
                 setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
                 // Redirect to homepage
