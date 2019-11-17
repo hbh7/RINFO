@@ -45,17 +45,21 @@ if(isset($action)) {
 
     } elseif ($action == "login") {
 
-        $dbhash = $users[0]['password'];
-        if (password_verify($password, $dbhash)) {
-            // Success!
-            $result = [true, "Logged in Successfully"];
-
-            // Setting cookie
-            // TODO: Consider some sort of cookie validation
-
+        if(sizeof($users) == 0) {
+            $result = [false, "Failed to log in: Invalid user!"];
         } else {
-            // Invalid credentials or unknown user
-            $result = [false, "Failed to log in"];
+            $dbhash = $users[0]['password'];
+            if (password_verify($password, $dbhash)) {
+                // Success!
+                $result = [true, "Logged in Successfully"];
+
+                // Setting cookie
+                // TODO: Consider some sort of cookie validation
+
+            } else {
+                // Invalid credentials or unknown user
+                $result = [false, "Failed to log in: Invalid password!"];
+            }
         }
 
     } elseif ($action == "forgot") {
