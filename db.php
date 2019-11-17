@@ -3,7 +3,7 @@
 // Accepts a tablename and an array of values to insert
 use function Sodium\add;
 
-function dbInsert($tablename, $dbdata) {
+function dbPut($tablename, $dbdata) {
     $conn = dbConnect();
 
     $dbdata_string = implode(", ", $dbdata);
@@ -17,7 +17,7 @@ function dbInsert($tablename, $dbdata) {
     } elseif ($tablename == "r_subscriptions") {
         $sql = "INSERT INTO r_subscriptions (user_id, group_id) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_posts") {
-        $sql = "INSERT INTO r_posts (group_id, user_id, title, body, date) VALUES ("  . $dbdata_string . ")";
+        $sql = "INSERT INTO r_posts (group_id, user_id, title, body, timestamp) VALUES ("  . $dbdata_string . ")";
     } else {
         return false;
     }
@@ -26,7 +26,6 @@ function dbInsert($tablename, $dbdata) {
         $conn->close();
         return true;
     } else {
-        $conn->close();
         return $conn->error;
     }
 
