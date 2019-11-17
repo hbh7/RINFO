@@ -58,6 +58,7 @@ INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Stud
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', 'Re@11y_Secure', 'Admin', 'Tester', 'sisman@rpi.edu');
 
 INSERT INTO r_groups(name, tagline) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.');
+INSERT INTO r_groups(name, tagline) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)');
 
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30 09:34:21');
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20');
