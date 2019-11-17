@@ -1,3 +1,6 @@
+<html lang="EN">
+<body>
+<p>
 <?php
 $servername = "localhost";
 $username = "rinfo";
@@ -74,3 +77,6 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 ?>
+</p>
+</body>
+</html>

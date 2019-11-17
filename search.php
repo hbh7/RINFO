@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
     <head>
         <?php include('resources/templates/search_head.php'); ?>
         <title> Searching... </title>

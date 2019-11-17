@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
     <head>
         <?php include('resources/templates/head.php'); ?>
         <title> Administration Homepage </title>
