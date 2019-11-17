@@ -45,8 +45,9 @@ One thing to note however - the short version does make the footer seem kind of 
 
 #global_footer > span {
     border-right: 1px solid white;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding-right: 4px;
 }
 #global_footer > span:last-child {
     border-right: none;
