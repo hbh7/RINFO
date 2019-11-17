@@ -2,6 +2,7 @@
     <header id="global_header">
         <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=50px height=50px alt="Logo" /></a>
         <?php
+            libxml_use_internal_errors(true); // Silence the nonsense errors
             $doc = new DomDocument();
             // the following line assigns the absolute path of the currently executing script to $file
             $file = $_SERVER["SCRIPT_FILENAME"];
