@@ -18,10 +18,20 @@
 				<div class="tab_content">
 					<div id="hp_activities">
 						<p id="banner" class="activity">Example Admin Notification</p>
-						<p class="activity">Example Activity 1</p>
-						<p class="activity">Example Activity 2</p>
-						<p class="activity">Example Activity 3</p>
-						<p class="activity">Example Activity 4</p>
+                        <?php
+                        include 'db.php';
+                        $posts = dbGet("*", "r_posts");
+                        foreach ($posts as $post) {
+                            $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
+
+                            echo "<div class='activity'>" .
+                                 "<span class='title'>" . $post["title"] . "</span><br />" .
+                                 "<span class='body'>" . $post["body"] . "</span><br />" .
+                                 "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                                 "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                                 "</div>";
+                        }
+                        ?>
 					</div>
 					<div id="my_groups">
 						<p class="group"> <a href="group.php">RPISEC</a></p>

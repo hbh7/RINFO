@@ -63,12 +63,12 @@ if ($result->num_rows > 0) {
 }
 
 echo "<br />Table r_posts: <br />";
-$sql = "SELECT post_id, group_id, user_id, title, body, date FROM r_posts";
+$sql = "SELECT post_id, group_id, user_id, title, body, timestamp FROM r_posts";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "post_id: " . $row["post_id"] . ", group_id: " . $row["group_id"] . ", user_id: " . $row["user_id"] . ", title: " . $row["title"] . ", body: " . $row["body"] . ", date: " . $row["date"] . "<br>";
+        echo "post_id: " . $row["post_id"] . ", group_id: " . $row["group_id"] . ", user_id: " . $row["user_id"] . ", title: " . $row["title"] . ", body: " . $row["body"] . ", timestamp: " . $row["timestamp"] . "<br>";
     }
 } else {
     echo "0 results <br />";

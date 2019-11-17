@@ -1,6 +1,8 @@
 <?php
 
 // Accepts a tablename and an array of values to insert
+use function Sodium\add;
+
 function dbInsert($tablename, $dbdata) {
     $conn = dbConnect();
 
@@ -16,36 +18,47 @@ function dbInsert($tablename, $dbdata) {
         $sql = "INSERT INTO r_subscriptions (user_id, group_id) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_posts") {
         $sql = "INSERT INTO r_posts (group_id, user_id, title, body, date) VALUES ("  . $dbdata_string . ")";
+    } else {
+        return false;
     }
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        $conn->close();
+        return true;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $conn->close();
+        return $conn->error;
     }
 
-    $conn->close();
 }
 
-// Accepts a tablename and an array of values to insert
-function dbGet($tablename, $dbdata) {
+// Accepts strings:
+// $select: what to select. Ex: "*"
+// $from: tablename. Ex: "r_posts"
+// $where: optional specifier. Ex: "user_id=3"
+function dbGet($select, $from, $where=null) {
     $conn = dbConnect();
 
-    $dbdata_string = implode(", ", $dbdata);
+    if ($from != "r_users" && $from != "r_groups" && $from != "r_permissions" && $from != "r_subscriptions" && $from != "r_posts") {
+        return null;
+    }
 
-    echo "Table " . $tablename . ": <br />";
-    $sql = "SELECT " . $dbdata_string . " FROM " . $tablename;
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo $row . "<br />"; // or something else, undecided yet how this is going to get used.
-        }
+    if($where != null) {
+        $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where;
     } else {
-        echo "0 results <br />";
+        $sql = "SELECT " . $select . " FROM " . $from;
+    }
+    $result = $conn->query($sql);
+
+    $ret = [];
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            array_push($ret, $row);
+        }
     }
 
     $conn->close();
+    return $ret;
 }
 
 function dbConnect() {
