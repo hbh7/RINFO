@@ -72,10 +72,10 @@ function dbGet($select, $from, $where=null) {
 
 // Call this before running any code that relies on a user being logged in to ensure that they're actually logged in
 // If their login is invalid, kill the cookie and redirect them to the login page and throw an error in $result.
+// If valid login, return true. If not logged in, return false.
 function checkValidLogin() {
     if(!isset($_COOKIE["login"])) {
-        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
-        die();
+        return false;
     } else {
         //print_r(json_decode($_COOKIE["login"], true));
         $users = dbGet("username, password", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");

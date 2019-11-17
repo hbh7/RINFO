@@ -6,7 +6,7 @@
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
-        <?php  include('db.php'); ?>
+        <?php include_once('db.php'); ?>
 
         <form>
             Event Name:

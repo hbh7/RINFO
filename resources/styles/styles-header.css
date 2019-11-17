@@ -14,3 +14,30 @@ h1{
     clear: both;
     height: 0;
 }
+
+#leftbox {
+    float:left;
+    width:25%;
+    height:75px;
+}
+#centerbox{
+    float:left;
+    width:50%;
+    height:75px;
+}
+#rightbox{
+    float:right;
+    width:25%;
+    height:75px;
+    vertical-align: center;
+}
+
+button {
+    margin-top: 25px;
+    margin-right: 10px;
+    height: 25px;
+}
+
+#logintext {
+    margin-right: 10px;
+}

@@ -25,12 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Data validation
 // TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
 // TODO: Make sure action is "login" or "register"
+// TODO: Make sure capitalization is nice for firstname and lastname
 
 if(isset($action)) {
 
 // DB Calls
-    include 'db.php';
-    $users = dbGet("user_id, username, password", "r_users", "username='" . $username . "'");
+    include_once 'db.php';
+    $users = dbGet("user_id, username, password, firstname, lastname", "r_users", "username='" . $username . "'");
 
     if ($action == "register") {
 
@@ -61,7 +62,7 @@ if(isset($action)) {
                 $result = [true, "Logged in Successfully"];
 
                 // Setting cookie
-                $loginCookie = ["username" => $username, "passwordHash" => $dbhash];
+                $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['$lastname']];
                 // Cookie expires after 1 month
                 setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
                 // Redirect to homepage

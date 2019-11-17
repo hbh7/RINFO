@@ -19,7 +19,7 @@
 					<div id="hp_activities">
 						<p id="banner" class="activity">Example Admin Notification</p>
                         <?php
-                        include 'db.php';
+                        include_once 'db.php';
                         $posts = dbGet("*", "r_posts");
                         foreach ($posts as $post) {
                             $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
