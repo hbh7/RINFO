@@ -1,8 +1,6 @@
 <?php
 
 // Accepts a tablename and an array of values to insert
-use function Sodium\add;
-
 function dbPut($tablename, $dbdata) {
     $conn = dbConnect();
 
@@ -70,6 +68,28 @@ function dbGet($select, $from, $where=null) {
     return $ret;
 }
 
+// Accepts a tablename and a string specifying what to delete
+// Ex: "WHERE user_id='4'"
+function dbDelete($tablename, $where) {
+    $conn = dbConnect();
+
+    if ($tablename != "r_users" && $tablename != "r_groups" && $tablename != "r_permissions" && $tablename != "r_subscriptions" && $tablename != "r_posts") {
+        return null;
+    }
+
+    $sql = "DELETE FROM " . $tablename . " WHERE " . $where . ";";
+
+    error_log($sql);
+
+    if ($conn->query($sql) === TRUE) {
+        $conn->close();
+        return "success";
+    } else {
+        return $conn->error;
+    }
+
+}
+
 // Call this before running any code that relies on a user being logged in to ensure that they're actually logged in
 // If their login is invalid, kill the cookie and redirect them to the login page and throw an error in $result.
 // If valid login, return true. If not logged in, return false.
@@ -97,7 +117,12 @@ function checkValidLogin() {
             die();
         }
     }
+}
 
+// Return the DB ID associated with the current user. Run checkValidLogin() first.
+function getUserID() {
+    $users = dbGet("user_id", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
+    return $users[0]["user_id"];
 }
 
 function dbConnect() {

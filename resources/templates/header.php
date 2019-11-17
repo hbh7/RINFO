@@ -17,7 +17,7 @@
                 foreach($titles as $item) {
                     $out[] = $item->nodeValue;
                 }
-                // $out[0]; contains the text contained in the <title> tag in the html file where this file is include'd
+                // $out[0]; contains the text contained in the <title> tag in the html file where this file is included
                 // now I have to generate some html so that this text isn't just floating around on the page
                 echo "<h1 id='page_title'>".$out[0]."</h1>";
             ?>
@@ -26,7 +26,6 @@
             <?php
             include_once 'db.php';
             if(checkValidLogin()) {
-                error_log(print_r($_COOKIE, true));
                 echo "<span id='logintext'> Logged in as " . json_decode($_COOKIE["login"], true)["firstname"] . " </span>";
                 echo "<button id=\"logout\" onclick=\"window.location='logout.php';\">Log out</button>";
             } else {

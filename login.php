@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset( $_GET['redirectmsg'])) {
         $result = [False, $_GET['redirectmsg']];
     }
-
 }
 
 // Data validation

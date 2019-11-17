@@ -69,6 +69,11 @@ li a.active {
 .group {
 	color: white;
 }
+
+.group.name {
+    text-align: center;
+}
+
 .post {
 	color: white;
 }

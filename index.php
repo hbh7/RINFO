@@ -7,6 +7,7 @@
 
     <body>
         <?php include('resources/templates/header.php'); ?>
+        <?php include_once 'db.php'; ?>
 
 		<div id="content">
 			<div class="display">
@@ -19,7 +20,6 @@
 					<div id="hp_activities">
 						<p id="banner" class="activity">Example Admin Notification</p>
                         <?php
-                        include_once 'db.php';
                         $posts = dbGet("*", "r_posts");
                         foreach ($posts as $post) {
                             $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
@@ -34,9 +34,16 @@
                         ?>
 					</div>
 					<div id="my_groups">
-						<p class="group"> <a href="group.php">RPISEC</a></p>
-						<p class="group">Example Club 2</p>
-						<p class="group">Example Club 3</p>
+                        <?php
+                        $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
+                        foreach ($subscriptions as $subscription) {
+                            $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
+
+                            echo "<div class='group'>" .
+                                "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
+                                "</div>";
+                        }
+                        ?>
 					</div>
 					<div id="my_posts">
 						<p class="post">Example Post 1</p>
