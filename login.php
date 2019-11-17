@@ -2,9 +2,6 @@
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    print_r($_POST);
-
     $username = $_POST['username'];
     $password = $_POST['password'];
     $action = $_POST['action'];
@@ -22,50 +19,53 @@ $err = Array();
 // TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
 // TODO: Make sure action is "login" or "register"
 
+if(isset($action)) {
+
 // DB Calls
-include 'db.php';
-$users = dbGet("user_id, username, password", "r_users", "username='" . $username . "'");
+    include 'db.php';
+    $users = dbGet("user_id, username, password", "r_users", "username='" . $username . "'");
 
-if($action == "register") {
+    if ($action == "register") {
 
-    // Make sure they're not already registered
-    if(sizeof($users) > 0) {
-        // User already exists in the database
-        $result = [false, "Already Registered"];
-    } else {
-        // Register them if not
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
-        if($dbres == "success") {
-            $result = [true, "Registered Successfully"];
+        // Make sure they're not already registered
+        if (sizeof($users) > 0) {
+            // User already exists in the database
+            $result = [false, "Already Registered"];
         } else {
-            $result = [false, "Failed to register. Error: " . $dbres];
+            // Register them if not
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
+            if ($dbres == "success") {
+                $result = [true, "Registered Successfully"];
+            } else {
+                $result = [false, "Failed to register. Error: " . $dbres];
+            }
+
         }
 
+    } elseif ($action == "login") {
+
+        $dbhash = $users[0]['password'];
+        if (password_verify($password, $dbhash)) {
+            // Success!
+            $result = [true, "Logged in Successfully"];
+
+            // Setting cookie
+            // TODO: Consider some sort of cookie validation
+
+        } else {
+            // Invalid credentials or unknown user
+            $result = [false, "Failed to log in"];
+        }
+
+    } elseif ($action == "forgot") {
+
+        // Handle forgotten passwords by laughing at the user's misfortune
+        $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
+
     }
-
-} elseif($action == "login") {
-
-    $dbhash = $users[0]['password'];
-    if (password_verify($password, $dbhash)) {
-        // Success!
-        $result = [true, "Logged in Successfully"];
-
-        // Setting cookie
-        // TODO: Consider some sort of cookie validation
-
-    } else {
-        // Invalid credentials or unknown user
-        $result = [false, "Failed to log in"];
-    }
-
-} elseif($action == "forgot") {
-
-    // Handle forgotten passwords by laughing at the user's misfortune
-    $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
 
 }
-
 
 ?>
 
