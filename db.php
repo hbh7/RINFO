@@ -70,6 +70,36 @@ function dbGet($select, $from, $where=null) {
     return $ret;
 }
 
+// Call this before running any code that relies on a user being logged in to ensure that they're actually logged in
+// If their login is invalid, kill the cookie and redirect them to the login page and throw an error in $result.
+function checkValidLogin() {
+    if(!isset($_COOKIE["login"])) {
+        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+        die();
+    } else {
+        //print_r(json_decode($_COOKIE["login"], true));
+        $users = dbGet("username, password", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
+        if (sizeof($users) > 0) {
+            // User found, check password
+            if(json_decode($_COOKIE["login"], true)["passwordHash"] == $users[0]["password"]) {
+                // Valid user, valid password
+                return true;
+            } else {
+                // Valid user, invalid password
+                setcookie("login", "", time() - 3600); // Nuke the cookie
+                header("Location: /login.php?redirectmsg=Invalid session cookie, password error!");
+                die();
+            }
+        } else {
+            // Invalid user
+            setcookie("login", "", time() - 3600); // Nuke the cookie
+            header("Location: /login.php?redirectmsg=Invalid session cookie, username error!");
+            die();
+        }
+    }
+
+}
+
 function dbConnect() {
     $servername = "localhost";
     $username = "rinfo";

@@ -13,7 +13,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['email']))
         $email = $_POST['email'];
 }
-$err = Array();
+
+// Get GET data
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if(isset( $_GET['redirectmsg'])) {
+        $result = [False, $_GET['redirectmsg']];
+    }
+
+}
 
 // Data validation
 // TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
@@ -54,8 +61,12 @@ if(isset($action)) {
                 $result = [true, "Logged in Successfully"];
 
                 // Setting cookie
-                // TODO: Consider some sort of cookie validation
-
+                $loginCookie = ["username" => $username, "passwordHash" => $dbhash];
+                // Cookie expires after 1 month
+                setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
+                // Redirect to homepage
+                header("Location: /index.php");
+                die();
             } else {
                 // Invalid credentials or unknown user
                 $result = [false, "Failed to log in: Invalid password!"];
