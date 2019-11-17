@@ -109,7 +109,7 @@ if(isset($action)) {
                     <br /><br />
                     <label for=\"username\">Username </label><input type=\"text\"  name=\"username\" id=\"username\" value=\"\" placeholder=\"shirleyannjackson\">
                     <br /><br />
-                    <label for=\"password\">Password </label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
+                    <label for=\"password\">Password (Don't forget it!)</label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
                     <br /><br />
                     <button type=\"submit\" id=\"register_button\" name=\"action\" value=\"register\">Register</button>
                     ";
