@@ -8,9 +8,6 @@ function dbPut($tablename, $dbdata) {
 
     $dbdata_string = "'" . implode("', '", $dbdata) . "'" ;
 
-
-    error_log($dbdata_string);
-
     if($tablename == "r_users") {
         $sql = "INSERT INTO r_users (username, password, firstname, lastname, email) VALUES (" . $dbdata_string . ");";
     } elseif ($tablename == "r_groups") {
@@ -22,10 +19,10 @@ function dbPut($tablename, $dbdata) {
     } elseif ($tablename == "r_posts") {
         $sql = "INSERT INTO r_posts (group_id, user_id, title, body, timestamp) VALUES ("  . $dbdata_string . ")";
     } else {
-        return false;
+        return "invalid table name";
     }
 
-    error_log($sql);
+    //error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
@@ -48,18 +45,26 @@ function dbGet($select, $from, $where=null) {
     }
 
     if($where != null) {
-        $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where;
+        $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where . ";";
     } else {
-        $sql = "SELECT " . $select . " FROM " . $from;
+        $sql = "SELECT " . $select . " FROM " . $from . ";";
     }
+
+    //error_log($sql);
+
     $result = $conn->query($sql);
 
+    //error_log(print_r($result,true));
+
     $ret = [];
+
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             array_push($ret, $row);
         }
     }
+
+    //error_log(print_r($ret,true));
 
     $conn->close();
     return $ret;

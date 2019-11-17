@@ -24,8 +24,7 @@ $err = Array();
 
 // DB Calls
 include 'db.php';
-$users = dbGet("user_id, username, password", "r_users", "username=" . $username);
-$hash = password_hash($password, PASSWORD_DEFAULT);
+$users = dbGet("user_id, username, password", "r_users", "username='" . $username . "'");
 
 if($action == "register") {
 
@@ -35,6 +34,7 @@ if($action == "register") {
         $result = [false, "Already Registered"];
     } else {
         // Register them if not
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
         if($dbres == "success") {
             $result = [true, "Registered Successfully"];
@@ -46,7 +46,8 @@ if($action == "register") {
 
 } elseif($action == "login") {
 
-    if (password_verify($password, $hash)) {
+    $dbhash = $users[0]['password'];
+    if (password_verify($password, $dbhash)) {
         // Success!
         $result = [true, "Logged in Successfully"];
 
@@ -54,7 +55,7 @@ if($action == "register") {
         // TODO: Consider some sort of cookie validation
 
     } else {
-        // Invalid credentials
+        // Invalid credentials or unknown user
         $result = [false, "Failed to log in"];
     }
 
@@ -123,9 +124,6 @@ if($action == "register") {
                 }
                 ?>
                 </form>
-                <div id="account_box">
-                    <p>Don't have an account? Click here to join.</p>
-                </div>
             </div>
         </div>
 
