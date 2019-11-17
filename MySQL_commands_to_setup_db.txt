@@ -1,7 +1,7 @@
 /* Run with 'mysql -u root -p < MySQL_commands_to_setup_db.txt' */
 
 CREATE USER IF NOT EXISTS 'rinfo'@'localhost' IDENTIFIED BY 'RINFOServerPassword10302019';
-DROP DATABASE RINFO;
+DROP DATABASE IF EXISTS RINFO;
 CREATE DATABASE RINFO;
 GRANT ALL PRIVILEGES ON RINFO.* TO 'rinfo'@'localhost';
 FLUSH PRIVILEGES;
