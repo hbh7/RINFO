@@ -13,7 +13,7 @@
 			<div class="display">
 				<ul>
                     <li id="activity_tab" class="homepage" onclick="activity()"><a class="active" href="#activity_feed">Activity Feed</a></li>
-  					<li id="group_tab" class="homepage" onclick="group()"><a href="#groups" >My Groups</a></li>
+  					<li id="group_tab" class="homepage" onclick="group()"><a href="#groups" >Groups</a></li>
   					<li id="post_tab" class="homepage" onclick="post()"><a href="#posts">My Posts</a></li>
 				</ul>
 				<div class="tab_content">
@@ -35,7 +35,9 @@
 					</div>
 					<div id="my_groups">
                         <?php
+
                         if(checkValidLogin()) {
+                            echo "<span> My groups </span>";
                             $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
                             foreach ($subscriptions as $subscription) {
                                 $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
@@ -44,14 +46,17 @@
                                     "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
                                     "</div>";
                             }
-                        } else {
-                            $groups = dbGet("group_id, name", "r_groups");
-                            foreach ($groups as $group) {
-                                echo "<div class='group'>" .
-                                    "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
-                                    "</div>";
-                            }
                         }
+
+                        echo "<span> All groups </span>";
+
+                        $groups = dbGet("group_id, name", "r_groups");
+                        foreach ($groups as $group) {
+                            echo "<div class='group'>" .
+                                "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
+                                "</div>";
+                        }
+
 
                         ?>
 					</div>
