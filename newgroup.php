@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             dbPut("r_groups", [$_POST["name"], $_POST["name"]]);
             $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
 
+            // TODO: Implement a popup system so we can display "Group added successfully!" or something
             header("Location: /group.php?group_id=" . $groupID);
             die();
 
@@ -46,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
-        <?php include_once('db.php'); ?>
 
         <form method="post" action="newgroup.php">
             <!-- TODO: These need label tags -->
@@ -62,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" />
 
         </form>
-
 
         <?php include('resources/templates/footer.php'); ?>
     </body>
