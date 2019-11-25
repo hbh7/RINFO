@@ -8,10 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             error_log("Search invalid query");
             return json_encode("['Error': 'Invalid query']");
         }
-        if($_GET['category'] == "groups") {
+        if($_GET['category'] == "group_name") {
             error_log("DB search groups");
             echo json_encode(dbGet("name, group_id", "r_groups", "name like '" . $_GET['searchtext'] . "%'", true));
-        } elseif ($_GET['category'] == "posts") {
+        } elseif ($_GET['category'] == "group_tagline") {
+            error_log("DB search posts");
+            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+        } elseif ($_GET['category'] == "post_title") {
+            error_log("DB search posts");
+            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+        } elseif ($_GET['category'] == "post_body") {
             error_log("DB search posts");
             return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
         } else {
