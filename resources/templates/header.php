@@ -34,4 +34,13 @@
             ?>
             <button id="search" onclick="window.location='search.php';"> Search </button>
         </div>
+        <?php
+            // check for get request from a page (if the popup key is set, display popup with a message)
+            if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
+                // displayPopup exists and it has some value (the message) - generate the popup
+                echo <<< HTML
+                    <div id="popup"></div>
+HTML;
+            }
+        ?>
     </header>
