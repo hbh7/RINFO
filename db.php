@@ -1,5 +1,29 @@
 <?php
 
+// Get GET data
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    if(isset($_GET['search'])) {
+        if(!isset($_GET['category']) || !isset($_GET['searchtext'])) {
+            error_log("Search invalid query");
+            return json_encode("['Error': 'Invalid query']");
+        }
+        if($_GET['category'] == "groups") {
+            error_log("DB search groups");
+            echo json_encode(dbGet("name, group_id", "r_groups", "name like '" . $_GET['searchtext'] . "%'", true));
+        } elseif ($_GET['category'] == "posts") {
+            error_log("DB search posts");
+            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+        } else {
+            error_log("Search invalid query ");
+            return json_encode("['Error': 'Invalid query']");
+        }
+    }
+    error_log("DB Method not GET");
+
+}
+
+
 // Accepts a tablename and an array of values to insert
 function dbPut($tablename, $dbdata) {
     $conn = dbConnect();
@@ -35,7 +59,8 @@ function dbPut($tablename, $dbdata) {
 // $select: what to select. Ex: "*"
 // $from: tablename. Ex: "r_posts"
 // $where: optional specifier. Ex: "user_id=3"
-function dbGet($select, $from, $where=null) {
+// $search: only returns 5 items, can search for partial items
+function dbGet($select, $from, $where=null, $search=false) {
     $conn = dbConnect();
 
     if ($from != "r_users" && $from != "r_groups" && $from != "r_permissions" && $from != "r_subscriptions" && $from != "r_posts") {
@@ -43,22 +68,32 @@ function dbGet($select, $from, $where=null) {
     }
 
     if($where != null) {
-        $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where . ";";
+        $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where;
     } else {
-        $sql = "SELECT " . $select . " FROM " . $from . ";";
+        $sql = "SELECT " . $select . " FROM " . $from;
     }
 
-    //error_log($sql);
+    if($search) {
+        $sql .= " ORDER BY name asc LIMIT 10";
+    }
+
+    $sql  .= ";";
+
+    error_log($sql);
 
     $result = $conn->query($sql);
 
-    //error_log(print_r($result,true));
-
     $ret = [];
 
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            array_push($ret, $row);
+    if($conn->error) {
+        error_log($conn->error);
+        return($conn->error);
+    } else {
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($ret, $row);
+            }
         }
     }
 
@@ -66,6 +101,7 @@ function dbGet($select, $from, $where=null) {
 
     $conn->close();
     return $ret;
+
 }
 
 // Accepts a tablename and a string specifying what to delete
