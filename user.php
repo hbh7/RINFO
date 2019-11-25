@@ -4,22 +4,22 @@
 
 // Get GET data
 //if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if(isset( $_GET['group_id'])) {
-        $group_id = $_GET['group_id'];
+    if(isset( $_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
     }
 //}
 
 include_once 'db.php';
 
-$group = dbGet("*", "r_groups", "group_id='" . $group_id . "'")[0];
+$user = dbGet("*", "r_users", "user_id='" . $user_id . "'")[0];
 
 if (isset( $_POST['action'])) {
     $action = $_POST['action'];
     if(checkValidLogin()) {
         if($action == "join") {
-            dbPut("r_subscriptions", [getUserID(), $group_id]);
+            dbPut("r_subscriptions", [getUserID(), $user_id]);
         } elseif ($action == "leave") {
-            dbDelete("r_subscriptions", "user_id='" . getUserID() . "' AND group_id='" . $group_id . "'");
+            dbDelete("r_subscriptions", "user_id='" . getUserID() . "' AND user_id='" . $user_id . "'");
         }
     } else {
         header("Location: /login.php?redirectmsg=You must be logged in to do that!");
@@ -27,9 +27,9 @@ if (isset( $_POST['action'])) {
     }
 }
 
-
-$numSubscriptions = sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "'"));
-$numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
+$numSubscriptions = sizeof(dbGet("subscription_id", "r_subscriptions", "user_id='" . $user_id . "'"));
+$numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND group_id='0'"));
+// Currently just looking for posts directly to their profile, not for posts they make to other groups
 
 
 ?>
@@ -37,7 +37,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 <html lang="en">
     <head>
         <?php include('resources/templates/head.php'); ?>
-        <title> <?php echo $group["name"]; ?> </title>
+        <title> <?php echo $user["firstname"] . " " . $user["lastname"]; ?> </title>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
@@ -46,24 +46,26 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
             <div id="information">
                 <h2>Information</h2>
                 <div id="information_content" class="content">
-                    <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
-                    <h3 id="group_name"><?php echo $group["name"]; ?></h3>
+                    <h3 id="name"><?php echo $user["firstname"] . " " . $user["lastname"]; ?></h3>
+                    <h3 id="username"><?php echo $user["username"]; ?></h3>
+                    <h3 id="email"><?php echo $user["email"]; ?></h3>
                     <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
                     <p id="Nposts"><?php echo $numPosts; ?> posts</p>
                     <form method="post">
                         <?php
-                        if(checkValidLogin()) {
-                            if (sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "' AND user_id='" . getUserID() . "'")) > 0) {
-                                echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\">Leave</button>";
+                        if(getUserID() != $user_id) {
+                            if (checkValidLogin()) {
+                                if (sizeof(dbGet("subscription_id", "r_subscriptions", "user_id='" . $user_id . "' AND user_id='" . getUserID() . "'")) > 0) {
+                                    echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\">Unfollow</button>";
+                                } else {
+                                    echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Follow</button>";
+                                }
                             } else {
-                                echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
+                                echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Follow</button>";
                             }
-                        } else {
-                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
                         }
                         ?>
                     </form>
-                    <p><?php echo $group["tagline"]; ?></p>
                     <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
                     TODO: Move this into the database, and make it so it can be changed online-->
@@ -73,7 +75,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                 <h2>Posts</h2>
                 <div id="activity_content" class="content">
                     <?php
-                    $posts = dbGet("*", "r_posts", "group_id='" . $group_id . "'");
+                    $posts = dbGet("*", "r_posts", "user_id='" . $user_id . "' AND group_id='0'");
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
 
