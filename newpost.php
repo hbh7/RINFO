@@ -6,43 +6,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(checkValidLogin()) {
 
-        // Check if any post exist with the same name
-        // Commented out as I don't think is actually necessary. Leaving in case it is
-        //$arr = dbGet("name", "r_posts");
-        $unique = true;
-        //foreach($arr as $a) {
-        //    if($a["name"] == $_POST["title"]) {
-        //        $unique = false;
-        //        break;
-        //    }
-        //}
-        if($unique) {
-
-            date_default_timezone_set('America/New_York');
-            $date = date('Y-m-d H:i:s', time());
-            if($_POST['where'] == "self") {
-                $where = 0;
-            } else {
-                $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
-            }
-
-            $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);
-
-            if($result == "success") {
-                // TODO: Implement a popup system so we can display "Group added successfully!" or something
-                if ($where == 0) {
-                    header("Location: /user.php?user_id=" . getUserID());
-                } else {
-                    header("Location: /group.php?group_id=" . $where);
-                }
-                die();
-            } else {
-                echo $result;
-            }
-
+        date_default_timezone_set('America/New_York');
+        $date = date('Y-m-d H:i:s', time());
+        if($_POST['where'] == "self") {
+            $where = 0;
         } else {
-            // Throw an error that the group name isn't unique. TODO: Improve this, probably just remove it though
-            echo "Error, your post title isn't unique";
+            $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
+        }
+
+        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);
+
+        if($result == "success") {
+            // TODO: Implement a popup system so we can display "Group added successfully!" or something
+            if ($where == 0) {
+                header("Location: /user.php?user_id=" . getUserID());
+            } else {
+                header("Location: /group.php?group_id=" . $where);
+            }
+            die();
+        } else {
+            echo $result;
         }
 
     } else {
