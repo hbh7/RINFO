@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "tagline like '%" . $_GET['searchtext'] . "%'", true);
         $output["post_title"] = dbGet("title, post_id, group_id, user_id", "r_posts", "title like '%" . $_GET['searchtext'] . "%'", true);
         $output["post_body"] = dbGet("title, body, post_id, group_id, user_id", "r_posts", "body like '%" . $_GET['searchtext'] . "%'", true);
+        $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname like '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
         echo json_encode($output);
 
         /*
@@ -92,6 +93,9 @@ function dbGet($select, $from, $where=null, $search=false) {
         if (strpos($sql, 'r_groups') !== false) {
             // If search is for groups
             $sql .= " ORDER BY name asc LIMIT 10";
+        } elseif (strpos($sql, 'r_users') !== false) {
+            // If search is for users
+            $sql .= " ORDER BY firstname asc LIMIT 10";
         } else {
             // If search is for posts
             $sql .= " ORDER BY title asc LIMIT 10";
