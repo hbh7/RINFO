@@ -11,16 +11,16 @@ $(document).ready(function () {
 
         if(searchText !== "") {
 
-            // Group Name Search
-            console.log("Searching for group names...");
-            $.getJSON("db.php?search=true&category=group_name&searchtext=" + searchText, function (data) {
+            $.getJSON("db.php?searchtext=" + searchText, function (data) {
+
                 var output = document.getElementById("results");
                 console.log(data);
-                if(data.length > 0) {
+
+                if(data["group_name"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Group names matching query:";
                     output.appendChild(header);
-                    data.forEach(function (d) {
+                    data["group_name"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         newelem.href = "group.php?group_id=" + d["group_id"];
                         newelem.innerText = d["name"];
@@ -28,62 +28,61 @@ $(document).ready(function () {
                         output.appendChild(document.createElement("br"));
                     });
                 }
-            });
 
-            // Group Tagline Search
-            console.log("Searching for group taglines...");
-            $.getJSON("db.php?search=true&category=group_tagline&searchtext=" + searchText, function (data) {
-                var output = document.getElementById("results");
-                console.log(data);
-                if(data.length > 0) {
+
+                // TODO: Add fancy text bolding or something
+                if(data["group_tagline"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Group taglines matching query:";
                     output.appendChild(header);
-                    data.forEach(function (d) {
+                    data["group_tagline"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         newelem.href = "group.php?group_id=" + d["group_id"];
                         newelem.innerText = d["name"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
+                        var newelem2 = document.createElement("p");
+                        newelem2.innerText = d["tagline"];
+                        output.appendChild(newelem2);
+                        output.appendChild(document.createElement("br"));
                     });
                 }
-            });
 
-            // Post Title Search
-            console.log("Searching for post titles...");
-            $.getJSON("db.php?search=true&category=post_title&searchtext=" + searchText, function (data) {
-                var output = document.getElementById("results");
-                console.log(data);
-                if(data.length > 0) {
+                if(data["post_title"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Post titles matching query:";
                     output.appendChild(header);
-                    data.forEach(function (d) {
+                    data["post_title"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         newelem.href = "group.php?group_id=" + d["group_id"];
-                        newelem.innerText = d["name"];
+                        newelem.innerText = d["title"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
                     });
                 }
-            });
 
-            // Post Text Search
-            console.log("Searching for post body...");
-            $.getJSON("db.php?search=true&category=post_body&searchtext=" + searchText, function (data) {
-                var output = document.getElementById("results");
-                console.log(data);
-                if(data.length > 0) {
+                if(data["post_body"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Post bodies matching query:";
                     output.appendChild(header);
-                    data.forEach(function (d) {
+                    data["post_body"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         newelem.href = "group.php?group_id=" + d["group_id"];
-                        newelem.innerText = d["name"];
+                        newelem.innerText = d["title"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
+                        var newelem2 = document.createElement("p");
+                        newelem2.href = "group.php?group_id=" + d["group_id"];
+                        newelem2.innerText = d["body"];
+                        output.appendChild(newelem2);
+                        output.appendChild(document.createElement("br"));
                     });
+                }
+
+                if(output.childElementCount === 0) {
+                    var header = document.createElement("h3");
+                    header.innerText = "No results found";
+                    output.appendChild(header);
                 }
             });
         }

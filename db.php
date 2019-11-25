@@ -3,27 +3,36 @@
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    if(isset($_GET['search'])) {
+    if(isset($_GET['searchtext'])) {
+
+        $output = [];
+        $output["group_name"] = dbGet("name, group_id", "r_groups", "name like '%" . $_GET['searchtext'] . "%'", true);
+        $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "tagline like '%" . $_GET['searchtext'] . "%'", true);
+        $output["post_title"] = dbGet("title, post_id, group_id, user_id", "r_posts", "title like '%" . $_GET['searchtext'] . "%'", true);
+        $output["post_body"] = dbGet("title, body, post_id, group_id, user_id", "r_posts", "body like '%" . $_GET['searchtext'] . "%'", true);
+        echo json_encode($output);
+
+        /*
         if(!isset($_GET['category']) || !isset($_GET['searchtext'])) {
             error_log("Search invalid query");
             return json_encode("['Error': 'Invalid query']");
         }
         if($_GET['category'] == "group_name") {
-            error_log("DB search groups");
-            echo json_encode(dbGet("name, group_id", "r_groups", "name like '" . $_GET['searchtext'] . "%'", true));
+            echo json_encode(dbGet("name, group_id", "r_groups", "name like '%" . $_GET['searchtext'] . "%'", true));
+
         } elseif ($_GET['category'] == "group_tagline") {
-            error_log("DB search posts");
-            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+            return json_encode(dbGet("name, tagline, group_id", "r_groups", "tagline like '%" . $_GET['searchtext'] . "%'", true));
+
         } elseif ($_GET['category'] == "post_title") {
-            error_log("DB search posts");
-            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "title like '%" . $_GET['searchtext'] . "%'", true));
+
         } elseif ($_GET['category'] == "post_body") {
-            error_log("DB search posts");
-            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "name='" . $_GET['searchtext'] . "'", true));
+            return json_encode(dbGet("title, body, post_id, group_id, user_id", "r_posts", "body like '%" . $_GET['searchtext'] . "%'", true));
+
         } else {
             error_log("Search invalid query ");
             return json_encode("['Error': 'Invalid query']");
-        }
+        }*/
     }
     error_log("DB Method not GET");
 
@@ -80,7 +89,13 @@ function dbGet($select, $from, $where=null, $search=false) {
     }
 
     if($search) {
-        $sql .= " ORDER BY name asc LIMIT 10";
+        if (strpos($sql, 'r_groups') !== false) {
+            // If search is for groups
+            $sql .= " ORDER BY name asc LIMIT 10";
+        } else {
+            // If search is for posts
+            $sql .= " ORDER BY title asc LIMIT 10";
+        }
     }
 
     $sql  .= ";";
