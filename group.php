@@ -13,15 +13,15 @@ $group = dbGet("*", "r_groups", "group_id='" . $group_id . "'")[0];
 
 if (isset( $_POST['action'])) {
     $action = $_POST['action'];
-    if($action == "join") {
-        if(checkValidLogin()) {
+    if(checkValidLogin()) {
+        if($action == "join") {
             dbPut("r_subscriptions", [getUserID(), $group_id]);
-        } else {
-            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
-            die();
+        } elseif ($action == "leave") {
+            dbDelete("r_subscriptions", "user_id='" . getUserID() . "' AND group_id='" . $group_id . "'");
         }
-    } elseif ($action == "leave") {
-        dbDelete("r_subscriptions", "user_id='" . getUserID() . "' AND group_id='" . $group_id . "'");
+    } else {
+        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+        die();
     }
 }
 
