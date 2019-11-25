@@ -1,13 +1,12 @@
 $(document).ready(function () {
-
-    console.log(document.getElementById("searchtextbox"));
+    
     document.getElementById("searchtextbox").addEventListener("input",  function () {
 
         clearResults();
 
-        console.log("Searching...");
+        //console.log("Searching...");
         var searchText = document.getElementById("searchtextbox").value;
-        console.log(searchText);
+        //console.log(searchText);
 
         if(searchText !== "") {
 
@@ -28,7 +27,6 @@ $(document).ready(function () {
                         output.appendChild(document.createElement("br"));
                     });
                 }
-
 
                 // TODO: Add fancy text bolding or something
                 if(data["group_tagline"].length > 0) {
@@ -54,25 +52,33 @@ $(document).ready(function () {
                     output.appendChild(header);
                     data["post_title"].forEach(function (d) {
                         var newelem = document.createElement("a");
-                        newelem.href = "group.php?group_id=" + d["group_id"];
+                        if(d["group_id"] === 0) {
+                            newelem.href = "group.php?user_id=" + d["user_id"];
+                        } else {
+                            newelem.href = "group.php?group_id=" + d["group_id"];
+                        }
                         newelem.innerText = d["title"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
                     });
                 }
 
+                // TODO: Add fancy text bolding or something
                 if(data["post_body"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Post bodies matching query:";
                     output.appendChild(header);
                     data["post_body"].forEach(function (d) {
                         var newelem = document.createElement("a");
-                        newelem.href = "group.php?group_id=" + d["group_id"];
+                        if(d["group_id"] === 0) {
+                            newelem.href = "group.php?user_id=" + d["user_id"];
+                        } else {
+                            newelem.href = "group.php?group_id=" + d["group_id"];
+                        }
                         newelem.innerText = d["title"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
                         var newelem2 = document.createElement("p");
-                        newelem2.href = "group.php?group_id=" + d["group_id"];
                         newelem2.innerText = d["body"];
                         output.appendChild(newelem2);
                         output.appendChild(document.createElement("br"));
