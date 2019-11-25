@@ -10,14 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $date = date('Y-m-d H:i:s', time());
         if($_POST['where'] == "self") {
             $where = 0;
-        } else {
-            $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
-            /*
-            if(!checkPermission($where, "post")) {
+
+            if(!checkPermission(getUserID(), "post")) {
                 header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
                 die();
             }
-            */
+
+        } else {
+            $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
+
+            /*if(!checkPermission($where, "post")) {
+                header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
+                die();
+            }*/
+
         }
 
         $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);

@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             return json_encode("['Error': 'Invalid query']");
         }*/
     }
-    error_log("DB Method not GET");
+
 
 }
 
@@ -186,12 +186,14 @@ function checkValidLogin() {
 // It is assumed that the checkValidLogin() function is called before this.
 function checkPermission($id, $action) {
 
-    $arr = dbGet("description", "r_groups", "group_id='" . $id ."', user_id='" . getUserID() . "'");
+    $arr = dbGet("description", "r_permissions", "group_id='" . $id ."' AND user_id='" . getUserID() . "'");
     foreach($arr as $a) {
         if($a["description"] == $action) {
+            error_log("Permission check passed");
             return true;
         }
     }
+    error_log("Permission check failed");
     return false;
 }
 

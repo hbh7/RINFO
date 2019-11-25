@@ -43,7 +43,12 @@ if(isset($action)) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
             if ($dbres == "success") {
-                $result = [true, "Registered Successfully"];
+                // Generate default permissions
+                $user_id = dbGet("user_id", "r_users", "username='" . $username . "'")[0]["user_id"];
+                dbPut("r_permissions", [$user_id, $user_id, "post"]);
+                dbPut("r_permissions", [$user_id, $user_id, "createGroup"]);
+
+                $result = [true, "Registered Successfully, Please log in"];
             } else {
                 $result = [false, "Failed to register. Error: " . $dbres];
             }
