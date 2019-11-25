@@ -119,6 +119,21 @@ function checkValidLogin() {
     }
 }
 
+// Call this before running any code that relies on a user having permission to do something.
+// Supply the ID of group and desired action (ex: post)
+// If valid login, return true. If not logged in, return false.
+// It is assumed that the checkValidLogin() function is called before this.
+function checkPermission($id, $action) {
+
+    $arr = dbGet("description", "r_groups", "group_id='" . $id ."', user_id='" . getUserID() . "'");
+    foreach($arr as $a) {
+        if($a["description"] == $action) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Return the DB ID associated with the current user. Run checkValidLogin() first.
 function getUserID() {
     $users = dbGet("user_id", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
