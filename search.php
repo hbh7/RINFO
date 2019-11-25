@@ -8,11 +8,12 @@
 		<?php include('resources/templates/header.php'); ?>
         <div id="search_box_and_footer_wrapper">
             <div class="search-box">
-              <input class="search-txt" type="text" name="search" id="searchtextbox" placeholder="Type to search">
+              <input class="search-txt" type="text" name="search" id="searchtextbox" placeholder="Type to search" autocomplete="off">
     		  <a class="search-btn">
     		  	<i class="far fa-search"></i>
     		  </a>
             </div>
+            <div id="results"></div>
 
             <?php include('resources/templates/footer.php'); ?>
         </div>
