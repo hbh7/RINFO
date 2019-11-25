@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     document.getElementById("searchtextbox").addEventListener("input",  function () {
 
         clearResults();
@@ -53,7 +53,7 @@ $(document).ready(function () {
                     data["post_title"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         if(d["group_id"] === 0) {
-                            newelem.href = "group.php?user_id=" + d["user_id"];
+                            newelem.href = "user.php?user_id=" + d["user_id"];
                         } else {
                             newelem.href = "group.php?group_id=" + d["group_id"];
                         }
@@ -71,7 +71,7 @@ $(document).ready(function () {
                     data["post_body"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         if(d["group_id"] === 0) {
-                            newelem.href = "group.php?user_id=" + d["user_id"];
+                            newelem.href = "user.php?user_id=" + d["user_id"];
                         } else {
                             newelem.href = "group.php?group_id=" + d["group_id"];
                         }
@@ -81,6 +81,19 @@ $(document).ready(function () {
                         var newelem2 = document.createElement("p");
                         newelem2.innerText = d["body"];
                         output.appendChild(newelem2);
+                        output.appendChild(document.createElement("br"));
+                    });
+                }
+
+                if(data["user"].length > 0) {
+                    var header = document.createElement("h3");
+                    header.innerText = "Users matching query:";
+                    output.appendChild(header);
+                    data["user"].forEach(function (d) {
+                        var newelem = document.createElement("a");
+                        newelem.href = "user.php?user_id=" + d["user_id"];
+                        newelem.innerText = d["firstname"] + " " + d["lastname"] + " - " + d["username"];
+                        output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
                     });
                 }
