@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if(isset($action)) {
 
-// DB Calls
+    // DB Calls
     include_once 'db.php';
     $users = dbGet("user_id, username, password, firstname, lastname", "r_users", "username='" . $username . "'");
 

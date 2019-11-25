@@ -61,9 +61,26 @@
                         ?>
 					</div>
 					<div id="my_posts">
-						<p class="post">Example Post 1</p>
-						<p class="post">Example Post 2</p>
-						<p class="post">Example Post 3</p>
+                        <?php
+
+                        if(checkValidLogin()) {
+                            $posts = dbGet("*", "r_posts", "user_id='" . getUserID() . "'");
+                            if(sizeof($posts) == 0) {
+                                echo "<span class='name'>You haven't made any posts</span><br />";
+                            } else {
+                                foreach ($posts as $post) {
+                                    echo "<div class='activity'>" .
+                                        "<span class='title'>" . $post["title"] . "</span><br />" .
+                                        "<span class='body'>" . $post["body"] . "</span><br />" .
+                                        "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                                        "</div>";
+                                }
+                            }
+                        } else {
+                            echo "<span class='name'>You'll need to be logged in to see your posts lol</span><br />";
+                        }
+
+                        ?>
 					</div>
 				</div>
 			</div>
