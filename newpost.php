@@ -19,22 +19,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if($unique) {
 
             date_default_timezone_set('America/New_York');
-            $date = date('m/d/Y h:i:s a', time());
+            $date = date('Y-m-d H:i:s', time());
             if($_POST['where'] == "self") {
                 $where = 0;
             } else {
-                $where = $_POST['where'];
+                $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
             }
 
-            dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);
+            $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);
 
-            // TODO: Implement a popup system so we can display "Group added successfully!" or something
-            if($where == 0) {
-                header("Location: /user.php?user_id=" . getUserID());
+            if($result == "success") {
+                // TODO: Implement a popup system so we can display "Group added successfully!" or something
+                if ($where == 0) {
+                    header("Location: /user.php?user_id=" . getUserID());
+                } else {
+                    header("Location: /group.php?group_id=" . $where);
+                }
+                die();
             } else {
-                header("Location: /group.php?group_id=" . $where);
+                echo $result;
             }
-            die();
 
         } else {
             // Throw an error that the group name isn't unique. TODO: Improve this, probably just remove it though
@@ -59,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <body>
         <?php include('resources/templates/header.php'); ?>
 
-        <form>
+        <form method="post" action="newpost.php">
             <!-- TODO: These need label tags -->
             <!-- TODO: Validate form data -->
             <!-- TODO: PHP backfill the values if validation fails, see newgroup.php -->
