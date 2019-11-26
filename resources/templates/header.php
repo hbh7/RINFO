@@ -39,7 +39,26 @@
             if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
                 // displayPopup exists and it has some value (the message) - generate the popup
                 echo <<< HTML
-                    <div id="popup"></div>
+                    <style>
+                        #popup {
+                            /*border: 2px solid black;
+                            border-radius: 5px;
+                            box-shadow: 5px 10px 8px #888888;
+                            z-index: 987;
+                            display: table;
+                            margin: 0 auto;*/
+                            position: relative;
+                        }
+                        #popupText {
+                             positon: absolute;
+                        }
+                    </style>
+                    <div id="popup">
+                        <span id="popupText">{$_GET['displayPopup']}</span>
+                    </div>
+                    <script>
+                        $("#popup").delay(2000).fadeOut();
+                    </script>
 HTML;
             }
         ?>
