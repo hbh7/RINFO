@@ -14,12 +14,22 @@ include_once 'db.php';
 $post = dbGet("*", "r_posts", "post_id='" . $post_id . "'")[0];
 
 if (isset( $_POST['action'])) {
-    $action = $_POST['comment'];
-    if(checkValidLogin()) {
-        // TODO: Comment code
-    } else {
-        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
-        die();
+    if($_POST['action'] == "comment") {
+        if (checkValidLogin()) {
+            // TODO: Comment code
+            // something like dbPut( comments, [user id, body, etc] )
+        } else {
+            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+            die();
+        }
+    } elseif($_POST['action'] == "attend") {
+        if (checkValidLogin()) {
+            // TODO: attendance code
+            // something like dbPut( attendances, [user id, etc] )
+        } else {
+            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+            die();
+        }
     }
 }
 
