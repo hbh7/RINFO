@@ -104,7 +104,7 @@ function dbGet($select, $from, $where=null, $search=false) {
 
     $sql  .= ";";
 
-    error_log($sql);
+    #error_log($sql);
 
     $result = $conn->query($sql);
 
