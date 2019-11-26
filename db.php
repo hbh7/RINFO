@@ -49,13 +49,17 @@ function dbPut($tablename, $dbdata) {
     if($tablename == "r_users") {
         $sql = "INSERT INTO r_users (username, password, firstname, lastname, email) VALUES (" . $dbdata_string . ");";
     } elseif ($tablename == "r_groups") {
-        $sql = "INSERT INTO r_groups (name, tagline) VALUES ("  . $dbdata_string . ")";
+        $sql = "INSERT INTO r_groups (name, tagline, visibility) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_permissions") {
         $sql = "INSERT INTO r_permissions (user_id, group_id, description) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_subscriptions") {
         $sql = "INSERT INTO r_subscriptions (user_id, group_id) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_posts") {
-        $sql = "INSERT INTO r_posts (group_id, user_id, title, body, timestamp) VALUES ("  . $dbdata_string . ")";
+        $sql = "INSERT INTO r_posts (group_id, user_id, title, body, timestamp, attendance) VALUES ("  . $dbdata_string . ")";
+    } elseif ($tablename == "r_comments") {
+        $sql = "INSERT INTO r_comments (post_id, user_id, body, timestamp) VALUES ("  . $dbdata_string . ")";
+    } elseif ($tablename == "r_attendances") {
+        $sql = "INSERT INTO r_attendances (post_id, user_id) VALUES ("  . $dbdata_string . ")";
     } else {
         return "invalid table name";
     }
