@@ -17,7 +17,18 @@ CREATE TABLE r_users(
    firstname VARCHAR(128) NOT NULL,
    lastname VARCHAR(128) NOT NULL,
    email VARCHAR(256) NOT NULL,
+   logo VARCHAR(1024),
+   enabled BOOLEAN DEFAULT true NOT NULL,
    PRIMARY KEY ( user_id )
+);
+
+CREATE TABLE r_groups(
+    group_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128) NOT NULL,
+    tagline VARCHAR(256) NOT NULL,
+    logo VARCHAR(1024),
+    visibility VARCHAR(10) NOT NULL,
+    PRIMARY KEY ( group_id )
 );
 
 CREATE TABLE r_permissions(
@@ -35,14 +46,6 @@ CREATE TABLE r_subscriptions(
     PRIMARY KEY ( subscription_id )
 );
 
-CREATE TABLE r_groups(
-    group_id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(128) NOT NULL,
-    tagline VARCHAR(256) NOT NULL,
-    logo VARCHAR(1024),
-    PRIMARY KEY ( group_id )
-);
-
 CREATE TABLE r_posts(
     post_id INT NOT NULL AUTO_INCREMENT,
     group_id INT NOT NULL,
@@ -50,19 +53,37 @@ CREATE TABLE r_posts(
     title VARCHAR(128) NOT NULL,
     body VARCHAR(1024) NOT NULL,
     timestamp DATETIME NOT NULL,
+    attendance BOOLEAN NOT NULL,
     PRIMARY KEY ( post_id )
 );
 
+CREATE TABLE r_comments(
+    comment_id INT NOT NULL AUTO_INCREMENT,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    body VARCHAR(1024) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    PRIMARY KEY ( comment_id )
+);
 
-INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Studenttester1', 'RPI_tester1', 'RPITester', '1', 'studenttester1@rpi.edu');
-INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', 'Re@11y_Secure', 'Admin', 'Tester', 'sisman@rpi.edu');
+CREATE TABLE r_attendances(
+    attendance_id INT NOT NULL AUTO_INCREMENT,
+    post_id INT NOT NULL,
+    user_id INT NOT NULL,
+    PRIMARY KEY ( attendance_id )
+);
 
-INSERT INTO r_groups(name, tagline) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.');
-INSERT INTO r_groups(name, tagline) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)');
+/* Default passwords are test */
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Studenttester1', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'RPITester', '1', 'studenttester1@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Admin', 'Tester', 'sisman@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('shirleyannjackson', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Shirley', 'Jackson', 'jackson@rpi.edu');
 
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30 09:34:21');
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20');
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp) VALUES('1', '1', 'Sample Activity 3', 'CTF Competition from Tue, 22 Oct. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-10-30 20:18:57');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)', 'public');
+
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30 09:34:21', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 3', 'CTF Competition from Tue, 22 Oct. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-10-30 20:18:57', false);
 
 
 quit

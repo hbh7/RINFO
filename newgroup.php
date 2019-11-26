@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             dbPut("r_groups", [$_POST["name"], $_POST["name"]]);
             // TODO: Add the new group to the user's subscriptions
-            
+
             $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
 
             // TODO: Implement a popup system so we can display "Group added successfully!" or something
