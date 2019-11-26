@@ -26,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }
 
-        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date]);
+        // TODO: Change true to read the radio button for attendance tracking yes or no
+        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, true]);
 
         if($result == "success") {
             // TODO: Implement a popup system so we can display "Group added successfully!" or something
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="body"><br>
             Where to post to (group name or "self"):
             <!-- TODO: Probably add a radio button for group vs self, perhaps a group search function -->
+            <!-- TODO: Add an attendance yes or no radio button -->
             <input type="text" name="where"><br>
 
             <input type="submit" />

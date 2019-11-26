@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         if($unique) {
 
-            dbPut("r_groups", [$_POST["name"], $_POST["name"]]);
+            // TODO: Change "public" to read in a public/private value from form
+            dbPut("r_groups", [$_POST["name"], $_POST["name"], "public"]);
             // TODO: Add the new group to the user's subscriptions
 
             $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="name" value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>"><br>
             Tagline:
             <input type="text" name="tagline" value="<?php if (isset($_POST['tagline'])) echo $_POST['tagline']; ?>"><br>
-
+            <!-- TODO: Add a radio button to pick between public and private -->
 
             <label>Example: <input type="text" name="example"></label><br />
 
