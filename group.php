@@ -76,13 +76,16 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     $posts = dbGet("*", "r_posts", "group_id='" . $group_id . "'");
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
+                        $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
                         echo "<div class='activity'>" .
                             "<span class='title'>" . $post["title"] . "</span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                            "<span class='attendances'> " . $attendances . " people attending </span>" .
                             "</div>";
+
                     }
                     ?>
                 </div>
