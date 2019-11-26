@@ -83,7 +83,7 @@ function dbPut($tablename, $dbdata) {
 function dbGet($select, $from, $where=null, $search=false) {
     $conn = dbConnect();
 
-    if ($from != "r_users" && $from != "r_groups" && $from != "r_permissions" && $from != "r_subscriptions" && $from != "r_posts") {
+    if ($from != "r_users" && $from != "r_groups" && $from != "r_permissions" && $from != "r_subscriptions" && $from != "r_posts" && $from != "r_comments" && $from != "r_attendances") {
         return null;
     }
 
@@ -130,6 +130,31 @@ function dbGet($select, $from, $where=null, $search=false) {
 
     $conn->close();
     return $ret;
+
+}
+
+
+// Accepts strings:
+// $table: tablename. Ex: "r_posts"
+// $column: what value to update. Ex: "firstname='Joe'"
+// $where: Important! Restricts what values to act on. Ex: "username='joe'"
+function dbUpdate($table, $column, $where) {
+    $conn = dbConnect();
+
+    if ($table != "r_users" && $table != "r_groups" && $table != "r_permissions" && $table != "r_subscriptions" && $table != "r_posts" && $table != "r_comments" && $table != "r_attendances") {
+        return null;
+    }
+
+    $sql = "UPDATE " . $table . " SET " . $column . " WHERE " . $where . ";";
+
+    error_log($sql);
+
+    if ($conn->query($sql) === TRUE) {
+        $conn->close();
+        return "success";
+    } else {
+        return $conn->error;
+    }
 
 }
 
