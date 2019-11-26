@@ -6,34 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset($_GET['searchtext'])) {
 
         $output = [];
-        $output["group_name"] = dbGet("name, group_id", "r_groups", "name like '%" . $_GET['searchtext'] . "%'", true);
-        $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "tagline like '%" . $_GET['searchtext'] . "%'", true);
-        $output["post_title"] = dbGet("title, post_id, group_id, user_id", "r_posts", "title like '%" . $_GET['searchtext'] . "%'", true);
-        $output["post_body"] = dbGet("title, body, post_id, group_id, user_id", "r_posts", "body like '%" . $_GET['searchtext'] . "%'", true);
-        $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname like '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
+        $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . $_GET['searchtext'] . "%'", true);
+        $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "visibility='public' AND tagline LIKE '%" . $_GET['searchtext'] . "%'", true);
+        $output["post_title"] = dbGet("r_posts.title, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND title LIKE '%" . $_GET['searchtext'] . "%'", true);
+        $output["post_body"] = dbGet("r_posts.title, r_posts.body, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND body LIKE '%" . $_GET['searchtext'] . "%'", true);
+        $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname LIKE '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
         echo json_encode($output);
 
-        /*
-        if(!isset($_GET['category']) || !isset($_GET['searchtext'])) {
-            error_log("Search invalid query");
-            return json_encode("['Error': 'Invalid query']");
-        }
-        if($_GET['category'] == "group_name") {
-            echo json_encode(dbGet("name, group_id", "r_groups", "name like '%" . $_GET['searchtext'] . "%'", true));
-
-        } elseif ($_GET['category'] == "group_tagline") {
-            return json_encode(dbGet("name, tagline, group_id", "r_groups", "tagline like '%" . $_GET['searchtext'] . "%'", true));
-
-        } elseif ($_GET['category'] == "post_title") {
-            return json_encode(dbGet("title, post_id, group_id, user_id", "r_posts", "title like '%" . $_GET['searchtext'] . "%'", true));
-
-        } elseif ($_GET['category'] == "post_body") {
-            return json_encode(dbGet("title, body, post_id, group_id, user_id", "r_posts", "body like '%" . $_GET['searchtext'] . "%'", true));
-
-        } else {
-            error_log("Search invalid query ");
-            return json_encode("['Error': 'Invalid query']");
-        }*/
     }
 
 
@@ -83,10 +62,6 @@ function dbPut($tablename, $dbdata) {
 function dbGet($select, $from, $where=null, $search=false) {
     $conn = dbConnect();
 
-    if ($from != "r_users" && $from != "r_groups" && $from != "r_permissions" && $from != "r_subscriptions" && $from != "r_posts" && $from != "r_comments" && $from != "r_attendances") {
-        return null;
-    }
-
     if($where != null) {
         $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where;
     } else {
@@ -108,7 +83,7 @@ function dbGet($select, $from, $where=null, $search=false) {
 
     $sql  .= ";";
 
-    #error_log($sql);
+    error_log($sql);
 
     $result = $conn->query($sql);
 
