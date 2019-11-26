@@ -30,7 +30,7 @@ if(isset($action)) {
 
     // DB Calls
     include_once 'db.php';
-    $users = dbGet("user_id, username, password, firstname, lastname", "r_users", "username='" . $username . "'");
+    $users = dbGet("user_id, username, password, firstname, lastname, enabled", "r_users", "username='" . $username . "'");
 
     if ($action == "register") {
 
@@ -58,23 +58,31 @@ if(isset($action)) {
     } elseif ($action == "login") {
 
         if(sizeof($users) == 0) {
-            $result = [false, "Failed to log in: Invalid user!"];
+            $result = [false, "Failed to log in: Invalid user!"]; // TODO: Change for security
         } else {
-            $dbhash = $users[0]['password'];
-            if (password_verify($password, $dbhash)) {
-                // Success!
-                $result = [true, "Logged in Successfully"];
 
-                // Setting cookie
-                $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['lastname']];
-                // Cookie expires after 1 month
-                setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
-                // Redirect to homepage
-                header("Location: /index.php");
-                die();
+            // Make sure they're not disabled/banned
+            if($users[0]["enabled"] == false) {
+                $result = [false, "Failed to log in: Account is disabled!"];
+
             } else {
-                // Invalid credentials or unknown user
-                $result = [false, "Failed to log in: Invalid password!"];
+
+                $dbhash = $users[0]['password'];
+                if (password_verify($password, $dbhash)) {
+                    // Success!
+                    $result = [true, "Logged in Successfully"];
+
+                    // Setting cookie
+                    $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['lastname']];
+                    // Cookie expires after 1 month
+                    setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
+                    // Redirect to homepage
+                    header("Location: /index.php");
+                    die();
+                } else {
+                    // Invalid credentials or unknown user
+                    $result = [false, "Failed to log in: Invalid password!"]; // TODO: Change for security
+                }
             }
         }
 
