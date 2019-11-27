@@ -26,7 +26,19 @@
             <?php
             include_once 'db.php';
             if(checkValidLogin()) {
-                echo "<span id='logintext'> Logged in as " . json_decode($_COOKIE["login"], true)["firstname"] . " </span>";
+                if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
+                    echo <<<HTML
+                        <style>
+                            #logintext {
+                                flex-basis: 70%;
+                            }
+                        </style>
+                        <span id=""></span>
+                        <button id="admin" onclick="window.location='admin.php';">Admin Page</button>
+HTML;
+                } else {
+                    echo "<span id='logintext'> Logged in as " . json_decode($_COOKIE["login"], true)["firstname"] . " </span>";
+                }
                 echo "<button id=\"logout\" onclick=\"window.location='logout.php';\">Log out</button>";
             } else {
                 echo "<button id=\"login\" onclick=\"window.location='login.php';\">Log in</button>";
@@ -37,7 +49,7 @@
         <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
         <?php
             // check for get request from a page (if the popup key is set, display popup with a message)
-            // to get a popup with some message to appear, assign that message to 
+            // to get a popup with some message to appear, assign that message to
             //      the key 'displayPopup' in a GET request to any page with this header included
             if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
                 // displayPopup exists and it has some value (the message) - generate the popup
@@ -50,7 +62,7 @@
                         }
                         #popupParent, #popupChild {
                             text-align: center;
-                            /* just an arbitrary value - should ideally be the 
+                            /* just an arbitrary value - should ideally be the
                                 largest z-index of any element on any page */
                             z-index: 987;
 
@@ -72,11 +84,11 @@
                         }
                     </style>
                     <div id="popupParent">
-                        <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2 
-                            because it seems like a popup would have important info, but 
+                        <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2
+                            because it seems like a popup would have important info, but
                             not h1 important if ya know what I mean) -->
                         <h2 id="popupChild">{$_GET['displayPopup']}</h2>
-                        <!-- Needed to get the parent div to have the correct width (absolutely 
+                        <!-- Needed to get the parent div to have the correct width (absolutely
                             positioned elements are technically not in the document flow) -->
                         <h2 id="hideMe">{$_GET['displayPopup']}</h2>
                     </div>
