@@ -26,18 +26,19 @@
             <?php
             include_once 'db.php';
             if(checkValidLogin()) {
-                if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
+                $firstname = json_decode($_COOKIE["login"], true)["firstname"];
+                if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */ 1 ) {
                     echo <<<HTML
                         <style>
                             #logintext {
-                                flex-basis: 70%;
+                                flex-basis: auto;
                             }
                         </style>
-                        <span id=""></span>
+                        <span id="logintext">Logged in as $firstname</span>
                         <button id="admin" onclick="window.location='admin.php';">Admin Page</button>
 HTML;
                 } else {
-                    echo "<span id='logintext'> Logged in as " . json_decode($_COOKIE["login"], true)["firstname"] . " </span>";
+                    echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
                 }
                 echo "<button id=\"logout\" onclick=\"window.location='logout.php';\">Log out</button>";
             } else {
