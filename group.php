@@ -83,7 +83,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "<span class='attendances'> " . $attendances . " people attending </span>" .
+                            "<span class='attendances'> " . count($attendances) . " people attending </span>" .
                             "</div>";
 
                     }
