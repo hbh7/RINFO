@@ -37,7 +37,8 @@
         <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
         <?php
             // check for get request from a page (if the popup key is set, display popup with a message)
-            // to get a popup with some message to appear, assign that message to the key 'displayPopup' in a GET request to any page with this header included
+            // to get a popup with some message to appear, assign that message to 
+            //      the key 'displayPopup' in a GET request to any page with this header included
             if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
                 // displayPopup exists and it has some value (the message) - generate the popup
                 echo <<< HTML
@@ -49,7 +50,8 @@
                         }
                         #popupParent, #popupChild {
                             text-align: center;
-                            /* just an arbitrary value - should ideally be the largest z-index of any element on any page */
+                            /* just an arbitrary value - should ideally be the 
+                                largest z-index of any element on any page */
                             z-index: 987;
 
                         }
@@ -70,9 +72,12 @@
                         }
                     </style>
                     <div id="popupParent">
-                        <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2 because it seems like a popup would have important info, but not h1 important if ya know what I mean) -->
+                        <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2 
+                            because it seems like a popup would have important info, but 
+                            not h1 important if ya know what I mean) -->
                         <h2 id="popupChild">{$_GET['displayPopup']}</h2>
-                        <!-- Needed to get the parent div to have the correct width (absolutely positioned elements are technically not in the document flow) -->
+                        <!-- Needed to get the parent div to have the correct width (absolutely 
+                            positioned elements are technically not in the document flow) -->
                         <h2 id="hideMe">{$_GET['displayPopup']}</h2>
                     </div>
                     <script>
