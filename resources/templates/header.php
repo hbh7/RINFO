@@ -34,30 +34,51 @@
             ?>
             <button id="search" onclick="window.location='search.php';"> Search </button>
         </div>
+        <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
         <?php
             // check for get request from a page (if the popup key is set, display popup with a message)
+            // to get a popup with some message to appear, assign that message to the key 'displayPopup' in a GET request to any page with this header included
             if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
                 // displayPopup exists and it has some value (the message) - generate the popup
                 echo <<< HTML
                     <style>
-                        #popup {
-                            /*border: 2px solid black;
-                            border-radius: 5px;
-                            box-shadow: 5px 10px 8px #888888;
-                            z-index: 987;
-                            display: table;
-                            margin: 0 auto;*/
+                        #popupParent {
                             position: relative;
+                            display: inline-block;
+                            padding: 2px;
                         }
-                        #popupText {
-                             positon: absolute;
+                        #popupParent, #popupChild {
+                            text-align: center;
+                            /* just an arbitrary value - should ideally be the largest z-index of any element on any page */
+                            z-index: 987;
+
+                        }
+                        #popupChild {
+                            position: absolute;
+                            left: 60%;
+                            right: -300%;
+                            top: 65px;
+                            border: 2px solid black;
+                            border-radius: 5px;
+                            background-color: rgba(76, 175, 80, 0.3);
+                            padding: inherit;
+                        }
+                        #hideMe {
+                            visibility: hidden;
+                            height: 0;
+                            float: left;
                         }
                     </style>
-                    <div id="popup">
-                        <span id="popupText">{$_GET['displayPopup']}</span>
+                    <div id="popupParent">
+                        <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2 because it seems like a popup would have important info, but not h1 important if ya know what I mean) -->
+                        <h2 id="popupChild">{$_GET['displayPopup']}</h2>
+                        <!-- Needed to get the parent div to have the correct width (absolutely positioned elements are technically not in the document flow) -->
+                        <h2 id="hideMe">{$_GET['displayPopup']}</h2>
                     </div>
                     <script>
-                        $("#popup").delay(2000).fadeOut();
+                        // idk how long you want the popup to stay on the screen for
+                        // change the delay time as needed
+                        $("#popupParent").delay(2000).fadeOut();
                     </script>
 HTML;
             }
