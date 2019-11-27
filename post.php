@@ -63,7 +63,7 @@ if (isset( $_POST['action'])) {
                 </div>
                 <?php
                 $attendances = dbGet("*", "r_attendances", "post_id='" . $post_id . "'");
-                echo "<p> " . sizeof($attendances) . " people attending </p>"
+                echo "<p> " . count($attendances) . " people attending </p>";
                 ?>
             </div>
         </div>

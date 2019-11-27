@@ -3,9 +3,9 @@ h1{
 }
 #global_header {
     border-bottom: 2px double black;
-}
-#search, #login {
-    float: right;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
 #global_header::after {
     content: ".";
@@ -16,28 +16,32 @@ h1{
 }
 
 #leftbox {
-    float:left;
+    /*float:left;*/
     width:25%;
     height:75px;
 }
 #centerbox{
-    float:left;
+    /*float:left;*/
     width:50%;
-    height:75px;
+    height: auto;
 }
 #rightbox{
-    float:right;
+    /*float:right;*/
     width:25%;
-    height:75px;
-    vertical-align: center;
+    height: auto;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    /*vertical-align: center;*/
 }
 
 button {
-    margin-top: 25px;
-    margin-right: 10px;
-    height: 25px;
+    height: 31px;
+    width: 60px;
 }
 
 #logintext {
-    margin-right: 10px;
+    text-align: center;
+    flex-basis: 100%;
 }
