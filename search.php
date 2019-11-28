@@ -11,7 +11,10 @@
     <div id="search_box_and_footer_wrapper">
         <div class="search-box">
             <input class="search-txt" type="text" name="search" id="searchtextbox" placeholder="Type to search" autocomplete="off">
-            <img src="https://img.icons8.com/nolan/64/000000/search.png" id="search-icon">
+            <div id="icon" class="play">
+				<img src="https://img.icons8.com/nolan/64/000000/search.png" class="search-icon">
+			  	<img src="https://img.icons8.com/ultraviolet/40/000000/go.png" class="search-icon">
+			</div>
         </div>
         <div id="results"></div>
 
