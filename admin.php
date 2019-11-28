@@ -10,6 +10,12 @@
             <div id="information">
                 <h2>Actions</h2>
                 <div id="information_content" class="content">
+                    <ul id="actions">
+                        <li class="action">Notifications</li>
+                        <li class="action">Admin Messages</li>
+                        <li class="action">Your groups</li>
+                        <li class="action">User Permissions</li>
+                    </ul>
                     <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
                     <h3 class="group_name">RPI Admins</h3>
                     <p id="Nusers">13 users</p>
