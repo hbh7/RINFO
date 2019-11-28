@@ -35,4 +35,17 @@ body{
     top:15px;
     width:50px;
     height:50px;
+    float:left;
 }
+#icon{
+	position: absolute;
+	z-index:9;  
+	width: 100px;
+}
+.play{ 
+	animation: ma 10s ease-out infinite alternate;
+}
+@keyframes ma {
+        0%,45% {        margin-left: 0px;       }
+        50%,100% {       margin-left: -50px;    }
+    }
