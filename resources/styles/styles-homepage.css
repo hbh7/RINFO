@@ -103,3 +103,9 @@ li a.active {
 .post {
 	color: white;
 }
+
+/* Comment Page css */
+.post_info {
+    width: 60%;
+    margin: 0 auto;
+}
