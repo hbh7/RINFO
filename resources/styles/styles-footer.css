@@ -12,8 +12,9 @@
     text-align: center;
 }
 #global_footer {
+    text-align: center;
+    margin: auto;
     color: white;
-    position: absolute;
     top: 50%;
     left: 0;
     right: 0;
