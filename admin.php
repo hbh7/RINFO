@@ -1,6 +1,7 @@
 <html lang="en">
     <head>
         <?php include('resources/templates/head.php'); ?>
+        <link rel="stylesheet" type="text/css" href="/resources/styles/styles-admin.css">
         <title> Administration Homepage </title>
     </head>
     <body>
