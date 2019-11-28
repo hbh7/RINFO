@@ -37,8 +37,28 @@ li a.active {
     color: white;
     background-color: rgb(233, 81, 81);
 }
+
+#homepage_content {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+#carouselExampleIndicators {
+    width: 40%;
+    max-height: 512px;
+    margin-top: 60px;
+    margin-bottom: 55px;
+    float: left;
+    overflow: hidden;
+}
+.d-block {
+    max-height: 500px;;
+}
+
 .display {
-	height: 65%;
+    width: 50%;
+    float: right;
+	height: 500px;
 	margin-top: 60px;
 	background: rgba(255, 255, 255, 0.3);
 }
