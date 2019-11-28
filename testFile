@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Test</title>
@@ -49,3 +49,41 @@
     </script>
 </body>
 </html>
+ -->
+
+
+
+
+
+<!-- Remove the  /*  on the next line and at the end of the if condition to undo the comments on this part -->
+<?php/*
+include_once 'db.php';
+if(checkValidLogin()) {
+    $firstname = json_decode($_COOKIE["login"], true)["firstname"];
+    echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
+    if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION *//* 1 ) {
+        echo <<<HTML
+            <style>
+                #admin {
+                    flex-basis: 100%;
+                    height: 30%;
+                    padding: 0;
+                    text-align: center;
+                }
+                #adminButton {
+                    height: 24px;
+                    width: 130px;
+                    margin-top: 3px;
+                }
+            </style>
+            <div id="admin"><button id="adminButton" onclick="window.location='admin.php';">Admin Page</button></div>
+HTML;
+    }
+    echo "<button id=\"logout\" onclick=\"window.location='logout.php';\">Log out</button>";
+} else {
+    echo "<button id=\"login\" onclick=\"window.location='login.php';\">Log in</button>";
+}
+?>
+
+
+
