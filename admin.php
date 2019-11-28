@@ -3,12 +3,6 @@
         <?php include('resources/templates/head.php'); ?>
         <link rel="stylesheet" type="text/css" href="/resources/styles/styles-admin.css">
         <title> Administration Homepage </title>
-        <style>
-            nav.navbar {
-                position: relative;
-                margin-top: 20px;
-            }
-        </style>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
