@@ -9,9 +9,7 @@
         <div id="search_box_and_footer_wrapper">
             <div class="search-box">
               <input class="search-txt" type="text" name="search" id="searchtextbox" placeholder="Type to search" autocomplete="off">
-    		  <a class="search-btn">
-    		  	<i class="far fa-search"></i>
-    		  </a>
+    		  <img src="https://img.icons8.com/nolan/64/000000/search.png" id="search-icon">
             </div>
             <div id="results"></div>
 
