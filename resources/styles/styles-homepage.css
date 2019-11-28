@@ -44,21 +44,27 @@ li a.active {
     overflow: hidden;
 }
 #carouselExampleIndicators {
-    width: 40%;
-    max-height: 512px;
+    width: 30%;
+    max-height: 550px;
     margin-top: 60px;
     margin-bottom: 55px;
     float: left;
     overflow: hidden;
 }
 .d-block {
-    max-height: 500px;;
+    max-height: 550px;;
 }
-
+.carousel-indicators li {
+    background-color:white;
+    border: 2px solid red;
+}
+.carousel-indicators .active {
+    background-color: red;
+}
 .display {
-    width: 50%;
+    width: 67%;
     float: right;
-	height: 500px;
+	max-height: 550px;
 	margin-top: 60px;
 	background: rgba(255, 255, 255, 0.3);
 }

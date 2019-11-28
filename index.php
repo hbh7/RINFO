@@ -9,23 +9,34 @@
 <body>
     <?php include('resources/templates/header.php'); ?>
     <?php include_once 'db.php'; ?>
-
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="5"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="resources/" alt="First slide">
+                    <img class="d-block w-100" src="resources/images/example1.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="..." alt="Second slide">
+                    <img class="d-block w-100" src="resources/images/example2.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="..." alt="Third slide">
+                    <img class="d-block w-100" src="resources/images/example3.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="resources/images/example3.png" alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="resources/images/example3.png" alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="resources/images/example3.png" alt="Sixth slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
