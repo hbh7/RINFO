@@ -19,7 +19,13 @@
                 }
                 // $out[0]; contains the text contained in the <title> tag in the html file where this file is included
                 // now I have to generate some html so that this text isn't just floating around on the page
-                echo "<h1 id='page_title'>".$out[0]."</h1>";
+                if (isset($out[0]))
+                    echo "<h1 id='page_title'>".$out[0]."</h1>";
+                // For comments page, get title a different way
+                if(isset($_GET["title"])) {
+                    $title = $_GET["title"];
+                    echo "<h1 id='page_title'>".$title."</h1>";
+                }
             ?>
         </div>
         <div id="rightbox">
