@@ -32,8 +32,11 @@
 
                 $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]);
                 foreach ($comments as $comment) {
+                    $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
+
                     echo "<div class='activity'>" .
                         "<span class='body'>" . $comment["body"] . "</span><br />" .
+                        "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
                         "<span class='postdate'> on " . $comment["timestamp"] . "</span>" .
                         "</div>";
                 }
