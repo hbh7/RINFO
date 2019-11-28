@@ -5,3 +5,12 @@ ul {
 h2 {
     margin: 25px auto;
 }
+#actions {
+    border: none;
+    background-color: inherit;
+    font-size: 150%;
+}
+.action {
+    float: none;
+    width: auto;
+}
