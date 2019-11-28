@@ -7,6 +7,11 @@ body {
 h1{
     text-align: center;
 }
+h2 {
+    color: white;
+    text-align: center;
+    margin: 50px;
+}
 #content{
     width:85%;
     margin-left: auto;

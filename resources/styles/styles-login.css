@@ -2,11 +2,6 @@
 body {
 	color: black;
 }
-h2 {
-    color: white;
-    text-align: center;
-    margin: 50px;
-}
 .tips {
     margin: 0;
     position: absolute;
@@ -21,10 +16,10 @@ h2 {
     width: 100%;
     height: 650px;
     background: linear-gradient(
-    to right, 
-    #eb4747 0%, 
-    #eb4747 50%, 
-    #ffffff 50%, 
+    to right,
+    #eb4747 0%,
+    #eb4747 50%,
+    #ffffff 50%,
     #ffffff 100%
   );
 }
