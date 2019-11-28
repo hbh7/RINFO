@@ -1,11 +1,11 @@
 /* for login page */
 body {
-	color: black;
+    color: black;
 }
 .tips {
     margin: 0;
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -14,7 +14,7 @@ body {
 #login_content {
     margin: 0px;
     width: 100%;
-    height: 650px;
+    height: 700px;
     background: linear-gradient(
     to right,
     #eb4747 0%,
@@ -29,17 +29,17 @@ body {
     float: left;
     width: 50%;
     position: relative;
-    height: 650px;
+    height: 700px;
 }
 #login_panel {
     float: right;
-    width: 50%;
+    width: 49%;
     height: 100%;
     position: relative;
-    height: 650px;
+    height: 690px;
 }
 #login_box {
-    margin-top: 150px;
+    margin-top: 170px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
