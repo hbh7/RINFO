@@ -10,7 +10,8 @@ h1{
 h2 {
     color: white;
     text-align: center;
-    margin: 50px;
+    /* makes it at least more responsive than it was before */
+    margin: 50px auto;
 }
 #content{
     width:85%;
