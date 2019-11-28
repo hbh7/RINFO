@@ -69,7 +69,7 @@
                         $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
                         echo "<div class='activity'>" .
-                            "<span class='title'>" . $post["title"] . "</span><br />" .
+                            "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .

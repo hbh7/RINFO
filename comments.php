@@ -1,15 +1,13 @@
 <html lang="en">
+    <head>
+        <?php include('resources/templates/head.php'); ?>
+        <title> ~~DYNAMIC TITLE NAME~~ </title>
+    </head>
 
-<head>
-    <?php include('resources/templates/head.php'); ?>
-    <title> ~~DYNAMIC TITLE NAME~~ </title>
-</head>
-
-<body>
-    <?php include('resources/templates/header.php'); ?>
-    <?php include_once 'db.php'; ?>
+    <body>
+        <?php include('resources/templates/header.php'); ?>
+        <?php include_once 'db.php'; ?>
         <div class="display">
-            <p id="banner" class="activity">Example Admin Notification</p>
             <?php
             // Something like this should probably end up in its own function at some point, since its
             //      likely going to be the same post generator on each page.
@@ -29,9 +27,8 @@
                     "<span class='attendances'> " . count($attendances) . " people attending </span>" .
                     "</div>";
             }
-            ?>   
-
-    <?php include('resources/templates/footer.php'); ?>
-</body>
-
+            ?>  
+        </div> 
+        <?php include('resources/templates/footer.php'); ?>
+    </body>
 </html>
