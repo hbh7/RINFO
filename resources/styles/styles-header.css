@@ -35,6 +35,9 @@ h1{
     align-items: center;
     /*vertical-align: center;*/
 }
+#page_title {
+    margin-top: 20px;
+}
 
 button {
     height: 31px;

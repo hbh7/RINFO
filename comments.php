@@ -13,7 +13,7 @@
 <body>
     <?php include('resources/templates/header.php'); ?>
     <?php include_once 'db.php'; ?>
-    <div id="homepage_content">
+    <div class="comment_content">
         <div class="post_info">
             <?php
                 if (isset($title)) {
@@ -23,7 +23,6 @@
                         $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
                         echo "<div class='activity'>" .
-                            "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
@@ -32,6 +31,9 @@
                     }
                 }
             ?>
+        </div>
+        <div class="comment_section">
+            
         </div>
     </div>
     <?php include('resources/templates/footer.php'); ?>

@@ -105,7 +105,11 @@ li a.active {
 }
 
 /* Comment Page css */
-.post_info {
+.comment_content {
+    border: 2px solid red;
     width: 60%;
     margin: 0 auto;
+}
+
+.post_info 
 }
