@@ -2,6 +2,11 @@ body {
     margin: 0;
     padding: 0;
     background: rgb(59, 59, 59);
+    /* the next 4 lines are to make the footer play nice */
+    min-height: 100%;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    position: relative;
 }
 /*I am not sure if this is used anywhere else outside the header, so I won't delete it*/
 h1{

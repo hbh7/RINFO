@@ -6,10 +6,12 @@
         in a div, set the div to position:absolute; and then position the footer relative to its parent
         (the "top" attribute does not rely on the parent's width)
 */
-#wrap_footer {
-    position: relative;
-    height: 10%;
-    text-align: center;
+#footer_nav {
+    bottom: 0;
+    height: 44px;
+    left: 0;
+    position: absolute;
+    width: 100%;
 }
 #global_footer {
     text-align: center;
