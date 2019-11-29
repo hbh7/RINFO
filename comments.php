@@ -71,7 +71,8 @@
                     echo "<h1>Comments:</h1>";
                     $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]." AND reply_id = 0");
                     foreach ($comments as $comment) {
-                        comment_print($comment, $post);
+                        comment_print($comment, $post, 0);
+                        echo "<br>";
                     }
                 }
             ?>
@@ -81,19 +82,22 @@
     <script type="text/javascript" src="comments.js"></script>
     <?php
     // Function to print a comment
-        function comment_print($comment, $post) {
+        function comment_print($comment, $post, $tabs) {
             $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
+            $spaces = "";
+            for ($i = 0; $i < $tabs * 2; $i++)
+                $spaces .= "&emsp;";
 
             echo "<div class='comment'>" .
-                "<span class='body'>" . $comment["body"] . "</span><br />" .
-                "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
+                "<span class='body'>" . $spaces . $comment["body"] . "</span><br />" .
+                "<span class='postauthor'>" . $spaces . "Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
                 "<span class='postdate'> on " . $comment["timestamp"] . "</span>";
             if (checkValidLogin())  {   
-                echo "<br><span class='replybutton'>Reply</span>";
+                echo "<br><span class='replybutton'>" . $spaces . "Reply</span>";
                 echo "<div class='reply_box' style='display: none;'>" . 
                      "<form method='post' action='./comments.php?title=" .
                      $post["title"] . "'>" .
-                     "<textarea name='reply_body' rows='5'>" .
+                     "<textarea name='comment_body' rows='5'>" .
                      "Enter Reply Here...</textarea><br>" .
                      "<input type='submit' value='Reply'>" .
                      "<input type='hidden' name='user_id' value='" . getUserID() . "'>" .
@@ -101,7 +105,13 @@
                      "<input type='hidden' name='reply_id' value='" . $comment["comment_id"] . "'>" .
                      "</form></div>";
             }
-            echo "</div><br>";
+            $replies = dbGet("*", "r_comments", "reply_id=" . $comment["comment_id"]);
+            if (count($replies) != 0) {
+                foreach ($replies as $reply) {
+                    comment_print($reply, $post, $tabs + 1);
+                }
+            }
+            echo "</div>";
         }
     ?>
 </body>
