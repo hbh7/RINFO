@@ -7,11 +7,89 @@ body {
     color: white;
     border-style: solid;
     border-color: rgb(252, 54, 54);
-    background: rgba(255, 255, 255, 0.3);
+    background: rgb(114, 114, 114);
+    width: 30%;
+    float: left;
+    margin-top: 60px;
 }
 #activity {
     color: white;
     border-style: solid;
-    border-color: rgb(252, 54, 54);
-    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    width: 65%;
+    float: right;
+    margin-bottom: 0;
+}
+/*The following block is for the activities box in group.php
+    not sure if this is what we wanted, but at least the text is readable for now*/
+#activity_content {
+    color: black;
+}
+#activity_content>ul>li {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid black;
+}
+/*The following block is for the links in the information column of group.php
+    again, not sure if this is the desired appearance, but for now it will do*/
+#information_content>p>a {
+    text-decoration: none;
+}
+#information_content>p>a:hover {
+    text-decoration: underline;
+    color: black;
+}
+#join{
+    border-top: 2px double black;
+    border-bottom:2px double black;
+    font-size:250%;
+}
+#group_logo{
+    float:left;
+    width:50px;
+    height:50px;
+}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #d6001c;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+.timeline {
+    color: white;
+    background: none;
+}
+.smaller {
+    font-size: 70%;
+}
+.feed_item {
+    width: 90%;
+    text-align: left;
+    float: right;
 }
