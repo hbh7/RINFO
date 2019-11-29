@@ -1,3 +1,18 @@
+<?php
+
+    // Get POST data
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        include_once 'db.php';
+
+        if(checkValidLogin()) {
+
+            date_default_timezone_set('America/New_York');
+            $date = date('Y-m-d H:i:s', time());
+            
+        } 
+    }
+?>
+
 <html lang="en">
     <head>
         <?php include('resources/templates/head.php'); ?>
@@ -33,11 +48,13 @@
         </div>
         <div class="comment_form">
             <?php 
-                if (checkValidLogin()) {
-                    echo "<form method=\"post\" action=\"./comments.php?title=" . $title . "\">";
-                    echo "<textarea name=\"comment_body\" rows=\"8\">";
+                if (checkValidLogin() && isset($post)) {
+                    echo "<form method='post' action='./comments.php?title=" . $title . "'>";
+                    echo "<textarea name='comment_body' rows='8'>";
                     echo "Enter Comment Here...</textarea><br>";
-                    echo "<input type=\"submit\" value=\"Comment\">";
+                    echo "<input type='submit' value='Comment'>";
+                    echo "<input type='hidden' name='user_id' value='" . getUserID() . "'>";
+                    echo "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>";
                     echo "</form>";
                 }
             ?>

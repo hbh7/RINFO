@@ -36,7 +36,7 @@ function dbPut($tablename, $dbdata) {
     } elseif ($tablename == "r_posts") {
         $sql = "INSERT INTO r_posts (group_id, user_id, title, body, timestamp, attendance) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_comments") {
-        $sql = "INSERT INTO r_comments (post_id, user_id, body, timestamp) VALUES ("  . $dbdata_string . ")";
+        $sql = "INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_attendances") {
         $sql = "INSERT INTO r_attendances (post_id, user_id) VALUES ("  . $dbdata_string . ")";
     } else {
