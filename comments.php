@@ -29,22 +29,35 @@
                         "<span class='attendances'> " . count($attendances) . " people attending </span>" .
                         "</div>";
                 }
-
-                echo "<h1>Comments:</h1>";
-                $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]);
-                foreach ($comments as $comment) {
-                    $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
-
-                    echo "<div class='activity'>" .
-                        "<span class='body'>" . $comment["body"] . "</span><br />" .
-                        "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
-                        "<span class='postdate'> on " . $comment["timestamp"] . "</span>" .
-                        "</div>";
+            ?>
+        </div>
+        <div class="comment_form">
+            <?php 
+                if (checkValidLogin()) {
+                    echo "<form method=\"post\" action=\"./comments.php?title=" . $title . "\">";
+                    echo "<textarea name=\"comment_body\" rows=\"8\">";
+                    echo "Enter Comment Here...</textarea><br>";
+                    echo "<input type=\"submit\" value=\"Comment\">";
+                    echo "</form>";
                 }
             ?>
         </div>
         <div class="comment_section">
-            
+            <?php
+                if (isset($post)) {
+                    echo "<h1>Comments:</h1>";
+                    $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]);
+                    foreach ($comments as $comment) {
+                        $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
+
+                        echo "<div class='activity'>" .
+                            "<span class='body'>" . $comment["body"] . "</span><br />" .
+                            "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
+                            "<span class='postdate'> on " . $comment["timestamp"] . "</span>" .
+                            "</div>";
+                    }
+                }
+            ?>
         </div>
     </div>
     <?php include('resources/templates/footer.php'); ?>
