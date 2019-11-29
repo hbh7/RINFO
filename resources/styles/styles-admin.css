@@ -1,9 +1,15 @@
 ul {
     font-size: 100%;
 }
+li {
+    float: none;
+    width: auto;
+}
 
 h2 {
-    margin: 25px auto;
+    margin: 0;
+    padding: 25px 0;
+    font-size: 2.2rem;
 }
 #actions {
     border: none;
@@ -13,4 +19,16 @@ h2 {
 .action {
     float: none;
     width: auto;
+    padding: 10px 0;
+    border-top: 2px solid black;
+}
+div#nav-tabContent>div.active {
+    background-color: #f3f3f3;
+}
+div#nav-tabContent>div.active>h2:first-child {
+    background-color: rgba(118, 118, 118, 1);
+}
+
+a.list-group-item.list-group-item-action {
+    margin-bottom: 5px;
 }
