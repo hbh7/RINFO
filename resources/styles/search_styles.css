@@ -3,6 +3,10 @@ body{
 	padding: 0;
 	color: white;
 	background: rgb(59, 59, 59);
+    min-height: 100%;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+    position: relative;
 }
 #search_box_and_footer_wrapper{
 	width: 70%;
@@ -20,7 +24,7 @@ body{
 	height:50px;
 	padding:5px 2px;
 	outline-style: none ;
-	border: 1px solid #ccc; 
+	border: 1px solid #ccc;
 	border-radius: 3px;
 	font-size: 25px;
 	float:left;
@@ -44,10 +48,10 @@ body{
 	height:65px;
 	overflow: hidden;
 }
-#icon {  
+#icon {
 	position: absolute;
-	z-index:9;  
-	width: 100px;  
+	z-index:9;
+	width: 100px;
 }
 .play{ animation: ma 10s ease-out infinite alternate;}
 @keyframes ma {
