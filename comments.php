@@ -30,6 +30,7 @@
                         "</div>";
                 }
 
+                echo "<h1>Comments:</h1>";
                 $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]);
                 foreach ($comments as $comment) {
                     $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
