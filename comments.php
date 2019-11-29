@@ -4,11 +4,17 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         include_once 'db.php';
 
-        if(checkValidLogin()) {
-
+        if(checkValidLogin() && isset($_POST)) {
+            $user_id = $_POST["user_id"];
+            $post_id = $_POST["post_id"];
+            $reply_id = $_POST["reply_id"];
+            $body = $_POST["comment_body"];
             date_default_timezone_set('America/New_York');
             $date = date('Y-m-d H:i:s', time());
-            
+
+            if ($body != "Enter Comment Here...") {
+                $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]); 
+            } 
         } 
     }
 ?>
@@ -55,6 +61,7 @@
                     echo "<input type='submit' value='Comment'>";
                     echo "<input type='hidden' name='user_id' value='" . getUserID() . "'>";
                     echo "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>";
+                    echo "<input type='hidden' name='reply_id' value='NULL'>";
                     echo "</form>";
                 }
             ?>
