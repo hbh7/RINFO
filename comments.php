@@ -77,7 +77,8 @@
                         echo "<div class='activity'>" .
                             "<span class='body'>" . $comment["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
-                            "<span class='postdate'> on " . $comment["timestamp"] . "</span>" .
+                            "<span class='postdate'> on " . $comment["timestamp"] . "</span><br>" .
+                            "<span class='replybutton'>Reply</span>" .
                             "</div>";
                     }
                 }
