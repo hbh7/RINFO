@@ -40,8 +40,8 @@
                     <p>This is the official group for the RPI administration.</p>
                     <p><a href="https://rpi.edu/">Website Link</a></p>
                     <p><a href="https://lists.sympa.rpi.edu/wws/info/morningmail">Mailing List</a></p>
-                    -->
                 </div>
+                -->
             </div>
             <div id="activity">
                 <div id="activity_content" class="col-17">
