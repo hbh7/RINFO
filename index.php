@@ -30,10 +30,10 @@
                     <img class="d-block w-100" src="resources/images/example3.png" alt="Third slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example1.png" alt="Fourth slide">
+                    <img class="d-block w-100" src="resources/images/example1.jpg" alt="Fourth slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example2.png" alt="Fifth slide">
+                    <img class="d-block w-100" src="resources/images/example2.jpg" alt="Fifth slide">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="resources/images/example3.png" alt="Sixth slide">
