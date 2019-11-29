@@ -28,7 +28,6 @@
                 echo "<title>" . $title . "</title>";
             }
         ?>
-        <script type="text/javascript" src="comments.js"></script>
     </head>
 
 <body>
@@ -70,7 +69,7 @@
             <?php
                 if (isset($post)) {
                     echo "<h1>Comments:</h1>";
-                    $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]);
+                    $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]." AND reply_id = 0");
                     foreach ($comments as $comment) {
                         $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
 
@@ -80,13 +79,24 @@
                             "<span class='postdate'> on " . $comment["timestamp"] . "</span>";
                         if (checkValidLogin())  {   
                             echo "<br><span class='replybutton'>Reply</span>";
+                            echo "<div class='reply_box' style='display: none;'>" . 
+                                 "<form method='post' action='./comments.php?title=" .
+                                 $title . "'>" .
+                                 "<textarea name='comment_body' rows='5'>" .
+                                 "Enter Reply Here...</textarea><br>" .
+                                 "<input type='submit' value='Reply'>" .
+                                 "<input type='hidden' name='user_id' value='" . getUserID() . "'>" .
+                                 "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>" .
+                                 "<input type='hidden' name='reply_id' value='" . $comment["comment_id"] . "'>" .
+                                 "</form></div>";
                         }
-                        echo "</div>";
+                        echo "</div><br>";
                     }
                 }
             ?>
         </div>
     </div>
     <?php include('resources/templates/footer.php'); ?>
+    <script type="text/javascript" src="comments.js"></script>
 </body>
 </html>
