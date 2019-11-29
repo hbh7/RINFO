@@ -38,15 +38,33 @@ body {
     text-decoration: underline;
     color: black;
 }
-#join{
-    border-top: 2px double black;
-    border-bottom:2px double black;
-    font-size:250%;
+#join {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 150%;
 }
 #group_logo{
-    float:left;
-    width:50px;
-    height:50px;
+    float: left;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+}
+#tagline {
+    margin-top: 10px;
+    border-top: 1px solid darkgrey;
+    padding-top: 10px;
+    color: white;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+h3 {
+    width: 95%;
+    margin: 10px;
+    font-size: 250%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgrey;
 }
 
 ul.timeline {
@@ -91,11 +109,14 @@ ul.timeline > li:before {
 .feed_item {
     width: 93%;
     padding-left: 20px;
-    padding-top: 3px;
-    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 7px;
     text-align: left;
     float: right;
     background: grey;
     border-radius: 25px;
-    border: solid grey;
+    border: solid 2px grey;
+}
+.feed_item:hover {
+  border: 2px solid #ffffff;
 }

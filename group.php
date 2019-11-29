@@ -37,8 +37,8 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 <html lang="en">
 
 <head>
-    <?php include('resources/templates/head.php'); ?>
     <title> <?php echo $group["name"]; ?> </title>
+    <?php include('resources/templates/head.php'); ?>
 </head>
 
 <body>
@@ -46,10 +46,9 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 
     <div id="content">
         <div id="information">
-            <h2>Information</h2>
             <div id="information_content" class="content">
-                <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
                 <h3 id="group_name"><?php echo $group["name"]; ?></h3>
+                <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
                 <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
                 <p id="Nposts"><?php echo $numPosts; ?> posts</p>
                 <form method="post">
@@ -65,7 +64,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     }
                     ?>
                 </form>
-                <p><?php echo $group["tagline"]; ?></p>
+                <p id="tagline"><?php echo $group["tagline"]; ?></p>
                 <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
                     TODO: Move this into the database, and make it so it can be changed online-->
@@ -73,6 +72,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
         </div>
         <div id="activity">
             <h2>Posts</h2>
+            <!--https://bootsnipp.com/snippets/xrKXW-->
             <div id="activity_content" class="content">
                 <?php
                 $posts = dbGet("*", "r_posts", "group_id='" . $group_id . "'");
@@ -91,7 +91,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                 }
                 echo "</ul>";
                 ?>
-                
+
             </div>
         </div>
     </div>
