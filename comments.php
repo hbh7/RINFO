@@ -28,7 +28,7 @@
                 echo "<title>" . $title . "</title>";
             }
         ?>
-        <script type="text/javascript" src="homepage.js"></script>
+        <script type="text/javascript" src="comments.js"></script>
     </head>
 
 <body>
@@ -74,12 +74,14 @@
                     foreach ($comments as $comment) {
                         $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
 
-                        echo "<div class='activity'>" .
+                        echo "<div class='comment'>" .
                             "<span class='body'>" . $comment["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
-                            "<span class='postdate'> on " . $comment["timestamp"] . "</span><br>" .
-                            "<span class='replybutton'>Reply</span>" .
-                            "</div>";
+                            "<span class='postdate'> on " . $comment["timestamp"] . "</span>";
+                        if (checkValidLogin())  {   
+                            echo "<br><span class='replybutton'>Reply</span>";
+                        }
+                        echo "</div>";
                     }
                 }
             ?>
