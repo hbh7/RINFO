@@ -2,13 +2,16 @@
 
 <head>
     <?php include('resources/templates/head.php'); ?>
-    <title> RINFO Home Page </title>
+    <title> Welcome to RINFO </title>
     <script type="text/javascript" src="homepage.js"></script>
 </head>
 
 <body>
     <?php include('resources/templates/header.php'); ?>
     <?php include_once 'db.php'; ?>
+    <div class="scroll-left">
+        <p>EMERGENCY ALERT</p>
+    </div>
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -56,7 +59,6 @@
             </ul>
             <div class="tab_content">
                 <div id="hp_activities">
-                    <p id="banner" class="activity">Example Admin Notification</p>
                     <?php
                     // Something like this should probably end up in its own function at some point, since its
                     //      likely going to be the same post generator on each page.
