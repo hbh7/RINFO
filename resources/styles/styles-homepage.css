@@ -53,12 +53,16 @@ li a.active {
     overflow: hidden;
 }
 #carouselExampleIndicators {
-    width: 30%;
+    width: 33%;
     max-height: 550px;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-bottom: 55px;
     float: left;
     overflow: hidden;
+}
+#carouselExampleIndicators {
+    border: 2px solid red;
+    box-shadow: 0 5px 5px #000;
 }
 .d-block {
     max-height: 550px;;
@@ -71,11 +75,11 @@ li a.active {
     background-color: red;
 }
 .display {
-    width: 67%;
+    width: 64%;
     padding: 5px;
     float: right;
     height: 550px;
-	margin-top: 40px;
+	margin-top: 20px;
 	background: rgba(255, 255, 255, 0.3);
 }
 .activity {

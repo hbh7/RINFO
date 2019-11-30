@@ -40,15 +40,22 @@
             echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
             if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
                 echo <<<HTML
-                        <button id="admin" onclick="window.location='admin.php';">Admin Page</button>
+                        <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Admin Page</button>
 HTML;
             }
-            echo "<button id=\"logout\" class=\"btn btn-light\" onclick=\"window.location='logout.php';\">Log out</button>";
+            echo "<button id=\"logout\" class=\"btn btn-light\" onclick=\"window.location='logout.php';\">Log Out</button>";
         } else {
-            echo "<button id=\"login\" class=\"btn btn-light\" onclick=\"window.location='login.php';\">Log in</button>";
+            echo "<button id=\"login\" class=\"btn btn-light\" onclick=\"window.location='login.php';\">Log In</button>";
         }
         ?>
-        <button id="search" class="btn btn-light" onclick="window.location='search.php';"> Search </button>
+        <button id="search_button" class="btn btn-light">
+            <a class="text-muted" onclick="window.location='search.php'">
+                <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                    <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                    <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                </svg>
+            </a>
+        </button>
     </div>
     <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
     <?php
