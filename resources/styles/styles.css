@@ -57,8 +57,8 @@ h2 {
 }
 
 a.list-group-item.list-group-item-action.active {
-    background-color: red;
-    border-color: red;
+    background-color: #da243c;
+    border-color: #da243c;
 }
 div#list-tab:last-child {
     margin-bottom: 20px;
