@@ -144,6 +144,10 @@ ul.timeline > li:before {
 .smaller {
     font-size: 70%;
 }
+.smallest {
+    font-style: italic;
+    font-size: 50%;
+}
 .feed_item {
     width: 93%;
     padding-left: 20px;
@@ -155,6 +159,28 @@ ul.timeline > li:before {
     border-radius: 25px;
     border: solid 2px grey;
 }
+.feed_info {
+    float: left;
+    width: 82%;
+}
+.attendance_based {
+    border-right: 1px solid darkgrey;
+}
 .feed_item:hover {
   border: 2px solid #ffffff;
+}
+.feed_attendance {
+    width: 15%;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
+}
+.attendance {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    text-align: center;
+    width: 80%;
+    font-size: 150%;
 }

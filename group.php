@@ -87,13 +87,15 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
-                    echo "<li><div class='feed_item'>" .
+                    echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"
                         "<span class='title'>" . $post["title"] . "</span><br />" .
                         "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
-                        "<span class='smaller' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                        "<span class='smaller' class='postdate'> on " . $post["timestamp"] . "</span>" .
-                        "<span class='smaller' class='attendances'> " . count($attendances) . " people attending </span>" .
-                        "</div></li>";
+                        "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                        "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .
+                        "</div>".
+                        //line below is only needed if attendance is part of this post
+                        "<div class='feed_attendance'><span class='attendance'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></div>" .
+                        "</li>";
                 }
                 echo "</ul>";
                 ?>
