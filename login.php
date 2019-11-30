@@ -150,11 +150,11 @@ if(isset($action)) {
                     <br /><br />
                     <label for=\"password\">Password </label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
                     <br /><br />
-                    <button type=\"submit\" id=\"login_button\" name=\"action\" value=\"login\">Log In</button>
+                    <button type=\"submit\" id=\"login_button\" class=\"btn btn-secondary\" name=\"action\" value=\"login\">Log In</button>
                     <br /><br />
-                    <button type=\"submit\" id=\"forgot_password_button\" name=\"action\" value=\"forgot\">Forgot Password?</button>
+                    <button type=\"submit\" id=\"forgot_password_button\" class=\"btn btn-secondary\" name=\"action\" value=\"forgot\">Forgot Password?</button>
                     <br /><br />
-                    <button type=\"submit\" id=\"register_button\" name=\"action\" value=\"registerpage\">Don't have an account? Click here to join</button>
+                    <button type=\"submit\" id=\"register_button\" class=\"btn btn-secondary\" name=\"action\" value=\"registerpage\">Don't have an account? </br>Click here to join</button>
                     ";
                 }
                 ?>
