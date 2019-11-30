@@ -32,3 +32,6 @@ div#nav-tabContent>div.active>h2:first-child {
 a.list-group-item.list-group-item-action {
     margin-bottom: 5px;
 }
+#activity {
+    margin-top: 60px;
+}
