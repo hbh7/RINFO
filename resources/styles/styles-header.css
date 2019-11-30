@@ -1,5 +1,10 @@
-h1{
+h1 {
     text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+#logo {
+    margin: 0;
 }
 #global_header {
     border-bottom: 2px double black;
