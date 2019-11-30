@@ -38,29 +38,41 @@
             include_once 'db.php';
             if (checkValidLogin()) {
                 $firstname = json_decode($_COOKIE["login"], true)["firstname"];
+                $id = $_GET["user_id"];
                 echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
                 if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
                     echo <<<HTML
+                    <button id="search" class="btn btn-light">
+                        <a class="text-muted" onclick="window.location='search.php'">
+                        <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                        <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                        </svg>
+                    </a>
                     <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
+                    <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
+                    </button></div>
 HTML;
+                    echo "<div id='user_image'>
+                        <a href='#' onclick=\"window.location='user.php?user_id=" . $id . "';\"><img src='resources/images/icon1.png' width='53' height='53' 
+                        title='User Profile Icon' alt='User'></a>
+                    </div>";
                 }
-                echo "<button id=\"logout\" class=\"btn btn-light\" onclick=\"window.location='logout.php';\">Log Out</button>";
             } else {
-                echo "<button id=\"login\" class=\"btn btn-light\" onclick=\"window.location='login.php';\">Log In</button>";
+                echo <<<HTML
+                    <button id="search" class="btn btn-light">
+                        <a class="text-muted" onclick="window.location='search.php'">
+                            <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                                <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                            </svg>
+                        </a>
+                    </button>
+                    <button id="login" class="btn btn-light" onclick="window.location='login.php';">Log In</button>
+                    </div>
+HTML;
             }
             ?>
-            <button id="search" class="btn btn-light">
-                <a class="text-muted" onclick="window.location='search.php'">
-                    <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
-                        <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                        <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                    </svg>
-                </a>
-            </button>
-        </div>
-        <div id="user_image">
-            <a href="#" onclick="window.location='user.php';"><img src="resources/images/icon1.png" width="53" height="53" title="User Profile Icon" alt="User"></a>
-        </div>
     </div>
     <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
     <?php
