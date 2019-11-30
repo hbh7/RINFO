@@ -75,7 +75,6 @@
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "<span class='attendances'> " . count($attendances) . " people attending </span>" .
                             "</div>";
                     }
                     ?>
@@ -134,6 +133,9 @@
             </div>
         </div>
     </div>
+    <script>
+        
+    </script>
     <?php include('resources/templates/footer.php'); ?>
 </body>
 

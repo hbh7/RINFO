@@ -141,13 +141,6 @@ ul.timeline > li:before {
     color: white;
     background: none;
 }
-.smaller {
-    font-size: 70%;
-}
-.smallest {
-    font-style: italic;
-    font-size: 50%;
-}
 .feed_item {
     width: 93%;
     padding-left: 20px;

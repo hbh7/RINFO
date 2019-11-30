@@ -48,3 +48,11 @@ h2 {
     color: red;
 }
 
+.smaller {
+    font-size: 70%;
+}
+.smallest {
+    font-style: italic;
+    font-size: 50%;
+}
+
