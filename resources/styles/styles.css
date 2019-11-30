@@ -56,3 +56,10 @@ h2 {
     font-size: 50%;
 }
 
+a.list-group-item.list-group-item-action.active {
+    background-color: red;
+    border-color: red;
+}
+div#list-tab:last-child {
+    margin-bottom: 20px;
+}
