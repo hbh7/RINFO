@@ -58,19 +58,25 @@ if(isset($action)) {
     } elseif ($action == "login") {
 
         if(sizeof($users) == 0) {
-            $result = [false, "Failed to log in: Invalid user!"]; // TODO: Change for security
+            $result = [false, "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>Failed to log in:</strong>  Invalid User and/or Password!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span></button></div>"];
         } else {
 
             // Make sure they're not disabled/banned
             if($users[0]["enabled"] == false) {
-                $result = [false, "Failed to log in: Account is disabled!"];
+                $result = [false, "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <strong>Failed to log in:</strong>  Account is disabled!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span></button></div>"];
 
             } else {
 
                 $dbhash = $users[0]['password'];
                 if (password_verify($password, $dbhash)) {
                     // Success!
-                    $result = [true, "Logged in Successfully"];
+                    $result = [true, "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <strong>Successful Login!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span></button></div>"];
 
                     // Setting cookie
                     $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['lastname']];
@@ -81,7 +87,9 @@ if(isset($action)) {
                     die();
                 } else {
                     // Invalid credentials or unknown user
-                    $result = [false, "Failed to log in: Invalid password!"]; // TODO: Change for security
+                    $result = [false, "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>Failed to log in:</strong>  Invalid User and/or Password!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span></button></div>"];
                 }
             }
         }
@@ -92,7 +100,6 @@ if(isset($action)) {
         $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
 
     }
-
 }
 
 ?>
