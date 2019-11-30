@@ -59,7 +59,7 @@ HTML;
             </button>
         </div>
         <div id="user_image">
-            <a href="#" onclick="window.location='user.php';"><img src="icon1.jpg" width="50" height="50" title="User Profile Icon" alt="User"></a>
+            <a href="#" onclick="window.location='user.php';"><img src="resources/images/icon1.png" width="53" height="53" title="User Profile Icon" alt="User"></a>
         </div>
     </div>
     <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
