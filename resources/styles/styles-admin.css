@@ -35,13 +35,21 @@ a.list-group-item.list-group-item-action {
 #activity {
     margin-top: 60px;
 }
-/* the following two blocks are for formatting li tags that appear in the right column */
+/* the following block is for formatting li tags that appear in the right column */
 ul.tab-content-ul li {
-    margin-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px;
+    border-top: 2px solid black;
 }
-/* all li elements that are descendants of the ul tag with that class, except the last one
-    I do this so that the li elements do not need any special classes */
-ul.tab-content-ul li:not(:last-child) {
-    border-bottom: 2px solid black;
+
+textarea {
+    width: 90%;
+}
+
+input.submitButton {
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+form#postAdminMessage {
+    padding-bottom: 5px;
 }

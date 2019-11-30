@@ -58,7 +58,22 @@
 
                         <div class="tab-pane fade" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
                             <h2>Admin Messages</h2>
-                            <span>bleh here's some text</span>
+                            <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
+                            <h4>Create a message</h4>
+                            <form method="post" action="#" id="postAdminMessage">
+                                <!--maxlength is arbitrary for now
+                                    heck, all attribute names are subject to change, EXCEPT CLASSES AND IDs-->
+                                <textarea name="message" maxlength="560" placeholder="Enter your message here..." required></textarea>
+                                <input class="submitButton" type="submit" name="submit" value="Submit">
+                            </form>
+                            <ul class="tab-content-ul admin_messages">
+                                <li>messages</li>
+                                <li>generated</li>
+                                <li>from</li>
+                                <li>the</li>
+                                <li>database</li>
+                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                            </ul>
                         </div>
 
 
