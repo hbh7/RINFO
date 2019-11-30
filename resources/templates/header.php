@@ -33,7 +33,7 @@
         ?>
     </div>
     <div id="rightbox">
-        <div id="user_profile">
+
             <?php
             include_once 'db.php';
             if (checkValidLogin()) {
@@ -51,12 +51,14 @@
                     </a>
                     <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
                     <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
-                    </button></div>
+                    </button>
+                        <div id="user_image"><a href="#" onclick="window.location=user.php?user_id={$id};"><img src="resources/images/icon1.png" width="53" height="53" title="User Profile Icon" alt="User"></a></div>
+                    </div>
 HTML;
-                    echo "<div id='user_image'>
-                        <a href='#' onclick=\"window.location='user.php?user_id=" . $id . "';\"><img src='resources/images/icon1.png' width='53' height='53' 
+                    /*echo "<div id='user_image'>
+                        <a href='#' onclick=\"window.location='user.php?user_id=" . $id . "';\"><img src='resources/images/icon1.png' width='53' height='53'
                         title='User Profile Icon' alt='User'></a>
-                    </div>";
+                    </div>";*/
                 }
             } else {
                 echo <<<HTML
