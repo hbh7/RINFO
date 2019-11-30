@@ -26,8 +26,8 @@ h1{
     height: auto;
 }
 #rightbox{
-    /*float:right;*/
-    width:25%;
+    float:right;
+    width: 20%;
     height: auto;
     display: inline-flex;
     flex-wrap: wrap;
@@ -40,23 +40,33 @@ h1{
 }
 
 #admin, #logout, #login, #search {
+    float: left;
     height: 32px;
-    width: 60px;
-    margin: 3px 2px 3px 2px;
+    width: 30%;
+    margin: 3px 3px 3px 3px;
     font-size: 11px;
     line-height: initial;
 }
 
 #logintext {
     text-align: center;
+    float: right;
+    margin: 0 20;
+    width: 80%;
     flex-basis: 100%;
 }
-#search_button {
-    margin: 1px;
-    width: 15%;
-    padding: 5 10 5 0;
-}
+
 .btn {
     width: 10%;
     padding: 0;
+}
+#user_profile {
+    margin-right: 10px;
+    width: 75%;
+}
+#user_image {
+    float: right;
+    margin: 0;
+    padding: 0;
+    width: 20%;
 }
