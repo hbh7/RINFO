@@ -12,7 +12,6 @@ ul {
     margin: auto;
     padding: 0;
     overflow: hidden;
-    background-color: #f3f3f3;
 }
 
 li {
@@ -21,34 +20,49 @@ li {
 }
 
 li a {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
     display: block;
     color: #666;
     text-align: center;
+    margin-top: 2px;
     padding: 14px 16px;
     text-decoration: none;
+    background-color: #f3f3f3;
 }
 
 li a:hover:not(.active) {
     background-color: #ddd;
 }
-
 li a.active {
     color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     background-color: rgb(233, 81, 81);
 }
-
+#home_tag {
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
 #homepage_content {
     width: 90%;
     margin: auto;
     overflow: hidden;
 }
 #carouselExampleIndicators {
-    width: 30%;
+    width: 33%;
     max-height: 550px;
-    margin-top: 60px;
+    margin-top: 20px;
     margin-bottom: 55px;
     float: left;
     overflow: hidden;
+}
+#carouselExampleIndicators {
+    border: 2px solid red;
+    box-shadow: 0 5px 5px #000;
 }
 .d-block {
     max-height: 550px;;
@@ -61,16 +75,17 @@ li a.active {
     background-color: red;
 }
 .display {
-    width: 67%;
+    width: 64%;
+    padding: 5px;
     float: right;
-	max-height: 550px;
-	margin-top: 60px;
+    height: 550px;
+	margin-top: 20px;
 	background: rgba(255, 255, 255, 0.3);
 }
 .activity {
-    margin-top: 10px;
     background: rgba(255, 255, 255, 0.3);
-	color: white;
+    color: white;
+    margin: 7 3;
     border: 2px solid rgba(0, 0, 0, 0);
     border-radius: 5px;
 }
@@ -116,4 +131,64 @@ textarea[name=comment_body]{
 .comment_form input[type=submit]{
     width: 20%;
     margin-left: 40%;
+}
+
+.scroll-left {
+    height: 50px;	
+    overflow: hidden;
+    position: relative;
+    background: none;
+}
+.scroll-left p {
+    color: yellow;
+    font-size: 150%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    /* Starting position */
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%);	
+    transform:translateX(100%);
+    /* Apply animation to this element */	
+    -moz-animation: scroll-left 20s linear infinite;
+    -webkit-animation: scroll-left 20s linear infinite;
+    animation: scroll-left 20s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+    0%   { -moz-transform: translateX(100%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+    0%   { -webkit-transform: translateX(100%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+    0%   { 
+    -moz-transform: translateX(100%); /* Browser bug fix */
+    -webkit-transform: translateX(100%); /* Browser bug fix */
+    transform: translateX(100%); 		
+    }
+    100% { 
+    -moz-transform: translateX(-100%); /* Browser bug fix */
+    -webkit-transform: translateX(-100%); /* Browser bug fix */
+    transform: translateX(-100%); 
+    }
+}
+.postauthor {
+    font-style: italic;
+    font-size: 70%;
+}
+.postdate {
+    font-style: italic;
+    font-size: 70%;
+}
+.activity {
+    padding: 7px;
+}
+.title {
+    font-size: 140%;
 }

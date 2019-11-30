@@ -2,13 +2,16 @@
 
 <head>
     <?php include('resources/templates/head.php'); ?>
-    <title> RINFO Home Page </title>
+    <title> Welcome to RINFO </title>
     <script type="text/javascript" src="homepage.js"></script>
 </head>
 
 <body>
     <?php include('resources/templates/header.php'); ?>
     <?php include_once 'db.php'; ?>
+    <div class="scroll-left">
+        <p>EMERGENCY ALERT</p>
+    </div>
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -30,10 +33,10 @@
                     <img class="d-block w-100" src="resources/images/example3.png" alt="Third slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example3.png" alt="Fourth slide">
+                    <img class="d-block w-100" src="resources/images/example1.jpg" alt="Fourth slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example3.png" alt="Fifth slide">
+                    <img class="d-block w-100" src="resources/images/example2.jpg" alt="Fifth slide">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100" src="resources/images/example3.png" alt="Sixth slide">
@@ -56,7 +59,6 @@
             </ul>
             <div class="tab_content">
                 <div id="hp_activities">
-                    <p id="banner" class="activity">Example Admin Notification</p>
                     <?php
                     // Something like this should probably end up in its own function at some point, since its
                     //      likely going to be the same post generator on each page.
@@ -73,7 +75,6 @@
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "<span class='attendances'> " . count($attendances) . " people attending </span>" .
                             "</div>";
                     }
                     ?>
@@ -132,6 +133,9 @@
             </div>
         </div>
     </div>
+    <script>
+        
+    </script>
     <?php include('resources/templates/footer.php'); ?>
 </body>
 

@@ -11,6 +11,10 @@ body {
     transform: translate(-50%, -50%);
     width: 70%;
 }
+.alert {
+    width: 48%;
+    position: fixed;
+}
 #login_content {
     margin: 0px;
     width: 100%;
@@ -39,7 +43,7 @@ body {
     height: 600px;
 }
 #login_box {
-    margin-top: 170px;
+    margin-top: 160px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;

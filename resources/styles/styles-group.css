@@ -6,9 +6,10 @@ body {
 #information {
     color: white;
     border-style: solid;
-    border-color: rgb(252, 54, 54);
+    border-color: #df213a;
     background: rgb(114, 114, 114);
     width: 30%;
+    border-radius: 25px;
     float: left;
     margin-top: 60px;
 }
@@ -36,17 +37,72 @@ body {
 }
 #information_content>p>a:hover {
     text-decoration: underline;
-    color: black;
-}
-#join{
-    border-top: 2px double black;
-    border-bottom:2px double black;
-    font-size:250%;
+    color: white;
 }
 #group_logo{
-    float:left;
-    width:50px;
-    height:50px;
+    float: left;
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+}
+#tagline {
+    margin-top: 10px;
+    border-top: 1px solid darkgrey;
+    padding-top: 10px;
+    color: white;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+h3 {
+    width: 95%;
+    margin: 10px;
+    font-size: 250%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgrey;
+}
+#join {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 150%;
+}
+.Ndetails {
+    height: 25px;
+    margin: auto;
+    color: white;
+    width: 70%;
+}
+#users_logo {
+    height: 35px;
+    width: 35px;
+    float: left;
+}
+#posts_logo {
+    height: 35px;
+    width: 35px;
+    float: left;
+}
+#users_info {
+    height: 35px;
+    float: right;
+    text-align: right;
+    width: 43%;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    font-size: 140%;
+}
+#posts_info {
+    text-align: right;
+    height: 35px;
+    float: right;
+    width: 43%;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    font-size: 140%;
 }
 
 ul.timeline {
@@ -85,17 +141,39 @@ ul.timeline > li:before {
     color: white;
     background: none;
 }
-.smaller {
-    font-size: 70%;
-}
 .feed_item {
     width: 93%;
     padding-left: 20px;
-    padding-top: 3px;
-    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 7px;
     text-align: left;
     float: right;
     background: grey;
     border-radius: 25px;
-    border: solid grey;
+    border: solid 2px grey;
+}
+.feed_info {
+    float: left;
+    width: 82%;
+}
+.attendance_based {
+    border-right: 1px solid darkgrey;
+}
+.feed_item:hover {
+  border: 2px solid #ffffff;
+}
+.feed_attendance {
+    width: 15%;
+    padding-left: 20px;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
+}
+.attendance {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    text-align: center;
+    width: 80%;
+    font-size: 150%;
 }

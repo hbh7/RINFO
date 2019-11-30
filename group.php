@@ -37,8 +37,8 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 <html lang="en">
 
 <head>
-    <?php include('resources/templates/head.php'); ?>
     <title> <?php echo $group["name"]; ?> </title>
+    <?php include('resources/templates/head.php'); ?>
 </head>
 
 <body>
@@ -46,26 +46,31 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 
     <div id="content">
         <div id="information">
-            <h2>Information</h2>
             <div id="information_content" class="content">
-                <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
                 <h3 id="group_name"><?php echo $group["name"]; ?></h3>
-                <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
-                <p id="Nposts"><?php echo $numPosts; ?> posts</p>
+                <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
+                <div id="users_info">
+                    <img id="users_logo" src="resources/images/users.png"></img>
+                    <p id="Nusers" class="Ndetails"><?php echo $numSubscriptions; ?> users</p>
+                </div>
+                <div id="posts_info">
+                    <img id="users_logo" src="resources/images/posts.png"></img>
+                    <p id="Nposts" class="Ndetails"><?php echo $numPosts; ?> posts</p>
+                </div>
                 <form method="post">
                     <?php
                     if (checkValidLogin()) {
                         if (sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "' AND user_id='" . getUserID() . "'")) > 0) {
-                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\">Leave</button>";
+                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\" class=\"btn btn-light\">Leave</button>";
                         } else {
-                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
+                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\" class=\"btn btn-light\">Join</button>";
                         }
                     } else {
-                        echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
+                        echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\" class=\"btn btn-light\">Join</button>";
                     }
                     ?>
                 </form>
-                <p><?php echo $group["tagline"]; ?></p>
+                <p id="tagline"><?php echo $group["tagline"]; ?></p>
                 <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
                     TODO: Move this into the database, and make it so it can be changed online-->
@@ -73,6 +78,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
         </div>
         <div id="activity">
             <h2>Posts</h2>
+            <!--https://bootsnipp.com/snippets/xrKXW-->
             <div id="activity_content" class="content">
                 <?php
                 $posts = dbGet("*", "r_posts", "group_id='" . $group_id . "'");
@@ -81,17 +87,19 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
-                    echo "<li><div class='feed_item'>" .
+                    echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"
                         "<span class='title'>" . $post["title"] . "</span><br />" .
                         "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
-                        "<span class='smaller' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                        "<span class='smaller' class='postdate'> on " . $post["timestamp"] . "</span>" .
-                        "<span class='smaller' class='attendances'> " . count($attendances) . " people attending </span>" .
-                        "</div></li>";
+                        "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                        "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .
+                        "</div>".
+                        //line below is only needed if attendance is part of this post
+                        "<div class='feed_attendance'><span class='attendance'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></div>" .
+                        "</li>";
                 }
                 echo "</ul>";
                 ?>
-                
+
             </div>
         </div>
     </div>
