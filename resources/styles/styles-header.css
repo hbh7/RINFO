@@ -38,7 +38,12 @@ h1{
 #page_title {
     margin-top: 20px;
 }
-
+@media screen and (max-width:1000px){
+  #admin, #logout, #login, #search {
+    margin: 3px 1px 3px 1px;
+    height: 25px;
+  }
+}
 #admin, #logout, #login, #search {
     float: left;
     height: 32px;
