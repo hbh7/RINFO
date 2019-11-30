@@ -49,6 +49,7 @@ h1 {
   }
 }
 #admin, #logout, #login, #search {
+    float: right;
     height: 32px;
     width: 23%;
     min-width: fit-content;
