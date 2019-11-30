@@ -49,18 +49,24 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
             <div id="information_content" class="content">
                 <h3 id="group_name"><?php echo $group["name"]; ?></h3>
                 <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
-                <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
-                <p id="Nposts"><?php echo $numPosts; ?> posts</p>
+                <div id="users_info">
+                    <img id="users_logo" src="resources/images/users.png"></img>
+                    <p id="Nusers" class="Ndetails"><?php echo $numSubscriptions; ?> users</p>
+                </div>
+                <div id="posts_info">
+                    <img id="users_logo" src="resources/images/posts.png"></img>
+                    <p id="Nposts" class="Ndetails"><?php echo $numPosts; ?> posts</p>
+                </div>
                 <form method="post">
                     <?php
                     if (checkValidLogin()) {
                         if (sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "' AND user_id='" . getUserID() . "'")) > 0) {
-                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\">Leave</button>";
+                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"leave\" class=\"btn btn-light\">Leave</button>";
                         } else {
-                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
+                            echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\" class=\"btn btn-light\">Join</button>";
                         }
                     } else {
-                        echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\">Join</button>";
+                        echo "<button type=\"submit\" id=\"join\" name=\"action\" value=\"join\" class=\"btn btn-light\">Join</button>";
                     }
                     ?>
                 </form>
