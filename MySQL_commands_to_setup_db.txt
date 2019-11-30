@@ -74,6 +74,14 @@ CREATE TABLE r_attendances(
     PRIMARY KEY ( attendance_id )
 );
 
+CREATE TABLE r_alerts(
+    alert_id INT NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    body VARCHAR(1024) NOT NULL,
+    timestamp DATETIME NOT NULL,
+    PRIMARY KEY ( alert_id )
+);
+
 /* Default passwords are test */
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Studenttester1', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'RPITester', '1', 'studenttester1@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Admin', 'Tester', 'sisman@rpi.edu');
@@ -85,6 +93,8 @@ INSERT INTO r_groups(name, tagline, visibility) VALUES('RCOS', 'RCOS is for maki
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30 09:34:21', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 3', 'CTF Competition from Tue, 22 Oct. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-10-30 20:18:57', false);
+
+INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'This is a sample alert!', '2019-10-30 20:18:57');
 
 
 quit
