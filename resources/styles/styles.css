@@ -33,7 +33,7 @@ h2 {
     height: 0;
 }
 .display{
-    border: 2px solid red;
+    border: 2px solid #d6001c;
     box-shadow: 0 5px 5px #000;
     _height:50%;
     min-height:50%;
@@ -45,7 +45,7 @@ h2 {
     background-color: yellow;
     margin: 0 0;
     padding: 16px 0 8px 0;
-    color: red;
+    color: #d6001c;
 }
 
 .smaller {
@@ -57,8 +57,8 @@ h2 {
 }
 
 a.list-group-item.list-group-item-action.active {
-    background-color: #da243c;
-    border-color: #da243c;
+    background-color: #d6001c;
+    border-color: #d6001c;
 }
 div#list-tab:last-child {
     margin-bottom: 20px;
