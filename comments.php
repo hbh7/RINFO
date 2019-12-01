@@ -42,12 +42,14 @@
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
-                    echo "<div class='activity'>" .
+                    echo "<div class='activity'><div class='inner_activity'>" .
                         "<span class='body'>" . $post["body"] . "</span><br />" .
-                        "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                        "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                        "<span class='attendances'> " . count($attendances) . " people attending </span>" .
-                        "</div>";
+                            "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                            "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                            "</div><div class='attending'><form><button class='btn btn-light' name='toggle_attendance'>" .
+                            "<span class='num_attend'>" . count($attendances) .
+                            "</span><br><span class='smalltext'>attending</span>"
+                            ."</button></form></div></div>";;
                 }
             ?>
         </div>

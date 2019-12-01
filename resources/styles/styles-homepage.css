@@ -276,3 +276,8 @@ textarea[name=comment_body]{
 .replybutton {
     font-size: 12;
 }
+.attending form button {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 5px;
+}
