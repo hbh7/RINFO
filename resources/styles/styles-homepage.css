@@ -118,30 +118,6 @@ li a.active {
 	color: white;
 }
 
-/* Comment Page css */
-.comment_content {
-    border: 2px solid red;
-    width: 60%;
-    margin: 0 auto;
-}
-textarea[name=comment_body]{
-    width: 86%;
-    height: 100px;
-    margin-left: 7%;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-.comment_form input[type=submit]{
-    width: 20%;
-    margin-left: 40%;
-    margin-top: 10px;
-}
-.reply_box input[type=submit]{
-    width: 20%;
-    margin-left: 10%;
-    margin-top: 10px;
-}
-
 .scroll-left {
     height: 50px;	
     overflow: hidden;
@@ -200,4 +176,41 @@ textarea[name=comment_body]{
 }
 .title {
     font-size: 140%;
+}
+
+/* Comment Page css */
+.comment_content {
+    border: 2px solid red;
+    width: 70%;
+    margin: 20px auto;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+textarea[name=comment_body]{
+    width: 86%;
+    height: 100px;
+    margin-left: 7%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.comment_form input[type=submit]{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 10px;
+}
+.reply_box input[type=submit]{
+    width: 20%;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+.comment {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 5px;
+}
+.replybutton {
+    font-size: 12;
 }
