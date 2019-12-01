@@ -89,9 +89,10 @@
                         foreach ($subscriptions as $subscription) {
                             $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
 
-                            echo "<div class='group'>" .
-                                "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
-                                "</div>";
+                            echo "<a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . 
+                                "<div class='group'>" .
+                                "<span class='name'>" . $name . "</span><br/>" .
+                                "</div></a>";
                         }
                         echo "</div>";
                     }
@@ -101,9 +102,10 @@
 
                     $groups = dbGet("group_id, name", "r_groups");
                     foreach ($groups as $group) {
-                        echo "<div class='group'>" .
-                            "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
-                            "</div>";
+                        echo "<a href=\"group.php?group_id=" . $group["group_id"] . "\">" .
+                            "<div class='group'>" .
+                            "<span class='name'>" . $group["name"] . "</span><br />" .
+                            "</div></a>";
                     }
                     echo "</div>";
 
