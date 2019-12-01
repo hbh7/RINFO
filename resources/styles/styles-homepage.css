@@ -182,6 +182,36 @@ li a.active {
     font-weight: bold;
 }
 
+#my_groups {
+    color: white;
+    text-align: center;
+}
+#my_groups a{
+    text-decoration: none;
+}
+#all_groups {
+    width: 45%;
+    float: left;
+    clear: left;
+    margin-left: 3%;
+}
+#followed_groups {
+    width: 45%;
+    float: right;
+    clear: right;
+    margin-right: 3%;
+}
+.group {
+    border-radius: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-top: 5px;
+}
+.group:hover {
+    border: 2px solid white;
+}
+
 /* Comment Page css */
 .comment_content {
     border: 2px solid red;
