@@ -86,7 +86,7 @@
             $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
             
             $spaces = 0;
-            if ($tabs > 0)
+            for ($i = 0; $i < $tabs; $i++)
                 $spaces += 50;
 
             echo "<div class='comment' style='margin-left: " . $spaces . "px'>" .
@@ -106,13 +106,13 @@
                      "<input type='hidden' name='reply_id' value='" . $comment["comment_id"] . "'>" .
                      "</form></div>";
             }
+            echo "</div>";
             $replies = dbGet("*", "r_comments", "reply_id=" . $comment["comment_id"]);
             if (count($replies) != 0) {
                 foreach ($replies as $reply) {
                     comment_print($reply, $post, $tabs + 1);
                 }
             }
-            echo "</div>";
         }
     ?>
 </body>
