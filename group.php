@@ -86,6 +86,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                 foreach ($posts as $post) {
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
+                    $comment_link = "./comments.php?title=" . $post["title"];
 
                     echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"
                         "<span class='title'>" . $post["title"] . "</span><br />" .
