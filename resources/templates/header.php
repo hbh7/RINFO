@@ -26,9 +26,13 @@
             // }
         }
         // For comments page, get title a different way
-        if (isset($_GET["title"])) {
+        else if (isset($_GET["title"])) {
             $title = $_GET["title"];
             echo "<h1 id='page_title'>" . $title . "</h1>";
+        }
+        // For Groups page
+        if (isset($group)) {
+            echo "<h1 id='page_title'>" . $group["name"] . "</h1>";
         }
         ?>
     </div>
