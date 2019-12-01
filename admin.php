@@ -3,6 +3,7 @@
         <?php include('resources/templates/head.php'); ?>
         <link rel="stylesheet" type="text/css" href="/resources/styles/styles-admin.css">
         <title> Administration Homepage </title>
+        <script src="/resources/scripts/admin.js" type="text/javascript" charset="utf-8" async defer></script>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
