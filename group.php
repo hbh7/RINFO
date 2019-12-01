@@ -98,7 +98,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .
                         "</div>".
                         //line below is only needed if attendance is part of this post
-                        "<div class='feed_attendance'><span class='attendance'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></div>" .
+                        "<div class='feed_attendance'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'><span class='num_attend'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></button><input type='hidden' name='p_id' value='" . $post["post_id"] . "''></form></div>" .
                         "</li>";
                 }
                 echo "</ul>";

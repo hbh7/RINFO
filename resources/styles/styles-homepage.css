@@ -276,8 +276,9 @@ textarea[name=comment_body]{
 .replybutton {
     font-size: 12;
 }
-.attending form button {
+.attending form button, .feed_attendance form button {
     width: 80%;
     margin: 0 auto;
-    margin-top: 5px;
+    margin-top: 10px;
+    padding: 5px;
 }
