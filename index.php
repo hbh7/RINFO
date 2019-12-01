@@ -83,6 +83,7 @@
                     <?php
 
                     if (checkValidLogin()) {
+                        echo "<div id='followed_groups'>";
                         echo "<span> My groups </span>";
                         $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
                         foreach ($subscriptions as $subscription) {
@@ -92,8 +93,10 @@
                                 "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
                                 "</div>";
                         }
+                        echo "</div>";
                     }
 
+                    echo "<div id='all_groups'>";
                     echo "<span> All groups </span>";
 
                     $groups = dbGet("group_id, name", "r_groups");
@@ -102,6 +105,7 @@
                             "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
                             "</div>";
                     }
+                    echo "</div>";
 
 
                     ?>
