@@ -51,9 +51,9 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
             <div id="information_content" class="content">
                 <h3 id="name"><?php echo $user["firstname"] . " " . $user["lastname"]; ?></h3>
                 <h3 id="username"><?php echo $user["username"]; ?></h3>
-                <h3 id="email"><?php echo $user["email"]; ?></h3>
-                <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
-                <p id="Nposts"><?php echo $numPosts; ?> posts</p>
+                <h4 id="email"><?php echo $user["email"]; ?></h3>
+                <!-- <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
+                <p id="Nposts"><?php echo $numPosts; ?> posts</p> -->
                 <form method="post">
                     <?php
                     if (getUserID() != $user_id) {
@@ -69,6 +69,14 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                     }
                     ?>
                 </form>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action active" id="list-notifications-list" data-toggle="list" href="#list-notifications" role="tab" aria-controls="notifications">My Groups</a>
+                            <a class="list-group-item list-group-item-action" id="list-your_groups-list" data-toggle="list" href="#list-your_groups" role="tab" aria-controls="your_groups">My Posts</a>
+                        </div>
+                    </div>
+                </div>
                 <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
                     TODO: Move this into the database, and make it so it can be changed online-->
@@ -90,6 +98,28 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                         "</div>";
                 }
                 ?>
+            </div>
+        </div>
+        <div id="activity">
+            <div id="activity_content" class="col-17">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-notifications" role="tabpanel" aria-labelledby="list-notifications-list">
+                        <h2>My Groups</h2>
+                        <ul class="tab-content-ul">
+                            <!--TODO: Someone do me a favor and generate this from the database-->
+                            <li>There will be no classes on Jan. 17th due to a snow day! Nah jk this is RPI. You thought we would show mercy? By executive decree, today only, all 8am classes shall start at 8:06am.</li>
+                            <li>RPI ALERT: A student on 15th street was approached by a 2'4" man wearing an Elmo costume. Witnesses say, "It may have been an infant on Halloween"</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
+                        <h2>My Posts</h2>
+                        <ul class="tab-content-ul">
+                            <!--TODO: Someone do me a favor and generate this from the database-->
+                            <li>There will be no classes on Jan. 17th due to a snow day! Nah jk this is RPI. You thought we would show mercy? By executive decree, today only, all 8am classes shall start at 8:06am.</li>
+                            <li>RPI ALERT: A student on 15th street was approached by a 2'4" man wearing an Elmo costume. Witnesses say, "It may have been an infant on Halloween"</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
