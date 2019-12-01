@@ -70,7 +70,7 @@ body{
 	width: 300px;
 	height: 100px;
 }
- .container .search {
+ /* .container .search {
 	position: absolute;
 	margin: auto;
 	top: 0;
@@ -87,8 +87,8 @@ body{
 }
  .container .search:hover {
 	 cursor: pointer;
-}
- .container .search::before {
+} */
+ /* .container .search::before {
 	content: "";
 	position: absolute;
 	margin: auto;
@@ -115,47 +115,62 @@ body{
 	 border-radius: 50%;
 	 border: 2px solid white;
 	 transition: all 0.5s;
+} */
+@keyframes grow {
+    0% {
+		visibility: hidden;
+	}
+	10% {
+		width: 0px;
+		padding: 0;
+	}
+    100% {
+		width: 300px;
+		padding: 0 80px 0 20px;
+    }
 }
  .container input {
-	 position: absolute;
-	 margin: auto;
-	 top: 0;
-	 right: 0;
-	 bottom: 0;
-	 left: 0;
-	 width: 50px;
-	 height: 50px;
-	 outline: none;
-	 border: none;
-	 background: grey;
-	 color: white;
-	 padding: 0 80px 0 20px;
-	 border-radius: 30px;
-	 transition: all 1s;
-	 opacity: 0;
-	 z-index: 5;
-	 font-weight: bolder;
-	 letter-spacing: 0.1em;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	outline: none;
+	border: none;
+	background: grey;
+	color: white;
+	border-radius: 30px;
+	animation: 2s grow;
+	opacity: 0;
+	z-index: 5;
+	font-weight: bolder;
+	letter-spacing: 0.1em;
+	opacity: 1;
+	cursor: text;
+	width: 300px;
+	padding: 0 20px 0 20px;
 }
- .container input:hover {
+ /* .container input:hover {
 	 cursor: pointer;
 }
  .container input:focus {
 	 width: 300px;
 	 opacity: 1;
 	 cursor: text;
-}
- .container input:focus ~ .search {
+} */
+ /* .container input:focus ~ .search {
 	 right: -250px;
 	 background: #d6001c;
 	 z-index: 6;
-}
- .container input:focus ~ .search::before {
+} */
+ /* .container input:focus ~ .search::before {
 	 top: 0;
 	 left: 0;
 	 width: 25px;
-}
- .container input:focus ~ .search::after {
+} */
+ /* .container input:focus ~ .search::after {
 	 top: 0;
 	 left: 0;
 	 width: 25px;
@@ -164,7 +179,7 @@ body{
 	 background: white;
 	 border-radius: 0%;
 	 transform: rotate(-45deg);
-}
+} */
  .container input::placeholder {
 	 color: white;
 	 opacity: 0.5;
