@@ -1,6 +1,9 @@
 <?php
 
-// TODO: Handle when someone refuses to provide the required GET parameters
+// Redirect back to homepage if there is no group id sent in the GET
+if(!isset($_GET['group_id'])) {
+    header('Location: index.php');
+}
 
 // Get GET data
 //if ($_SERVER['REQUEST_METHOD'] == 'GET') {
