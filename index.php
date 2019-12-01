@@ -75,10 +75,12 @@
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "</div><div class='attending'>" .
+                            "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'>" .
                             "<span class='num_attend'>" . count($attendances) .
                             "</span><br><span class='smalltext'>attending</span>"
-                            ."</div></div>";
+                            ."</button>" .
+                            "<input type='hidden' name='p_id' value='" . $post["post_id"] . "''>" .
+                            "</form></div></div>";
                     }
                     ?>
                 </div>

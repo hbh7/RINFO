@@ -50,7 +50,7 @@
                             "</span><br><span class='smalltext'>attending</span>"
                             ."</button>" .
                             "<input type='hidden' name='p_id' value='" . $post["post_id"] . "''>" .
-                            "</form></div></div>";;
+                            "</form></div></div>";
                 }
             ?>
         </div>
