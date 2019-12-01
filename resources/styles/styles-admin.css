@@ -46,6 +46,7 @@ ul.tab-content-ul li {
 
 textarea {
     width: 90%;
+    height: 35px;
 }
 
 .submitButton {
