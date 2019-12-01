@@ -61,6 +61,10 @@ One thing to note however - the short version does make the footer seem kind of 
 }
 
 #global_footer a:hover {
-    color: black;
+    color: lightgrey;
     text-decoration: underline;
+}
+
+#site_map {
+    font-size: 100%;
 }
