@@ -65,15 +65,24 @@
                                 <!--maxlength is arbitrary for now
                                     heck, all attribute names are subject to change, EXCEPT CLASSES AND IDs-->
                                 <textarea name="message" maxlength="560" placeholder="Enter your message here..." required></textarea>
+                                <br />
                                 <input class="submitButton" type="submit" name="submit" value="Submit">
                             </form>
-                            <ul class="tab-content-ul admin_messages">
-                                <li>messages</li>
-                                <li>generated</li>
-                                <li>from</li>
-                                <li>the</li>
-                                <li>database</li>
-                                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                            <ul class="tab-content-ul" id="admin_messages">
+                                <?php
+                                    //TODO: replace the for loop condition with one that reflects the number of messages in the database
+                                    for ($i=0; $i < 4 ; $i++) {
+                                        echo "<li>$i $i $i $i $i <br />messages generated from the database. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                                        //TODO: make an if condition to check if a particular message was posted by the currently logged in user
+                                        if (/*REPLACE THE 1 IN THIS IF CONDITION*/1) {
+                                            echo <<<HTML
+                                            <br />
+                                            <button type="button" onclick="makeEditMessage(this);" class="submitButton" id="editMessage">Edit Message</button>
+                                            <button type="button" onclick="deleteMessage(this);" class="submitButton" id="deleteMessage">Delete Message</button>
+HTML;
+                                        }
+                                    }
+                                ?>
                             </ul>
                         </div>
 
