@@ -16,15 +16,15 @@
         <div id="results"></div>-->
     <div id="search_box_and_footer_wrapper">
         <!--https://codepen.io/AlbertFeynman/pen/BPvzWZ-->
-    <div class="search-box">
-        <div class="container">
-            <input type="text" placeholder="Type to Search..." class="search-txt" name="search" id="searchtextbox" autocomplete="off">
-            <div class="search"></div>
+        <div class="search-box">
+            <div class="container">
+                <input type="text" placeholder="Type to Search..." class="search-txt" name="search" id="searchtextbox" autocomplete="off">
+                <div class="search"></div>
+            </div>
         </div>
-    </div>
-    <div id="results"></div>
+        <div id="results"></div>
 
-    <?php include('resources/templates/footer.php'); ?>
+        <?php include('resources/templates/footer.php'); ?>
     </div>
 
     <script type="text/javascript" src="resources/scripts/search.js"></script>
