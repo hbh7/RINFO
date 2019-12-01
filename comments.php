@@ -84,16 +84,17 @@
     // Function to print a comment
         function comment_print($comment, $post, $tabs) {
             $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
-            $spaces = "";
-            for ($i = 0; $i < $tabs * 2; $i++)
-                $spaces .= "&emsp;";
+            
+            $spaces = 0;
+            if ($tabs > 0)
+                $spaces += 50;
 
-            echo "<div class='comment'>" .
-                "<span class='body'>" . $spaces . $comment["body"] . "</span><br />" .
-                "<span class='postauthor'>" . $spaces . "Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
+            echo "<div class='comment' style='margin-left: " . $spaces . "px'>" .
+                "<span class='body'>" . $comment["body"] . "</span><br />" .
+                "<span class='postauthor'>" . "Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
                 "<span class='postdate'> on " . $comment["timestamp"] . "</span>";
             if (checkValidLogin())  {   
-                echo "<br><span class='replybutton'>" . $spaces . "Reply</span>";
+                echo "<br><span class='replybutton'>" . "Reply</span>";
                 echo "<div class='reply_box' style='display: none;'>" . 
                      "<form method='post' action='./comments.php?title=" .
                      $post["title"] . "'>" .
