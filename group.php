@@ -89,7 +89,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     $comment_link = "./comments.php?title=" . $post["title"];
 
                     echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"
-                        "<span class='title'>" . $post["title"] . "</span><br />" .
+                        "<span class='title'><a href='" . $comment_link . "''>" . $post["title"] . "</a></span><br />" .
                         "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
                         "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .

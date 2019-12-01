@@ -179,3 +179,7 @@ ul.timeline > li:before {
     width: 80%;
     font-size: 150%;
 }
+
+.title a{
+    all: none;
+}

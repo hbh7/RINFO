@@ -3,10 +3,10 @@ body {
 	color: white;
 }
 /* homepage css */
-h2 {
+ h2 {
 	color: white;
 }
-ul {
+ ul {
     font-size: 150%;
     list-style-type: none;
     margin: auto;
@@ -14,12 +14,12 @@ ul {
     overflow: hidden;
 }
 
-li {
+ li {
 	float: left;
 	width: 33.333%;
 }
 
-li a {
+.display li a {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-left: 2px solid grey;
@@ -33,10 +33,10 @@ li a {
     background-color: #f3f3f3;
 }
 
-li a:hover:not(.active) {
+.display li a:hover:not(.active) {
     background-color: #ddd;
 }
-li a.active {
+.display li a.active {
     color: white;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
