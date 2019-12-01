@@ -183,19 +183,23 @@ li a.active {
 }
 
 #my_groups {
-    display: flex;
-    flex-direction: row;
+    color: white;
     text-align: center;
 }
+#my_groups a{
+    text-decoration: none;
+}
 #all_groups {
-    width: 50%;
+    width: 45%;
     float: left;
     clear: left;
-    height: 100%;
+    margin-left: 3%;
 }
 #followed_groups {
-    width: 50%;
-    float: left;
+    width: 45%;
+    float: right;
+    clear: right;
+    margin-right: 3%;
 }
 .group {
     border-radius: 5px;

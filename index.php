@@ -84,7 +84,7 @@
 
                     if (checkValidLogin()) {
                         echo "<div id='followed_groups'>";
-                        echo "<span> My groups </span>";
+                        echo "<h4> My groups </h4>";
                         $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
                         foreach ($subscriptions as $subscription) {
                             $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
@@ -98,7 +98,7 @@
                     }
 
                     echo "<div id='all_groups'>";
-                    echo "<span> All groups </span>";
+                    echo "<h4> All groups </h4>";
 
                     $groups = dbGet("group_id, name", "r_groups");
                     foreach ($groups as $group) {
