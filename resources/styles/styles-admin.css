@@ -32,3 +32,24 @@ div#nav-tabContent>div.active>h2:first-child {
 a.list-group-item.list-group-item-action {
     margin-bottom: 5px;
 }
+#activity {
+    margin-top: 60px;
+}
+/* the following block is for formatting li tags that appear in the right column */
+ul.tab-content-ul li {
+    padding: 5px;
+    border-top: 2px solid black;
+}
+
+textarea {
+    width: 90%;
+}
+
+input.submitButton {
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+form#postAdminMessage {
+    padding-bottom: 5px;
+}

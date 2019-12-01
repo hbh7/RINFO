@@ -1,5 +1,10 @@
-h1{
+h1 {
     text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+#logo {
+    margin: 0;
 }
 #global_header {
     border-bottom: 2px double black;
@@ -26,23 +31,27 @@ h1{
     height: auto;
 }
 #rightbox{
-    float:right;
+    margin-bottom: 5px;
     width: 20%;
     height: auto;
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /*vertical-align: center;*/
 }
 #page_title {
     margin-top: 20px;
 }
-
+@media screen and (max-width:1000px){
+  #admin, #logout, #login, #search {
+    margin: 3px 1px 3px 1px;
+    height: 25px;
+  }
+}
 #admin, #logout, #login, #search {
-    float: left;
     height: 32px;
-    width: 30%;
+    width: 23%;
+    min-width: fit-content;
     margin: 3px 3px 3px 3px;
     font-size: 11px;
     line-height: initial;
@@ -50,7 +59,6 @@ h1{
 
 #logintext {
     text-align: center;
-    float: right;
     margin: 0 20;
     width: 80%;
     flex-basis: 100%;
@@ -60,13 +68,19 @@ h1{
     width: 10%;
     padding: 0;
 }
+/* the next block overrides bootstrap for the search button */
+.mx-3 {
+    margin-left: 0.66rem!important;
+    margin-right: 0.66rem!important;
+}
 #user_profile {
     margin-right: 10px;
     width: 75%;
 }
 #user_image {
-    float: right;
+    /*float: right;
     margin: 0;
     padding: 0;
-    width: 20%;
+    width: 20%;*/
+    display: inline-block;
 }

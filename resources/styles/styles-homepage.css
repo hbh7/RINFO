@@ -56,7 +56,7 @@ li a.active {
     width: 33%;
     max-height: 550px;
     margin-top: 20px;
-    margin-bottom: 55px;
+    margin-bottom: 10px;
     float: left;
     overflow: hidden;
 }

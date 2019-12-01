@@ -1,7 +1,7 @@
 <!-- Everything in this file is placed at the very top of the <body> tag in every page on the site -->
 <header id="global_header">
     <div id="leftbox">
-        <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=75px height=75px alt="Logo" /></a>
+        <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=70px height=70px alt="Logo" /></a>
     </div>
     <div id="centerbox">
         <?php
@@ -33,7 +33,6 @@
         ?>
     </div>
     <div id="rightbox">
-        <div id="user_profile">
             <?php
             include_once 'db.php';
             if (checkValidLogin()) {
@@ -51,12 +50,14 @@
                     </a>
                     <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
                     <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
-                    </button></div>
+                    </button>
+                    <div id="user_image">
+                        <a href="#" onclick="window.location='user.php?user_id={$id}';">
+                            <img src="resources/images/icon1.png" width="53" height="53" title="User Profile Icon" alt="User">
+                        </a>
+                    </div>
+    </div>
 HTML;
-                    echo "<div id='user_image'>
-                        <a href='#' onclick=\"window.location='user.php?user_id=" . $id . "';\"><img src='resources/images/icon1.png' width='53' height='53' 
-                        title='User Profile Icon' alt='User'></a>
-                    </div>";
                 }
             } else {
                 echo <<<HTML
