@@ -22,6 +22,7 @@ $(document).ready(function () {
                     data["group_name"].forEach(function (d) {
                         var newelem = document.createElement("a");
                         newelem.href = "group.php?group_id=" + d["group_id"];
+                        newelem.display.color = white;
                         newelem.innerText = d["name"];
                         output.appendChild(newelem);
                         output.appendChild(document.createElement("br"));
