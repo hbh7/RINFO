@@ -49,12 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
     <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
     <link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
     <title> Add Group </title>
     <link rel="stylesheet" type="text/css" href="resources/styles/styles-newgroup.css" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
@@ -76,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form> -->
     <div class="container">
         <div id="form_container">
-            <form id="group-form" method="post" action="" role="form">
+            <form id="form" method="post" action="" role="form">
                 <div class="messages"></div>
                 <div class="controls">
                     <div class="form-group">
