@@ -1,7 +1,7 @@
 <!-- Everything in this file is placed at the very top of the <body> tag in every page on the site -->
 <header id="global_header">
     <div id="leftbox">
-        <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=70px height=70px alt="Logo" /></a>
+        <a href="/index.php"><img id="logo" src="/resources/images/new_logo.png" width=110px height=90px alt="Logo" /></a>
     </div>
     <div id="centerbox">
         <?php
@@ -26,9 +26,13 @@
             // }
         }
         // For comments page, get title a different way
-        if (isset($_GET["title"])) {
+        else if (isset($_GET["title"])) {
             $title = $_GET["title"];
             echo "<h1 id='page_title'>" . $title . "</h1>";
+        }
+        // For Groups page
+        if (isset($group)) {
+            echo "<h1 id='page_title'>" . $group["name"] . "</h1>";
         }
         ?>
     </div>
@@ -41,8 +45,8 @@
                 echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
                 if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
                     echo <<<HTML
-                    <button id="search" class="btn btn-light">
-                        <a class="text-muted" onclick="window.location='search.php'">
+                    <button id="search" class="btn btn-light" onclick="window.location='search.php'">
+                        <a class="text-muted">
                         <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
                                 <circle cx="10.5" cy="10.5" r="7.5"></circle>
                         <line x1="21" y1="21" x2="15.8" y2="15.8"></line>

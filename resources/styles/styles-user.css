@@ -11,6 +11,16 @@ h2 {
     padding: 25px 0;
     font-size: 2.2rem;
 }
+h3 {
+    margin: 10px;
+    font-size: 2.2rem;
+}
+h4 {
+    margin: 10px;
+    padding-bottom: 10px;
+    font-size: 1.8rem;
+    border-bottom: 1px solid darkgrey;
+}
 #actions {
     border: none;
     background-color: inherit;
@@ -48,13 +58,9 @@ textarea {
     width: 90%;
 }
 
-.submitButton {
+input.submitButton {
     border-radius: 5px;
     margin-top: 5px;
-}
-button.submitButton {
-    margin-top: 8px;
-    margin-bottom: 8px;
 }
 
 form#postAdminMessage {

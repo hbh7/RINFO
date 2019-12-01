@@ -3,10 +3,10 @@ body {
 	color: white;
 }
 /* homepage css */
-h2 {
+ h2 {
 	color: white;
 }
-ul {
+ ul {
     font-size: 150%;
     list-style-type: none;
     margin: auto;
@@ -14,12 +14,12 @@ ul {
     overflow: hidden;
 }
 
-li {
+ li {
 	float: left;
 	width: 33.333%;
 }
 
-li a {
+.display li a {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-left: 2px solid grey;
@@ -33,10 +33,10 @@ li a {
     background-color: #f3f3f3;
 }
 
-li a:hover:not(.active) {
+.display li a:hover:not(.active) {
     background-color: #ddd;
 }
-li a.active {
+.display li a.active {
     color: white;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
@@ -118,21 +118,6 @@ li a.active {
 	color: white;
 }
 
-/* Comment Page css */
-.comment_content {
-    border: 2px solid red;
-    width: 60%;
-    margin: 0 auto;
-}
-textarea[name=comment_body]{
-    width: 100%;
-    height: 100px;
-}
-.comment_form input[type=submit]{
-    width: 20%;
-    margin-left: 40%;
-}
-
 .scroll-left {
     height: 50px;	
     overflow: hidden;
@@ -191,4 +176,78 @@ textarea[name=comment_body]{
 }
 .title {
     font-size: 140%;
+}
+.title a{
+    color: white;
+    font-weight: bold;
+}
+
+#my_groups {
+    color: white;
+    text-align: center;
+}
+#my_groups h4 {
+    margin-top: 10px;
+}
+#my_groups a{
+    text-decoration: none;
+}
+#all_groups {
+    width: 45%;
+    float: left;
+    clear: left;
+    margin-left: 3%;
+}
+#followed_groups {
+    width: 45%;
+    float: right;
+    clear: right;
+    margin-right: 3%;
+}
+.group {
+    border-radius: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-top: 5px;
+}
+.group:hover {
+    border: 2px solid white;
+}
+
+/* Comment Page css */
+.comment_content {
+    border: 2px solid red;
+    width: 70%;
+    margin: 20px auto;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+textarea[name=comment_body]{
+    width: 86%;
+    height: 100px;
+    margin-left: 7%;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.comment_form input[type=submit]{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 10px;
+}
+.reply_box input[type=submit]{
+    width: 20%;
+    margin-left: 10%;
+    margin-top: 10px;
+}
+.comment {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 5px;
+}
+.replybutton {
+    font-size: 12;
 }

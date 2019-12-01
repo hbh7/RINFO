@@ -7,6 +7,7 @@ body {
     color: white;
     border-style: solid;
     border-color: #df213a;
+    box-shadow: 0 5px 5px #000;
     background: rgb(114, 114, 114);
     width: 30%;
     border-radius: 25px;

@@ -83,25 +83,31 @@
                     <?php
 
                     if (checkValidLogin()) {
-                        echo "<span> My groups </span>";
+                        echo "<div id='followed_groups'>";
+                        echo "<h4> My groups </h4>";
                         $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
                         foreach ($subscriptions as $subscription) {
                             $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
 
-                            echo "<div class='group'>" .
-                                "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
-                                "</div>";
+                            echo "<a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . 
+                                "<div class='group'>" .
+                                "<span class='name'>" . $name . "</span><br/>" .
+                                "</div></a>";
                         }
+                        echo "</div>";
                     }
 
-                    echo "<span> All groups </span>";
+                    echo "<div id='all_groups'>";
+                    echo "<h4> All groups </h4>";
 
                     $groups = dbGet("group_id, name", "r_groups");
                     foreach ($groups as $group) {
-                        echo "<div class='group'>" .
-                            "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
-                            "</div>";
+                        echo "<a href=\"group.php?group_id=" . $group["group_id"] . "\">" .
+                            "<div class='group'>" .
+                            "<span class='name'>" . $group["name"] . "</span><br />" .
+                            "</div></a>";
                     }
+                    echo "</div>";
 
 
                     ?>

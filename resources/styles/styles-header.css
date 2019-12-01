@@ -5,6 +5,9 @@ h1 {
 }
 #logo {
     margin: 0;
+    padding-top: 0;
+    padding-bottom: 5px;
+    float: left;
 }
 #global_header {
     border-bottom: 2px double black;

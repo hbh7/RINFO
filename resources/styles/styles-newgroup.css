@@ -1,0 +1,30 @@
+body {
+    color: white;
+}
+#form_container {
+    width: 95%;
+    margin-bottom: 50px;
+}
+.container {
+    margin-top: 100px;
+    border-radius: 25px;
+    border: 2px solid #df213a;
+    color: black;
+    width: 50%;
+    padding: 10px;
+    background: lightgrey;
+}
+.controls {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.form-group {
+    width: 100%;
+}
+.col-md-12 {
+    width: 100%;
+}
+#submit_group {
+    float: right;
+    width: 15%;
+}
