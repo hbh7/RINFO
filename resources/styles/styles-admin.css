@@ -45,9 +45,13 @@ textarea {
     width: 90%;
 }
 
-input.submitButton {
+.submitButton {
     border-radius: 5px;
     margin-top: 5px;
+}
+button.submitButton {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 form#postAdminMessage {
