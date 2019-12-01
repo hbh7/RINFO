@@ -70,12 +70,15 @@
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                         $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
 
-                        echo "<div class='activity'>" .
+                        echo "<div class='activity'><div class='inner_activity'>" .
                             "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "</div>";
+                            "</div><div class='attending'>" .
+                            "<span class='num_attend'>" . count($attendances) .
+                            "</span><br><span class='smalltext'>attending</span>"
+                            ."</div></div>";
                     }
                     ?>
                 </div>
