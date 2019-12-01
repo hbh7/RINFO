@@ -178,13 +178,16 @@ body {
     font-size: 140%;
 }
 .title a{
-    color: rgba(0,0,0,0.5);
+    color: white;
     font-weight: bold;
 }
 
 #my_groups {
     color: white;
     text-align: center;
+}
+#my_groups h4 {
+    margin-top: 10px;
 }
 #my_groups a{
     text-decoration: none;
