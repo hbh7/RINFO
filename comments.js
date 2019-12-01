@@ -1,9 +1,9 @@
 $(".replybutton").click(function() {
 	// If the form isn't already open
 	if ($(this).parent().find("form").length == 0) {
-		$(this).parent().find(".reply_box:last").slideDown("slow");
+		$(this).parent().find(".reply_box:first").slideDown("slow");
 	} else {
-		$(this).parent().find(".reply_box:last").slideToggle("slow");	
+		$(this).parent().find(".reply_box:first").slideToggle("slow");	
 	}
 });
 
