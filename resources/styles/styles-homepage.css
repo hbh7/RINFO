@@ -177,6 +177,10 @@ li a.active {
 .title {
     font-size: 140%;
 }
+.title a{
+    color: rgba(0,0,0,0.5);
+    font-weight: bold;
+}
 
 /* Comment Page css */
 .comment_content {
