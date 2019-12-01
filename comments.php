@@ -57,7 +57,7 @@
                     echo "<form method='post' action='./comments.php?title=" . $title . "'>";
                     echo "<textarea name='comment_body' rows='8'>";
                     echo "Enter Comment Here...</textarea><br>";
-                    echo "<input type='submit' value='Comment'>";
+                    echo "<input type='submit' value='Comment' class='btn btn-light'>";
                     echo "<input type='hidden' name='user_id' value='" . getUserID() . "'>";
                     echo "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>";
                     echo "<input type='hidden' name='reply_id' value='NULL'>";
@@ -68,7 +68,7 @@
         <div class="comment_section">
             <?php
                 if (isset($post)) {
-                    echo "<h1>Comments:</h1>";
+                    echo "<h1>Comments</h1>";
                     $comments = dbGet("*", "r_comments", "post_id=".$post["post_id"]." AND reply_id = 0");
                     foreach ($comments as $comment) {
                         comment_print($comment, $post, 0);
@@ -100,7 +100,7 @@
                      $post["title"] . "'>" .
                      "<textarea name='comment_body' rows='5'>" .
                      "Enter Reply Here...</textarea><br>" .
-                     "<input type='submit' value='Reply'>" .
+                     "<input type='submit' value='Reply' class='btn btn-light'>" .
                      "<input type='hidden' name='user_id' value='" . getUserID() . "'>" .
                      "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>" .
                      "<input type='hidden' name='reply_id' value='" . $comment["comment_id"] . "'>" .
