@@ -121,7 +121,7 @@
                     if (checkValidLogin()) {
                         $posts = dbGet("*", "r_posts", "user_id='" . getUserID() . "'");
                         if (sizeof($posts) == 0) {
-                            echo "<span class='name'>You haven't made any posts</span><br />";
+                            echo "<h3>You haven't made any posts!</h3><br />";
                         } else {
                             foreach ($posts as $post) {
                                 $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");

@@ -181,6 +181,10 @@ body {
     color: white;
     font-weight: bold;
 }
+#my_posts h3 {
+    font-size: 30px;
+    text-align: center;
+}
 
 .inner_activity {
     width: 80%;
@@ -190,6 +194,7 @@ body {
     width: 20%;
     float: right;
     text-align: center;
+    border-left: 1px solid white;
 }
 .activity {
     overflow: auto;
@@ -200,7 +205,6 @@ body {
     display: table;
 }
 .num_attend{
-    font-weight: bold;
     font-size: 30px;
 }
 #my_groups {
