@@ -13,3 +13,22 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
+
+<?php
+  if (isset($_POST['toggle_attendance'])) {
+        include_once 'db.php';
+        if (!checkValidLogin()) {
+            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+            die();
+        }
+        $attending = sizeof(dbGet(
+                        "attendance_id", 
+                        "r_attendances", 
+                        "post_id='" . $_POST['p_id'] . "' AND user_id='" . getUserID() . "'"));
+        if ($attending == 1) {
+            dbDelete("r_attendances", "post_id='" . $_POST['p_id'] . "' AND user_id='" . getUserID() . "'");
+        } else {
+            dbPut("r_attendances", [$_POST['p_id'], getUserID()]);
+        }
+    }
+?>

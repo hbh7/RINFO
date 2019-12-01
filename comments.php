@@ -1,10 +1,9 @@
 <?php
-
     // Get POST data
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  isset($_POST["user_id"])) {
         include_once 'db.php';
 
-        if(checkValidLogin() && isset($_POST)) {
+        if(checkValidLogin()) {
             $user_id = $_POST["user_id"];
             $post_id = $_POST["post_id"];
             $reply_id = $_POST["reply_id"];
@@ -46,10 +45,12 @@
                         "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "</div><div class='attending'><form><button class='btn btn-light' name='toggle_attendance'>" .
+                            "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'>" .
                             "<span class='num_attend'>" . count($attendances) .
                             "</span><br><span class='smalltext'>attending</span>"
-                            ."</button></form></div></div>";;
+                            ."</button>" .
+                            "<input type='hidden' name='p_id' value='" . $post["post_id"] . "''>" .
+                            "</form></div></div>";;
                 }
             ?>
         </div>

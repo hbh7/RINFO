@@ -138,7 +138,7 @@ function dbUpdate($table, $column, $where) {
 function dbDelete($tablename, $where) {
     $conn = dbConnect();
 
-    if ($tablename != "r_users" && $tablename != "r_groups" && $tablename != "r_permissions" && $tablename != "r_subscriptions" && $tablename != "r_posts") {
+    if ($tablename != "r_users" && $tablename != "r_groups" && $tablename != "r_permissions" && $tablename != "r_subscriptions" && $tablename != "r_posts" && $tablename != "r_attendances") {
         return null;
     }
 
