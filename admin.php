@@ -72,7 +72,8 @@
                                 <?php
                                     //TODO: replace the for loop condition with one that reflects the number of messages in the database
                                     for ($i=0; $i < 4 ; $i++) {
-                                        echo "<li>$i $i $i $i $i <br />messages generated from the database. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+                                        echo "<li>";
+                                        echo "$i $i $i $i $i <br />messages generated from the database. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
                                         //TODO: make an if condition to check if a particular message was posted by the currently logged in user
                                         if (/*REPLACE THE 1 IN THIS IF CONDITION*/1) {
                                             echo <<<HTML
