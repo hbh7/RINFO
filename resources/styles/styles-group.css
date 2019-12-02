@@ -16,11 +16,15 @@ body {
     text-decoration: underline;
     color: white;
 }
-#group_logo{
+#logo_div {
+    max-width: 150px;
+    max-height: 150px;
+}
+#group_logo {
     float: left;
-    margin-left: 20px;
-    width: 150px;
-    height: 150px;
+    margin-left: 25px;
+    max-width: 40%;
+    height: auto;
 }
 #tagline {
     margin-top: 10px;
