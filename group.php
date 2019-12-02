@@ -90,6 +90,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
                     $comment_link = "./comments.php?title=" . $post["title"];
+                    $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
 
                     echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"
                         "<span class='title'><a href='" . $comment_link . "''>" . $post["title"] . "</a></span><br />" .
@@ -98,7 +99,11 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .
                         "</div>".
                         //line below is only needed if attendance is part of this post
-                        "<div class='feed_attendance'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'><span class='num_attend'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></button><input type='hidden' name='p_id' value='" . $post["post_id"] . "''></form></div>" .
+                        "<div class='feed_attendance'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
+                        if ($attend == 1) {
+                            echo "style='color: red;'";
+                        }
+                        echo "><span class='num_attend'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></button><input type='hidden' name='p_id' value='" . $post["post_id"] . "''></form></div>" .
                         "</li>";
                 }
                 echo "</ul>";
