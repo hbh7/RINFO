@@ -22,27 +22,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!--
-                <div id="information_content" class="content">
-                    <form method="get" action="#">
-                    <ul id="actions">
-                        <li class="action"><input class="actionInp" type="submit" name="notifications" value="Notifications"></li>
-                        <li class="action"><input class="actionInp" type="submit" name="admin_messages" value="Admin Messages"></li>
-                        <li class="action"><input class="actionInp" type="submit" name="your_groups" value="Your groups"></li>
-                        <li class="action"><input class="actionInp" type="submit" name="user_permissions" value="User Permissions"></li>
-                        <li class="action"><input class="actionInp" type="submit" name="homepage_carousel" value="Homepage Carousel"></li>
-                    </ul>
-                    <img id="group_logo" src="/resources/images/logo.png" alt="Group Logo">
-                    <h3 class="group_name">RPI Admins</h3>
-                    <p id="Nusers">13 users</p>
-                    <p id="Nposts">12 posts</p>
-                    <p id="Join">Edit Front Page Banner</p>
-                    <p>This is the official group for the RPI administration.</p>
-                    <p><a href="https://rpi.edu/">Website Link</a></p>
-                    <p><a href="https://lists.sympa.rpi.edu/wws/info/morningmail">Mailing List</a></p>
-                </div>
-                -->
             </div>
             <div id="activity">
                 <div id="activity_content" class="col-17">
