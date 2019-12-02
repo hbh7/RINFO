@@ -4,41 +4,11 @@
         <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=110px height=90px alt="Logo" /></a>
     </div>
     <div id="centerbox">
-        <?php
-        libxml_use_internal_errors(true); // Silence the nonsense errors
-        $doc = new DomDocument();
-        // the following line assigns the absolute path of the currently executing script to $file
-        $file = $_SERVER["SCRIPT_FILENAME"];
-        $bool = $doc->loadHTMLFile($file);
-        // this is a (functional) placeholder for now - I can modify this code to get
-        //  the text from any element in the file and use said text as the page title
-        $titles = $doc->getElementsByTagname("title");
-        $out = array();
-        foreach ($titles as $item) {
-            $out[] = $item->nodeValue;
-        }
-        // $out[0]; contains the text contained in the <title> tag in the html file where this file is included
-        // now I have to generate some html so that this text isn't just floating around on the page
-        if (isset($out[0])) {
-            echo "<h1 id='page_title'>" . $out[0] . "</h1>";
-            // if ($out[0] = "Welcome to RINFO") {
-            //     echo "<p id='home_tag'>RPI's Daily Information System</p>";
-            // }
-        }
-        // For comments page, get title a different way
-        else if (isset($_GET["title"])) {
-            $title = $_GET["title"];
-            echo "<h1 id='page_title'>" . $title . "</h1>";
-        }
-        // For Groups page
-        if (isset($group)) {
-            echo "<h1 id='page_title'>" . $group["name"] . "</h1>";
-        }
-        ?>
+        <?php echo "<h1 id='page_title'>" . $title . "</h1>"; ?>
     </div>
     <div id="rightbox">
             <?php
-            include_once 'db.php';
+
             if (checkValidLogin()) {
                 $firstname = json_decode($_COOKIE["login"], true)["firstname"];
                 $id = getUserID();

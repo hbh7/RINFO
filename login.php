@@ -106,8 +106,8 @@ if(isset($action)) {
 
 <html lang="en">
     <head>
+        <?php $title = "RINFO Login"; ?>
         <?php include('resources/templates/head.php'); ?>
-        <title> RINFO Login </title>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>

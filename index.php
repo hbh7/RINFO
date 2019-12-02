@@ -1,14 +1,13 @@
 <html lang="en">
 
 <head>
+    <?php $title = "Welcome to RINFO"; ?>
     <?php include('resources/templates/head.php'); ?>
-    <title> Welcome to RINFO </title>
     <script type="text/javascript" src="resources/scripts/homepage.js"></script>
 </head>
 
 <body>
     <?php include('resources/templates/header.php'); ?>
-    <?php include_once 'db.php'; ?>
     <div class="scroll-left">
         <p>EMERGENCY ALERT</p>
     </div>

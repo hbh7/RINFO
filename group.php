@@ -40,7 +40,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
 <html lang="en">
 
 <head>
-    <title> <?php echo $group["name"]; ?> </title>
+    <?php $title = $group["name"]; ?>
     <?php include('resources/templates/head.php'); ?>
 </head>
 

@@ -37,9 +37,9 @@ if (isset( $_POST['action'])) {
 ?>
 
 <html lang="en">
-    <head>
-        <?php include('resources/templates/head.php'); ?>
-        <title> <?php echo $post["title"]; ?> </title>
+<head>
+    <?php $title = $post["title"]; ?>
+    <?php include('resources/templates/head.php'); ?>
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>

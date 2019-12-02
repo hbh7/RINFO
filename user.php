@@ -37,9 +37,9 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
 <html lang="en">
 
 <head>
+    <?php $title = $user["firstname"] . " " . $user["lastname"] . "'s Profile"; ?>
     <?php include('resources/templates/head.php'); ?>
     <link rel="stylesheet" type="text/css" href="/resources/styles/styles-user.css">
-    <title> <?php echo $user["firstname"] . " " . $user["lastname"]; ?>'s Profile </title>
 </head>
 
 <body>
