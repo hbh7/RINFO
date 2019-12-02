@@ -95,6 +95,13 @@ a:visited {
     padding: 7px;
     overflow: auto;
 }
+.title {
+    font-size: 140%;
+}
+.title a{
+    color: white;
+    font-weight: bold;
+}
 .postauthor, .postdate {
     font-style: italic;
     font-size: 70%;

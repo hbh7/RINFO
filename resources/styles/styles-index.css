@@ -139,13 +139,6 @@
     transform: translateX(-100%);
     }
 }
-.title {
-    font-size: 140%;
-}
-.title a{
-    color: white;
-    font-weight: bold;
-}
 #my_posts h3 {
     font-size: 30px;
     text-align: center;
