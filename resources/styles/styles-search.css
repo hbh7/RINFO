@@ -1,8 +1,9 @@
+/*search page CSS*/
 body{
-	margin: 0;
-	padding: 0;
-	color: white;
-	background: rgb(59, 59, 59);
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: rgb(59, 59, 59);
     min-height: 100%;
     padding-bottom: 80px;
     box-sizing: border-box;
@@ -18,47 +19,6 @@ body{
 	margin-left: auto;
 	margin-right: auto;
 }
-/* #searchtextbox{
-	margin-top:10px;
-	width:450px;
-	height:50px;
-	padding:5px 2px;
-	outline-style: none ;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	font-size: 25px;
-	float:left;
-}
-#searchtextbox:focus{
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-}
-.search-icon{
-    position:relative;
-    top:10px;
-    width:50px;
-    height:50px;
-    float:left;
-}
-#animation-icon{
-	position:relative;
-	width:50px;
-	height:65px;
-	overflow: hidden;
-}
-#icon {
-	position: absolute;
-	z-index:9;
-	width: 100px;
-}
-.play{ animation: ma 10s ease-out infinite alternate;}
-@keyframes ma {
-        0%,45% {margin-left: 0px;}
-        50%,100% {margin-left: -50px;}
-} */
-
  .container {
 	position: absolute;
 	margin: auto;
@@ -70,52 +30,7 @@ body{
 	width: 300px;
 	height: 100px;
 }
- /* .container .search {
-	position: absolute;
-	margin: auto;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 80px;
-	height: 80px;
-	background: #d6001c;
-	border-radius: 50%;
-	transition: all 1s;
-	z-index: 4;
-	box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
-}
- .container .search:hover {
-	 cursor: pointer;
-} */
- /* .container .search::before {
-	content: "";
-	position: absolute;
-	margin: auto;
-	top: 22px;
-	right: 0;
-	bottom: 0;
-	left: 22px;
-	width: 12px;
-	height: 2px;
-	background: white;
-	transform: rotate(45deg);
-	transition: all 0.5s;
-}
- .container .search::after {
-	 content: "";
-	 position: absolute;
-	 margin: auto;
-	 top: -5px;
-	 right: 0;
-	 bottom: 0;
-	 left: -5px;
-	 width: 25px;
-	 height: 25px;
-	 border-radius: 50%;
-	 border: 2px solid white;
-	 transition: all 0.5s;
-} */
+ /*set up the grow animation*/
 @keyframes grow {
     0% {
 		visibility: hidden;
@@ -140,7 +55,7 @@ body{
 	background: grey;
 	color: white;
 	border-radius: 30px;
-	animation: 1s grow;
+	animation: 1s grow; /*set up an animation. the input box will open slowly after loading*/
 	opacity: 1;
 	width: 300px;
 	z-index: 5;
@@ -149,34 +64,6 @@ body{
 	cursor: text;
 	padding: 0 20px 0 20px;
 }
- /* .container input:hover {
-	 cursor: pointer;
-}
- .container input:focus {
-	 width: 300px;
-	 opacity: 1;
-	 cursor: text;
-} */
- /* .container input:focus ~ .search {
-	 right: -250px;
-	 background: #d6001c;
-	 z-index: 6;
-} */
- /* .container input:focus ~ .search::before {
-	 top: 0;
-	 left: 0;
-	 width: 25px;
-} */
- /* .container input:focus ~ .search::after {
-	 top: 0;
-	 left: 0;
-	 width: 25px;
-	 height: 2px;
-	 border: none;
-	 background: white;
-	 border-radius: 0%;
-	 transform: rotate(-45deg);
-} */
  .container input::placeholder {
 	 color: white;
 	 opacity: 0.5;
