@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Data validation
 // TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
-// TODO: Make sure action is "login" or "register"
 // TODO: Make sure capitalization is nice for firstname and lastname
 
 if(isset($action)) {
@@ -99,6 +98,9 @@ if(isset($action)) {
         // Handle forgotten passwords by laughing at the user's misfortune
         $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
 
+    } else {
+        // Invalid action
+        $result = [False, "Error: Invalid action"];
     }
 }
 
