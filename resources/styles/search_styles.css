@@ -119,8 +119,6 @@ body{
 @keyframes grow {
     0% {
 		visibility: hidden;
-	}
-	10% {
 		width: 0px;
 		padding: 0;
 	}
@@ -142,14 +140,13 @@ body{
 	background: grey;
 	color: white;
 	border-radius: 30px;
-	animation: 2s grow;
-	opacity: 0;
+	animation: 1s grow;
+	opacity: 1;
+	width: 300px;
 	z-index: 5;
 	font-weight: bolder;
 	letter-spacing: 0.1em;
-	opacity: 1;
 	cursor: text;
-	width: 300px;
 	padding: 0 20px 0 20px;
 }
  /* .container input:hover {
