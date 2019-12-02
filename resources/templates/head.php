@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <!-- <link rel="stylesheet" type="text/css" href="/resources/styles/styles-newpost.css">
-<link rel="stylesheet" type="text/css" href="/resources/styles/styles-newgroup.css"> -->
+<link rel="stylesheet" type="text/css" href="/resources/styles/styles-newgroup.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-login.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/search_styles.css">
@@ -13,11 +13,12 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-homepage.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
+-->
 
 
 
-<!--
-< ?php
+
+<?php
     // of course I can't just read in a url and do stuff with it
     // even my inexperienced self realizes how freaking dangerous that is
     // I'm fairly certain that this covers most of my bases
@@ -27,8 +28,8 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
-<link rel="stylesheet" type="text/css" href="< ?php echo $hrefAttr;?>">
--->
+<link rel="stylesheet" type="text/css" href="<?php echo $hrefAttr;?>">
+
 
 <?php
 
