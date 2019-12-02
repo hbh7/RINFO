@@ -59,9 +59,12 @@ HTML;
         echo <<< HTML
                     <style>
                         #popupParent {
-                            position: relative;
+                            position: fixed;
                             display: inline-block;
                             padding: 2px;
+                            top: 15%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
                         }
                         #popupParent, #popupChild {
                             text-align: center;
@@ -71,13 +74,9 @@ HTML;
 
                         }
                         #popupChild {
-                            position: absolute;
-                            left: 60%;
-                            right: -300%;
-                            top: 65px;
                             border: 2px solid black;
                             border-radius: 5px;
-                            background-color: rgba(76, 175, 80, 0.3);
+                            background-color: rgba(233, 81, 81, 0.6);
                             padding: inherit;
                         }
                         #hideMe {
@@ -98,7 +97,7 @@ HTML;
                     <script>
                         // idk how long you want the popup to stay on the screen for
                         // change the delay time as needed
-                        $("#popupParent").delay(2000).fadeOut();
+                        $("#popupParent").delay(5000).fadeOut();
                     </script>
 HTML;
     }
