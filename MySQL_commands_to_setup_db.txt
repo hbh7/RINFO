@@ -86,10 +86,18 @@ CREATE TABLE r_alerts(
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Studenttester1', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'RPITester', '1', 'studenttester1@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('Admintester', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Admin', 'Tester', 'sisman@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('shirleyannjackson', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Shirley', 'Jackson', 'jackson@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('ethantest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Ethan', 'Goedken', 'ethan@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('lanyatest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Lanya', 'Xiang', 'lanya@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('giotest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Gio', 'Tremari', 'gio@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('huntertest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Hunter', 'Harris', 'hunter@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('zhaoxitest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Zhaoxi', 'Xiang', 'zhaoxi@rpi.edu');
 
 INSERT INTO r_groups(name, tagline, visibility) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.', 'public');
 INSERT INTO r_groups(name, tagline, visibility) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)', 'public');
-INSERT INTO r_groups(name, tagline, visibility) VALUES('Partial Credit', 'Partial Credit is one of RPI\'s four a cappella groups. Established in 2003, this co-ed group enjoys singinging alternative music.', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('Partial Credit', 'Partial Credit is one of RPI\'s four a cappella groups. Established in 2003, this co-ed group enjoys singinging music of all kinds.', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('Trudge', 'Ten Really Ugly Dudes Getting Even, the RPI men\'s ultimate disc club is the school\'s premier sporting team. They can throw that plastic around like nobody\'s business!', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('Strut', 'Strut is the RPI women\'s ultimate disc club and is the school\'s second premier sporting team. They can throw that plastic around like nobody\'s business!', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('Ski Team', 'This is the homepage of the RPI Ski Racing team. We race slalom and giant slalom during the winter season and compete against colleges from around the state.', 'public');
 
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 1', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-30 09:34:21', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Sample Activity 2', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
