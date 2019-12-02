@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    var activity = document.getElementById("activity_tab");
+    activity.getElementsByTagName("a")[0].classList.add("active");
     document.getElementById("my_groups").style.display = "none";
     document.getElementById("my_posts").style.display = "none";
 });

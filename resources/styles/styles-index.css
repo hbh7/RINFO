@@ -165,3 +165,11 @@
     clear: right;
     margin-right: 3%;
 }
+
+.tab_menu {
+    border-bottom: 1 px solid white;
+}
+.tab-content {
+    position: absolute;
+    overflow-y: scroll;
+}
