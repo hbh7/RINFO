@@ -53,6 +53,8 @@ function dbPut($tablename, $dbdata) {
         $sql = "INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ("  . $dbdata_string . ")";
     } elseif ($tablename == "r_attendances") {
         $sql = "INSERT INTO r_attendances (post_id, user_id) VALUES ("  . $dbdata_string . ")";
+    } elseif ($tablename == "r_alerts") {
+        $sql = "INSERT INTO r_alerts (user_id, body, timestamp) VALUES ("  . $dbdata_string . ")";
     } else {
         return "invalid table name";
     }

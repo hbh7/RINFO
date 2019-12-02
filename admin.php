@@ -49,7 +49,6 @@
                 <div id="activity_content" class="col-17">
                     <div class="tab-content" id="nav-tabContent">
 
-
                         <div class="tab-pane fade" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
                             <h2>Admin Messages</h2>
                             <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
@@ -63,19 +62,26 @@
                             </form>
                             <ul class="tab-content-ul" id="admin_messages">
                                 <?php
-                                    //TODO: replace the for loop condition with one that reflects the number of messages in the database
-                                    for ($i=0; $i < 4 ; $i++) {
-                                        echo "<li>";
-                                        echo "$i $i $i $i $i <br />messages generated from the database. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-                                        //TODO: make an if condition to check if a particular message was posted by the currently logged in user
-                                        if (/*REPLACE THE 1 IN THIS IF CONDITION*/1) {
-                                            echo <<<HTML
-                                            <br />
-                                            <button type="button" onclick="makeEditMessage(this);" class="submitButton" id="editMessage">Edit Message</button>
-                                            <button type="button" onclick="deleteMessage(this);" class="submitButton" id="deleteMessage">Delete Message</button>
-HTML;
-                                        }
-                                    }
+
+                                $posts = dbGet("*", "r_alerts");
+
+                                echo "<ul class='timeline'>";
+                                foreach ($posts as $post) {
+
+                                    $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
+
+                                    echo "<li><div class='feed_item'><div class='feed_info'>" .
+                                        "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
+                                        "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                                        "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span><br />" .
+                                        "<button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button>" .
+                                        "<button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage''>Delete Message</button>" .
+                                        "</div>";
+
+                                    echo "</li>";
+                                }
+                                echo "</ul>";
+
                                 ?>
                             </ul>
                         </div>
