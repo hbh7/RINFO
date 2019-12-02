@@ -151,14 +151,6 @@
     transform: translateX(-100%);
     }
 }
-.postauthor {
-    font-style: italic;
-    font-size: 70%;
-}
-.postdate {
-    font-style: italic;
-    font-size: 70%;
-}
 .title {
     font-size: 140%;
 }
@@ -171,12 +163,7 @@
     text-align: center;
 }
 
-.attending {
-    width: 20%;
-    float: right;
-    text-align: center;
-    border-left: 1px solid white;
-}
+
 .num_attend{
     font-size: 30px;
 }

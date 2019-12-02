@@ -84,12 +84,23 @@ a:visited {
     padding: 7px;
     overflow: auto;
 }
+.postauthor, .postdate {
+    font-style: italic;
+    font-size: 70%;
+}
 .inner_activity {
     width: 80%;
     float: left;
+}
+.attending {
+    width: 20%;
+    float: right;
+    text-align: center;
+    border-left: 1px solid white;
 }
 .activity::after {
     content: "";
     clear: both;
     display: table;
 }
+
