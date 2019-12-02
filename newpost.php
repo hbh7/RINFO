@@ -85,12 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
                             <?php
                             include_once('db.php');
+                            $results = dbGet("name", "r_groups");
                             if (isset($_GET['destination'])) {
                                 $destination = $_GET["destination"];
-                                echo "<option value='" . $destination . "''>";
-                                echo $destination . "</option>";
+                                foreach ($results as $result) {
+                                    if ($result["name"] == $destination) {
+                                        echo "<option value='" . $result["name"] . "''>";
+                                        echo $result["name"] . "</option>";
+                                    }
+                                }
                             }
-                            $results = dbGet("name", "r_groups");
                             foreach ($results as $result) {
                                 if ($result["name"] == $destination)
                                     continue;
