@@ -61,7 +61,7 @@
 .display {
     width: 64%;
     float: right;
-    height: 550px;
+    min-height: 550px;
 	margin-top: 20px;
 	background: rgba(255, 255, 255, 0.3);
 }
