@@ -11,7 +11,7 @@
             date_default_timezone_set('America/New_York');
             $date = date('Y-m-d H:i:s', time());
 
-            if ($body != "Enter Comment Here...") {
+            if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
                 $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]); 
             } 
         } 
