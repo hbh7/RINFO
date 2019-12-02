@@ -30,6 +30,17 @@ h2 {
     /* makes it at least more responsive than it was before */
     margin: 30px auto;
 }
+#information {
+    color: white;
+    border-style: solid;
+    border-color: #df213a;
+    box-shadow: 0 5px 5px #000;
+    background: rgb(114, 114, 114);
+    width: 30%;
+    border-radius: 25px;
+    float: left;
+    margin-top: 60px;
+}
 #content{
     width:85%;
     margin-left: auto;
