@@ -7,6 +7,8 @@
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
+        <!--A scroll to top button-->
+        <button type="button" name="toTop" id="toTop" onclick="toTop();">Top</button>
         <div id="content">
             <div id="information">
                 <h2>Actions</h2>
@@ -61,12 +63,12 @@
                             <h2>Admin Messages</h2>
                             <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
                             <h4>Create a message</h4>
-                            <form method="post" action="#" id="postAdminMessage">
+                            <form id="postAdminMessage">
                                 <!--maxlength is arbitrary for now
                                     heck, all attribute names are subject to change, EXCEPT CLASSES AND IDs-->
                                 <textarea name="message" maxlength="560" placeholder="Enter your message here..." required></textarea>
                                 <br />
-                                <input class="submitButton" type="submit" name="submit" value="Submit">
+                                <button class="submitButton" id="createMessage" type="button" onclick="submitMessage(this);">Submit Message</button>
                             </form>
                             <ul class="tab-content-ul" id="admin_messages">
                                 <?php
@@ -90,7 +92,19 @@ HTML;
 
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Your Groups</h2>
-                            <span>bleh here's some text</span>
+                            <ul class="tab-content-ul" id="your_groups-ul">
+                                <?php
+                                    //TODO: replace 4 \/ with the number of groups that the current user is an admin of
+                                    for ($i = 0; $i < 4 ; $i++) {
+                                        echo "<li class='admin_group_name'>";
+                                        echo "group $i";
+                                        echo <<<HTML
+                                        <button></button>
+                                        <button>Delete</button>
+HTML;
+                                    }
+                                ?>
+                            </ul>
                         </div>
 
 

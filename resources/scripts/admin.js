@@ -1,5 +1,32 @@
 /* some functions for the admin page */
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~functions for Top button~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+// check if viewport is more than 100 pixels away from the top
+
+var toTopBtn = document.getElementById("toTop");
+window.onscroll = function() {checkLocation()};
+
+function checkLocation() {
+    //TODO: fade animations not currently working, but that's last on my list of things to do
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        /*toTopBtn.style.opacity = "0";*/
+        toTopBtn.style.display = "block";
+        /*$("#toTop").fadeIn(200);*/
+    } else {
+        /*$("#toTop").fadeOut(200, function() {*/
+            toTopBtn.style.display = "none";
+        /*});*/
+    }
+}
+
+// go to the top of the page when the button is clicked
+function toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~end functions for Top button~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~functions for admin messages tab~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // this function removes the last 28 characters from a string (the exact length of "Edit Message Delete Message" +1 (for the newline))
@@ -12,6 +39,28 @@ function removeButtonText(str) {
 function textAreaAdjust(elem) {
     elem.style.height = "1px";
     elem.style.height = (25+elem.scrollHeight)+"px";
+}
+
+
+//TODO: make the ajax request work
+function submitMessage(elem) {
+    //var divParentElem = elem.parentElement;
+    var textareatext = document.getElementById("postAdminMessage").firstElementChild.value;
+    if (textareatext.length <= 0 || textareatext.length > 560) {
+        alert("Please keep messages between 1 and 560 characters");
+        return;
+    }
+    $.ajax({
+        url: 'somefile.php',
+        type: 'POST',
+        data: {'message': textareatext}
+    }).always(function(result, status, xhr) {
+        var newMessage = "<li>" + textareatext + "</li>";
+        $("#admin_messages").prepend(newMessage);
+        document.getElementById("postAdminMessage").firstElementChild.value = "";
+    }).fail(function(jqXHR) {
+        alert("Something went wrong! Failed to submit message.\n" + jqXHR.status + ": " + jqXHR.statusText);
+    });
 }
 
 
@@ -31,7 +80,7 @@ function makeEditMessage(elem) {
             type: 'POST',
             data: {'message': textareatext}
         }).done(function(result, status, xhr) {
-            // I expect the server to throw back the string I just sent it, so that I can recreate the
+            // I expect the server to throw back the string I just sent it (sanitized please!!!), so that I can recreate the
             //  list element that was on the page before the editing started
             listElem.innerHTML = result + "<br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
         }).fail(function(jqXHR) {
