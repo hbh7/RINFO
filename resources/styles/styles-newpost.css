@@ -31,3 +31,11 @@ body {
 body {
 	margin: 0 auto;
 }
+label[for=attendance_checkbox] {
+    display: inline-block;
+}
+#attendance_checkbox {
+    width: 20%;
+    margin: 0;
+    padding: 0;
+}
