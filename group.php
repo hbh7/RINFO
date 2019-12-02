@@ -81,7 +81,9 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
             </div>
             <?php //check permissions
             if(!checkPermission(getUserID(), "post")) {
-                echo "<a class=\"list-group-item list-group-item-action\" id=\"new_post\" data-toggle=\"list\" href=\"newpost.php?destination=" . $group["name"] . "role=\"tab\" aria-controls=\"admin_messages\">Add New Post</a>";
+                echo <<<HTML
+                <a class="list-group-item list-group-item-action" id="new_post" href="newpost.php?destination={$group['name']}" role="tab" aria-controls="add_post">Add New Post</a>
+HTML;
             }
             ?>
         </div>
