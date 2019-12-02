@@ -282,3 +282,6 @@ textarea[name=comment_body]{
     margin-top: 10px;
     padding: 5px;
 }
+.attending form button {
+    color: rgb(59, 59, 59);
+}
