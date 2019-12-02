@@ -79,6 +79,11 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
                     TODO: Move this into the database, and make it so it can be changed online-->
             </div>
+            <?php //check permissions
+            if(!checkPermission(getUserID(), "post")) {
+                echo "<a class=\"list-group-item list-group-item-action\" id=\"new_post\" data-toggle=\"list\" href=\"newpost.php?destination=" . $group["name"] . "role=\"tab\" aria-controls=\"admin_messages\">Add New Post</a>";
+            }
+            ?>
         </div>
         <div id="activity">
             <h2 id="group_posts">Posts</h2>

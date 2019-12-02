@@ -110,6 +110,21 @@ ul.timeline > li:before {
     height: 20px;
     z-index: 400;
 }
+#new_post {
+    color: black;
+    width: 90%;
+    margin-bottom: 20px;
+}
+a.list-group-item.list-group-item-action {
+    border-radius: 10px;
+    margin: auto;
+    width: 90%;
+    margin-top: 5px;
+}
+a.list-group-item.list-group-item-action.active {
+    background-color: #d6001c;
+    border-color: #d6001c;
+}
 
 .timeline {
     color: white;
