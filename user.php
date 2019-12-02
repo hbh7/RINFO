@@ -74,7 +74,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                             <div class="list-group" id="list-tab" role="tablist">
                                 <a class="list-group-item list-group-item-action active" id="list-notifications-list" data-toggle="list" href="#list-notifications" role="tab" aria-controls="notifications">Groups</a>
                                 <a class="list-group-item list-group-item-action" id="list-your_groups-list" data-toggle="list" href="#list-your_groups" role="tab" aria-controls="your_groups">Posts</a>
-                                <a class="list-group-item list-group-item-action" id="list-your_groups-list" data-toggle="list" href="newpost.php?destination=self" role="tab" aria-controls="add_post">Add Post</a>
+                                <a class="list-group-item list-group-item-action" id="list-your_groups-list" href="newpost.php?destination=self" role="tab" aria-controls="add_post">Add Post</a>
                             </div>
                         </div>
                     </div>
