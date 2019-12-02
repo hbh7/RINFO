@@ -1,5 +1,7 @@
 <?php
 
+include_once 'db.php';
+
 // TODO: Handle when someone refuses to provide the required GET parameters
 
 // Get GET data
@@ -8,8 +10,6 @@ if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
 }
 //}
-
-include_once 'db.php';
 
 $user = dbGet("*", "r_users", "user_id='" . $user_id . "'")[0];
 
@@ -30,7 +30,6 @@ if (isset($_POST['action'])) {
 $numSubscriptions = sizeof(dbGet("subscription_id", "r_subscriptions", "user_id='" . $user_id . "'"));
 $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND group_id='0'"));
 // Currently just looking for posts directly to their profile, not for posts they make to other groups
-
 
 ?>
 

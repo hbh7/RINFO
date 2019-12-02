@@ -1,21 +1,23 @@
 <?php
-    // Get POST data
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  isset($_POST["user_id"])) {
-        include_once 'db.php';
 
-        if(checkValidLogin()) {
-            $user_id = $_POST["user_id"];
-            $post_id = $_POST["post_id"];
-            $reply_id = $_POST["reply_id"];
-            $body = $_POST["comment_body"];
-            date_default_timezone_set('America/New_York');
-            $date = date('Y-m-d H:i:s', time());
+include_once 'db.php';
 
-            if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
-                $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]); 
-            } 
-        } 
+// Get POST data
+if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  isset($_POST["user_id"])) {
+
+    if(checkValidLogin()) {
+        $user_id = $_POST["user_id"];
+        $post_id = $_POST["post_id"];
+        $reply_id = $_POST["reply_id"];
+        $body = $_POST["comment_body"];
+        date_default_timezone_set('America/New_York');
+        $date = date('Y-m-d H:i:s', time());
+
+        if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
+            $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]);
+        }
     }
+}
 ?>
 
 <html lang="en">
@@ -31,7 +33,6 @@
 
 <body>
     <?php include('resources/templates/header.php'); ?>
-    <?php include_once 'db.php'; ?>
     <div class="comment_content">
         <div class="post_info">
             <?php

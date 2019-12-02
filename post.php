@@ -1,15 +1,15 @@
 <?php
 
+include_once 'db.php';
+
 // TODO: Handle when someone refuses to provide the required GET parameters
 
 // Get GET data
 //if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if(isset( $_GET['post_id'])) {
-        $post_id = $_GET['post_id'];
-    }
+if(isset( $_GET['post_id'])) {
+    $post_id = $_GET['post_id'];
+}
 //}
-
-include_once 'db.php';
 
 $post = dbGet("*", "r_posts", "post_id='" . $post_id . "'")[0];
 
