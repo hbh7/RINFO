@@ -3,11 +3,6 @@
 	color: white;
 }
 
-li {
-	float: left;
-	width: 33.333%;
-}
-
 .display li a {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;

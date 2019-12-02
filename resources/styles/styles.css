@@ -16,6 +16,10 @@ ul {
     padding: 0;
     overflow: hidden;
 }
+li {
+    float: left;
+    width: 33.333%;
+}
 /*I am not sure if this is used anywhere else outside the header, so I won't delete it*/
 h1{
     text-align: center;
