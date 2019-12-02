@@ -11,26 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($_POST['where'] == "self") {
             $where = 0;
 
-            if (!checkPermission(getUserID(), "post")) {
-                header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
+            if (!checkPermission(0, "post")) {
+                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
                 die();
             }
         } else {
             $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
 
-            /*if(!checkPermission($where, "post")) {
-                header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
+            if(!checkPermission($where, "post")) {
+                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
                 die();
-            }*/
+            }
         }
 
         if (isset($_POST['attendance'])) {
-            $count_attendance = true;
+            $count_attendance = 1;
         } else {
-            $count_attendance = false;
+            $count_attendance = 0;
         }
 
-        // TODO: Change true to read the radio button for attendance tracking yes or no
         $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, $count_attendance]);
 
         if ($result == "success") {

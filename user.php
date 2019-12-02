@@ -84,7 +84,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                     </div>
                     <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
-                    TODO: Move this into the database, and make it so it can be changed online-->
+                    TODO: Move this into the database (generation script), into the body section and without tags-->
             </div>
         </div>
         <!-- <div id="activity">
