@@ -30,6 +30,14 @@ h2 {
     /* makes it at least more responsive than it was before */
     margin: 30px auto;
 }
+h3 {
+    width: 95%;
+    margin: 10px;
+    font-size: 250%;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid darkgrey;
+}
 #information {
     color: white;
     border-style: solid;
