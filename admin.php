@@ -7,6 +7,8 @@
     </head>
     <body>
         <?php include('resources/templates/header.php'); ?>
+        <!--A scroll to top button-->
+        <button type="button" name="toTop" id="toTop" onclick="toTop();">Top</button>
         <div id="content">
             <div id="information">
                 <h2>Actions</h2>
