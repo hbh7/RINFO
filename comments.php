@@ -87,7 +87,7 @@
         </div>
     </div>
     <?php include('resources/templates/footer.php'); ?>
-    <script type="text/javascript" src="comments.js"></script>
+    <script type="text/javascript" src="resources/scripts/comments.js"></script>
     <?php
     // Function to print a comment
         function comment_print($comment, $post, $tabs) {

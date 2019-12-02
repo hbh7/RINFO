@@ -3,7 +3,7 @@
 <head>
     <?php include('resources/templates/head.php'); ?>
     <title> Welcome to RINFO </title>
-    <script type="text/javascript" src="homepage.js"></script>
+    <script type="text/javascript" src="resources/scripts/homepage.js"></script>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li class="indicator active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
@@ -141,7 +141,7 @@
                             }
                         }
                     } else {
-                        echo "<span class='name'>You'll need to be logged in to see your posts lol</span><br />";
+                        echo "<span class='name'>You'll need to be logged in to see your posts</span><br />";
                     }
 
                     ?>
