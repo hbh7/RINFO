@@ -38,7 +38,9 @@ div#nav-tabContent>div.active {
 div#nav-tabContent>div.active>h2:first-child {
     background-color: rgba(118, 118, 118, 1);
 }
-
+a.list-group-item {
+    color: black;
+}
 a.list-group-item.list-group-item-action {
     border-radius: 10px;
     margin: auto;
