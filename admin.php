@@ -27,7 +27,7 @@
                 <div id="activity_content" class="col-17">
                     <div class="tab-content" id="nav-tabContent">
 
-                        <div class="tab-pane fade" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
+                        <div class="tab-pane fade show active" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
                             <h2>Admin Messages</h2>
                             <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
                             <h4>Create a message</h4>
