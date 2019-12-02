@@ -1,7 +1,7 @@
 <!-- Everything in this file is placed at the very top of the <body> tag in every page on the site -->
 <header id="global_header">
     <div id="leftbox">
-        <a href="/index.php"><img id="logo" src="/resources/images/new_logo.png" width=110px height=90px alt="Logo" /></a>
+        <a href="/index.php"><img id="logo" src="/resources/images/logo.png" width=110px height=90px alt="Logo" /></a>
     </div>
     <div id="centerbox">
         <?php
