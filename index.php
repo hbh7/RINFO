@@ -141,7 +141,7 @@
                             }
                         }
                     } else {
-                        echo "<span class='name'>You'll need to be logged in to see your posts lol</span><br />";
+                        echo "<span class='name'>You'll need to be logged in to see your posts</span><br />";
                     }
 
                     ?>
