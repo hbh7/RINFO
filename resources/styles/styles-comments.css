@@ -1,0 +1,51 @@
+/* Comment Page css */
+.comment_content {
+    border: 4px solid rgb(233, 81, 81);
+    width: 70%;
+    margin: 20px auto;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+textarea[name=comment_body]{
+    width: 86%;
+    height: 100px;
+    margin-left: 7%;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: rgb(59, 59, 59);
+}
+.comment_form input[type=submit]{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 10px;
+    color: rgb(59, 59, 59);
+}
+.reply_box input[type=submit]{
+    width: 20%;
+    margin-left: 10%;
+    margin-top: 10px;
+    color: rgb(59, 59, 59);
+}
+.comment {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 5px;
+}
+.comment_section h1 {
+    border-bottom: 1px solid white;
+}
+.replybutton {
+    font-size: 12;
+}
+.attending form button, .feed_attendance form button {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 5px;
+}
+.attending form button {
+    color: rgb(59, 59, 59);
+}
