@@ -254,16 +254,19 @@ textarea[name=comment_body]{
     margin-left: 7%;
     margin-top: 10px;
     border-radius: 10px;
+    color: rgb(59, 59, 59);
 }
 .comment_form input[type=submit]{
     width: 20%;
     margin-left: 40%;
     margin-top: 10px;
+    color: rgb(59, 59, 59);
 }
 .reply_box input[type=submit]{
     width: 20%;
     margin-left: 10%;
     margin-top: 10px;
+    color: rgb(59, 59, 59);
 }
 .comment {
     background: rgba(255, 255, 255, 0.3);
