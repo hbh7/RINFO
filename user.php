@@ -1,13 +1,17 @@
 <?php
 
-// TODO: Handle when someone refuses to provide the required GET parameters
-
 // Get GET data
-//if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-if (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
+    } else {
+        echo "You need to provide a parameter for this page to work";
+        die();
+    }
+} else {
+    echo "You need to provide a parameter for this page to work";
+    die();
 }
-//}
 
 include_once 'db.php';
 
