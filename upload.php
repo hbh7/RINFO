@@ -2,16 +2,11 @@
 
 function processUpload($file, $folder, $name) {
 
-    error_log(print_r($file, true));
-
     $target_dir = "user_content/";
-    //$target_file = $target_dir . basename($file["name"]);
-    error_log(basename($file["name"]));
     $target_file = $target_dir . $folder . "/" . $name . "." . pathinfo($file["name"])['extension'];
-    $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-    // Check if image file is a actual image or fake image
 
+    // Check if image file is a actual image or fake image
     $check = getimagesize($file["tmp_name"]);
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
@@ -32,7 +27,6 @@ function processUpload($file, $folder, $name) {
         $uploadOk = 0;
     }
     // Allow certain file formats
-    error_log($imageFileType);
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
