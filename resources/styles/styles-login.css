@@ -41,10 +41,10 @@ body {
     float: right;
     width: 49%;
     position: relative;
-    height: 600px;
+    height: 500px;
 }
 #login_box {
-    margin-top: 160px;
+    margin-top: 130px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
