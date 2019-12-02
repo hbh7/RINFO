@@ -110,7 +110,7 @@ INSERT INTO r_subscriptions(user_id, group_id) VALUES ('8','1'),('8','2'),('8','
 
 /* INSERT POSTS */
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'RPISEC Weekly Meeting', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-15 09:34:21', true);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Meeting Reschedule', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-38 15:35:20', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '1', 'Meeting Reschedule', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '5', 'Capture The Flag', 'CTF Competition from Tue, 3 Dec. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-11-30 20:18:57', false);
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'This is a sample alert!', '2019-10-30 20:18:57');
