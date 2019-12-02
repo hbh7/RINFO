@@ -3,3 +3,6 @@
 ._*
 
 .nfs.*
+
+user_content/users/*
+user_content/groups/*

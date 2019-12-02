@@ -65,19 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="controls">
                     <div class="form-group">
                         <label for="form_title">Post Title</label>
-                        <input id="form_title" type="text" name="name" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
+                        <input id="form_title" type="text" name="title" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="form_body">Post Body</label>
-                        <textarea id="form_body" name="example" class="form-control" rows="4" required data-error="Post Body is required"></textarea>
+                        <textarea id="form_body" name="body" class="form-control" rows="4" required data-error="Post Body is required"></textarea> <!-- TODO: backfill the body -->
                         <div class="help-block with-errors"></div>
                     </div>
                     <!-- TODO: Probably add a radio button for group vs self, perhaps a group search function -->
                     <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
                         <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <input id="form_name" type="text" name="name" class="form-control" required="required" data-error="Post Destination is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                        <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">

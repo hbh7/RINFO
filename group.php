@@ -81,7 +81,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
             </div>
         </div>
         <div id="activity">
-            <h2>Posts</h2>
+            <h2 id="group_posts">Posts</h2>
             <!--https://bootsnipp.com/snippets/xrKXW-->
             <div id="activity_content" class="content">
                 <?php
