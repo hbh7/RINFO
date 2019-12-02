@@ -3,6 +3,7 @@
 // Redirect back to homepage if there is no group id sent in the GET
 if(!isset($_GET['group_id'])) {
     header('Location: index.php');
+    die();
 }
 
 // Get GET data
