@@ -51,7 +51,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
             <div id="information_content" class="content">
                 <h3 id="name"><?php echo $user["firstname"] . " " . $user["lastname"]; ?></h3>
                 <h3 id="username"><?php echo $user["username"]; ?></h3>
-                <h4 id="email"><?php echo $user["email"]; ?></h3>
+                <h3 id="email"><?php echo $user["email"]; ?></h3>
                     <!-- <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
                 <p id="Nposts"><?php echo $numPosts; ?> posts</p> -->
                     <form method="post">
