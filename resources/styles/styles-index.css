@@ -171,20 +171,11 @@
     text-align: center;
 }
 
-.inner_activity {
-    width: 80%;
-    float: left;
-}
 .attending {
     width: 20%;
     float: right;
     text-align: center;
     border-left: 1px solid white;
-}
-.activity::after {
-    content: "";
-    clear: both;
-    display: table;
 }
 .num_attend{
     font-size: 30px;

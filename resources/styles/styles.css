@@ -84,3 +84,12 @@ a:visited {
     padding: 7px;
     overflow: auto;
 }
+.inner_activity {
+    width: 80%;
+    float: left;
+}
+.activity::after {
+    content: "";
+    clear: both;
+    display: table;
+}
