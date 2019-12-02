@@ -97,15 +97,15 @@ HTML;
                             <ul class="tab-content-ul" id="your_groups-ul">
                                 <?php
                                     //TODO: replace 4 \/ with the number of groups that the current user is an admin of
-                                    for ($i = 0; $i < 4 ; $i++) {
+                                    for ($i = 0; $i < 5 ; $i++) {
                                         echo "<li class='admin_group_name'>";
-                                        echo "group $i";
                                         echo <<<HTML
-                                        <button>Invite User</button>
-                                        <button>Kick User</button>
-                                        <button>Make Public</button>
-                                        <button>Make Private</button>
-                                        <button>Delete</button>
+                                        <form action="newgroup.php" method="get">
+                                            <!--TODO: load group names from the database-->
+                                            <h4>Group {$i}</h4>
+                                            <!--TODO: name and value attributes subject to...a better name (php variables can be used in heredoc when enclosed by curly braces!)-->
+                                            <input type="submit" name="editGroup" value="Edit Group {$i}">
+                                        </form>
 HTML;
                                     }
                                 ?>
