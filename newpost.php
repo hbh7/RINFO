@@ -24,8 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }*/
         }
 
+        if (isset($_POST['attendance'])) {
+            $count_attendance = true;
+        } else {
+            $count_attendance = false;
+        }
+
         // TODO: Change true to read the radio button for attendance tracking yes or no
-        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, true]);
+        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, $count_attendance]);
 
         if ($result == "success") {
             // TODO: Implement a popup system so we can display "Group added successfully!" or something
@@ -79,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="form_name">Post Destination (Group Name or Self)</label>
                         <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
                         <label for="attendance_checkbox">Count Attendances?</label>
-                        <input id="attendance_checkbox" type="checkbox" name="attandance" class="form-control">
+                        <input id="attendance_checkbox" type="checkbox" name="attendance" class="form-control">
                         <div class="help-block with-errors"></div>
                     </div>
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">
