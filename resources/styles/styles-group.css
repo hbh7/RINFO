@@ -74,9 +74,13 @@ body {
     margin-right: 5px;
     font-size: 140%;
 }
-
+#group_posts {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 ul.timeline {
     list-style-type: none;
+    padding-top: 0px;
     position: relative;
 }
 ul.timeline:before {
