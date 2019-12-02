@@ -76,8 +76,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                     <div class="row">
                         <div class="col-12">
                             <div class="list-group" id="list-tab" role="tablist">
-                                <a class="list-group-item list-group-item-action active" id="list-notifications-list" data-toggle="list" href="#list-notifications" role="tab" aria-controls="notifications">Groups</a>
-                                <a class="list-group-item list-group-item-action" id="list-your_groups-list" data-toggle="list" href="#list-your_groups" role="tab" aria-controls="your_groups">Posts</a>
+                                <a class="list-group-item list-group-item-action active" id="list-your_groups-list" data-toggle="list" href="#list-your_groups" role="tab" aria-controls="your_groups">Posts</a>
                                 <a class="list-group-item list-group-item-action" id="list-your_groups-list" href="newpost.php?destination=self" role="tab" aria-controls="add_post">Add Post</a>
                             </div>
                         </div>
@@ -107,37 +106,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
         <div id="activity">
             <div id="activity_content" class="col-17">
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="list-notifications" role="tabpanel" aria-labelledby="list-notifications-list">
-                        <h2>Groups</h2>
-                        <ul class="tab-content-ul">
-                            <!--TODO: Someone do me a favor and generate this from the database-->
-                            <?php
-                            if (checkValidLogin()) {
-                                $subscriptions = dbGet("group_id", "r_subscriptions", "user_id='" . getUserID() . "'");
-                                foreach ($subscriptions as $subscription) {
-                                    $name = dbGet("name", "r_groups", "group_id=" . $subscription["group_id"])[0]["name"];
-
-                                    echo "<div class='group'>" .
-                                        "<span class='name'><a href=\"group.php?group_id=" . $subscription["group_id"] . "\">" . $name . "</a></span><br />" .
-                                        "</div>";
-                                }
-                                //is there a way to display a "No groups joined" message?
-                            }
-
-                            // echo "<span> All groups </span>";
-
-                            // $groups = dbGet("group_id, name", "r_groups");
-                            // foreach ($groups as $group) {
-                            //     echo "<div class='group'>" .
-                            //         "<span class='name'><a href=\"group.php?group_id=" . $group["group_id"] . "\">" . $group["name"] . "</a></span><br />" .
-                            //         "</div>";
-                            // }
-
-
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
+                    <div class="tab-pane fade show active" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                         <h2>Posts</h2>
                         <ul class="tab-content-ul">
                             <?php
