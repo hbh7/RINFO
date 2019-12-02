@@ -40,12 +40,17 @@
                     $post = $posts[0];
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
+                    $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
 
                     echo "<div class='activity'><div class='inner_activity'>" .
                         "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                            "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'>" .
+                            "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
+                            if ($attend == 1) {
+                                echo "style='color: red;'";
+                            }
+                            echo ">" .
                             "<span class='num_attend'>" . count($attendances) .
                             "</span><br><span class='smalltext'>attending</span>"
                             ."</button>" .
