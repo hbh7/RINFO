@@ -24,12 +24,14 @@
                     </a>
                     <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
                     <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
-                    </button>
-                    <div id="user_image">
+                    <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
+                        <img id="user_icon" src="resources/images/icon1.png" title="User Profile Icon" alt="User">
+                    </a>
+                    <!-- <div id="user_image">
                         <a href="#" onclick="window.location='user.php?user_id={$id}';">
-                            <img src="resources/images/icon1.png" width="53" height="53" title="User Profile Icon" alt="User">
+                            <img id="user_icon" src="resources/images/icon1.png" title="User Profile Icon" alt="User">
                         </a>
-                    </div>
+                    </div> -->
     </div>
 HTML;
                 }
