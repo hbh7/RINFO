@@ -41,7 +41,7 @@
             include_once 'db.php';
             if (checkValidLogin()) {
                 $firstname = json_decode($_COOKIE["login"], true)["firstname"];
-                $id = 1; //had to hardcode this, $_GET["user_id"]; not working
+                $id = getUserID();
                 echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
                 if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
                     echo <<<HTML
