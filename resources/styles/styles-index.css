@@ -166,10 +166,15 @@
     margin-right: 3%;
 }
 
-.tab_menu {
-    border-bottom: 1 px solid white;
+.display {
+    display: flex;
+    flex-direction: column;
 }
-.tab-content {
-    position: absolute;
+.tab_menu {
+    border: 5px solid-black;
+}
+.tab_content {
+    height: 100%;
     overflow-y: scroll;
 }
+
