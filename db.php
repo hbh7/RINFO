@@ -122,7 +122,7 @@ function dbUpdate($table, $column, $where) {
 
     $sql = "UPDATE " . $table . " SET " . $column . " WHERE " . $where . ";";
 
-    error_log($sql);
+    //error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
