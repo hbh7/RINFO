@@ -188,23 +188,3 @@ h3 {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-a:link {
-	font-size: 130%;
-	margin-bottom: 15px;
-  	color: lightgrey;
-}
-
-/* visited link */
-a:visited {
-  	color: grey;
-}
-
-/* mouse over link */
-a:hover {
-  	color: #df213a;
-}
-
-/* selected link */
-a:active {
-  	color: white;
-}
