@@ -82,7 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
                         <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                        <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                            <option value="self">Self</option>
+                            <?php
+                            include_once('db.php');
+                            $results = dbGet("name", "r_groups");
+                            foreach ($results as $result) {
+                                echo "<option value='" . $result["name"] . "''>";
+                                echo $result["name"] . "</option>";
+                            }
+                            ?>
+                        </select>
                         <label for="attendance_checkbox">Count Attendances?</label>
                         <input id="attendance_checkbox" type="checkbox" name="attendance" class="form-control">
                         <div class="help-block with-errors"></div>
