@@ -48,7 +48,7 @@
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
                             "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
                             if ($attend == 1) {
-                                echo "style='color: red;'";
+                                echo "style='color: rgb(233, 81, 81);'";
                             }
                             echo ">" .
                             "<span class='num_attend'>" . count($attendances) .
