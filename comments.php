@@ -11,7 +11,7 @@
             date_default_timezone_set('America/New_York');
             $date = date('Y-m-d H:i:s', time());
 
-            if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
+            if ($body != "Enter Comment Here..." && $body != "Enter Reply Here..." && $body != "") {
                 $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]);
             }
         }
@@ -70,8 +70,8 @@
             <?php
                 if (checkValidLogin() && isset($post)) {
                     echo "<form method='post' action='./comments.php?title=" . $title . "'>";
-                    echo "<textarea name='comment_body' rows='8'>";
-                    echo "Enter Comment Here...</textarea><br>";
+                    echo "<textarea name='comment_body' rows='8' placeholder='Enter Comment Here...'>";
+                    echo "</textarea><br>";
                     echo "<input type='submit' value='Comment' class='btn btn-light'>";
                     echo "<input type='hidden' name='user_id' value='" . getUserID() . "'>";
                     echo "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>";
@@ -113,8 +113,8 @@
                 echo "<div class='reply_box' style='display: none;'>" .
                      "<form method='post' action='./comments.php?title=" .
                      $post["title"] . "'>" .
-                     "<textarea name='comment_body' rows='5'>" .
-                     "Enter Reply Here...</textarea><br>" .
+                     "<textarea name='comment_body' rows='5' placeholder='Enter Reply Here...'>" .
+                     "</textarea><br>" .
                      "<input type='submit' value='Reply' class='btn btn-light'>" .
                      "<input type='hidden' name='user_id' value='" . getUserID() . "'>" .
                      "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>" .

@@ -1,13 +1,17 @@
 <?php
 
-// TODO: Handle when someone refuses to provide the required GET parameters
-
 // Get GET data
-//if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-if (isset($_GET['user_id'])) {
-    $user_id = $_GET['user_id'];
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (isset($_GET['user_id'])) {
+        $user_id = $_GET['user_id'];
+    } else {
+        echo "Error: You need to provide the correct parameter(s) for this page to work";
+        die();
+    }
+} else {
+    echo "Error: You need to provide the correct parameter(s) for this page to work";
+    die();
 }
-//}
 
 include_once 'db.php';
 
@@ -80,7 +84,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                     </div>
                     <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
                     <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
-                    TODO: Move this into the database, and make it so it can be changed online-->
+                    TODO: Move this into the database (generation script), into the body section and without tags-->
             </div>
         </div>
         <!-- <div id="activity">

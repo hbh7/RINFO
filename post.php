@@ -1,13 +1,17 @@
 <?php
 
-// TODO: Handle when someone refuses to provide the required GET parameters
-
 // Get GET data
-//if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset( $_GET['post_id'])) {
         $post_id = $_GET['post_id'];
+    } else {
+        echo "Error: You need to provide the correct parameter(s) for this page to work";
+        die();
     }
-//}
+} else {
+    echo "Error: You need to provide the correct parameter(s) for this page to work";
+    die();
+}
 
 include_once 'db.php';
 
