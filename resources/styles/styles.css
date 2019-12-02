@@ -64,3 +64,13 @@ a.list-group-item.list-group-item-action.active {
 div#list-tab:last-child {
     margin-bottom: 20px;
 }
+
+a:link {
+    font-size: 130%;
+    margin-bottom: 15px;
+    color: lightgrey;
+}
+
+a:visited {
+    color: grey;
+}
