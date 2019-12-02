@@ -5,11 +5,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['user_id'])) {
         $user_id = $_GET['user_id'];
     } else {
-        echo "You need to provide a parameter for this page to work";
+        echo "Error: You need to provide the correct parameter(s) for this page to work";
         die();
     }
 } else {
-    echo "You need to provide a parameter for this page to work";
+    echo "Error: You need to provide the correct parameter(s) for this page to work";
     die();
 }
 
