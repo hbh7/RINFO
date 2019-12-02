@@ -144,7 +144,7 @@ function dbDelete($tablename, $where) {
 
     $sql = "DELETE FROM " . $tablename . " WHERE " . $where . ";";
 
-    error_log($sql);
+    //error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
@@ -193,11 +193,11 @@ function checkPermission($id, $action) {
     $arr = dbGet("description", "r_permissions", "group_id='" . $id ."' AND user_id='" . getUserID() . "'");
     foreach($arr as $a) {
         if($a["description"] == $action) {
-            error_log("Permission check passed");
+            //error_log("Permission check passed");
             return true;
         }
     }
-    error_log("Permission check failed");
+    //error_log("Permission check failed");
     return false;
 }
 
