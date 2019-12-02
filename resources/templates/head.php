@@ -14,6 +14,21 @@
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
 <link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
 
+
+<!--
+< ?php
+    // of course I can't just read in a url and do stuff with it
+    // even my inexperienced self realizes how freaking dangerous that is
+    // I'm fairly certain that this covers most of my bases
+    $executingScriptName = htmlspecialchars(basename($_SERVER["PHP_SELF"], ".php"), ENT_QUOTES);
+    $hrefAttr = "/resources/styles/styles-" . $executingScriptName . ".css";
+?>
+<link rel="stylesheet" type="text/css" href="/resources/styles/styles.css">
+<link rel="stylesheet" type="text/css" href="/resources/styles/styles-footer.css">
+<link rel="stylesheet" type="text/css" href="/resources/styles/styles-header.css">
+<link rel="stylesheet" type="text/css" href="< ?php echo $hrefAttr;?>">
+-->
+
 <?php
 
     include_once 'db.php';
@@ -25,8 +40,8 @@
             die();
         }
         $attending = sizeof(dbGet(
-                        "attendance_id", 
-                        "r_attendances", 
+                        "attendance_id",
+                        "r_attendances",
                         "post_id='" . $_POST['p_id'] . "' AND user_id='" . getUserID() . "'"));
         if ($attending == 1) {
             dbDelete("r_attendances", "post_id='" . $_POST['p_id'] . "' AND user_id='" . getUserID() . "'");
