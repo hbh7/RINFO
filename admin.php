@@ -53,6 +53,9 @@
                             <h2>Notifications</h2>
                             <ul class="tab-content-ul">
                                 <!--TODO: Someone do me a favor and generate this from the database-->
+                                <li>User 1 joined RCOS!</li>
+                                <li>Temp ban request against user 4. Reason: idk just 'cause XD</li>
+                                <li>DM from user 7: hi</li>
                                 <li>There will be no classes on Jan. 17th due to a snow day! Nah jk this is RPI. You thought we would show mercy? By executive decree, today only, all 8am classes shall start at 8:06am.</li>
                                 <li>RPI ALERT: A student on 15th street was approached by a 2'4" man wearing an Elmo costume. Witnesses say, "It may have been an infant on Halloween"</li>
                             </ul>
@@ -99,7 +102,10 @@ HTML;
                                         echo "<li class='admin_group_name'>";
                                         echo "group $i";
                                         echo <<<HTML
-                                        <button></button>
+                                        <button>Invite User</button>
+                                        <button>Kick User</button>
+                                        <button>Make Public</button>
+                                        <button>Make Private</button>
                                         <button>Delete</button>
 HTML;
                                     }
@@ -110,7 +116,10 @@ HTML;
 
                         <div class="tab-pane fade" id="list-user_permissions" role="tabpanel" aria-labelledby="list-user_permissions-list">
                             <h2>User Permissions</h2>
-                            <span>bleh here's some text</span>
+                            <!--TODO: implement a (watered-down) user search - nothing fancy required
+                                    because there is no way im listing out every single user and forcing an admin to spend an hour scrolling or forcing them to use ctrl+f (first option is torture, second option is tacky)
+                                it's passable with the admin messages because there shouldnt be that many of them anyway and theoretically they are all important, but there's no cap on the potential number of users-->
+                            <input type="text" name="userIdentifier" placeholder="Enter username or email address"></input>
                         </div>
 
 
