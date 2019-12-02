@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     position: relative;
     color: white;
+    font-size: 1vw;
 }
 ul {
     font-size: 150%;

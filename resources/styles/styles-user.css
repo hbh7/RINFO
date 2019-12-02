@@ -55,19 +55,16 @@ ul.tab-content-ul li {
     padding: 5px;
     border-top: 2px solid black;
 }
-
 textarea {
     width: 90%;
 }
-
 input.submitButton {
     border-radius: 5px;
     margin-top: 5px;
 }
-
 form#postAdminMessage {
     padding-bottom: 5px;
 }
 #email {
-    font-size: 180%;
+    font-size: 2vw;
 }
