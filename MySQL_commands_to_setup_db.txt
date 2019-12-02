@@ -94,12 +94,29 @@ INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('hunt
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('zhaoxitest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Zhaoxi', 'Xiang', 'zhaoxi@rpi.edu');
 
 /* INSERT GROUPS */
-INSERT INTO r_groups(name, tagline, visibility) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.', 'public');
+INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.', 'user_content/groups/rpisec.jpg', 'public');
 INSERT INTO r_groups(name, tagline, visibility) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)', 'public');
-INSERT INTO r_groups(name, tagline, visibility) VALUES('Partial Credit', 'Partial Credit is one of RPI\'s four a cappella groups. Established in 2003, this co-ed group enjoys singinging music of all kinds.', 'public');
+INSERT INTO r_groups(name, tagline, visibility) VALUES('Partial Credit', 'Partial Credit is one of RPI\'s four a cappella groups. Established in 2003, this co-ed group enjoys singing music of all kinds.', 'public');
 INSERT INTO r_groups(name, tagline, visibility) VALUES('Trudge', 'Ten Really Ugly Dudes Getting Even, the RPI men\'s ultimate disc club is the school\'s premier sporting team. They can throw that plastic around like nobody\'s business!', 'public');
 INSERT INTO r_groups(name, tagline, visibility) VALUES('Strut', 'Strut is the RPI women\'s ultimate disc club and is the school\'s second premier sporting team. They can throw that plastic around like nobody\'s business!', 'public');
 INSERT INTO r_groups(name, tagline, visibility) VALUES('Ski Team', 'This is the homepage of the RPI Ski Racing team. We race slalom and giant slalom during the winter season and compete against colleges from around the state.', 'public');
+
+/* Generate Permissions */
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('1', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('2', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('4', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('6', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('7', '0', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '0', 'post');
+
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '1', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '2', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '3', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '4', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '5', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '6', 'post');
 
 /* INSERT SUBSCRIPTIONS */
 INSERT INTO r_subscriptions(user_id, group_id) VALUES ('4','3'),('4','4'),('4','5'),('4','6');

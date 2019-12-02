@@ -68,3 +68,6 @@ input.submitButton {
 form#postAdminMessage {
     padding-bottom: 5px;
 }
+#email {
+    font-size: 180%;
+}

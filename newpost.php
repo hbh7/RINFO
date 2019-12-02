@@ -11,26 +11,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($_POST['where'] == "self") {
             $where = 0;
 
-            if (!checkPermission(getUserID(), "post")) {
-                header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
+            if (!checkPermission(0, "post")) {
+                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
                 die();
             }
         } else {
             $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
 
-            /*if(!checkPermission($where, "post")) {
-                header("Location: /newpost.php?redirectmsg=Error: You're not allowed to post to this group.");
+            if(!checkPermission($where, "post")) {
+                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
                 die();
-            }*/
+            }
         }
 
         if (isset($_POST['attendance'])) {
-            $count_attendance = true;
+            $count_attendance = 1;
         } else {
-            $count_attendance = false;
+            $count_attendance = 0;
         }
 
-        // TODO: Change true to read the radio button for attendance tracking yes or no
         $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, $count_attendance]);
 
         if ($result == "success") {
@@ -83,7 +82,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
                         <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                        <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                            <?php
+                            include_once('db.php');
+                            $results = dbGet("name", "r_groups");
+                            if (isset($_GET['destination'])) {
+                                $destination = $_GET["destination"];
+                                foreach ($results as $result) {
+                                    if ($result["name"] == $destination) {
+                                        echo "<option value='" . $result["name"] . "''>";
+                                        echo $result["name"] . "</option>";
+                                    }
+                                }
+                            }
+                            foreach ($results as $result) {
+                                if ($result["name"] == $destination)
+                                    continue;
+                                echo "<option value='" . $result["name"] . "''>";
+                                echo $result["name"] . "</option>";
+                            }
+                            ?>
+                            <option value="self">Self</option>
+                        </select>
                         <label for="attendance_checkbox">Count Attendances?</label>
                         <input id="attendance_checkbox" type="checkbox" name="attendance" class="form-control">
                         <div class="help-block with-errors"></div>

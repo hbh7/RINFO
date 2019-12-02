@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Data validation
 // TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
-// TODO: Make sure action is "login" or "register"
 // TODO: Make sure capitalization is nice for firstname and lastname
 
 if(isset($action)) {
@@ -45,8 +44,8 @@ if(isset($action)) {
             if ($dbres == "success") {
                 // Generate default permissions
                 $user_id = dbGet("user_id", "r_users", "username='" . $username . "'")[0]["user_id"];
-                dbPut("r_permissions", [$user_id, $user_id, "post"]);
-                dbPut("r_permissions", [$user_id, $user_id, "createGroup"]);
+                dbPut("r_permissions", [$user_id, 0, "post"]);
+                dbPut("r_permissions", [$user_id, 0, "createGroup"]);
 
                 $result = [true, "Registered Successfully, Please log in"];
             } else {
@@ -99,6 +98,9 @@ if(isset($action)) {
         // Handle forgotten passwords by laughing at the user's misfortune
         $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
 
+    } else {
+        // Invalid action
+        $result = [False, "Error: Invalid action"];
     }
 }
 
@@ -132,13 +134,13 @@ if(isset($action)) {
                 <?php
                 if(isset($action) && $action == "registerpage") {
                     echo "
-                    <label for=\"firstname\">First Name </label><input type=\"text\" name=\"firstname\" id=\"firstname\" value=\"\" placeholder=\"Shirley\">
+                    <label for=\"firstname\">First Name </label><input type=\"text\" name=\"firstname\" id=\"firstname\" value=\"\" placeholder=\"SIS\">
                     <br /><br />
-                    <label for=\"lastname\">Last Name </label><input type=\"text\" name=\"lastname\" id=\"lastname\" value=\"\" placeholder=\"Jackson\">
+                    <label for=\"lastname\">Last Name </label><input type=\"text\" name=\"lastname\" id=\"lastname\" value=\"\" placeholder=\"Man\">
                     <br /><br />
-                    <label for=\"email\">Email </label><br><input type=\"text\" name=\"email\" id=\"email\" value=\"\" placeholder=\"jackson@rpi.edu\">
+                    <label for=\"email\">Email </label><br><input type=\"text\" name=\"email\" id=\"email\" value=\"\" placeholder=\"sisman@rpi.edu\">
                     <br /><br />
-                    <label for=\"username\">Username </label><input type=\"text\"  name=\"username\" id=\"username\" value=\"\" placeholder=\"shirleyannjackson\">
+                    <label for=\"username\">Username </label><input type=\"text\"  name=\"username\" id=\"username\" value=\"\" placeholder=\"sisman\">
                     <br /><br />
                     <label for=\"password\">Password (Don't forget it!)</label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
                     <br /><br />
@@ -146,7 +148,7 @@ if(isset($action)) {
                     ";
                 } else {
                     echo "
-                    <label for=\"username\">Username </label><input type=\"text\" name=\"username\" id=\"username\" value=\"\" placeholder=\"shirleyannjackson\">
+                    <label for=\"username\">Username </label><input type=\"text\" name=\"username\" id=\"username\" value=\"\" placeholder=\"sisman\">
                     <br /><br />
                     <label for=\"password\">Password </label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
                     <br /><br />
