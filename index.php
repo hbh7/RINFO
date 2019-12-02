@@ -3,7 +3,7 @@
 <head>
     <?php include('resources/templates/head.php'); ?>
     <title> Welcome to RINFO </title>
-    <script type="text/javascript" src="homepage.js"></script>
+    <script type="text/javascript" src="resources/scripts/homepage.js"></script>
 </head>
 
 <body>
