@@ -2,8 +2,8 @@
 
 <head>
     <?php $title = "Search"; ?>
-    <?php include('resources/templates/search_head.php'); ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <?php include('resources/templates/head.php'); ?>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 </head>
 
 <body>
