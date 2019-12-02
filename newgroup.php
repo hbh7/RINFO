@@ -24,8 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         if ($unique) {
 
+            include 'upload.php';
+            $imagePath = processUpload($_FILES["fileUpload"], "groups", $_POST["name"]);
+
             // TODO: Change "public" to read in a public/private value from form
-            dbPut("r_groups", [$_POST["name"], $_POST["name"], "public"]);
+            dbPut("r_groups", [$_POST["name"], $_POST["name"], $imagePath, "public"]);
             // TODO: Add the new group to the user's subscriptions
 
             $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
@@ -72,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form> -->
     <div class="container">
         <div id="form_container">
-            <form id="form" method="post" action="" role="form">
+            <form id="form" method="post" action="" role="form" enctype="multipart/form-data">
                 <div class="messages"></div>
                 <div class="controls">
                     <div class="form-group">
@@ -88,6 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <label for="form_info">Group Information</label>
                         <textarea id="form_info" name="example" class="form-control" rows="4" required data-error="Group Information is required"></textarea>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_name">Image</label>
+                        <input type="file" name="fileUpload" id="fileUpload">
                         <div class="help-block with-errors"></div>
                     </div>
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">
