@@ -136,7 +136,7 @@ if(isset($action)) {
                     <br /><br />
                     <label for=\"lastname\">Last Name </label><input type=\"text\" name=\"lastname\" id=\"lastname\" value=\"\" placeholder=\"Jackson\">
                     <br /><br />
-                    <label for=\"email\">eMail </label><input type=\"text\" name=\"email\" id=\"email\" value=\"\" placeholder=\"jackson@rpi.edu\">
+                    <label for=\"email\">Email </label><br><input type=\"text\" name=\"email\" id=\"email\" value=\"\" placeholder=\"jackson@rpi.edu\">
                     <br /><br />
                     <label for=\"username\">Username </label><input type=\"text\"  name=\"username\" id=\"username\" value=\"\" placeholder=\"shirleyannjackson\">
                     <br /><br />

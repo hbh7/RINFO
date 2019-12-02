@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
                         <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
+                        <input id="form_name" type="text" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">

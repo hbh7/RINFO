@@ -165,3 +165,16 @@
     clear: right;
     margin-right: 3%;
 }
+
+.display {
+    display: flex;
+    flex-direction: column;
+}
+.tab_menu {
+    border: 5px solid-black;
+}
+.tab_content {
+    height: 100%;
+    overflow-y: scroll;
+}
+

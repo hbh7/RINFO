@@ -51,11 +51,11 @@
             </a>
         </div>
         <div class="display">
-            <ul>
-                <li id="activity_tab" class="homepage" onclick="activity()"><a class="active" href="#activity_feed">Activity Feed</a></li>
-                <li id="group_tab" class="homepage" onclick="group()"><a href="#groups">Groups</a></li>
-                <li id="post_tab" class="homepage" onclick="post()"><a href="#posts">My Posts</a></li>
-            </ul>
+            <div class='tab_menu'><ul>
+                <li id="activity_tab" class="homepage" onclick="activity()"><a href="#activity_feed" id="activity_t">Activity Feed</a></li>
+                <li id="group_tab" class="homepage" onclick="group()"><a href="#groups" id="group_t">Groups</a></li>
+                <li id="post_tab" class="homepage" onclick="post()"><a href="#posts" id="post_t">My Posts</a></li>
+            </ul></div>
             <div class="tab_content">
                 <div id="hp_activities">
                     <?php

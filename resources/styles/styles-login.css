@@ -1,6 +1,9 @@
 /* for login page */
 body {
-    color: black;
+    color: white;
+}
+#page_title{
+    color: white;
 }
 .tips {
     margin: 0;
@@ -18,7 +21,7 @@ body {
 #login_content {
     margin: 0px;
     width: 100%;
-    height: 645px;
+    height: 620px;
     background: linear-gradient(
     to right,
     #eb4747 0%,
@@ -38,10 +41,10 @@ body {
     float: right;
     width: 49%;
     position: relative;
-    height: 600px;
+    height: 500px;
 }
 #login_box {
-    margin-top: 160px;
+    margin-top: 130px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
@@ -81,4 +84,7 @@ label, p {
     width: 90%;
     height: 55px;
     font-size: 90%;
+}
+h1 {
+    color: white;
 }
