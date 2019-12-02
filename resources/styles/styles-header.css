@@ -68,9 +68,10 @@ h1 {
     height: auto;
 }
 #logintext {
+    font-size: 120%;
     text-align: center;
-    margin: 0 20;
-    width: 80%;
+    margin-right: 80px;
+    width: 50%;
     flex-basis: 100%;
 }
 
