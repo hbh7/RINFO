@@ -19,7 +19,7 @@
                       <a class="list-group-item list-group-item-action" id="list-admin_messages-list" data-toggle="list" href="#list-admin_messages" role="tab" aria-controls="admin_messages">Admin Messages</a>
                       <a class="list-group-item list-group-item-action" id="list-your_groups-list" data-toggle="list" href="#list-your_groups" role="tab" aria-controls="your_groups">Your Groups</a>
                       <a class="list-group-item list-group-item-action" id="list-user_permissions-list" data-toggle="list" href="#list-user_permissions" role="tab" aria-controls="user_permissions">User Permissions</a>
-                      <a class="list-group-item list-group-item-action" id="list-foo-list" data-toggle="list" href="#list-foo" role="tab" aria-controls="foo">Foo</a>
+                      <a class="list-group-item list-group-item-action" id="list-your_account-list" data-toggle="list" href="#list-your_account" role="tab" aria-controls="your_account">Your Account</a>
                     </div>
                   </div>
                 </div>
@@ -118,12 +118,12 @@ HTML;
                             <!--TODO: implement a (watered-down) user search - nothing fancy required
                                     because there is no way im listing out every single user and forcing an admin to spend an hour scrolling or forcing them to use ctrl+f (first option is torture, second option is tacky)
                                 it's passable with the admin messages because there shouldnt be that many of them anyway and theoretically they are all important, but there's no cap on the potential number of users-->
-                            <input type="text" name="userIdentifier" placeholder="Enter username or email address"></input>
+                            <input type="text" name="userIdentifier" placeholder="Enter username or email address" size="35px"></input>
                         </div>
 
 
-                        <div class="tab-pane fade" id="list-foo" role="tabpanel" aria-labelledby="list-foo-list">
-                            <h2>Foo</h2>
+                        <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
+                            <h2>Your Account</h2>
                             <span>bleh here's some text</span>
                         </div>
                     </div>

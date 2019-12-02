@@ -87,3 +87,8 @@ form#postAdminMessage {
 #toTop:hover {
     background-color: #495057;
 }
+div#list-user_permissions input {
+    margin: 5px;
+    padding: 2px;
+    font-size: 16px;
+}
