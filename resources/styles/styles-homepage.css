@@ -76,7 +76,7 @@ body {
 }
 .display {
     width: 64%;
-    padding: 5px;
+    padding: 10px;
     float: right;
     height: 550px;
 	margin-top: 20px;
@@ -119,7 +119,7 @@ body {
 }
 
 .scroll-left {
-    height: 40px;	
+    height: 40px;
     overflow: hidden;
     position: relative;
     background: none;
@@ -135,9 +135,9 @@ body {
     text-align: center;
     /* Starting position */
     -moz-transform:translateX(100%);
-    -webkit-transform:translateX(100%);	
+    -webkit-transform:translateX(100%);
     transform:translateX(100%);
-    /* Apply animation to this element */	
+    /* Apply animation to this element */
     -moz-animation: scroll-left 20s linear infinite;
     -webkit-animation: scroll-left 20s linear infinite;
     animation: scroll-left 20s linear infinite;
@@ -152,15 +152,15 @@ body {
     100% { -webkit-transform: translateX(-100%); }
 }
 @keyframes scroll-left {
-    0%   { 
+    0%   {
     -moz-transform: translateX(100%); /* Browser bug fix */
     -webkit-transform: translateX(100%); /* Browser bug fix */
-    transform: translateX(100%); 		
+    transform: translateX(100%);
     }
-    100% { 
+    100% {
     -moz-transform: translateX(-100%); /* Browser bug fix */
     -webkit-transform: translateX(-100%); /* Browser bug fix */
-    transform: translateX(-100%); 
+    transform: translateX(-100%);
     }
 }
 .postauthor {
