@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	color: white;
+    padding-bottom: 80px;
 }
 /* homepage css */
  h2 {
@@ -76,7 +77,6 @@ body {
 }
 .display {
     width: 64%;
-    padding: 10px;
     float: right;
     height: 550px;
 	margin-top: 20px;
