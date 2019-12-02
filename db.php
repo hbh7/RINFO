@@ -190,6 +190,8 @@ function checkValidLogin() {
 // It is assumed that the checkValidLogin() function is called before this.
 function checkPermission($id, $action) {
 
+    // TODO: Probably optimize this to also do a where for the actual action so that the DB can return less and just
+    // compare the size here for speed
     $arr = dbGet("description", "r_permissions", "group_id='" . $id ."' AND user_id='" . getUserID() . "'");
     foreach($arr as $a) {
         if($a["description"] == $action) {
