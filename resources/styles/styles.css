@@ -9,6 +9,13 @@ body {
     position: relative;
     color: white;
 }
+ul {
+    font-size: 150%;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+}
 /*I am not sure if this is used anywhere else outside the header, so I won't delete it*/
 h1{
     text-align: center;

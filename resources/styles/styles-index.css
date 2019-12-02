@@ -2,15 +2,8 @@
  h2 {
 	color: white;
 }
- ul {
-    font-size: 150%;
-    list-style-type: none;
-    margin: auto;
-    padding: 0;
-    overflow: hidden;
-}
 
- li {
+li {
 	float: left;
 	width: 33.333%;
 }
