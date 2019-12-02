@@ -11,7 +11,7 @@
             date_default_timezone_set('America/New_York');
             $date = date('Y-m-d H:i:s', time());
 
-            if ($body != "Enter Comment Here...") {
+            if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
                 $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]); 
             } 
         } 
@@ -48,7 +48,7 @@
                             "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
                             "</div><div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
                             if ($attend == 1) {
-                                echo "style='color: red;'";
+                                echo "style='color: rgb(233, 81, 81);'";
                             }
                             echo ">" .
                             "<span class='num_attend'>" . count($attendances) .

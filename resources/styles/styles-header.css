@@ -87,3 +87,7 @@ h1 {
     width: 20%;*/
     display: inline-block;
 }
+
+#leftbox, #centerbox, #rightbox {
+    padding: 10px 0;
+}
