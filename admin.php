@@ -95,12 +95,15 @@ HTML;
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Your Groups</h2>
                             <ul class="tab-content-ul" id="your_groups-ul">
+                                <form method="get" action="/newgroup.php" id="createNewGroup">
+                                    <input type="submit" name="newGroup" value="Create New Group">
+                                </form>
                                 <?php
                                     //TODO: replace 4 \/ with the number of groups that the current user is an admin of
-                                    for ($i = 0; $i < 5 ; $i++) {
+                                    for ($i = 0; $i < 7 ; $i++) {
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
-                                        <form action="newgroup.php" method="get">
+                                        <form action="/newgroup.php" method="get">
                                             <!--TODO: load group names from the database-->
                                             <h4>Group {$i}</h4>
                                             <!--TODO: name and value attributes subject to...a better name (php variables can be used in heredoc when enclosed by curly braces!)-->
@@ -124,6 +127,7 @@ HTML;
 
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
+                            <!--TODO: implement change profile pic, change password, username-->
                             <span>bleh here's some text</span>
                         </div>
                     </div>
