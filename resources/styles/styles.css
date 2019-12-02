@@ -41,6 +41,14 @@ h2 {
     float: left;
     margin-top: 60px;
 }
+#activity {
+    color: white;
+    border-style: solid;
+    border: none;
+    width: 65%;
+    float: right;
+    margin-bottom: 0;
+}
 #content{
     width:85%;
     margin-left: auto;

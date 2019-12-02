@@ -3,14 +3,6 @@ body {
 	color: white;
 }
 /* homepage css */
-#activity {
-    color: white;
-    border-style: solid;
-    border: none;
-    width: 65%;
-    float: right;
-    margin-bottom: 0;
-}
 /*The following block is for the activities box in group.php
     not sure if this is what we wanted, but at least the text is readable for now*/
 #activity_content {
