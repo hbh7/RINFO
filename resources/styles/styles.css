@@ -211,3 +211,15 @@ textarea[name=comment_body]{
 }
 
 
+
+.group {
+    border-radius: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-top: 5px;
+}
+.group:hover {
+    border: 2px solid white;
+}
+
