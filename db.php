@@ -6,11 +6,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset($_GET['searchtext'])) {
 
         $output = [];
-        $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . $_GET['searchtext'] . "%'", true);
-        $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "visibility='public' AND tagline LIKE '%" . $_GET['searchtext'] . "%'", true);
-        $output["post_title"] = dbGet("r_posts.title, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND title LIKE '%" . $_GET['searchtext'] . "%'", true);
-        $output["post_body"] = dbGet("r_posts.title, r_posts.body, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND body LIKE '%" . $_GET['searchtext'] . "%'", true);
-        $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname LIKE '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
+        $areas = [];
+        if(isset($_GET['searchareas'])) {
+            $areas = json_decode($_GET['searchareas']);
+        }
+        if(in_array("group_name", $areas)) {
+            $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . $_GET['searchtext'] . "%'", true);
+        }
+        if(in_array("group_tagline", $areas)) {
+            $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "visibility='public' AND tagline LIKE '%" . $_GET['searchtext'] . "%'", true);
+        }
+        if(in_array("post_title", $areas)) {
+            $output["post_title"] = dbGet("r_posts.title, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND title LIKE '%" . $_GET['searchtext'] . "%'", true);
+        }
+        if(in_array("post_body", $areas)) {
+            $output["post_body"] = dbGet("r_posts.title, r_posts.body, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND body LIKE '%" . $_GET['searchtext'] . "%'", true);
+        }
+        if(in_array("user", $areas)) {
+            $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname LIKE '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
+        }
         echo json_encode($output);
 
     }

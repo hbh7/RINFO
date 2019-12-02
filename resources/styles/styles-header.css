@@ -10,7 +10,7 @@ h1 {
     float: left;
 }
 #global_header {
-    border-bottom: 4px double rgb(233, 81, 81);
+    border-bottom: 4px solid rgb(233, 81, 81);
     display: flex;
     align-content: center;
     justify-content: space-between;

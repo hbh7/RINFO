@@ -103,14 +103,16 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                         "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
                         "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span>" .
-                        "</div>".
+                        "</div>";
                         //line below is only needed if attendance is part of this post
-                        "<div class='feed_attendance'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
+                    if ($post["attendance"]) {
+                        echo "<div class='feed_attendance'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
                         if ($attend == 1) {
                             echo "style='color: rgb(233, 81, 81);'";
                         }
-                        echo "><span class='num_attend'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></button><input type='hidden' name='p_id' value='" . $post["post_id"] . "''></form></div>" .
-                        "</li>";
+                        echo "><span class='num_attend'> " . count($attendances) . "</span><br /><span class='smaller'> attending </span></button><input type='hidden' name='p_id' value='" . $post["post_id"] . "''></form></div>";
+                    } 
+                    echo "</li>";
                 }
                 echo "</ul>";
                 ?>
