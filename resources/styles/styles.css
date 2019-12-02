@@ -75,3 +75,12 @@ a:link {
 a:visited {
     color: grey;
 }
+.activity {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin: 7 3;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 7px;
+    overflow: auto;
+}

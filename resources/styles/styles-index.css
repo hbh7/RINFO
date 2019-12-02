@@ -77,13 +77,6 @@
 	margin-top: 20px;
 	background: rgba(255, 255, 255, 0.3);
 }
-.activity {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    margin: 7 3;
-    border: 2px solid rgba(0, 0, 0, 0);
-    border-radius: 5px;
-}
 
 .activity.title {
     text-align: center;
@@ -166,9 +159,6 @@
     font-style: italic;
     font-size: 70%;
 }
-.activity {
-    padding: 7px;
-}
 .title {
     font-size: 140%;
 }
@@ -190,9 +180,6 @@
     float: right;
     text-align: center;
     border-left: 1px solid white;
-}
-.activity {
-    overflow: auto;
 }
 .activity::after {
     content: "";
