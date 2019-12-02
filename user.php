@@ -90,7 +90,6 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                 $posts = dbGet("*", "r_posts", "user_id='" . $user_id . "' AND group_id='0'");
                 foreach ($posts as $post) {
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
-
                     echo "<div class='activity'>" .
                         "<span class='title'>" . $post["title"] . "</span><br />" .
                         "<span class='body'>" . $post["body"] . "</span><br />" .
