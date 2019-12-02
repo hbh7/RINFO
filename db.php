@@ -203,6 +203,8 @@ function checkPermission($id, $action) {
 
 // Return the DB ID associated with the current user. Run checkValidLogin() first.
 function getUserID() {
+    if (!isset($_COOKIE["login"]))
+        return null;
     $users = dbGet("user_id", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
     return $users[0]["user_id"];
 }
