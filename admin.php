@@ -101,6 +101,7 @@ HTML;
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
                                         <form action="newgroup.php" method="get">
+                                            <!--TODO: load group names from the database-->
                                             <h4>Group {$i}</h4>
                                             <!--TODO: name and value attributes subject to...a better name (php variables can be used in heredoc when enclosed by curly braces!)-->
                                             <input type="submit" name="editGroup" value="Edit Group {$i}">
