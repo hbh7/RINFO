@@ -276,6 +276,9 @@ textarea[name=comment_body]{
     border-radius: 5px;
     padding: 5px;
 }
+.comment_section h1 {
+    border-bottom: 1px solid white;
+}
 .replybutton {
     font-size: 12;
 }
