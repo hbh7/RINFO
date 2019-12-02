@@ -1,0 +1,293 @@
+body {
+	margin: 0;
+	color: white;
+}
+/* homepage css */
+ h2 {
+	color: white;
+}
+ ul {
+    font-size: 150%;
+    list-style-type: none;
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+ li {
+	float: left;
+	width: 33.333%;
+}
+
+.display li a {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-left: 2px solid grey;
+    border-right: 2px solid grey;
+    display: block;
+    color: #666;
+    text-align: center;
+    margin-top: 2px;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #f3f3f3;
+}
+
+.display li a:hover:not(.active) {
+    background-color: #ddd;
+}
+.display li a.active {
+    color: white;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: rgb(233, 81, 81);
+}
+#home_tag {
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+#homepage_content {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+#carouselExampleIndicators {
+    width: 33%;
+    max-height: 550px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    float: left;
+    overflow: hidden;
+}
+#carouselExampleIndicators {
+    border: 4px solid rgb(233, 81, 81);
+    box-shadow: 0 5px 5px #000;
+}
+.d-block {
+    max-height: 550px;;
+}
+.carousel-indicators li {
+    background-color:white;
+    border: 2px solid rgb(233, 81, 81);
+}
+.carousel-indicators .active {
+    background-color: rgb(233, 81, 81);
+}
+.display {
+    width: 64%;
+    padding: 5px;
+    float: right;
+    min-height: 550px;
+	margin-top: 20px;
+	background: rgba(255, 255, 255, 0.3);
+}
+.activity {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin: 7 3;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+}
+
+.activity.title {
+    text-align: center;
+}
+
+.activity.body {
+
+}
+
+.activity.postauthor {
+    font-style: italic;
+}
+
+.activity.postdate {
+
+}
+
+.group {
+	color: white;
+}
+
+.group.name {
+    text-align: center;
+}
+
+.post {
+	color: white;
+}
+
+.scroll-left {
+    height: 40px;	
+    overflow: hidden;
+    position: relative;
+    background: none;
+}
+.scroll-left p {
+    color: yellow;
+    font-size: 150%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    /* Starting position */
+    -moz-transform:translateX(100%);
+    -webkit-transform:translateX(100%);	
+    transform:translateX(100%);
+    /* Apply animation to this element */	
+    -moz-animation: scroll-left 20s linear infinite;
+    -webkit-animation: scroll-left 20s linear infinite;
+    animation: scroll-left 20s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+    0%   { -moz-transform: translateX(100%); }
+    100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+    0%   { -webkit-transform: translateX(100%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+    0%   { 
+    -moz-transform: translateX(100%); /* Browser bug fix */
+    -webkit-transform: translateX(100%); /* Browser bug fix */
+    transform: translateX(100%); 		
+    }
+    100% { 
+    -moz-transform: translateX(-100%); /* Browser bug fix */
+    -webkit-transform: translateX(-100%); /* Browser bug fix */
+    transform: translateX(-100%); 
+    }
+}
+.postauthor {
+    font-style: italic;
+    font-size: 70%;
+}
+.postdate {
+    font-style: italic;
+    font-size: 70%;
+}
+.activity {
+    padding: 7px;
+}
+.title {
+    font-size: 140%;
+}
+.title a{
+    color: white;
+    font-weight: bold;
+}
+#my_posts h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.inner_activity {
+    width: 80%;
+    float: left;
+}
+.attending {
+    width: 20%;
+    float: right;
+    text-align: center;
+    border-left: 1px solid white;
+}
+.activity {
+    overflow: auto;
+}
+.activity::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.num_attend{
+    font-size: 30px;
+}
+#my_groups {
+    color: white;
+    text-align: center;
+}
+#my_groups h4 {
+    margin-top: 10px;
+}
+#my_groups a{
+    text-decoration: none;
+}
+#all_groups {
+    width: 45%;
+    float: left;
+    clear: left;
+    margin-left: 3%;
+}
+#followed_groups {
+    width: 45%;
+    float: right;
+    clear: right;
+    margin-right: 3%;
+}
+.group {
+    border-radius: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-top: 5px;
+}
+.group:hover {
+    border: 2px solid white;
+}
+
+/* Comment Page css */
+.comment_content {
+    border: 4px solid rgb(233, 81, 81);
+    width: 70%;
+    margin: 20px auto;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+textarea[name=comment_body]{
+    width: 86%;
+    height: 100px;
+    margin-left: 7%;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: rgb(59, 59, 59);
+}
+.comment_form input[type=submit]{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 10px;
+    color: rgb(59, 59, 59);
+}
+.reply_box input[type=submit]{
+    width: 20%;
+    margin-left: 10%;
+    margin-top: 10px;
+    color: rgb(59, 59, 59);
+}
+.comment {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    margin-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    padding: 5px;
+}
+.comment_section h1 {
+    border-bottom: 1px solid white;
+}
+.replybutton {
+    font-size: 12;
+}
+.attending form button, .feed_attendance form button {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 5px;
+}
+.attending form button {
+    color: rgb(59, 59, 59);
+}
