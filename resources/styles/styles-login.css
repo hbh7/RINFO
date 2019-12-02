@@ -2,6 +2,9 @@
 body {
     color: black;
 }
+#page_title{
+    color: white;
+}
 .tips {
     margin: 0;
     position: absolute;
