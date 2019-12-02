@@ -3,11 +3,6 @@ body {
 	color: white;
 }
 /* homepage css */
-/*The following block is for the activities box in group.php
-    not sure if this is what we wanted, but at least the text is readable for now*/
-#activity_content {
-    color: black;
-}
 #activity_content>ul>li {
     width: 100%;
     padding: 15px 0;

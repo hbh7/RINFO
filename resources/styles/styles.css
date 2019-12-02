@@ -57,6 +57,11 @@ h3 {
     float: right;
     margin-bottom: 0;
 }
+/*The following block is for the activities box in group.php (and a bunch of other things)
+    not sure if this is what we wanted, but at least the text is readable for now*/
+#activity_content {
+    color: black;
+}
 #content{
     width:85%;
     margin-left: auto;
