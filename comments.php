@@ -12,14 +12,16 @@
             $date = date('Y-m-d H:i:s', time());
 
             if ($body != "Enter Comment Here..." && $body != "Enter Reply Here...") {
-                $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]); 
-            } 
-        } 
+                $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]);
+            }
+        }
     }
 ?>
 
 <html lang="en">
     <head>
+        <!--TODO: edit title - idk what it should be-->
+        <?php $title = "Comments"; ?>
         <?php include('resources/templates/head.php'); ?>
         <?php
             if(isset($_GET["title"])) {
@@ -60,7 +62,7 @@
             ?>
         </div>
         <div class="comment_form">
-            <?php 
+            <?php
                 if (checkValidLogin() && isset($post)) {
                     echo "<form method='post' action='./comments.php?title=" . $title . "'>";
                     echo "<textarea name='comment_body' rows='8'>";
@@ -92,7 +94,7 @@
     // Function to print a comment
         function comment_print($comment, $post, $tabs) {
             $user = dbGet("firstname, lastname", "r_users", "user_id=" . $comment["user_id"]);
-            
+
             $spaces = 0;
             for ($i = 0; $i < $tabs; $i++)
                 $spaces += 50;
@@ -101,9 +103,9 @@
                 "<span class='body'>" . $comment["body"] . "</span><br />" .
                 "<span class='postauthor'>" . "Posted by " . $user[0]["firstname"] . " " . $user[0]["lastname"] . "</span>" .
                 "<span class='postdate'> on " . $comment["timestamp"] . "</span>";
-            if (checkValidLogin())  {   
+            if (checkValidLogin())  {
                 echo "<br><span class='replybutton'>" . "Reply</span>";
-                echo "<div class='reply_box' style='display: none;'>" . 
+                echo "<div class='reply_box' style='display: none;'>" .
                      "<form method='post' action='./comments.php?title=" .
                      $post["title"] . "'>" .
                      "<textarea name='comment_body' rows='5'>" .

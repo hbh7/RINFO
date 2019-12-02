@@ -1,22 +1,6 @@
-body {
-	margin: 0;
-	color: white;
-}
 /* homepage css */
  h2 {
 	color: white;
-}
- ul {
-    font-size: 150%;
-    list-style-type: none;
-    margin: auto;
-    padding: 0;
-    overflow: hidden;
-}
-
- li {
-	float: left;
-	width: 33.333%;
 }
 
 .display li a {
@@ -76,18 +60,10 @@ body {
 }
 .display {
     width: 64%;
-    padding: 5px;
     float: right;
     min-height: 550px;
 	margin-top: 20px;
 	background: rgba(255, 255, 255, 0.3);
-}
-.activity {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    margin: 7 3;
-    border: 2px solid rgba(0, 0, 0, 0);
-    border-radius: 5px;
 }
 
 .activity.title {
@@ -119,7 +95,7 @@ body {
 }
 
 .scroll-left {
-    height: 40px;	
+    height: 40px;
     overflow: hidden;
     position: relative;
     background: none;
@@ -135,9 +111,9 @@ body {
     text-align: center;
     /* Starting position */
     -moz-transform:translateX(100%);
-    -webkit-transform:translateX(100%);	
+    -webkit-transform:translateX(100%);
     transform:translateX(100%);
-    /* Apply animation to this element */	
+    /* Apply animation to this element */
     -moz-animation: scroll-left 20s linear infinite;
     -webkit-animation: scroll-left 20s linear infinite;
     animation: scroll-left 20s linear infinite;
@@ -152,60 +128,20 @@ body {
     100% { -webkit-transform: translateX(-100%); }
 }
 @keyframes scroll-left {
-    0%   { 
+    0%   {
     -moz-transform: translateX(100%); /* Browser bug fix */
     -webkit-transform: translateX(100%); /* Browser bug fix */
-    transform: translateX(100%); 		
+    transform: translateX(100%);
     }
-    100% { 
+    100% {
     -moz-transform: translateX(-100%); /* Browser bug fix */
     -webkit-transform: translateX(-100%); /* Browser bug fix */
-    transform: translateX(-100%); 
+    transform: translateX(-100%);
     }
-}
-.postauthor {
-    font-style: italic;
-    font-size: 70%;
-}
-.postdate {
-    font-style: italic;
-    font-size: 70%;
-}
-.activity {
-    padding: 7px;
-}
-.title {
-    font-size: 140%;
-}
-.title a{
-    color: white;
-    font-weight: bold;
 }
 #my_posts h3 {
     font-size: 30px;
     text-align: center;
-}
-
-.inner_activity {
-    width: 80%;
-    float: left;
-}
-.attending {
-    width: 20%;
-    float: right;
-    text-align: center;
-    border-left: 1px solid white;
-}
-.activity {
-    overflow: auto;
-}
-.activity::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-.num_attend{
-    font-size: 30px;
 }
 #my_groups {
     color: white;
@@ -228,66 +164,4 @@ body {
     float: right;
     clear: right;
     margin-right: 3%;
-}
-.group {
-    border-radius: 5px;
-    padding: 5px;
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    margin-top: 5px;
-}
-.group:hover {
-    border: 2px solid white;
-}
-
-/* Comment Page css */
-.comment_content {
-    border: 4px solid rgb(233, 81, 81);
-    width: 70%;
-    margin: 20px auto;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.3);
-}
-textarea[name=comment_body]{
-    width: 86%;
-    height: 100px;
-    margin-left: 7%;
-    margin-top: 10px;
-    border-radius: 10px;
-    color: rgb(59, 59, 59);
-}
-.comment_form input[type=submit]{
-    width: 20%;
-    margin-left: 40%;
-    margin-top: 10px;
-    color: rgb(59, 59, 59);
-}
-.reply_box input[type=submit]{
-    width: 20%;
-    margin-left: 10%;
-    margin-top: 10px;
-    color: rgb(59, 59, 59);
-}
-.comment {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-    margin-bottom: 5px;
-    border: 2px solid rgba(0, 0, 0, 0);
-    border-radius: 5px;
-    padding: 5px;
-}
-.comment_section h1 {
-    border-bottom: 1px solid white;
-}
-.replybutton {
-    font-size: 12;
-}
-.attending form button, .feed_attendance form button {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 10px;
-    padding: 5px;
-}
-.attending form button {
-    color: rgb(59, 59, 59);
 }

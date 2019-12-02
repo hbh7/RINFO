@@ -3,30 +3,6 @@ body {
 	color: white;
 }
 /* homepage css */
-#information {
-    color: white;
-    border-style: solid;
-    border-color: #df213a;
-    box-shadow: 0 5px 5px #000;
-    background: rgb(114, 114, 114);
-    width: 30%;
-    border-radius: 25px;
-    float: left;
-    margin-top: 60px;
-}
-#activity {
-    color: white;
-    border-style: solid;
-    border: none;
-    width: 65%;
-    float: right;
-    margin-bottom: 0;
-}
-/*The following block is for the activities box in group.php
-    not sure if this is what we wanted, but at least the text is readable for now*/
-#activity_content {
-    color: black;
-}
 #activity_content>ul>li {
     width: 100%;
     padding: 15px 0;
@@ -54,14 +30,6 @@ body {
     width: 95%;
     margin: auto;
     margin-bottom: 15px;
-}
-h3 {
-    width: 95%;
-    margin: 10px;
-    font-size: 250%;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid darkgrey;
 }
 #join {
     margin-top: 10px;

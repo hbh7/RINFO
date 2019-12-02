@@ -2,7 +2,6 @@
     <head>
         <?php $title = "Administration Homepage"; ?>
         <?php include('resources/templates/head.php'); ?>
-        <link rel="stylesheet" type="text/css" href="/resources/styles/styles-admin.css">
         <script src="/resources/scripts/admin.js" type="text/javascript" charset="utf-8" async defer></script>
     </head>
     <body>
