@@ -15,7 +15,7 @@
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li class="indicator active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                 <li class="indicator" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
