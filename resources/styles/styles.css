@@ -33,7 +33,7 @@ h2 {
     height: 0;
 }
 .display{
-    border: 2px solid #d6001c;
+    border: 2px solid rgb(233, 81, 81);
     box-shadow: 0 5px 5px #000;
     _height:50%;
     min-height:50%;
