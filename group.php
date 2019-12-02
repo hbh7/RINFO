@@ -1,7 +1,5 @@
 <?php
 
-include_once 'db.php';
-
 // Redirect back to homepage if there is no group id sent in the GET
 if(!isset($_GET['group_id'])) {
     header('Location: index.php');
@@ -14,6 +12,8 @@ if (isset($_GET['group_id'])) {
     $group_id = $_GET['group_id'];
 }
 //}
+
+include_once 'db.php';
 
 $group = dbGet("*", "r_groups", "group_id='" . $group_id . "'")[0];
 
@@ -31,8 +31,10 @@ if (isset($_POST['action'])) {
     }
 }
 
+
 $numSubscriptions = sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "'"));
 $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
+
 
 ?>
 

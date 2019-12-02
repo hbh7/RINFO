@@ -1,7 +1,5 @@
 <?php
 
-include_once 'db.php';
-
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -31,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if(isset($action)) {
 
     // DB Calls
+    include_once 'db.php';
     $users = dbGet("user_id, username, password, firstname, lastname, enabled", "r_users", "username='" . $username . "'");
 
     if ($action == "register") {

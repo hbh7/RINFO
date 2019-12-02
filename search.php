@@ -3,7 +3,7 @@
 <head>
     <?php $title = "Search"; ?>
     <?php include('resources/templates/head.php'); ?>
-    <link rel="stylesheet" type="text/css" href="/resources/styles/search_styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
