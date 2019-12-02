@@ -45,8 +45,8 @@ if(isset($action)) {
             if ($dbres == "success") {
                 // Generate default permissions
                 $user_id = dbGet("user_id", "r_users", "username='" . $username . "'")[0]["user_id"];
-                dbPut("r_permissions", [$user_id, $user_id, "post"]);
-                dbPut("r_permissions", [$user_id, $user_id, "createGroup"]);
+                dbPut("r_permissions", [$user_id, 0, "post"]);
+                dbPut("r_permissions", [$user_id, 0, "createGroup"]);
 
                 $result = [true, "Registered Successfully, Please log in"];
             } else {
