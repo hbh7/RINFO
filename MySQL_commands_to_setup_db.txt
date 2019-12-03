@@ -118,6 +118,14 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '5', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '7', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '8', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '1', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '3', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '4', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '5', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '6', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '7', 'admin');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '8', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '3', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '5', 'post');
