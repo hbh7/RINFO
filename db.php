@@ -75,7 +75,7 @@ function dbPut($tablename, $dbdata) {
 // $from: tablename. Ex: "r_posts"
 // $where: optional specifier. Ex: "user_id=3"
 // $search: only returns 5 items, can search for partial items
-function dbGet($select, $from, $where=null, $search=false) {
+function dbGet($select, $from, $where=null, $search=null) {
     $conn = dbConnect();
 
     if($where != null) {
@@ -84,17 +84,8 @@ function dbGet($select, $from, $where=null, $search=false) {
         $sql = "SELECT " . $select . " FROM " . $from;
     }
 
-    if($search) {
-        if (strpos($sql, 'r_groups') !== false) {
-            // If search is for groups
-            $sql .= " ORDER BY name asc LIMIT 10";
-        } elseif (strpos($sql, 'r_users') !== false) {
-            // If search is for users
-            $sql .= " ORDER BY firstname asc LIMIT 10";
-        } else {
-            // If search is for posts
-            $sql .= " ORDER BY title asc LIMIT 10";
-        }
+    if($search != null) {
+        $sql .= " ORDER BY " . $search;
     }
 
     $sql  .= ";";

@@ -74,7 +74,7 @@
                     // I'm gonna tentatively veto this idea - they are not the same generators and creating php to
                     //      dynamically generate php that dynamically generates html is one too many layers of abstraction for me
                     // also why don't you use heredoc? it looks about 4.5 orders of magnitude nicer :)
-                    $posts = dbGet("*", "r_posts");
+                    $posts = dbGet("*", "r_posts", null, "timestamp desc");
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                         $postgroupname = dbGet("name", "r_groups", "group_id=" . $post["group_id"])[0]["name"];
