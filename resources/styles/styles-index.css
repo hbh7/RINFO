@@ -177,4 +177,9 @@
     height: 100%;
     overflow-y: scroll;
 }
-
+.postgroup {
+    font-size: 12px;
+}
+.postgroup a, .postgroup a:visited{
+    color: white;
+}
