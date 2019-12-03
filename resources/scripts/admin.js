@@ -146,9 +146,11 @@ $(document).ready(function () {
                     header.innerText = "Users matching query:";
                     output.appendChild(header);
                     data["user"].forEach(function (d) {
-                        var newelem = document.createElement("span");
+                        var container = document.createElement("div");
+                        container.classList.add("userOptions");
+                        var newelem = document.createElement("h6");
                         newelem.innerText = d["firstname"] + " " + d["lastname"] + " - " + d["username"];
-                        output.appendChild(newelem);
+                        container.appendChild(newelem);
 
                         /* create buttons for actions */
                         newelem = document.createElement("button");
@@ -156,30 +158,30 @@ $(document).ready(function () {
                         newelem.class = "userPermissionBtn";
                         newelem.innerText = "Promote User";
                         newelem.onclick = "";
-                        output.appendChild(newelem);
+                        container.appendChild(newelem);
 
                         newelem = document.createElement("button");
                         newelem.type = "button";
                         newelem.class = "userPermissionBtn";
                         newelem.innerText = "Demote User";
                         newelem.onclick = "";
-                        output.appendChild(newelem);
+                        container.appendChild(newelem);
 
                         newelem = document.createElement("button");
                         newelem.type = "button";
                         newelem.class = "userPermissionBtn";
                         newelem.innerText = "Ban User";
                         newelem.onclick = "";
-                        output.appendChild(newelem);
+                        container.appendChild(newelem);
 
                         newelem = document.createElement("button");
                         newelem.type = "button";
                         newelem.class = "userPermissionBtn";
                         newelem.innerText = "Delete User";
                         newelem.onclick = "";
-                        output.appendChild(newelem);
+                        container.appendChild(newelem);
 
-                        output.appendChild(document.createElement("br"));
+                        output.appendChild(container);
                     });
                 }
 

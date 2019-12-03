@@ -79,10 +79,14 @@
                                     $permissions = dbGet("group_id", "r_permissions", "user_id='" . getUserID() . "' AND description='admin'");
                                     foreach ($permissions as $permission) {
                                         $groupName = dbGet("name", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["name"];
+                                        $tagline = dbGet("tagline", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["tagline"];
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
-                                        <form action="/newgroup.php" method="get">
+                                        <form action="/newgroup.php" method="post">
                                             <h4>{$groupName}</h4>
+                                            <input type="hidden" name="name" value="{$groupName}">
+                                            <input type="hidden" name="tagline" value="{$tagline}">
+                                            <input type="hidden" name="group_id" value="{$permission['group_id']}">
                                             <input type="submit" name="editGroup" value="Edit Group">
                                         </form>
 HTML;
@@ -106,14 +110,14 @@ HTML;
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
                             <!--TODO: implement change profile pic, change password, username-->
-                            <form action="" method="post">
+                            <form action="" method="post" class="yourAccount">
                                 <h4>Edit Profile Picture</h4>
                                 <input type="file" name="pic" accept="image/*">
                                 <br />
                                 <input type="submit" name="submitPicture" value="Change Picture">
                                 <input type="submit" name="deletePicture" value="Delete Current Picture">
                             </form>
-                            <form action="" method="post">
+                            <form action="" method="post" class="yourAccount">
                                 <h4>Change Name</h4>
                                 <input type="text" name="firstName" value="<?php echo $firstname;?>">
                                 <br />
@@ -121,13 +125,13 @@ HTML;
                                 <br />
                                 <input type="submit" name="submitName" value="Change Name">
                             </form>
-                            <form action="" method="post">
+                            <form action="" method="post" class="yourAccount">
                                 <h4>Change Email</h4>
                                 <input type="text" name="email" value="<?php echo $user["email"];?>">
                                 <br />
                                 <input type="submit" name="submitEmail" value="Change Email">
                             </form>
-                            <form action="" method="post">
+                            <form action="" method="post" class="yourAccount">
                                 <h4>Change Password</h4>
                                 <input type="text" name="oldPass" placeholder="Old Password">
                                 <br />

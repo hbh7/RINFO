@@ -96,3 +96,20 @@ div#list-user_permissions input {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+div.userOptions {
+    padding-bottom: 12px;
+}
+div.userOptions>button {
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.yourAccount {
+    //
+}
+
+.yourAccount>input {
+    margin-bottom: 4px;
+}
+.yourAccount>input[type=submit] {
+    border-radius: 3px;
+}
