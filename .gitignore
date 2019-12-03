@@ -8,3 +8,8 @@ user_content/users/*
 !user_content/users/sisman.png
 user_content/groups/*
 !user_content/groups/rpisec.jpg
+!user_content/groups/strut.jpg
+!user_content/groups/trudge.jpg
+!user_content/groups/skiteam.jpg
+!user_content/groups/rcos.png
+!user_content/groups/partialcredit.png
