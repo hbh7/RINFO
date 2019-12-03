@@ -95,7 +95,9 @@ HTML;
                             <!--TODO: implement a (watered-down) user search - nothing fancy required
                                     because there is no way im listing out every single user and forcing an admin to spend an hour scrolling or forcing them to use ctrl+f (first option is torture, second option is tacky)
                                 it's passable with the admin messages because there shouldnt be that many of them anyway and theoretically they are all important, but there's no cap on the potential number of users-->
-                            <input type="text" name="userIdentifier" placeholder="Enter username or email address" size="35px"></input>
+                            <!--TODO: implement a way to search for partial names as well (right now only usernames are supported)-->
+                            <input id="searchtextbox" type="text" name="userIdentifier" placeholder="Enter username" size="35px"></input>
+                            <div id="results"></div>
                         </div>
 
 

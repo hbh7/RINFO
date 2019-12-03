@@ -114,3 +114,91 @@ function deleteMessage(elem) {
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~End functions for admin messages~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions for user permissions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* this is a simplified/slightly modified version of the code that powers search.php */
+
+$(document).ready(function () {
+
+    document.getElementById("searchtextbox").addEventListener("input",  function () {
+
+        clearResults();
+
+        //console.log("Searching...");
+        var searchText = document.getElementById("searchtextbox").value;
+        //console.log(searchText);
+
+        if(searchText !== "") {
+
+            var searchAreas = JSON.stringify(["group_name", "group_tagline", "post_title", "post_body", "user"]);
+
+            $.getJSON("db.php?searchtext=" + searchText + "&searchareas=" + searchAreas, function (data) {
+
+                var output = document.getElementById("results");
+                console.log(data);
+
+                if(data["user"].length > 0) {
+                    var header = document.createElement("h3");
+                    header.innerText = "Users matching query:";
+                    output.appendChild(header);
+                    data["user"].forEach(function (d) {
+                        var newelem = document.createElement("span");
+                        newelem.innerText = d["firstname"] + " " + d["lastname"] + " - " + d["username"];
+                        output.appendChild(newelem);
+
+                        /* create buttons for actions */
+                        newelem = document.createElement("button");
+                        newelem.type = "button";
+                        newelem.class = "userPermissionBtn";
+                        newelem.innerText = "Promote User";
+                        newelem.onclick = "";
+                        output.appendChild(newelem);
+
+                        newelem = document.createElement("button");
+                        newelem.type = "button";
+                        newelem.class = "userPermissionBtn";
+                        newelem.innerText = "Demote User";
+                        newelem.onclick = "";
+                        output.appendChild(newelem);
+
+                        newelem = document.createElement("button");
+                        newelem.type = "button";
+                        newelem.class = "userPermissionBtn";
+                        newelem.innerText = "Ban User";
+                        newelem.onclick = "";
+                        output.appendChild(newelem);
+
+                        newelem = document.createElement("button");
+                        newelem.type = "button";
+                        newelem.class = "userPermissionBtn";
+                        newelem.innerText = "Delete User";
+                        newelem.onclick = "";
+                        output.appendChild(newelem);
+
+                        output.appendChild(document.createElement("br"));
+                    });
+                }
+
+                if(output.childElementCount === 0) {
+                    var header = document.createElement("h3");
+                    header.innerText = "No results found";
+                    output.appendChild(header);
+                }
+            });
+        }
+    });
+
+});
+
+function clearResults() {
+    var output = document.getElementById("results");
+    while (output.firstChild) {
+        output.removeChild(output.firstChild);
+    }
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~End functions for user permissions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
