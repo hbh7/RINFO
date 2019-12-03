@@ -77,7 +77,8 @@
                     $posts = dbGet("*", "r_posts", null, "timestamp desc");
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
-                        $postgroupname = dbGet("name", "r_groups", "group_id=" . $post["group_id"])[0]["name"];
+                        if ($post["group_id"] != 0) 
+                            $postgroupname = dbGet("name", "r_groups", "group_id=" . $post["group_id"])[0]["name"];
                         
                         if ($post["attendance"]) {
                             $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
@@ -88,9 +89,12 @@
                             "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                            "<span class='postdate'> on " . $post["timestamp"] . "</span><br>" .
-                            "<span class='postgroup'>to <a href='./group.php?group_id=" . $post["group_id"] . "'>" . $postgroupname . "</a></span>" .
-                            "</div>";
+                            "<span class='postdate'> on " . $post["timestamp"] . "</span><br>";
+                        if ($post["group_id"] != 0) {
+                            echo "<span class='postgroup'>to <a href='./group.php?group_id=" . $post["group_id"] . "'>" . $postgroupname . "</a></span>";
+                        }
+                        echo "</div>";
+
 
                         if ($post["attendance"]) {
                             echo "<div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
