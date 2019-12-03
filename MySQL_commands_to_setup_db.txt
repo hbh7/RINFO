@@ -144,7 +144,10 @@ INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance)
 VALUES('5', '5', 'Strut Practice', 'Ultimate frisbee practice will be happeneing on Anderson Field in the snow tonight!', '2019-12-03 10:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('5', '5', 'Tournament Interest Poll', 'Please respond to this post if you plan on attending the upcoming tournament on December 25th! Christmas Frisbee!!!', '2019-12-01 16:2:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('5', '5', 'Have a Happy Winter Break!', 'Hey Strut! I hope you all have a great thanksgiving break. Have fun seeing your family and take a well deserved break if you can afford to.', '2019-11-27 15:20:00', false);
-
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) 
+VALUES('6', '4', 'Training Trip', 'The training trip this year will be from January 6-9. We will leave campus at 3:00pm and arrive at the Air B&B around 5. We will load skis into the cars in the mornings and ski during the day. The first half of each day will be spent with a coach working on technique in the gates. The second half will be directed free skiing. We will do slalom on the first two days and giant slalom on the last two. Total cost will be aroun $300 and can be charged to your bursar.', '2019-11-29 17:00:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) 
+VALUES('6', '4', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'This is a sample alert!', '2019-10-30 20:18:57');
 
