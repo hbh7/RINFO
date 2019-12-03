@@ -90,7 +90,7 @@ INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('etha
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('lanyatest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Lanya', 'Xiang', 'lanya@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('giotest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Gio', 'Tremari', 'gio@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('huntertest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Hunter', 'Harris', 'hunter@rpi.edu');
-INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('zhaoxitest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Zhaoxi', 'Xiang', 'zhaoxi@rpi.edu');
+INSERT INTO r_users(username, password, firstname, lastname, email) VALUES('zhaoxitest', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'Zhaoxi', 'Sun', 'zhaoxi@rpi.edu');
 INSERT INTO r_users(username, password, firstname, lastname, email, logo) VALUES('sisman', '$2y$10$u.484SFpXia7mT5gAXXzuOELikh8ejR9QKEbUrTzneCyCim7e7ot6', 'SIS', 'Man', 'sisman@rpi.edu', 'user_content/users/sisman.png');
 
 /* INSERT GROUPS */
