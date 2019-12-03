@@ -133,7 +133,7 @@ INSERT INTO r_subscriptions(user_id, group_id) VALUES ('7','1'),('7','2'),('7','
 
 /* INSERT POSTS */
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'RPISEC Weekly Meeting', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-15 09:34:21', true);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'Meeting Reschedule', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'Meeting Reschedule', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-17 15:35:20', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '5', 'Capture The Flag', 'CTF Competition from Tue, 3 Dec. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-11-30 20:18:57', false);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '3', 'Wizard of Ahhs Fall Show', 'Come see Partial Credit perform at the Chapel and Cultural Center on Saturday, November 24th at 8:00pm', '2019-11-20 20:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '3', 'Rehearsal', 'Partial Credit rehearsal will be from 7-9pm in the DCC on Tuesdays for the remainder of the semester.', '2019-12-01 08:00:00', false);
@@ -165,6 +165,9 @@ INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('8'
 INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('10','3','0','no u','2019-11-27 16:20:00'), ('10','8','20','no YOU','2019-11-27 16:21:00');
 INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('12','3','0','I can\'t make it but I hope you guys have fun! Ski hard!','2019-12-02 10:00:00'), ('12','5','0','Hooray! Let\'s get to skiiiiiing!','2019-12-02 11:00:00'), ('12','7','23','Shred the gnar','2019-12-02 12:00:00');
 INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('11','3','0','I\'m out for the season with a torn ACL but I hope you guys have fun and learn a lot about skiing! See you all next season.','2019-11-30 10:00:00'), ('11','7','0','I\'m new to the tea but I think this will be a fun trip!','2019-11-30 11:00:00'), ('11','3','26','It will definitely be a fun trip, don\'t worry, you\'ll see.','2019-11-30 11:30:00'), ('11','5','26','It really will be. You should totally come!','2019-11-30 11:32:00'), ('11','7','28','WELL I\'M convinced','2019-11-30 11:38:00');
+INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('1','6','0','I can\'t make this one, sorry guys.','2019-10-16 22:00:00'), ('1','8','0','The meeting has been rescheduled. Please check the more recent post.','2019-10-17 22:00:00'), ('1','6','31','Will do!','2019-10-17 22:20:00');
+INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('2','6','0','I CAN make this one, thanks for the reschedule.','2019-10-18 10:00:00'), ('2','8','33','Glad to hear it Hunter!','2019-10-19 22:00:00');
+INSERT INTO r_comments (post_id, user_id, reply_id, body, timestamp) VALUES ('3','4','0','What a classic game.','2019-11-30 20:30:00'), ('3','7','0','I can\'t wait to steal your guys\' flag ooooOOOoOOoOOOo.','2019-11-30 20:30:00');
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'School is closed Monday due to excessive snow!', '2019-10-30 20:18:57');
 
