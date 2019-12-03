@@ -5,7 +5,10 @@
         <script src="/resources/scripts/admin.js" type="text/javascript" charset="utf-8" async defer></script>
     </head>
     <body>
-        <?php include('resources/templates/header.php'); ?>
+        <?php
+            include('resources/templates/header.php');
+            $user = dbGet("*", "r_users", "user_id='" . $id . "'")[0];
+        ?>
         <!--A scroll to top button-->
         <button type="button" name="toTop" id="toTop" onclick="toTop();">Top</button>
         <div id="content">
@@ -43,13 +46,12 @@
 
                                 $posts = dbGet("*", "r_alerts");
 
-                                echo "<ul class='timeline'>";
                                 foreach ($posts as $post) {
 
                                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
 
-                                    echo "<li><div class='feed_item'><div class='feed_info'>" .
-                                        "<span class='smaller' class='body'>" . $post["body"] . "</span><br />" .
+                                    echo "<li><div class='feed_info'>" .
+                                        "<span class='body'>" . $post["body"] . "</span><br />" .
                                         "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span><br />" .
                                         "<button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button>" .
@@ -58,7 +60,6 @@
 
                                     echo "</li>";
                                 }
-                                echo "</ul>";
 
                                 ?>
                             </ul>
@@ -101,7 +102,37 @@ HTML;
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
                             <!--TODO: implement change profile pic, change password, username-->
-                            <span>bleh here's some text</span>
+                            <form action="" method="post">
+                                <h4>Edit Profile Picture</h4>
+                                <input type="file" name="pic" accept="image/*">
+                                <br />
+                                <input type="submit" name="submitPicture" value="Change Picture">
+                                <input type="submit" name="deletePicture" value="Delete Current Picture">
+                            </form>
+                            <form action="" method="post">
+                                <h4>Change Name</h4>
+                                <input type="text" name="firstName" value="<?php echo $firstname;?>">
+                                <br />
+                                <input type="text" name="lastName" value="<?php echo $lastname;?>">
+                                <br />
+                                <input type="submit" name="submitName" value="Change Name">
+                            </form>
+                            <form action="" method="post">
+                                <h4>Change Email</h4>
+                                <input type="text" name="email" value="<?php echo $user["email"];?>">
+                                <br />
+                                <input type="submit" name="submitEmail" value="Change Email">
+                            </form>
+                            <form action="" method="post">
+                                <h4>Change Password</h4>
+                                <input type="text" name="oldPass" placeholder="Old Password">
+                                <br />
+                                <input type="text" name="newPass" placeholder="New Password">
+                                <br />
+                                <input type="text" name="newPass" placeholder="Re-enter new password">
+                                <br />
+                                <input type="submit" name="submitPassword" value="Change Password">
+                            </form>
                         </div>
                     </div>
                 </div>
