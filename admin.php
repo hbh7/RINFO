@@ -32,6 +32,7 @@
 
                         <div class="tab-pane fade show active" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
                             <h2>Admin Messages</h2>
+                            <!--TODO: editing and then clearing a message destroys formatting - fix this-->
                             <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
                             <h4>Create a message</h4>
                             <form id="postAdminMessage">
@@ -68,6 +69,7 @@
 
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Groups You're Admin Of</h2>
+                            <!--TODO: Groups you are an admin of do not actually get listed-->
                             <ul class="tab-content-ul" id="your_groups-ul">
                                 <form method="get" action="/newgroup.php" id="createNewGroup">
                                     <input type="submit" name="newGroup" value="Create New Group">
