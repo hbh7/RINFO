@@ -42,13 +42,13 @@
                     <img class="d-block w-100" src="resources/images/example3.png" alt="Third slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example1.jpg" alt="Fourth slide">
+                    <img class="d-block w-100" src="resources/images/example4.jpg" alt="Fourth slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example2.jpg" alt="Fifth slide">
+                    <img class="d-block w-100" src="resources/images/example5.jpg" alt="Fifth slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="resources/images/example3.png" alt="Sixth slide">
+                    <img class="d-block w-100" src="resources/images/example6.jpeg" alt="Sixth slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
