@@ -72,15 +72,15 @@
                                     <input type="submit" name="newGroup" value="Create New Group">
                                 </form>
                                 <?php
-                                    //TODO: replace 4 \/ with the number of groups that the current user is an admin of
-                                    for ($i = 0; $i < 7 ; $i++) {
+
+                                    $permissions = dbGet("group_id", "r_permissions", "user_id='" . getUserID() . "' AND description='admin'");
+                                    foreach ($permissions as $permission) {
+                                        $groupName = dbGet("name", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["name"];
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
                                         <form action="/newgroup.php" method="get">
-                                            <!--TODO: load group names from the database-->
-                                            <h4>Group {$i}</h4>
-                                            <!--TODO: name and value attributes subject to...a better name (php variables can be used in heredoc when enclosed by curly braces!)-->
-                                            <input type="submit" name="editGroup" value="Edit Group {$i}">
+                                            <h4>{$groupName}</h4>
+                                            <input type="submit" name="editGroup" value="Edit Group">
                                         </form>
 HTML;
                                     }
