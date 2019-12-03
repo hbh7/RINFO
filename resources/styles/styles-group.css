@@ -158,9 +158,6 @@ a.list-group-item.list-group-item-action.active {
 }
 .feed_attendance {
     width: 15%;
-    padding-left: 20px;
-    margin-top: 5px;
-    margin-right: 15px;
     float: right;
 }
 .attendance {
@@ -170,4 +167,7 @@ a.list-group-item.list-group-item-action.active {
     text-align: center;
     width: 80%;
     font-size: 150%;
+}
+.smaller{
+    font-size: 1vw;
 }
