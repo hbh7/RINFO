@@ -78,6 +78,7 @@
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                         $postgroupname = dbGet("name", "r_groups", "group_id=" . $post["group_id"])[0]["name"];
+                        
                         if ($post["attendance"]) {
                             $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
                             $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
