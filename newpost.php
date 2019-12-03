@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <option value="self">Self</option>
                         </select>
                         <label for="attendance_checkbox">Count Attendances?</label>
-                        <input id="attendance_checkbox" type="checkbox" name="attendance" class="form-control">
+                        <input id="attendance_checkbox" type="checkbox" name="attendance">
                         <div class="help-block with-errors"></div>
                     </div>
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">
