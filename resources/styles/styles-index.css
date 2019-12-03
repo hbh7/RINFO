@@ -183,3 +183,6 @@
 .postgroup a, .postgroup a:visited{
     color: white;
 }
+.smalltext {
+    font-size: 1vw;
+}
