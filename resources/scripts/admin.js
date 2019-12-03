@@ -66,15 +66,15 @@ function submitMessage(elem) {
 
 //TODO: maybe add a transition? it looks kind of jarring imo
 function makeEditMessage(elem) {
-    var listElem = elem.parentElement;
-    var listElemText = removeButtonText(listElem.innerText);
-    listElem.innerHTML = "<textarea class='editAdminMessage' onfocus='textAreaAdjust(this)' style='overflow:hidden' name='message' maxlength='560' required>"+listElemText+"</textarea><br />\
+    var divElem = elem.parentElement;
+    var divElemText = divElem.firstChild.innerText;
+    divElem.innerHTML = "<textarea class='editAdminMessage' onfocus='textAreaAdjust(this)' style='overflow:hidden' name='message' maxlength='560' required>"+divElemText+"</textarea><br />\
                           <input class='submitButton editAdminMessageSubmit' type='button' name='submit' value='Submit Changes'>\
                           <input class='submitButton cancelEdit' type='button' name='submit' value='Cancel Edit'>";
     //TODO: write some php to accept this and post it to the database and then return what it just posted
     $(".editAdminMessageSubmit").on("click", function(event) {
-        var listElem = event.target.parentElement;
-        var textareatext = listElem.firstElementChild.value;
+        var divElem = event.target.parentElement;
+        var textareatext = divElem.firstElementChild.value;
         $.ajax({
             url: 'somefile.php',
             type: 'POST',
@@ -82,14 +82,14 @@ function makeEditMessage(elem) {
         }).done(function(result, status, xhr) {
             // I expect the server to throw back the string I just sent it (sanitized please!!!), so that I can recreate the
             //  list element that was on the page before the editing started
-            listElem.innerHTML = result + "<br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
+            divElem.innerHTML = result + "<br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
         }).fail(function(jqXHR) {
             alert("Something went wrong! Failed to edit message.\n" + jqXHR.status + ": " + jqXHR.statusText);
         });
     });
     $(".cancelEdit").on("click", function(event) {
-        var listElem = event.target.parentElement;
-        listElem.innerHTML = listElemText + "<br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
+        var divElem = event.target.parentElement;
+        divElem.innerHTML = "<span class='body'>" + divElemText + "</span><br /><span>" + "" + "</span><span>" + "" + "</span><br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
     });
 }
 
