@@ -118,8 +118,8 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '5', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '7', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '8', 'post');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('4', '3', 'post');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('4', '6', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '3', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '5', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('6', '4', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'post');
@@ -136,15 +136,15 @@ INSERT INTO r_subscriptions(user_id, group_id) VALUES ('7','1'),('7','2'),('7','
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'RPISEC Weekly Meeting', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-15 09:34:21', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'Meeting Reschedule', 'Club Meeting next week rescheduled to Monday Oct 28 from 5-7', '2019-10-30 15:35:20', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '5', 'Capture The Flag', 'CTF Competition from Tue, 3 Dec. 2019, 10:00 UTC - Thu, 24 Oct. 2019, 10:00 UTC', '2019-11-30 20:18:57', false);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '4', 'Wizard of Ahhs Fall Show', 'Come see Partial Credit perform at the Chapel and Cultural Center on Saturday, November 24th at 8:00pm', '2019-11-20 20:00:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '3', 'Wizard of Ahhs Fall Show', 'Come see Partial Credit perform at the Chapel and Cultural Center on Saturday, November 24th at 8:00pm', '2019-11-20 20:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '3', 'Rehearsal', 'Partial Credit rehearsal will be from 7-9pm in the DCC on Tuesdays for the remainder of the semester.', '2019-12-01 08:00:00', false);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '4', 'Music Video Release', 'Check out Partial Credit\'s new music video at https://www.youtube.com/user/PartialCreditRPI/featured', '2019-12-02 10:00:00', false);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('3', '3', 'Music Video Release', 'Check out Partial Credit\'s new music video at https://www.youtube.com/user/PartialCreditRPI/featured', '2019-12-02 10:00:00', false);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('4', '6', 'Trudge Practice', 'Ultimate frisbee practice will be happeneing on Anderson Field in the snow tonight!', '2019-12-03 10:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('4', '6', 'Tournament Interest Poll', 'Please respond to this post if you plan on attending the upcoming tournament on December 25th! Christmas Frisbee!!!', '2019-12-01 16:30:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('5', '5', 'Strut Practice', 'Ultimate frisbee practice will be happeneing on Anderson Field in the snow tonight!', '2019-12-03 10:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('5', '5', 'Have a Happy Winter Break!', 'Hey Strut! I hope you all have a great thanksgiving break. Have fun seeing your family and take a well deserved break if you can afford to.', '2019-11-27 15:20:00', false);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '4', 'Training Trip', 'The training trip this year will be from January 6-9. We will leave campus at 3:00pm and arrive at the Air B&B around 5. We will load skis into the cars in the mornings and ski during the day. The first half of each day will be spent with a coach working on technique in the gates. The second half will be directed free skiing. We will do slalom on the first two days and giant slalom on the last two. Total cost will be aroun $300 and can be charged to your bursar.', '2019-11-29 17:00:00', true);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '4', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '3', 'Training Trip', 'The training trip this year will be from January 6-9. We will leave campus at 3:00pm and arrive at the Air B&B around 5. We will load skis into the cars in the mornings and ski during the day. The first half of each day will be spent with a coach working on technique in the gates. The second half will be directed free skiing. We will do slalom on the first two days and giant slalom on the last two. Total cost will be aroun $300 and can be charged to your bursar.', '2019-11-29 17:00:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '3', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('2', '8', 'What is RCOS', 'RCOS stands for Rensselaer Center for Open Source. Wow.', '2018-12-26 23:23:00', false);
 
 /* INSERT ATTENDANCES */
