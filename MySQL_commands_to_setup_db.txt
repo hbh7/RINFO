@@ -121,6 +121,7 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('4', '3', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('4', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '5', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('6', '4', 'post');
+INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'post');
 
 
 /* INSERT SUBSCRIPTIONS */
@@ -146,8 +147,8 @@ INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUE
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('5', '5', 'Have a Happy Winter Break!', 'Hey Strut! I hope you all have a great thanksgiving break. Have fun seeing your family and take a well deserved break if you can afford to.', '2019-11-27 15:20:00', false);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) 
 VALUES('6', '4', 'Training Trip', 'The training trip this year will be from January 6-9. We will leave campus at 3:00pm and arrive at the Air B&B around 5. We will load skis into the cars in the mornings and ski during the day. The first half of each day will be spent with a coach working on technique in the gates. The second half will be directed free skiing. We will do slalom on the first two days and giant slalom on the last two. Total cost will be aroun $300 and can be charged to your bursar.', '2019-11-29 17:00:00', true);
-INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) 
-VALUES('6', '4', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '4', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
+INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('2', '8', 'What is RCOS', 'RCOS stands for Rensselaer Center for Open Source. Wow.', '2018-12-26 23:23:00', false);
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'This is a sample alert!', '2019-10-30 20:18:57');
 
