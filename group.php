@@ -87,7 +87,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     TODO: Move this into the database, and make it so it can be changed online-->
             </div>
             <?php //check permissions
-            if(!checkPermission(getUserID(), "post")) {
+            if(checkValidLogin() && checkPermission($group["group_id"], "post")) {
                 echo <<<HTML
                 <a class="list-group-item list-group-item-action" id="new_post" href="newpost.php?destination={$group['name']}" role="tab" aria-controls="add_post">Add New Post</a>
 HTML;

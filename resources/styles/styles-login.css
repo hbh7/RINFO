@@ -88,3 +88,10 @@ label, p {
 h1 {
     color: white;
 }
+h4 {
+    text-align: center;
+    border-bottom: 1px solid darkgrey;
+    font-size: 28px;
+    padding: 10px;
+    color: rgb(59, 59, 59);
+}

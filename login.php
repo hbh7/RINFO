@@ -126,7 +126,7 @@ if(isset($action)) {
                 <p id="errors">
                     <?php
                     if(isset($result)) {
-                        echo $result[1];
+                        echo "<h4>".$result[1]."</h4>";
                     }
                     ?>
                 </p>
