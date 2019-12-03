@@ -148,17 +148,16 @@ a.list-group-item.list-group-item-action.active {
 }
 .feed_info {
     float: left;
-    width: 82%;
-}
-.attendance_based {
-    border-right: 1px solid darkgrey;
+    width: 75%;
 }
 .feed_item:hover {
   border: 2px solid #ffffff;
 }
 .feed_attendance {
-    width: 15%;
+    width: 20%;
     float: right;
+    padding-left: 10px;
+    border-left: 1px solid darkgrey;
 }
 .attendance {
     display: inline-block;
