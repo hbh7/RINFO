@@ -110,7 +110,6 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '0', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('6', '0', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('7', '0', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '0', 'post');
-
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '1', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '3', 'post');
@@ -125,14 +124,13 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '5', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('6', '4', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'post');
 
-
 /* INSERT SUBSCRIPTIONS */
 INSERT INTO r_subscriptions(user_id, group_id) VALUES ('8','1'),('8','2'),('8','3'),('8','4'),('8','5'),('8','6');
-INSERT INTO r_subscriptions(user_id, group_id) VALUES ('4','3'),('4','4'),('4','5'),('4','6');
-INSERT INTO r_subscriptions(user_id, group_id) VALUES ('5','1'),('5','2'),('5','5');
-INSERT INTO r_subscriptions(user_id, group_id) VALUES ('6','1'),('6','4'),('6','6');
-INSERT INTO r_subscriptions(user_id, group_id) VALUES ('7','1'),('7','2');
-INSERT INTO r_subscriptions(user_id, group_id) VALUES ('8','1'),('8','2'),('8','6');
+INSERT INTO r_subscriptions(user_id, group_id) VALUES ('3,'3'),('3','4'),('3','5'),('3','6');
+INSERT INTO r_subscriptions(user_id, group_id) VALUES ('4','1'),('4','2'),('4','5');
+INSERT INTO r_subscriptions(user_id, group_id) VALUES ('5','1'),('5','4'),('5','6');
+INSERT INTO r_subscriptions(user_id, group_id) VALUES ('6','1'),('6','2');
+INSERT INTO r_subscriptions(user_id, group_id) VALUES ('7','1'),('7','2'),('7','6');
 
 /* INSERT POSTS */
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('1', '8', 'RPISEC Weekly Meeting', 'Club Meeting in CII 4050 on Friday Oct 18 from 5:00pm to 7:00pm', '2019-10-15 09:34:21', true);
@@ -149,6 +147,10 @@ INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUE
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '4', 'Training Trip', 'The training trip this year will be from January 6-9. We will leave campus at 3:00pm and arrive at the Air B&B around 5. We will load skis into the cars in the mornings and ski during the day. The first half of each day will be spent with a coach working on technique in the gates. The second half will be directed free skiing. We will do slalom on the first two days and giant slalom on the last two. Total cost will be aroun $300 and can be charged to your bursar.', '2019-11-29 17:00:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('6', '4', 'First Training Practice', 'Be at the horseshoe in front of the Union to load the vehicles at 4:30pm on Thursday. We will be training on West Mountain and expect to be home by 10pm.', '2019-12-01 14:23:00', true);
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('2', '8', 'What is RCOS', 'RCOS stands for Rensselaer Center for Open Source. Wow.', '2018-12-26 23:23:00', false);
+
+/* INSERT ATTENDANCES */
+INSERT INTO r_attendances(post_id, user_id) VALUES ('4', '3'),;
+INSERT INTO r_attendances(post_id, user_id) VALUES ('4', '4'),('7', '4'),('8', '4'),('10', '4'),('12', '4'),('13', '4');
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'School is closed Monday due to excessive snow!', '2019-10-30 20:18:57');
 
