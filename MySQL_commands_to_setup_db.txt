@@ -149,8 +149,8 @@ INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUE
 INSERT INTO r_posts(group_id, user_id, title, body, timestamp, attendance) VALUES('2', '8', 'What is RCOS', 'RCOS stands for Rensselaer Center for Open Source. Wow.', '2018-12-26 23:23:00', false);
 
 /* INSERT ATTENDANCES */
-INSERT INTO r_attendances(post_id, user_id) VALUES ('4', '3'),;
-INSERT INTO r_attendances(post_id, user_id) VALUES ('4', '4'),('7', '4'),('8', '4'),('10', '4'),('12', '4'),('13', '4');
+INSERT INTO r_attendances(post_id, user_id) VALUES ('8', '3');
+INSERT INTO r_attendances(post_id, user_id) VALUES ('4', '3'),('7', '3'),('8', '3'),('10', '3'),('12', '3'),('13', '3');
 
 INSERT INTO r_alerts(user_id, body, timestamp) VALUES('1', 'School is closed Monday due to excessive snow!', '2019-10-30 20:18:57');
 
