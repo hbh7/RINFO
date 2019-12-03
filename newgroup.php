@@ -12,33 +12,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             die();
         }
         */
-
-        // Check if any groups exist with the same name
-        $arr = dbGet("name", "r_groups");
-        $unique = true;
-        foreach ($arr as $a) {
-            if ($a["name"] == $_POST["name"]) {
-                $unique = false;
-                break;
+        if (!isset($_POST["editGroup"])) {
+            // Check if any groups exist with the same name
+            $arr = dbGet("name", "r_groups");
+            $unique = true;
+            foreach ($arr as $a) {
+                if ($a["name"] == $_POST["name"]) {
+                    $unique = false;
+                    break;
+                }
             }
-        }
-        if ($unique) {
+            if ($unique) {
 
-            include 'upload.php';
-            $imagePath = processUpload($_FILES["fileUpload"], "groups", $_POST["name"]);
+                include 'upload.php';
+                $imagePath = processUpload($_FILES["fileUpload"], "groups", $_POST["name"]);
 
-            // TODO: Change "public" to read in a public/private value from form
-            dbPut("r_groups", [$_POST["name"], $_POST["name"], $imagePath, "public"]);
-            // TODO: Add the new group to the user's subscriptions
+                // TODO: Change "public" to read in a public/private value from form
+                dbPut("r_groups", [$_POST["name"], $_POST["name"], $imagePath, "public"]);
+                // TODO: Add the new group to the user's subscriptions
 
-            $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
+                $groupID = dbGet("*", "r_groups", "name='" . $_POST["name"] . "'")[0]["group_id"];
 
-            // TODO: Implement a popup system so we can display "Group added successfully!" or something
-            header("Location: /group.php?group_id=" . $groupID);
-            die();
-        } else {
-            // Throw an error that the group name isn't unique. TODO: Improve this
-            echo "Error, your group name isn't unique";
+                // TODO: Implement a popup system so we can display "Group added successfully!" or something
+                header("Location: /group.php?group_id=" . $groupID);
+                die();
+            } else {
+                // Throw an error that the group name isn't unique. TODO: Improve this
+                echo "Error, your group name isn't unique";
+            }
         }
     } else {
         header("Location: /login.php?redirectmsg=You must be logged in to do that!");
