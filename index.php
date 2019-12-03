@@ -77,6 +77,7 @@
                     $posts = dbGet("*", "r_posts");
                     foreach ($posts as $post) {
                         $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
+                        $postgroupname = dbGet("name", "r_groups", "group_id=" . $post["group_id"])[0]["name"];
                         if ($post["attendance"]) {
                             $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
                             $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
@@ -86,7 +87,8 @@
                             "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                            "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                            "<span class='postdate'> on " . $post["timestamp"] . "</span><br>" .
+                            "<span class='postgroup'>to <a href='./group.php?group_id=" . $post["group_id"] . "'>" . $postgroupname . "</a></span>" .
                             "</div>";
 
                         if ($post["attendance"]) {
