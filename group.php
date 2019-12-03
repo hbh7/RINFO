@@ -52,7 +52,14 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
         <div id="information">
             <div id="information_content" class="content">
                 <h3 id="group_name"><?php echo $group["name"]; ?></h3>
-                <img id="group_logo" src="<?php echo $group["logo"] ?>" alt="Group Logo">
+                <?php
+                $iconPath = $group["logo"];
+                if($iconPath != "" && file_exists($iconPath)) {
+                    echo "<img id = 'group_logo' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'Group Logo' >";
+                } else {
+                    echo "<img id = 'group_logo' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'Group Logo' >";
+                }
+                ?>
                 <div id="users_info">
                     <img id="users_logo" src="resources/images/users.png" /> <!-- TODO: Needs alt tag -->
                     <p id="Nusers" class="Ndetails"><?php echo $numSubscriptions; ?> users</p>

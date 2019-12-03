@@ -16,7 +16,6 @@
                 echo "<span id='logintext'> Logged in as " . $firstname . " " . $lastname . " </span>";
                 if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
                     $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
-                    error_log($iconPath);
                     if($iconPath != "" && file_exists($iconPath)) {
                         $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
                     } else {
