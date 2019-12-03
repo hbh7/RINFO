@@ -220,7 +220,8 @@ textarea[name=comment_body]{
 .attending form button {
     color: rgb(59, 59, 59);
 }
-.comment {
+.smalltext {
+    font-size: 1vw;
 }
 .comment span.body{
     word-wrap: break-word;
