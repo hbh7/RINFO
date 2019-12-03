@@ -9,7 +9,17 @@
 <body>
     <?php include('resources/templates/header.php'); ?>
     <div class="scroll-left">
-        <p>EMERGENCY ALERT</p>
+        <?php
+        $alerts = dbGet("*", "r_alerts");
+        if(sizeof($alerts) > 0) {
+            echo "<p>";
+            foreach ($alerts as $alert) {
+                echo " EMERGENCY ALERT: " . $alert["body"];
+            }
+            echo "</p>";
+        }
+
+        ?>
     </div>
     <div id="homepage_content">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
