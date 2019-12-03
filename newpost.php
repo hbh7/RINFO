@@ -1,4 +1,9 @@
 <?php
+include_once 'db.php';
+if(!checkValidLogin()) {
+    header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+    die();
+}
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
