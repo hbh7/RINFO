@@ -1,7 +1,7 @@
 /* some functions for the admin page */
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~functions for Top button~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-// check if viewport is more than 100 pixels away from the top
+// check if viewport is more than 300 pixels away from the top
 
 var toTopBtn = document.getElementById("toTop");
 window.onscroll = function() {checkLocation()};

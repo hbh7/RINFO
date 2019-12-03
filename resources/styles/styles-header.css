@@ -40,6 +40,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    align-content: center;
 }
 #page_title {
     margin-top: 20px;
@@ -74,6 +75,20 @@ h1 {
     width: 50%;
     flex-basis: 100%;
 }
+@media (max-width: 976.36px) {
+    /* CSS that should be displayed if width is equal to or less than 976.36px goes here */
+  #logintext {
+    margin-right: 55px;
+  }
+}
+@media (max-width: 863.636px) {
+  #logintext {
+    margin-right: 0;
+  }
+  #user_icon {
+    max-width: 100%;
+  }
+}
 
 .btn {
     width: 10%;
@@ -81,8 +96,8 @@ h1 {
 }
 /* the next block overrides bootstrap for the search button */
 .mx-3 {
-    margin-left: 0.66rem!important;
-    margin-right: 0.66rem!important;
+    margin-left: 0!important;
+    margin-right: 0!important;
 }
 #user_profile {
     margin-right: 10px;
