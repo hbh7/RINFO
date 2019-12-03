@@ -95,7 +95,7 @@ INSERT INTO r_users(username, password, firstname, lastname, email, logo) VALUES
 
 /* INSERT GROUPS */
 INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('RPISEC', 'RPISEC is the resident computer security club at RPI. We are a student-run organization which was founded to provide resources for students interested in exploring the world of computer security.', 'user_content/groups/rpisec.jpg', 'public');
-INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)', 'user_content/groups/rcos.jpg', 'public');
+INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('RCOS', 'RCOS is for making cool apps (not unlike this one)', 'user_content/groups/rcos.png', 'public');
 INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('Partial Credit', 'Partial Credit is one of RPI\'s four a cappella groups. Established in 2003, this co-ed group enjoys singing music of all kinds.','user_content/groups/partialcredit.png', 'public');
 INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('Trudge', 'Ten Really Ugly Dudes Getting Even, the RPI men\'s ultimate disc club is the school\'s premier sporting team. They can throw that plastic around like nobody\'s business!', 'user_content/groups/trudge.jpg', 'public');
 INSERT INTO r_groups(name, tagline, logo, visibility) VALUES('Strut', 'Strut is the RPI women\'s ultimate disc club and is the school\'s second premier sporting team. They can throw that plastic around like nobody\'s business!', 'user_content/groups/strut.jpg', 'public');
