@@ -149,32 +149,34 @@
                         if (sizeof($posts) == 0) {
                             echo "<h3>You haven't made any posts!</h3><br />";
                         } else {
-                            $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
-                            if ($post["attendance"]) {
-                                $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
-                                $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
-                            }
-
-                            echo "<div class='activity'><div class='inner_activity'>" .
-                                "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
-                                "<span class='body'>" . $post["body"] . "</span><br />" .
-                                "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
-                                "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
-                                "</div>";
-
-                            if ($post["attendance"]) {
-                                echo "<div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
-                                if ($attend == 1) {
-                                    echo "style='color: rgb(233, 81, 81);'";
+                            foreach ($posts as $post) {
+                                $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
+                                if ($post["attendance"]) {
+                                    $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
+                                    $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
                                 }
-                                 echo ">" .
-                                "<span class='num_attend'>" . count($attendances) .
-                                "</span><br><span class='smalltext'>attending</span>"
-                                ."</button>" .
-                                "<input type='hidden' name='p_id' value='" . $post["post_id"] . "''>" .
-                                "</form></div>";
+
+                                echo "<div class='activity'><div class='inner_activity'>" .
+                                    "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
+                                    "<span class='body'>" . $post["body"] . "</span><br />" .
+                                    "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
+                                    "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
+                                    "</div>";
+
+                                if ($post["attendance"]) {
+                                    echo "<div class='attending'><form method='post'><button type='submit' class='btn btn-light' name='toggle_attendance'";
+                                    if ($attend == 1) {
+                                        echo "style='color: rgb(233, 81, 81);'";
+                                    }
+                                     echo ">" .
+                                    "<span class='num_attend'>" . count($attendances) .
+                                    "</span><br><span class='smalltext'>attending</span>"
+                                    ."</button>" .
+                                    "<input type='hidden' name='p_id' value='" . $post["post_id"] . "''>" .
+                                    "</form></div>";
+                                }
+                                echo "</div>";
                             }
-                            echo "</div>";
                         }
                     } else {
                         echo "<span class='name'>You'll need to be logged in to see your posts</span><br />";
