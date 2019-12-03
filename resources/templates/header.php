@@ -11,9 +11,18 @@
 
             if (checkValidLogin()) {
                 $firstname = json_decode($_COOKIE["login"], true)["firstname"];
+                $lastname = json_decode($_COOKIE["login"], true)["lastname"];
                 $id = getUserID();
-                echo "<span id='logintext'> Logged in as " . $firstname . " </span>";
+                echo "<span id='logintext'> Logged in as " . $firstname . " " . $lastname . " </span>";
                 if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
+                    $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
+                    error_log($iconPath);
+                    if($iconPath != "" && file_exists($iconPath)) {
+                        $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
+                    } else {
+                        $icon = "<img id = 'user_icon' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'User Picture' >";
+                    }
+
                     echo <<<HTML
                     <button id="search" class="btn btn-light" onclick="window.location='search.php'">
                         <a class="text-muted">
@@ -25,13 +34,8 @@
                     <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
                     <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
                     <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
-                        <img id="user_icon" src="resources/images/icon1.png" title="User Profile Icon" alt="User">
+                        {$icon}
                     </a>
-                    <!-- <div id="user_image">
-                        <a href="#" onclick="window.location='user.php?user_id={$id}';">
-                            <img id="user_icon" src="resources/images/icon1.png" title="User Profile Icon" alt="User">
-                        </a>
-                    </div> -->
     </div>
 HTML;
                 }
