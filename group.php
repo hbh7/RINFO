@@ -105,7 +105,7 @@ HTML;
                 foreach ($posts as $post) {
                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
                     $attendances = dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "'");
-                    $comment_link = "./comments.php?title=" . $post["title"];
+                    $comment_link = "./post.php?post_id=" . $post["post_id"];
                     $attend = count(dbGet("*", "r_attendances", "post_id='" . $post["post_id"] . "' AND user_id='" . getUserID() . "'"));
 
                     echo "<li><div class='feed_item'><div class='feed_info attendance_based'>" . //if attendance required, used class "attendance_based"

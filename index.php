@@ -86,7 +86,7 @@
                         }
 
                         echo "<div class='activity'><div class='inner_activity'>" .
-                            "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
+                            "<span class='title'><a href=\"./post.php?post_id=" . $post["post_id"] . "\">" . $post["title"] . "</a></span><br />" .
                             "<span class='body'>" . $post["body"] . "</span><br />" .
                             "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                             "<span class='postdate'> on " . $post["timestamp"] . "</span><br>";
@@ -161,7 +161,7 @@
                                 }
 
                                 echo "<div class='activity'><div class='inner_activity'>" .
-                                    "<span class='title'><a href=\"./comments.php?title=" . $post["title"] . "\">" . $post["title"] . "</a></span><br />" .
+                                    "<span class='title'><a href=\"./post.php?post_id=" . $post["post_id"] . "\">" . $post["title"] . "</a></span><br />" .
                                     "<span class='body'>" . $post["body"] . "</span><br />" .
                                     "<span class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                                     "<span class='postdate'> on " . $post["timestamp"] . "</span>" .
