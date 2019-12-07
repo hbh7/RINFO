@@ -23,10 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
 }
 
-// Data validation
-// TODO: Make sure username and password are strings of appropriate length for the db and that they have normal characters only
-// TODO: Make sure capitalization is nice for firstname and lastname
-
 if(isset($action)) {
 
     $errors = [];
