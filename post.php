@@ -1,5 +1,7 @@
 <?php
 
+include_once 'db.php';
+
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset( $_GET['post_id'])) {
@@ -12,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     echo "Error: You need to provide the correct parameter(s) for this page to work";
     die();
 }
-
-include_once 'db.php';
 
 $post = dbGet("*", "r_posts", "post_id='" . $post_id . "'")[0];
 // TODO: Handle invalid ID
