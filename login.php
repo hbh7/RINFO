@@ -1,5 +1,7 @@
 <?php
 
+include_once 'db.php';
+
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = sanitizeInput($_POST['username']);
@@ -27,55 +29,126 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if(isset($action)) {
 
-    // DB Calls
-    include_once 'db.php';
+    $errors = [];
+
     $users = dbGet("user_id, username, password, firstname, lastname, enabled", "r_users", "username='" . $username . "'");
 
     if ($action == "register") {
 
-        // Make sure they're not already registered
-        if (sizeof($users) > 0) {
-            // User already exists in the database
-            $result = [false, "Already Registered"];
-        } else {
-            // Register them if not
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
-            if ($dbres == "success") {
-                // Generate default permissions
-                $user_id = dbGet("user_id", "r_users", "username='" . $username . "'")[0]["user_id"];
-                dbPut("r_permissions", [$user_id, 0, "post"]);
-                dbPut("r_permissions", [$user_id, 0, "createGroup"]);
+        // Validate data:
+        // First Name
+        if(strlen($firstname) > 128) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["firstname"] = "First name is too long";
+        }
+        if(!ctype_alpha($firstname)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["firstname"] = "First name contains non letters";
+        }
+        if(strlen($firstname == 0)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["firstname"] = "First name cannot be empty";
+        }
+        
+        // Last Name
+        if(strlen($lastname) > 128) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["lastname"] = "Last name is too long";
+        }
+        if(!ctype_alpha($lastname)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["lastname"] = "Last name contains non letters";
+        }
+        if(strlen($lastname == 0)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["lastname"] = "Last name cannot be empty";
+        }
+        
+        // Email
+        if(strlen($email) > 256) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["email"] = "eMail is too long";
+        }
+        if(strlen($email == 0)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["email"] = "eMail cannot be empty";
+        }
+        if(strlen($email < 5)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["email"] = "eMail cannot be that short";
+        }
+        
+        // Username
+        if(strlen($username) > 32) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["username"] = "Username is too long";
+        }
+        if(!ctype_alnum($username)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["username"] = "Username contains non alphanumeric characters";
+        }
+        if(strlen($username == 0)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["username"] = "Username cannot be empty";
+        }
+        
+        // Password
+        if(strlen($password) > 256) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["password"] = "Password is too long";
+        }
+        if(strlen($password) < 16) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["password"] = "Password cannot be bad (too short)";
+        }
+        if(strlen($password == 0)) {
+            $result = [false, "Failed to register: Some items require your attention"];
+            $errors["password"] = "Password cannot be empty";
+        }
 
-                $result = [true, "Registered Successfully, Please log in"];
+        // If everything validated:
+        if(sizeof($errors) == 0) {
+
+            // Make sure they're not already registered
+            if (sizeof($users) > 0) {
+                // User already exists in the database
+                $result = [false, "Already Registered"];
             } else {
-                $result = [false, "Failed to register. Error: " . $dbres];
-            }
+                // Register them if not
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $dbres = dbPut("r_users", [$username, $hash, $firstname, $lastname, $email]);
+                if ($dbres == "success") {
+                    // Generate default permissions
+                    $user_id = dbGet("user_id", "r_users", "username='" . $username . "'")[0]["user_id"];
+                    dbPut("r_permissions", [$user_id, 0, "post"]);
+                    dbPut("r_permissions", [$user_id, 0, "createGroup"]);
 
+                    $result = [true, "Registered Successfully, Please log in"];
+                } else {
+                    $result = [false, "Failed to register. Error: " . $dbres];
+                }
+
+            }
+        } else {
+            $action = "registerpage";
         }
 
     } elseif ($action == "login") {
 
         if(sizeof($users) == 0) {
-            $result = [false, "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <strong>Failed to log in:</strong>  Invalid User and/or Password!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span></button></div>"];
+            // Invalid user
+            $result = [false, "Failed to log in: Invalid username and/or password!"];
         } else {
 
             // Make sure they're not disabled/banned
             if($users[0]["enabled"] == false) {
-                $result = [false, "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                <strong>Failed to log in:</strong>  Account is disabled!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span></button></div>"];
+                $result = [false, "Failed to log in: Account is disabled!"];
 
             } else {
 
                 $dbhash = $users[0]['password'];
                 if (password_verify($password, $dbhash)) {
                     // Success!
-                    $result = [true, "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <strong>Successful Login!</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span></button></div>"];
 
                     // Setting cookie
                     $loginCookie = ["username" => $username, "passwordHash" => $dbhash, "firstname" => $users[0]['firstname'], "lastname" => $users[0]['lastname']];
@@ -85,10 +158,8 @@ if(isset($action)) {
                     header("Location: /index.php");
                     die();
                 } else {
-                    // Invalid credentials or unknown user
-                    $result = [false, "<div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                <strong>Failed to log in:</strong>  Invalid User and/or Password!<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                <span aria-hidden='true'>&times;</span></button></div>"];
+                    // Invalid credentials
+                    $result = [false, "Failed to log in: Invalid username and/or password!"];
                 }
             }
         }
@@ -126,37 +197,36 @@ if(isset($action)) {
                 <p id="errors">
                     <?php
                     if(isset($result)) {
-                        echo "<h4>".$result[1]."</h4>";
+                        echo "<div class='alert alert-warning alert-dismissible fade show' role='alert'>" .$result[1]."<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
                     }
                     ?>
                 </p>
                 <form method="post" id="login_box" action="login.php">
                 <?php
                 if(isset($action) && $action == "registerpage") {
-                    echo "
-                    <label for=\"firstname\">First Name </label><input type=\"text\" name=\"firstname\" id=\"firstname\" value=\"\" placeholder=\"SIS\">
-                    <br /><br />
-                    <label for=\"lastname\">Last Name </label><input type=\"text\" name=\"lastname\" id=\"lastname\" value=\"\" placeholder=\"Man\">
-                    <br /><br />
-                    <label for=\"email\">Email </label><br><input type=\"text\" name=\"email\" id=\"email\" value=\"\" placeholder=\"sisman@rpi.edu\">
-                    <br /><br />
-                    <label for=\"username\">Username </label><input type=\"text\"  name=\"username\" id=\"username\" value=\"\" placeholder=\"sisman\">
-                    <br /><br />
-                    <label for=\"password\">Password (Don't forget it!)</label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
-                    <br /><br />
-                    <button type=\"submit\" id=\"register_button\" name=\"action\" value=\"register\">Register</button>
-                    ";
+                    echo "<label for='firstname'>First Name </label><input type='text' name='firstname' id='firstname' value='' placeholder='SIS'><br />";
+                    if(isset($errors["firstname"])) { echo "<p> " . $errors["firstname"] . "</p>"; }
+                    echo "<br /><label for='lastname'>Last Name </label><input type='text' name='lastname' id='lastname' value='' placeholder='Man'><br />";
+                    if(isset($errors["lastname"])) { echo "<p> " . $errors["lastname"] . "</p>"; }
+                    echo "<br /><label for='email'>eMail </label><br><input type='text' name='email' id='email' value='' placeholder='sisman@rpi.edu'><br />";
+                    if(isset($errors["email"])) { echo "<p> " . $errors["email"] . "</p>"; }
+                    echo "<br /><label for='username'>Username </label><input type='text'  name='username' id='username' value='' placeholder='sisman'><br />";
+                    if(isset($errors["username"])) { echo "<p> " . $errors["username"] . "</p>"; }
+                    echo "<br /><label for='password'>Password (Don't forget it!)</label><input type='password' name='password' id='password' value='' placeholder='************'><br />";
+                    if(isset($errors["password"])) { echo "<p> " . $errors["password"] . "</p>"; }
+                    echo "<br /><button type='submit' id='register_button' name='action' value='register'>Register</button>";
+
                 } else {
                     echo "
-                    <label for=\"username\">Username </label><input type=\"text\" name=\"username\" id=\"username\" value=\"\" placeholder=\"sisman\">
+                    <label for='username'>Username </label><input type='text' name='username' id='username' value='' placeholder='sisman'>
                     <br /><br />
-                    <label for=\"password\">Password </label><input type=\"password\" name=\"password\" id=\"password\" value=\"\" placeholder=\"************\">
+                    <label for='password'>Password </label><input type='password' name='password' id='password' value='' placeholder='************'>
                     <br /><br />
-                    <button type=\"submit\" id=\"login_button\" class=\"btn btn-secondary\" name=\"action\" value=\"login\">Log In</button>
+                    <button type='submit' id='login_button' class='btn btn-secondary' name='action' value='login'>Log In</button>
                     <br /><br />
-                    <button type=\"submit\" id=\"forgot_password_button\" class=\"btn btn-secondary\" name=\"action\" value=\"forgot\">Forgot Password?</button>
+                    <button type='submit' id='forgot_password_button' class='btn btn-secondary' name='action' value='forgot'>Forgot Password?</button>
                     <br /><br />
-                    <button type=\"submit\" id=\"register_button\" class=\"btn btn-secondary\" name=\"action\" value=\"registerpage\">Don't have an account? </br>Click here to join</button>
+                    <button type='submit' id='register_button' class='btn btn-secondary' name='action' value='registerpage'>Don't have an account? </br>Click here to join</button>
                     ";
                 }
                 ?>

@@ -13,7 +13,7 @@ CHARSET 'utf8';
 CREATE TABLE r_users(
    user_id INT NOT NULL AUTO_INCREMENT,
    username VARCHAR(32) NOT NULL,
-   password VARCHAR(128) NOT NULL,
+   password VARCHAR(256) NOT NULL,
    firstname VARCHAR(128) NOT NULL,
    lastname VARCHAR(128) NOT NULL,
    email VARCHAR(256) NOT NULL,

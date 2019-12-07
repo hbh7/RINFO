@@ -1,5 +1,7 @@
 <?php
 
+include_once 'db.php';
+
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['user_id'])) {
@@ -12,8 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     echo "Error: You need to provide the correct parameter(s) for this page to work";
     die();
 }
-
-include_once 'db.php';
 
 $user = dbGet("*", "r_users", "user_id='" . $user_id . "'")[0];
 // TODO: Verify valid user ID
