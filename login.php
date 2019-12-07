@@ -2,22 +2,22 @@
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $action = $_POST['action'];
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
+    $action = sanitizeInput($_POST['action']);
 
     if(isset($_POST['firstname']))
-        $firstname = $_POST['firstname'];
+        $firstname = sanitizeInput($_POST['firstname']);
     if(isset($_POST['lastname']))
-        $lastname = $_POST['lastname'];
+        $lastname = sanitizeInput($_POST['lastname']);
     if(isset($_POST['email']))
-        $email = $_POST['email'];
+        $email = sanitizeInput($_POST['email']);
 }
 
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset( $_GET['redirectmsg'])) {
-        $result = [False, $_GET['redirectmsg']];
+        $result = [False, sanitizeInput($_GET['redirectmsg'])];
     }
 }
 
@@ -130,7 +130,7 @@ if(isset($action)) {
                     }
                     ?>
                 </p>
-                <form method="post" id="login_box">
+                <form method="post" id="login_box" action="login.php">
                 <?php
                 if(isset($action) && $action == "registerpage") {
                     echo "

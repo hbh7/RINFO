@@ -2,23 +2,18 @@
 
 // Redirect back to homepage if there is no group id sent in the GET
 if(!isset($_GET['group_id'])) {
-    header('Location: index.php');
+    header('Location: index.php'); // TODO: Alert message like post.php has, and no redirect
     die();
+} else {
+    $group_id = sanitizeInput($_GET['group_id']);
 }
-
-// Get GET data
-//if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-if (isset($_GET['group_id'])) {
-    $group_id = $_GET['group_id'];
-}
-//}
 
 include_once 'db.php';
 
 $group = dbGet("*", "r_groups", "group_id='" . $group_id . "'")[0];
 
 if (isset($_POST['action'])) {
-    $action = $_POST['action'];
+    $action = sanitizeInput($_POST['action']);
     if (checkValidLogin()) {
         if ($action == "join") {
             dbPut("r_subscriptions", [getUserID(), $group_id]);

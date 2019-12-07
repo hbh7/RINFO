@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         date_default_timezone_set('America/New_York');
         $date = date('Y-m-d H:i:s', time());
-        if ($_POST['where'] == "self") {
+        if (sanitizeInput($_POST['where']) == "self") {
             $where = 0;
 
             if (!checkPermission(0, "post")) {
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 die();
             }
         } else {
-            $where = dbGet("group_id", "r_groups", "name='" . $_POST['where'] . "'")[0]["group_id"];
+            $where = dbGet("group_id", "r_groups", "name='" . sanitizeInput($_POST['where']) . "'")[0]["group_id"];
 
             if(!checkPermission($where, "post")) {
                 header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $count_attendance = 0;
         }
 
-        $result = dbPut("r_posts", [$where, getUserID(), $_POST["title"], $_POST["body"], $date, $count_attendance]);
+        $result = dbPut("r_posts", [$where, getUserID(), sanitizeInput($_POST["title"]), sanitizeInput($_POST["body"]), $date, $count_attendance]);
 
         if ($result == "success") {
             // TODO: Implement a popup system so we can display "Group added successfully!" or something
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="controls">
                     <div class="form-group">
                         <label for="form_title">Post Title</label>
-                        <input id="form_title" type="text" name="title" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
+                        <input id="form_title" type="text" name="title" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -87,12 +87,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
                         <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required."  value="<?php if (isset($_POST['name'])) echo $_POST['name']; else if (isset($_GET['destination'])) echo $_GET['destination']; ?>">
+                        <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); else if (isset($_GET['destination'])) echo sanitizeInput($_GET['destination']); ?>">
                             <?php
                             include_once('db.php');
                             $results = dbGet("name", "r_groups");
                             if (isset($_GET['destination'])) {
-                                $destination = $_GET["destination"];
+                                $destination = sanitizeInput($_GET["destination"]);
                                 foreach ($results as $result) {
                                     if ($result["name"] == $destination) {
                                         echo "<option value='" . $result["name"] . "''>";

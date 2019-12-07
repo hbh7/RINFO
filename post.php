@@ -3,7 +3,7 @@
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if(isset( $_GET['post_id'])) {
-        $post_id = $_GET['post_id'];
+        $post_id = sanitizeInput($_GET['post_id']);
     } else {
         echo "Error: You need to provide the correct parameter(s) for this page to work";
         die();
@@ -16,9 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 include_once 'db.php';
 
 $post = dbGet("*", "r_posts", "post_id='" . $post_id . "'")[0];
+// TODO: Handle invalid ID
 
-if (isset( $_POST['action'])) {
-    if($_POST['action'] == "comment") {
+if (isset($_POST['action'])) {
+    if(sanitizeInput($_POST['action']) == "comment") {
         if (checkValidLogin()) {
             // TODO: Comment code
             // something like dbPut( comments, [user id, body, etc] )
@@ -26,7 +27,7 @@ if (isset( $_POST['action'])) {
             header("Location: /login.php?redirectmsg=You must be logged in to do that!");
             die();
         }
-    } elseif($_POST['action'] == "attend") {
+    } elseif(sanitizeInput($_POST['action']) == "attend") {
         if (checkValidLogin()) {
             // TODO: attendance code
             // something like dbPut( attendances, [user id, etc] )

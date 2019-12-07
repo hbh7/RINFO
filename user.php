@@ -3,7 +3,7 @@
 // Get GET data
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (isset($_GET['user_id'])) {
-        $user_id = $_GET['user_id'];
+        $user_id = sanitizeInput($_GET['user_id']);
     } else {
         echo "Error: You need to provide the correct parameter(s) for this page to work";
         die();
@@ -16,9 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 include_once 'db.php';
 
 $user = dbGet("*", "r_users", "user_id='" . $user_id . "'")[0];
+// TODO: Verify valid user ID
 
 if (isset($_POST['action'])) {
-    $action = $_POST['action'];
+    $action = sanitizeInput($_POST['action']);
     if (checkValidLogin()) {
         if ($action == "join") {
             dbPut("r_subscriptions", [getUserID(), $user_id]);
@@ -58,6 +59,7 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                 <h3 id="email"><?php echo $user["email"]; ?></h3>
                     <!-- <p id="Nusers"><?php echo $numSubscriptions; ?> users</p>
                 <p id="Nposts"><?php echo $numPosts; ?> posts</p> -->
+                <!-- TODO: Find out what this is about, and delete the stuff below)
                     <form method="post">
                         <?php
                         if (getUserID() != $user_id) {

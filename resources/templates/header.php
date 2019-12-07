@@ -61,15 +61,16 @@ HTML;
     //      the key 'displayPopup' in a GET request to any page with this header included
     if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
         // displayPopup exists and it has some value (the message) - generate the popup
+        $displayPopup = sanitizeInput($_GET['displayPopup']);
         echo <<< HTML
                     <div id="popupParent">
                         <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2
                             because it seems like a popup would have important info, but
                             not h1 important if ya know what I mean) -->
-                        <h2 id="popupChild">{$_GET['displayPopup']}</h2>
+                        <h2 id="popupChild">{$displayPopup}</h2>
                         <!-- Needed to get the parent div to have the correct width (absolutely
                             positioned elements are technically not in the document flow) -->
-                        <h2 id="hideMe">{$_GET['displayPopup']}</h2>
+                        <h2 id="hideMe">{$displayPopup}</h2>
                     </div>
                     <script>
                         // idk how long you want the popup to stay on the screen for

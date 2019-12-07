@@ -8,22 +8,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $output = [];
         $areas = [];
         if(isset($_GET['searchareas'])) {
-            $areas = json_decode($_GET['searchareas']);
+            $areas = json_decode(sanitizeInput($_GET['searchareas']));
         }
         if(in_array("group_name", $areas)) {
-            $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . $_GET['searchtext'] . "%'", true);
+            $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
         }
         if(in_array("group_tagline", $areas)) {
-            $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "visibility='public' AND tagline LIKE '%" . $_GET['searchtext'] . "%'", true);
+            $output["group_tagline"] = dbGet("name, tagline, group_id", "r_groups", "visibility='public' AND tagline LIKE '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
         }
         if(in_array("post_title", $areas)) {
-            $output["post_title"] = dbGet("r_posts.title, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND title LIKE '%" . $_GET['searchtext'] . "%'", true);
+            $output["post_title"] = dbGet("r_posts.title, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND title LIKE '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
         }
         if(in_array("post_body", $areas)) {
-            $output["post_body"] = dbGet("r_posts.title, r_posts.body, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND body LIKE '%" . $_GET['searchtext'] . "%'", true);
+            $output["post_body"] = dbGet("r_posts.title, r_posts.body, r_posts.post_id, r_posts.group_id, r_posts.user_id, r_groups.visibility", "r_posts RIGHT JOIN r_groups on r_posts.group_id = r_groups.group_id", "r_groups.visibility='public' AND body LIKE '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
         }
         if(in_array("user", $areas)) {
-            $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname LIKE '%" . $_GET['searchtext'] . "%' or lastname like '%" . $_GET['searchtext'] . "%' or username like '%" . $_GET['searchtext'] . "%'", true);
+            $output["user"] = dbGet("user_id, firstname, lastname, username", "r_users", "firstname LIKE '%" . sanitizeInput($_GET['searchtext']) . "%' or lastname like '%" . sanitizeInput($_GET['searchtext']) . "%' or username like '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
         }
         echo json_encode($output);
 
@@ -169,7 +169,6 @@ function checkValidLogin() {
     if(!isset($_COOKIE["login"])) {
         return false;
     } else {
-        //print_r(json_decode($_COOKIE["login"], true));
         $users = dbGet("username, password", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
         if (sizeof($users) > 0) {
             // User found, check password
@@ -216,6 +215,14 @@ function getUserID() {
         return null;
     $users = dbGet("user_id", "r_users", "username='" . json_decode($_COOKIE["login"], true)["username"] . "'");
     return $users[0]["user_id"];
+}
+
+// Use to clean up any data from the user
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 function dbConnect() {

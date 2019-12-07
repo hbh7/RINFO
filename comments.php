@@ -4,10 +4,10 @@
         include_once 'db.php';
 
         if(checkValidLogin()) {
-            $user_id = $_POST["user_id"];
-            $post_id = $_POST["post_id"];
-            $reply_id = $_POST["reply_id"];
-            $body = $_POST["comment_body"];
+            $user_id = sanitizeInput($_POST["user_id"]);
+            $post_id = sanitizeInput($_POST["post_id"]);
+            $reply_id = sanitizeInput($_POST["reply_id"]);
+            $body = sanitizeInput($_POST["comment_body"]);
             date_default_timezone_set('America/New_York');
             $date = date('Y-m-d H:i:s', time());
 
