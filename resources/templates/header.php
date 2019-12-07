@@ -62,34 +62,6 @@ HTML;
     if (isset($_GET['displayPopup']) && !is_null($_GET['displayPopup'])) {
         // displayPopup exists and it has some value (the message) - generate the popup
         echo <<< HTML
-                    <style>
-                        #popupParent {
-                            position: fixed;
-                            display: inline-block;
-                            padding: 2px;
-                            top: 15%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                        }
-                        #popupParent, #popupChild {
-                            text-align: center;
-                            /* just an arbitrary value - should ideally be the
-                                largest z-index of any element on any page */
-                            z-index: 987;
-
-                        }
-                        #popupChild {
-                            border: 2px solid black;
-                            border-radius: 5px;
-                            background-color: rgba(233, 81, 81, 0.6);
-                            padding: inherit;
-                        }
-                        #hideMe {
-                            visibility: hidden;
-                            height: 0;
-                            float: left;
-                        }
-                    </style>
                     <div id="popupParent">
                         <!-- These 2 elements could be anything, BUT THEY MUST BE THE SAME (I chose h2
                             because it seems like a popup would have important info, but
