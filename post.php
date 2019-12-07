@@ -16,7 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 $post = dbGet("*", "r_posts", "post_id='" . $post_id . "'")[0];
-// TODO: Handle invalid ID
+if(sizeof($group) != 1) {
+    echo "Error: Invalid group ID";
+    die();
+} else {
+    $group = $group[0];
+}
 
 if (isset($_POST['action'])) {
     if(sanitizeInput($_POST['action']) == "comment") {

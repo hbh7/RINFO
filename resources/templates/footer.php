@@ -4,6 +4,7 @@
             <span> Made by Team Tokabo </span>
             <span> Web Systems and Development Semester Project </span>
             <span><a id="site_map" href="#"> Site Map </a></span>
+            <!-- TODO: Site map link does not work -->
         </footer>
     </div>
 </nav>

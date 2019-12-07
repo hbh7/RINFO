@@ -15,7 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     die();
 }
 
-$group = dbGet("*", "r_groups", "group_id='" . $group_id . "'")[0];
+$group = dbGet("*", "r_groups", "group_id='" . $group_id . "'");
+if(sizeof($group) != 1) {
+    echo "Error: Invalid group ID";
+    die();
+} else {
+    $group = $group[0];
+}
 
 if (isset($_POST['action'])) {
     $action = sanitizeInput($_POST['action']);
@@ -31,10 +37,8 @@ if (isset($_POST['action'])) {
     }
 }
 
-
 $numSubscriptions = sizeof(dbGet("subscription_id", "r_subscriptions", "group_id='" . $group_id . "'"));
 $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
-
 
 ?>
 
