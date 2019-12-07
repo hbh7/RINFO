@@ -86,9 +86,6 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                     ?>
                 </form>
                 <p id="tagline"><?php echo $group["tagline"]; ?></p>
-                <!-- <p><a href="https://rpis.ec/">Website Link</a></p>
-                    <p><a href="https://cs.sympa.rpi.edu/wws/subscribe/rpisec">Mailing List</a></p>
-                    TODO: Move this into the database, and make it so it can be changed online-->
             </div>
             <?php //check permissions
             if(checkValidLogin() && checkPermission($group["group_id"], "post")) {
