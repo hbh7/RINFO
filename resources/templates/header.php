@@ -14,30 +14,30 @@
                 $lastname = json_decode($_COOKIE["login"], true)["lastname"];
                 $id = getUserID();
                 echo "<span id='logintext'> Logged in as " . $firstname . " " . $lastname . " </span>";
-                if (/* person is an admin - TODO: REPLACE THE 1 WITH AN ACTUAL CONDITION */1) {
-                    $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
-                    if($iconPath != "" && file_exists($iconPath)) {
-                        $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
-                    } else {
-                        $icon = "<img id = 'user_icon' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'User Picture' >";
-                    }
 
-                    echo <<<HTML
-                    <button id="search" class="btn btn-light" onclick="window.location='search.php'">
-                        <a class="text-muted">
-                        <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
-                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                        <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                        </svg>
-                    </a>
-                    <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
-                    <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
-                    <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
-                        {$icon}
-                    </a>
+                $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
+                if($iconPath != "" && file_exists($iconPath)) {
+                    $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
+                } else {
+                    $icon = "<img id = 'user_icon' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'User Picture' >";
+                }
+
+                echo <<<HTML
+                <button id="search" class="btn btn-light" onclick="window.location='search.php'">
+                    <a class="text-muted">
+                    <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                    <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                    </svg>
+                </a>
+                <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
+                <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
+                <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
+                    {$icon}
+                </a>
     </div>
 HTML;
-                }
+
             } else {
                 echo <<<HTML
                     <button id="search" class="btn btn-light" onclick="window.location='search.php'">
