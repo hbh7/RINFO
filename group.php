@@ -1,11 +1,16 @@
 <?php
 
-// Redirect back to homepage if there is no group id sent in the GET
-if(!isset($_GET['group_id'])) {
-    header('Location: index.php'); // TODO: Alert message like post.php has, and no redirect
-    die();
+// Get GET data
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if(isset( $_GET['group_id'])) {
+        $group_id = sanitizeInput($_GET['group_id']);
+    } else {
+        echo "Error: You need to provide the correct parameter(s) for this page to work";
+        die();
+    }
 } else {
-    $group_id = sanitizeInput($_GET['group_id']);
+    echo "Error: You need to provide the correct parameter(s) for this page to work";
+    die();
 }
 
 include_once 'db.php';
