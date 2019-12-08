@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if(checkValidLogin()) {
         $user_id = getUserID();
-        if(isset($reply_id)) {
+        if(isset($_POST["reply_id"])) {
+            error_log($_POST["reply_id"]);
             $reply_id = sanitizeInput($_POST["reply_id"]);
         } else {
             $reply_id = 0;
@@ -84,7 +85,6 @@ if(sizeof($post) != 1) {
                     echo "<textarea name='comment_body' rows='8' placeholder='Enter Comment Here...'>";
                     echo "</textarea><br>";
                     echo "<input type='submit' value='Comment' class='btn btn-light'>";
-                    echo "<input type='hidden' name='reply_id' value='NULL'>";
                     echo "</form>";
                 }
                 ?>
@@ -124,8 +124,6 @@ if(sizeof($post) != 1) {
                     "<textarea name='comment_body' rows='5' placeholder='Enter Reply Here...'>" .
                     "</textarea><br>" .
                     "<input type='submit' value='Reply' class='btn btn-light'>" .
-                    "<input type='hidden' name='user_id' value='" . getUserID() . "'>" .
-                    "<input type='hidden' name='post_id' value='" . $post["post_id"] . "'>" .
                     "<input type='hidden' name='reply_id' value='" . $comment["comment_id"] . "'>" .
                     "</form></div>";
             }
