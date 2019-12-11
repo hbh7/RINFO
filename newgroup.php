@@ -2,49 +2,56 @@
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include_once 'db.php';
 
-    if (checkValidLogin()) {
+    // Make sure all values are provided
+    if(isset($_POST["name"]) && isset($_POST["tagline"]) && isset($_POST["publicity"])) {
 
-        if(!checkPermission(0, "createGroup")) {
-            header("Location: /newgroup.php?redirectmsg=Error: You're not allowed to create a group.");
+        include_once 'db.php';
+
+        if (checkValidLogin()) {
+
+            if (!checkPermission(0, "createGroup")) {
+                header("Location: /newgroup.php?redirectmsg=Error: You're not allowed to create a group.");
+                die();
+            }
+            if (!isset($_POST["editGroup"])) {
+                // Check if any groups exist with the same name
+                $arr = dbGet("name", "r_groups");
+                $unique = true;
+                foreach ($arr as $a) {
+                    if ($a["name"] == sanitizeInput($_POST["name"])) {
+                        $unique = false;
+                        break;
+                    }
+                }
+                if ($unique) {
+
+                    if (isset($_FILES["fileUpload"])) {
+                        include 'upload.php';
+                        $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
+                    } else {
+                        $imagePath = null;
+                    }
+
+                    // TODO: Make sure that these parameters are being provided
+                    dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["publicity"])]);
+                    $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
+                    dbPut("r_subscriptions", [getUserID(), $groupID]);
+
+                    header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
+                    die();
+                } else {
+                    // Throw an error that the group name isn't unique.
+                    // TODO: Consider making this like the login page one is, or make the login page one like this, idk.
+                    $_GET['displayPopup'] = "Error, your group name isn't unique";
+                }
+            }
+        } else {
+            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
             die();
         }
-        if (!isset($_POST["editGroup"])) {
-            // Check if any groups exist with the same name
-            $arr = dbGet("name", "r_groups");
-            $unique = true;
-            foreach ($arr as $a) {
-                if ($a["name"] == sanitizeInput($_POST["name"])) {
-                    $unique = false;
-                    break;
-                }
-            }
-            if ($unique) {
-
-                if(isset($_FILES["fileUpload"])) {
-                    include 'upload.php';
-                    $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
-                } else {
-                    $imagePath = null;
-                }
-
-                // TODO: Make sure that these parameters are being provided
-                dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["name"])]);
-                $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
-                dbPut("r_subscriptions", [getUserID(), $groupID]);
-
-                header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
-                die();
-            } else {
-                // Throw an error that the group name isn't unique.
-                // TODO: Consider making this like the login page one is, or make the login page one like this, idk.
-                $_GET['displayPopup'] = "Error, your group name isn't unique";
-            }
-        }
     } else {
-        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
-        die();
+        $_GET['displayPopup'] = "Error, some required fields are missing";
     }
 }
 ?>
@@ -61,22 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <?php include('resources/templates/header.php'); ?>
 
-    <!-- <form method="post" action="newgroup.php">
-        TODO: These need label tags
-        TODO: Validate form data
-        Group Name:
-        <input type="text" name="name" value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>"><br>
-        Tagline:
-        <input type="text" name="tagline" value="<?php if (isset($_POST['tagline'])) echo $_POST['tagline']; ?>"><br>
-        TODO: Add a radio button to pick between public and private
-
-        <label>Example: <input type="text" name="example"></label><br />
-
-        <input type="submit" />
-
-        // TODO: Clean up this legacy code, migrate/solve the todos
-
-    </form> -->
     <div class="container">
         <div id="form_container">
             <form id="form" method="post" action="" role="form" enctype="multipart/form-data">
@@ -99,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="publicity">Publicity</label><br />
-                        <input type="radio" id="publicity" name="publicity" value="public"> Public <br />
+                        <input type="radio" id="publicity" name="publicity" value="public" checked> Public <br />
                         <input type="radio" id="publicity" name="publicity" value="private"> Private <br />
                         <div class="help-block with-errors"></div>
                     </div>
