@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (checkValidLogin()) {
 
         if(!checkPermission(0, "createGroup")) {
-            header("Location: /newpost.php?redirectmsg=Error: You're not allowed to create a group.");
+            header("Location: /newgroup.php?redirectmsg=Error: You're not allowed to create a group.");
             die();
         }
         if (!isset($_POST["editGroup"])) {
@@ -22,15 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             if ($unique) {
 
-                include 'upload.php';
-                $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
+                if(isset($_FILES["fileUpload"])) {
+                    include 'upload.php';
+                    $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
+                } else {
+                    $imagePath = null;
+                }
 
-                // TODO: Change "public" to read in a public/private value from form
-                // TODO: Doesn't seem to be using tagline/body at all
-                dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["name"]), $imagePath, "public"]);
-                // TODO: Add the new group to the user's subscriptions
-
+                // TODO: Make sure that these parameters are being provided
+                dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["name"])]);
                 $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
+                dbPut("r_subscriptions", [getUserID(), $groupID]);
 
                 header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
                 die();
@@ -87,19 +89,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="tagline">Tagline</label>
-                        <input id="tagline" type="text" name="text" class="form-control" required="required" data-error="Tagline is required." value="<?php if (isset($_POST['tagline'])) echo sanitizeInput($_POST['tagline']); ?>"> <!-- TODO: This doesn't seem to backfill -->
+                        <textarea id="tagline" name="tagline" class="form-control" required="required" data-error="Tagline is required."><?php if (isset($_POST['tagline'])) echo sanitizeInput($_POST['tagline']); ?></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label for="form_info">Group Information</label> <!-- TODO: Backfill info -->
-                        <textarea id="form_info" name="example" class="form-control" rows="4" required data-error="Group Information is required"></textarea>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="form_name">Image</label>
+                        <label for="fileUpload">Image</label> <br />
                         <input type="file" name="fileUpload" id="fileUpload">
                         <div class="help-block with-errors"></div>
                     </div>
+                    <div class="form-group">
+                        <label for="publicity">Publicity</label><br />
+                        <input type="radio" id="publicity" name="publicity" value="public"> Public <br />
+                        <input type="radio" id="publicity" name="publicity" value="private"> Private <br />
+                        <div class="help-block with-errors"></div>
+                    </div>
+
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">
                 </div>
             </form>
