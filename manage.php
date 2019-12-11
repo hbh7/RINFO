@@ -7,7 +7,7 @@
     <body>
         <?php
             include('resources/templates/header.php');
-            $user = dbGet("*", "r_users", "user_id='" . $id . "'")[0];
+            $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
         ?>
         <!--A scroll to top button-->
         <button type="button" name="toTop" id="toTop" onclick="toTop();">Top</button>

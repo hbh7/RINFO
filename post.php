@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(checkValidLogin()) {
         $user_id = getUserID();
         if(isset($_POST["reply_id"])) {
-            error_log($_POST["reply_id"]);
             $reply_id = sanitizeInput($_POST["reply_id"]);
         } else {
             $reply_id = 0;
@@ -25,9 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         date_default_timezone_set('America/New_York');
         $date = date('Y-m-d H:i:s', time());
 
-        // TODO: Validation of input, giving an error message
         if ($body != "") {
             $result = dbPut("r_comments", [$post_id, $user_id, $reply_id, $body, $date]);
+        } else {
+            $_GET['displayPopup'] = "Error: Body cannot be empty";
         }
     }
 }

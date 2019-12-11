@@ -7,7 +7,6 @@ if(!checkValidLogin()) {
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include_once 'db.php';
 
     if (checkValidLogin()) {
 
@@ -88,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label for="form_name">Post Destination (Group Name or Self)</label>
                         <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); else if (isset($_GET['destination'])) echo sanitizeInput($_GET['destination']); ?>">
                             <?php
-                            include_once('db.php');
+                            // TODO: What even is this
                             $results = dbGet("name", "r_groups");
                             if (isset($_GET['destination'])) {
                                 $destination = sanitizeInput($_GET["destination"]);
