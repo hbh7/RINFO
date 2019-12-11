@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (checkValidLogin()) {
 
-        if(!checkPermission(getUserID(), "createGroup")) {
+        if(!checkPermission(0, "createGroup")) {
             header("Location: /newpost.php?redirectmsg=Error: You're not allowed to create a group.");
             die();
         }
