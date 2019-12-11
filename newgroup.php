@@ -73,12 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="controls">
                     <div class="form-group">
                         <label for="group_name">Group Name</label>
-                        <input id="group_name" type="text" name="name" class="form-control" required="required" data-error="Group Name is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
+                        <input id="group_name" type="text" name="name" class="form-control" required="required" data-error="Group Name is required." value="<?php if (isset($_POST['name'])) echo htmlspecialchars($_POST['name']); ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="tagline">Tagline</label>
-                        <textarea id="tagline" name="tagline" class="form-control" required="required" data-error="Tagline is required."><?php if (isset($_POST['tagline'])) echo $_POST['tagline']; ?></textarea>
+                        <textarea id="tagline" name="tagline" class="form-control" required="required" data-error="Tagline is required."><?php if (isset($_POST['tagline'])) echo htmlspecialchars($_POST['tagline']); ?></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">

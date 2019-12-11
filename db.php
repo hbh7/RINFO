@@ -117,6 +117,35 @@ function dbGet($select, $from, $where=null, $search=null) {
 
 }
 
+// Accepts raw SQL string, returns in the same way as dbGet()
+function dbGetRaw($sql) {
+    $conn = dbConnect();
+
+    //error_log($sql);
+
+    $result = $conn->query($sql);
+
+    $ret = [];
+
+    if($conn->error) {
+        error_log($conn->error);
+        return($conn->error);
+    } else {
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($ret, $row);
+            }
+        }
+    }
+
+    //error_log(print_r($ret,true));
+
+    $conn->close();
+    return $ret;
+
+}
+
 
 // Accepts strings:
 // $table: tablename. Ex: "r_posts"

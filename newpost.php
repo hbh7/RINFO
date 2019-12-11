@@ -12,15 +12,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         date_default_timezone_set('America/New_York');
         $date = date('Y-m-d H:i:s', time());
-        if (sanitizeInput($_POST['where']) == "self") {
+
+        if (sanitizeInput($_POST['destination']) == "Self") {
             $where = 0;
 
             if (!checkPermission(0, "post")) {
-                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
+                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to your page.");
                 die();
             }
         } else {
-            $where = dbGet("group_id", "r_groups", "name='" . sanitizeInput($_POST['where']) . "'")[0]["group_id"];
+            $where = sanitizeInput($_POST['destination']);
+
+            if(sizeof(dbGet("name", "r_groups", "group_id='" . $where . "'")) != 1) {
+                header("Location: /newpost.php?displayPopup=Error: Invalid group specified.");
+                die();
+            }
 
             if(!checkPermission($where, "post")) {
                 header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
@@ -44,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             die();
         } else {
-            echo $result;
+            $_GET['displayPopup'] = $result;
         }
     } else {
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
@@ -66,48 +72,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container">
         <div id="form_container">
             <form id="form" method="post" action="" role="form">
-                <!-- TODO: These need label tags -->
-                <!-- TODO: Validate form data -->
-                <!-- TODO: PHP backfill the values if validation fails, see newgroup.php -->
                 <div class="messages"></div>
                 <div class="controls">
                     <div class="form-group">
                         <label for="form_title">Post Title</label>
-                        <input id="form_title" type="text" name="title" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); ?>">
+                        <input id="form_title" type="text" name="title" class="form-control" required="required" data-error="Post Title is required." value="<?php if (isset($_POST['title'])) echo htmlspecialchars($_POST['title']); ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="form_body">Post Body</label>
-                        <textarea id="form_body" name="body" class="form-control" rows="4" required data-error="Post Body is required"></textarea> <!-- TODO: backfill the body -->
+                        <textarea id="form_body" name="body" class="form-control" rows="4" required data-error="Post Body is required"><?php if (isset($_POST['body'])) echo htmlspecialchars($_POST['body']); ?></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
-                    <!-- TODO: Probably add a radio button for group vs self, perhaps a group search function -->
-                    <!-- TODO: Add an attendance yes or no radio button -->
                     <div class="form-group">
-                        <label for="form_name">Post Destination (Group Name or Self)</label>
-                        <select id="form_name" name="where" class="form-control" required="required" data-error="Post Destination is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); else if (isset($_GET['destination'])) echo sanitizeInput($_GET['destination']); ?>">
+                        <label for="form_destination">Post Destination (Group Name or Self)</label>
+                        <select id="form_destination" name="destination" class="form-control" required="required" data-error="Post Destination is required.">
                             <?php
-                            // TODO: What even is this
-                            $results = dbGet("name", "r_groups");
+                            $destinations = dbGetRaw("select r_groups.name, r_permissions.group_id from r_permissions inner join r_groups on r_permissions.group_id = r_groups.group_id where r_permissions.description='post' AND r_permissions.user_id='" . sanitizeInput(getUserID()) . "';");
                             if (isset($_GET['destination'])) {
                                 $destination = sanitizeInput($_GET["destination"]);
-                                foreach ($results as $result) {
-                                    if ($result["name"] == $destination) {
-                                        echo "<option value='" . $result["name"] . "''>";
-                                        echo $result["name"] . "</option>";
-                                    }
+                            }
+                            if (isset($_POST['destination'])) {
+                                $destination = sanitizeInput($_POST["destination"]);
+                            }
+
+                            foreach ($destinations as $d) {
+                                echo "<option value='" . $d["group_id"] . "'";
+
+                                if (isset($destination) && $d["name"] == $destination) {
+                                    echo "selected";
                                 }
+
+                                echo ">" . $d["name"] . "</option>";
+
                             }
-                            foreach ($results as $result) {
-                                if ($result["name"] == $destination)
-                                    continue;
-                                echo "<option value='" . $result["name"] . "''>";
-                                echo $result["name"] . "</option>";
+
+                            if($destination == "Self") {
+                                echo "<option value='self' selected>Self</option>";
+                            } else {
+                                echo "<option value='self'>Self</option>";
                             }
+
                             ?>
-                            <option value="self">Self</option>
                         </select>
-                        <label for="attendance_checkbox">Count Attendances?</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance_checkbox">Count Attendances?</label><br />
                         <input id="attendance_checkbox" type="checkbox" name="attendance">
                         <div class="help-block with-errors"></div>
                     </div>
