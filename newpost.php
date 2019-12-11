@@ -1,60 +1,81 @@
 <?php
 include_once 'db.php';
-if(!checkValidLogin()) {
-    header("Location: /login.php?displayPopup=You must be logged in to do that!");
-    die();
-}
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    if (checkValidLogin()) {
+    // Check to make sure this isn't an edit redirect
+    if(!(isset($_POST["edit"]) && $_POST["edit"] == "true")) {
 
-        date_default_timezone_set('America/New_York');
-        $date = date('Y-m-d H:i:s', time());
+        // Make sure all values are provided
+        if (isset($_POST["name"]) && isset($_POST["tagline"]) && isset($_POST["visibility"])) {
 
-        if (sanitizeInput($_POST['destination']) == "Self") {
-            $where = 0;
+            if (checkValidLogin()) {
 
-            if (!checkPermission(0, "post")) {
-                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to your page.");
-                die();
-            }
-        } else {
-            $where = sanitizeInput($_POST['destination']);
+                date_default_timezone_set('America/New_York');
+                $date = date('Y-m-d H:i:s', time());
 
-            if(sizeof(dbGet("name", "r_groups", "group_id='" . $where . "'")) != 1) {
-                header("Location: /newpost.php?displayPopup=Error: Invalid group specified.");
-                die();
-            }
+                if (sanitizeInput($_POST['destination']) == "Self") {
+                    $where = 0;
 
-            if(!checkPermission($where, "post")) {
-                header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
-                die();
-            }
-        }
+                    if (!checkPermission(0, "post")) {
+                        header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to your page.");
+                        die();
+                    }
+                } else {
+                    $where = sanitizeInput($_POST['destination']);
 
-        if (isset($_POST['attendance'])) {
-            $count_attendance = 1;
-        } else {
-            $count_attendance = 0;
-        }
+                    if (sizeof(dbGet("name", "r_groups", "group_id='" . $where . "'")) != 1) {
+                        header("Location: /newpost.php?displayPopup=Error: Invalid group specified.");
+                        die();
+                    }
 
-        $result = dbPut("r_posts", [$where, getUserID(), sanitizeInput($_POST["title"]), sanitizeInput($_POST["body"]), $date, $count_attendance]);
+                    if (!checkPermission($where, "post")) {
+                        header("Location: /newpost.php?displayPopup=Error: You're not allowed to post to this group.");
+                        die();
+                    }
+                }
 
-        if ($result == "success") {
-            if ($where == 0) {
-                header("Location: /user.php?user_id=" . getUserID() . "&displayPopup=Post Added Successfully!");
+                if (isset($_POST['attendance'])) {
+                    $count_attendance = 1;
+                } else {
+                    $count_attendance = 0;
+                }
+
+                if(isset($_POST["post_id"])) {
+
+                    dbUpdate("r_posts", "group_id='" . $where . "'", "post_id='" . sanitizeInput($_POST["post_id"]) . "'");
+                    dbUpdate("r_posts", "title='" . sanitizeInput($_POST["title"]) . "'", "post_id='" . sanitizeInput($_POST["post_id"]) . "'");
+                    dbUpdate("r_posts", "body='" . sanitizeInput($_POST["body"]) . "'", "post_id='" . sanitizeInput($_POST["post_id"]) . "'");
+                    dbUpdate("r_posts", "date='" . $date . "'", "post_id='" . sanitizeInput($_POST["post_id"]) . "'");
+                    dbUpdate("r_posts", "attendance='" . $count_attendance . "'", "post_id='" . sanitizeInput($_POST["post_id"]) . "'");
+
+                    header("Location: /post.php?post_id=" . $_POST["post_id"] . "&displayPopup=Post Edited Successfully!");
+                    die();
+
+                } else {
+
+                    if($result = dbPut("r_posts", [$where, getUserID(), sanitizeInput($_POST["title"]), sanitizeInput($_POST["body"]), $date, $count_attendance])) {
+                        if ($where == 0) {
+                            header("Location: /user.php?user_id=" . getUserID() . "&displayPopup=Post Added Successfully!"); // Not really a good way to get the ID of the post so lets just do to the page with it
+                        } else {
+                            header("Location: /group.php?group_id=" . $where . "&displayPopup=Post Added Successfully!"); // Not really a good way to get the ID of the post so lets just do to the page with it
+                        }
+                        die();
+                    } else {
+                        $_GET['displayPopup'] = $result;
+                    }
+
+                }
+
+
             } else {
-                header("Location: /group.php?group_id=" . $where . "&displayPopup=Post Added Successfully!");
+                header("Location: /login.php?displayPopup=You must be logged in to do that!");
+                die();
             }
-            die();
         } else {
-            $_GET['displayPopup'] = $result;
+            $_GET['displayPopup'] = "Error, some required fields are missing";
         }
-    } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
     }
 }
 ?>
