@@ -41,29 +41,6 @@ function textAreaAdjust(elem) {
     elem.style.height = (25+elem.scrollHeight)+"px";
 }
 
-
-//TODO: make the ajax request work
-function submitMessage(elem) {
-    //var divParentElem = elem.parentElement;
-    var textareatext = document.getElementById("postAdminMessage").firstElementChild.value;
-    if (textareatext.length <= 0 || textareatext.length > 560) {
-        alert("Please keep messages between 1 and 560 characters");
-        return;
-    }
-    $.ajax({
-        url: 'somefile.php',
-        type: 'POST',
-        data: {'message': textareatext}
-    }).always(function(result, status, xhr) {
-        var newMessage = "<li>" + textareatext + "</li>";
-        $("#admin_messages").prepend(newMessage);
-        document.getElementById("postAdminMessage").firstElementChild.value = "";
-    }).fail(function(jqXHR) {
-        alert("Something went wrong! Failed to submit message.\n" + jqXHR.status + ": " + jqXHR.statusText);
-    });
-}
-
-
 //TODO: maybe add a transition? it looks kind of jarring imo
 function makeEditMessage(elem) {
     var divElem = elem.parentElement;

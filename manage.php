@@ -1,8 +1,33 @@
+<?php
+
+include_once "db.php";
+
+if(isset($_POST["adminMessage"])) {
+    if(checkValidLogin()) {
+        if(checkPermission(0, "admin")) {
+            date_default_timezone_set('America/New_York');
+            $date = date('Y-m-d H:i:s', time());
+            if(dbPut("r_alerts", [getUserID(), sanitizeInput($_POST["adminMessage"]), $date])) {
+                $_GET["displayPopup"] = "Successfully saved new admin message!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while saving the message";
+            }
+        } else {
+            $_GET["displayPopup"] = "Error: You are not authorized to create admin messages!";
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
+    }
+}
+
+?>
+
 <html lang="en">
     <head>
         <?php $title = "Management Page"; ?>
         <?php include('resources/templates/head.php'); ?>
-        <script src="/resources/scripts/admin.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="/resources/scripts/manage.js" type="text/javascript" charset="utf-8" async defer></script>
     </head>
     <body>
         <?php
@@ -11,10 +36,12 @@
         ?>
         <!--A scroll to top button-->
         <button type="button" name="toTop" id="toTop" onclick="toTop();">Top</button>
+
         <div id="content">
+
+            <!-- Left Navigation Sidebar -->
             <div id="information">
                 <h2>Actions</h2>
-
                 <div class="row">
                   <div class="col-12">
                     <div class="list-group" id="list-tab" role="tablist">
@@ -26,21 +53,24 @@
                   </div>
                 </div>
             </div>
+
+            <!-- Right content box -->
             <div id="activity">
                 <div id="activity_content" class="col-17">
                     <div class="tab-content" id="nav-tabContent">
 
+                        <!-- Admin Messages right-side box -->
                         <div class="tab-pane fade show active" id="list-admin_messages" role="tabpanel" aria-labelledby="list-admin_messages-list">
                             <h2>Admin Messages</h2>
                             <!--TODO: editing and then clearing a message destroys formatting - fix this-->
                             <!--TODO: send this form somewhere and create the php necessary to put a message in the database-->
-                            <h4>Create a message</h4>
-                            <form id="postAdminMessage">
-                                <!--maxlength is arbitrary for now
-                                    heck, all attribute names are subject to change, EXCEPT CLASSES AND IDs-->
-                                <textarea name="message" maxlength="560" placeholder="Enter your message here..." required></textarea>
+                            <form id="postAdminMessage" method="post">
+                                <label style="width: 100%">
+                                    <h4> Create a message </h4> <!-- TODO: Make this an allowed tag -->
+                                    <textarea id="adminMessage" name="adminMessage" maxlength="1000" placeholder="Enter your message here..." required></textarea>
+                                </label>
                                 <br />
-                                <button class="submitButton" id="createMessage" type="button" onclick="submitMessage(this);">Submit Message</button>
+                                <button class="submitButton" id="createMessage" type="submit">Submit Message</button>
                             </form>
                             <ul class="tab-content-ul" id="admin_messages">
                                 <?php
@@ -66,7 +96,7 @@
                             </ul>
                         </div>
 
-
+                        <!-- Groups you're admin of right-side box -->
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Groups You're Admin Of</h2>
                             <ul class="tab-content-ul" id="your_groups-ul">
@@ -94,7 +124,7 @@ HTML;
                             </ul>
                         </div>
 
-
+                        <!-- User Permissions right-side box -->
                         <div class="tab-pane fade" id="list-user_permissions" role="tabpanel" aria-labelledby="list-user_permissions-list">
                             <h2>User Permissions</h2>
                             <!--TODO: implement a (watered-down) user search - nothing fancy required
@@ -105,7 +135,7 @@ HTML;
                             <div id="results"></div>
                         </div>
 
-
+                        <!-- Your account right-side box -->
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
                             <!--TODO: implement change profile pic, change password, username-->
