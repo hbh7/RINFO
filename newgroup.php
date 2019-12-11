@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     die();
                 } else {
                     // Throw an error that the group name isn't unique.
-                    // TODO: Consider making this like the login page one is, or make the login page one like this, idk.
                     $_GET['displayPopup'] = "Error, your group name isn't unique";
                 }
             }
