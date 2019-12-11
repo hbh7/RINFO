@@ -36,14 +36,18 @@ CREATE TABLE r_permissions(
     user_id INT NOT NULL,
     group_id INT NOT NULL,
     description VARCHAR(128) NOT NULL,
-    PRIMARY KEY ( permission_id )
+    PRIMARY KEY ( permission_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id )
+    /* FOREIGN KEY ( group_id ) REFERENCES r_groups( group_id ) Left out because we use 0 sometimes but that's not a valid ID, maybe should use null */
 );
 
 CREATE TABLE r_subscriptions(
     subscription_id INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     group_id INT NOT NULL,
-    PRIMARY KEY ( subscription_id )
+    PRIMARY KEY ( subscription_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id ),
+    FOREIGN KEY ( group_id ) REFERENCES r_groups( group_id )
 );
 
 CREATE TABLE r_posts(
@@ -54,7 +58,9 @@ CREATE TABLE r_posts(
     body VARCHAR(1024) NOT NULL,
     timestamp DATETIME NOT NULL,
     attendance BOOLEAN NOT NULL,
-    PRIMARY KEY ( post_id )
+    PRIMARY KEY ( post_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id )
+    /* FOREIGN KEY ( group_id ) REFERENCES r_groups( group_id ) Left out because we use 0 sometimes but that's not a valid ID, maybe should use null */
 );
 
 CREATE TABLE r_comments(
@@ -64,14 +70,19 @@ CREATE TABLE r_comments(
     reply_id INT,
     body VARCHAR(1024) NOT NULL,
     timestamp DATETIME NOT NULL,
-    PRIMARY KEY ( comment_id )
+    PRIMARY KEY ( comment_id ),
+    FOREIGN KEY ( post_id ) REFERENCES r_posts( post_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id )
+    /* FOREIGN KEY ( reply_id ) REFERENCES r_comments( comment_id ) Left out because we use 0 sometimes but that's not a valid ID, maybe should use null */
 );
 
 CREATE TABLE r_attendances(
     attendance_id INT NOT NULL AUTO_INCREMENT,
     post_id INT NOT NULL,
     user_id INT NOT NULL,
-    PRIMARY KEY ( attendance_id )
+    PRIMARY KEY ( attendance_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id ),
+    FOREIGN KEY ( post_id ) REFERENCES r_posts( post_id )
 );
 
 CREATE TABLE r_alerts(
@@ -79,7 +90,8 @@ CREATE TABLE r_alerts(
     user_id INT NOT NULL,
     body VARCHAR(1024) NOT NULL,
     timestamp DATETIME NOT NULL,
-    PRIMARY KEY ( alert_id )
+    PRIMARY KEY ( alert_id ),
+    FOREIGN KEY ( user_id ) REFERENCES r_users( user_id )
 );
 
 /* INSERT USERS */
@@ -116,16 +128,12 @@ INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '3', 'post
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '4', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '5', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '6', 'post');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '7', 'post');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '8', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '1', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '2', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '3', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '4', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '5', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '6', 'admin');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '7', 'admin');
-INSERT INTO r_permissions(user_id, group_id, description) VALUES('8', '8', 'admin');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '3', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('3', '6', 'post');
 INSERT INTO r_permissions(user_id, group_id, description) VALUES('5', '5', 'post');
