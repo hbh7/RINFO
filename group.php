@@ -2,8 +2,10 @@
 
 include_once 'db.php';
 
+
+
 // Get GET data
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if (isset($_GET['group_id'])) {
     if(isset( $_GET['group_id'])) {
         $group_id = sanitizeInput($_GET['group_id']);
     } else {
