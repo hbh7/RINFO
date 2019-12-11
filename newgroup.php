@@ -6,13 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (checkValidLogin()) {
 
-        /*
         if(!checkPermission(getUserID(), "createGroup")) {
             header("Location: /newpost.php?redirectmsg=Error: You're not allowed to create a group.");
             die();
         }
-        // TODO: Enable this permission check
-        */
         if (!isset($_POST["editGroup"])) {
             // Check if any groups exist with the same name
             $arr = dbGet("name", "r_groups");

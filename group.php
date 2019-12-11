@@ -65,11 +65,11 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "group_id='" . $group_id . "'"));
                 }
                 ?>
                 <div id="users_info">
-                    <img id="users_logo" src="resources/images/users.png" /> <!-- TODO: Needs alt tag -->
-                    <p id="Nusers" class="Ndetails"><?php echo $numSubscriptions; ?> users</p>
+                    <img id="users_logo" src="resources/images/users.png" alt="Members Logo"/>
+                    <p id="Nusers" class="Ndetails"><?php echo $numSubscriptions; ?> members</p>
                 </div>
                 <div id="posts_info">
-                    <img id="users_logo" src="resources/images/posts.png" /> <!-- TODO: Needs alt tag -->
+                    <img id="posts_logo" src="resources/images/posts.png" alt="Posts Logo" />
                     <p id="Nposts" class="Ndetails"><?php echo $numPosts; ?> posts</p>
                 </div>
                 <form method="post">
