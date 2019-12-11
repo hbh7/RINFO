@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (checkValidLogin()) {
 
             if (!checkPermission(0, "createGroup")) {
-                header("Location: /newgroup.php?redirectmsg=Error: You're not allowed to create a group.");
+                header("Location: /newgroup.php?displayPopup=Error: You are not allowed to create a group.");
                 die();
             }
             if (!isset($_POST["editGroup"])) {
@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $imagePath = null;
                     }
 
-                    // TODO: Make sure that these parameters are being provided
                     dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["publicity"])]);
                     $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
                     dbPut("r_subscriptions", [getUserID(), $groupID]);
@@ -75,12 +74,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="controls">
                     <div class="form-group">
                         <label for="group_name">Group Name</label>
-                        <input id="group_name" type="text" name="name" class="form-control" required="required" data-error="Group Name is required." value="<?php if (isset($_POST['name'])) echo sanitizeInput($_POST['name']); ?>">
+                        <input id="group_name" type="text" name="name" class="form-control" required="required" data-error="Group Name is required." value="<?php if (isset($_POST['name'])) echo $_POST['name']; ?>">
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="tagline">Tagline</label>
-                        <textarea id="tagline" name="tagline" class="form-control" required="required" data-error="Tagline is required."><?php if (isset($_POST['tagline'])) echo sanitizeInput($_POST['tagline']); ?></textarea>
+                        <textarea id="tagline" name="tagline" class="form-control" required="required" data-error="Tagline is required."><?php if (isset($_POST['tagline'])) echo $_POST['tagline']; ?></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">

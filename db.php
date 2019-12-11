@@ -34,13 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 // Accepts a tablename and an array of values to insert
+// Run sanitizeInput() on ALL user data passed to this
 function dbPut($tablename, $dbdata) {
     $conn = dbConnect();
-    $tablename = $conn->real_escape_string($tablename);
-    foreach ($dbdata as &$d) {
-        $d = $conn->real_escape_string($d);
-    }
-    unset($d);
 
     $dbdata_string = "'" . implode("', '", $dbdata) . "'" ;
 
@@ -80,12 +76,9 @@ function dbPut($tablename, $dbdata) {
 // $from: tablename. Ex: "r_posts"
 // $where: optional specifier. Ex: "user_id=3"
 // $search: only returns 5 items, can search for partial items
+// Run sanitizeInput() on ALL user data passed to this
 function dbGet($select, $from, $where=null, $search=null) {
     $conn = dbConnect();
-    $select = $conn->real_escape_string($select);
-    $from = $conn->real_escape_string($from);
-    // $where and $search are assumed safe, would be something to fix if this weren't due tomorrow.
-    // A proper fix would require too much time but definitely would be added if this were a real program.
 
     if($where != null) {
         $sql = "SELECT " . $select . " FROM " . $from . " WHERE " . $where;
@@ -129,7 +122,6 @@ function dbGet($select, $from, $where=null, $search=null) {
 // $table: tablename. Ex: "r_posts"
 // $column: what value to update. Ex: "firstname='Joe'"
 // $where: Important! Restricts what values to act on. Ex: "username='joe'"
-// Seems this never got used. Should have SQL injection fix implemented if it were to ever be used. Ignore for now
 function dbUpdate($table, $column, $where) {
     $conn = dbConnect();
 
@@ -152,11 +144,9 @@ function dbUpdate($table, $column, $where) {
 
 // Accepts a tablename and a string specifying what to delete
 // Ex: "WHERE user_id='4'"
+// Run sanitizeInput() on ALL user data passed to this
 function dbDelete($tablename, $where) {
     $conn = dbConnect();
-    $tablename = $conn->real_escape_string($tablename);
-    // $where are assumed safe, would be something to fix if this weren't due tomorrow.
-    // A proper fix would require too much time but definitely would be added if this were a real program.
 
     if ($tablename != "r_users" && $tablename != "r_groups" && $tablename != "r_permissions" && $tablename != "r_subscriptions" && $tablename != "r_posts" && $tablename != "r_attendances") {
         return null;
@@ -207,8 +197,7 @@ function checkValidLogin() {
 // Supply the ID of group and desired action (ex: post)
 // If valid login, return true. If not logged in, return false.
 // It is assumed that the checkValidLogin() function is called before this.
-// May be a SQL injection vector, not sure since it's validated in a few places. If this were a real project and/or
-// time permitted, this would be investigated.
+// Run sanitizeInput() on ALL user data passed to this
 function checkPermission($id, $action) {
     $arr = dbGet("description", "r_permissions", "group_id='" . $id ."' AND user_id='" . getUserID() . "' AND description='" . $action . "'");
     if(sizeof($arr) == 1) {
