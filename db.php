@@ -154,7 +154,7 @@ function dbGetRaw($sql) {
 function dbUpdate($table, $column, $where) {
     $conn = dbConnect();
 
-    if ($table != "r_users" && $table != "r_groups" && $table != "r_permissions" && $table != "r_subscriptions" && $table != "r_posts" && $table != "r_comments" && $table != "r_attendances") {
+    if ($table != "r_users" && $table != "r_groups" && $table != "r_permissions" && $table != "r_subscriptions" && $table != "r_posts" && $table != "r_comments" && $table != "r_attendances" && $table != "r_alerts") {
         return null;
     }
 
@@ -164,7 +164,7 @@ function dbUpdate($table, $column, $where) {
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
-        return "success";
+        return true;
     } else {
         return $conn->error;
     }
@@ -174,20 +174,20 @@ function dbUpdate($table, $column, $where) {
 // Accepts a tablename and a string specifying what to delete
 // Ex: "WHERE user_id='4'"
 // Run sanitizeInput() on ALL user data passed to this
-function dbDelete($tablename, $where) {
+function dbDelete($table, $where) {
     $conn = dbConnect();
 
-    if ($tablename != "r_users" && $tablename != "r_groups" && $tablename != "r_permissions" && $tablename != "r_subscriptions" && $tablename != "r_posts" && $tablename != "r_attendances") {
+    if ($table != "r_users" && $table != "r_groups" && $table != "r_permissions" && $table != "r_subscriptions" && $table != "r_posts" && $table != "r_attendances" && $table != "r_alerts") {
         return null;
     }
 
-    $sql = "DELETE FROM " . $tablename . " WHERE " . $where . ";";
+    $sql = "DELETE FROM " . $table . " WHERE " . $where . ";";
 
     //error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
-        return "success";
+        return true;
     } else {
         return $conn->error;
     }
