@@ -80,7 +80,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-    <?php $title = "Add Group"; ?>
+    <?php
+    if(isset($_POST["edit"]) && $_POST["edit"] == "true") {
+        $title = "Edit Group";
+    } else {
+        $title = "Add Group";
+    }
+
+    ?>
     <?php include('resources/templates/head.php'); ?>
     <link rel="stylesheet" type="text/css" href="resources/styles/styles-newgroup.css" />
 </head>
