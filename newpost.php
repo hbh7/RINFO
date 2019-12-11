@@ -38,11 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = dbPut("r_posts", [$where, getUserID(), sanitizeInput($_POST["title"]), sanitizeInput($_POST["body"]), $date, $count_attendance]);
 
         if ($result == "success") {
-            // TODO: Implement a popup system so we can display "Group added successfully!" or something
             if ($where == 0) {
-                header("Location: /user.php?user_id=" . getUserID());
+                header("Location: /user.php?user_id=" . getUserID() . "&displayPopup=Post Added Successfully!");
             } else {
-                header("Location: /group.php?group_id=" . $where);
+                header("Location: /group.php?group_id=" . $where . "&displayPopup=Post Added Successfully!");
             }
             die();
         } else {

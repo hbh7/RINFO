@@ -30,7 +30,6 @@ $(document).ready(function () {
                     });
                 }
 
-                // TODO: Add fancy text bolding or something
                 if(data["group_tagline"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Group taglines matching query:";
@@ -65,7 +64,6 @@ $(document).ready(function () {
                     });
                 }
 
-                // TODO: Add fancy text bolding or something
                 if(data["post_body"].length > 0) {
                     var header = document.createElement("h3");
                     header.innerText = "Post bodies matching query:";

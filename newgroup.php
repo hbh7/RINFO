@@ -29,17 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
 
                 // TODO: Change "public" to read in a public/private value from form
+                // TODO: Doesn't seem to be using tagline/body at all
                 dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["name"]), $imagePath, "public"]);
                 // TODO: Add the new group to the user's subscriptions
 
                 $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
 
-                // TODO: Implement a popup system so we can display "Group added successfully!" or something
-                header("Location: /group.php?group_id=" . $groupID);
+                header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
                 die();
             } else {
-                // Throw an error that the group name isn't unique. TODO: Improve this
-                echo "Error, your group name isn't unique";
+                // Throw an error that the group name isn't unique.
+                // TODO: Consider making this like the login page one is, or make the login page one like this, idk.
+                $_GET['displayPopup'] = "Error, your group name isn't unique";
             }
         }
     } else {
@@ -89,11 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label for="tagline">Tagline</label>
-                        <input id="tagline" type="text" name="text" class="form-control" required="required" data-error="Tagline is required." value="<?php if (isset($_POST['tagline'])) echo sanitizeInput($_POST['tagline']); ?>">
+                        <input id="tagline" type="text" name="text" class="form-control" required="required" data-error="Tagline is required." value="<?php if (isset($_POST['tagline'])) echo sanitizeInput($_POST['tagline']); ?>"> <!-- TODO: This doesn't seem to backfill -->
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label for="form_info">Group Information</label>
+                        <label for="form_info">Group Information</label> <!-- TODO: Backfill info -->
                         <textarea id="form_info" name="example" class="form-control" rows="4" required data-error="Group Information is required"></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
