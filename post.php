@@ -12,8 +12,7 @@ if(isset( $_GET['post_id'])) {
 
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if(checkValidLogin()) {
+    if(checkValidLogin() && isset($_POST['comment_body'])) {
         $user_id = getUserID();
         if(isset($_POST["reply_id"])) {
             $reply_id = sanitizeInput($_POST["reply_id"]);
