@@ -181,13 +181,13 @@ function checkValidLogin() {
             } else {
                 // Valid user, invalid password
                 setcookie("login", "", time() - 3600); // Nuke the cookie
-                header("Location: /login.php?redirectmsg=Invalid session cookie, password error!");
+                header("Location: /login.php?displayPopup=Invalid session cookie, password error!");
                 die();
             }
         } else {
             // Invalid user
             setcookie("login", "", time() - 3600); // Nuke the cookie
-            header("Location: /login.php?redirectmsg=Invalid session cookie, username error!");
+            header("Location: /login.php?displayPopup=Invalid session cookie, username error!");
             die();
         }
     }

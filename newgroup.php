@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
         } else {
-            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+            header("Location: /login.php?displayPopup=You must be logged in to do that!");
             die();
         }
     } else {

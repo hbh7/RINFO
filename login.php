@@ -16,13 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = sanitizeInput($_POST['email']);
 }
 
-// Get GET data
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if(isset( $_GET['redirectmsg'])) {
-        $result = [False, sanitizeInput($_GET['redirectmsg'])];
-    }
-}
-
 if(isset($action)) {
 
     $errors = [];

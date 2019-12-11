@@ -24,7 +24,7 @@
     if (isset($_POST['toggle_attendance'])) {
 
         if (!checkValidLogin()) {
-            header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+            header("Location: /login.php?displayPopup=You must be logged in to do that!");
             die();
         }
         $attending = sizeof(dbGet(

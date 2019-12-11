@@ -32,7 +32,7 @@ if (isset($_POST['action'])) {
             dbDelete("r_subscriptions", "user_id='" . getUserID() . "' AND user_id='" . $user_id . "'");
         }
     } else {
-        header("Location: /login.php?redirectmsg=You must be logged in to do that!");
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
 }
