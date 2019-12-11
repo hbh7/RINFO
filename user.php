@@ -15,8 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     die();
 }
 
-$user = dbGet("*", "r_users", "user_id='" . $user_id . "'")[0];
-// TODO: Verify valid user ID
+$user = dbGet("*", "r_users", "user_id='" . $user_id . "'");
+if(sizeof($user) != 1) {
+    echo "Error: Invalid user ID";
+    die();
+} else {
+    $user = $user[0];
+}
 
 if (isset($_POST['action'])) {
     $action = sanitizeInput($_POST['action']);
