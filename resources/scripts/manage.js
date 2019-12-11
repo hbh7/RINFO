@@ -41,55 +41,6 @@ function textAreaAdjust(elem) {
     elem.style.height = (25+elem.scrollHeight)+"px";
 }
 
-//TODO: maybe add a transition? it looks kind of jarring imo
-function makeEditMessage(elem) {
-    var divElem = elem.parentElement;
-    var divElemText = divElem.firstChild.innerText;
-    divElem.innerHTML = "<textarea class='editAdminMessage' onfocus='textAreaAdjust(this)' style='overflow:hidden' name='message' maxlength='560' required>"+divElemText+"</textarea><br />\
-                          <input class='submitButton editAdminMessageSubmit' type='button' name='submit' value='Submit Changes'>\
-                          <input class='submitButton cancelEdit' type='button' name='submit' value='Cancel Edit'>";
-    //TODO: write some php to accept this and post it to the database and then return what it just posted
-    $(".editAdminMessageSubmit").on("click", function(event) {
-        var divElem = event.target.parentElement;
-        var textareatext = divElem.firstElementChild.value;
-        $.ajax({
-            url: 'somefile.php',
-            type: 'POST',
-            data: {'message': textareatext}
-        }).done(function(result, status, xhr) {
-            // I expect the server to throw back the string I just sent it (sanitized please!!!), so that I can recreate the
-            //  list element that was on the page before the editing started
-            divElem.innerHTML = result + "<br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
-        }).fail(function(jqXHR) {
-            alert("Something went wrong! Failed to edit message.\n" + jqXHR.status + ": " + jqXHR.statusText);
-        });
-    });
-    $(".cancelEdit").on("click", function(event) {
-        var divElem = event.target.parentElement;
-        divElem.innerHTML = "<span class='body'>" + divElemText + "</span><br /><span>" + "" + "</span><span>" + "" + "</span><br /><button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button><button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage'>Delete Message</button>";
-    });
-}
-
-function deleteMessage(elem) {
-    var listElem = elem.parentElement;
-    var listElemText = removeButtonText(listElem.innerText);
-    var proceedToDelete = confirm("Do you want to delete this message? (Can't be undone!)");
-    if (proceedToDelete) {
-        //delete the message from the database
-        //TODO: make this actually work (redirect to a valid php file, write code to delete a message from the database)
-        $.ajax({
-            url: 'somefile.php',
-            type: 'POST',
-            data: {'key': 'value pair that matches an if statement in somefile.php to delete a message from db'}
-        }).done(function(result, status, xhr) {
-            listElem.innerHTML = "Message Deleted";
-        }).fail(function(jqXHR) {
-            alert("Something went wrong! Failed to delete message.\n" + jqXHR.status + ": " + jqXHR.statusText);
-        });
-    }
-}
-
-
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~End functions for admin messages~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 

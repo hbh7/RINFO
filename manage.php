@@ -2,18 +2,43 @@
 
 include_once "db.php";
 
-if(isset($_POST["adminMessage"])) {
+if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || isset($_POST["adminMessageDelete"])) {
     if(checkValidLogin()) {
-        if(checkPermission(0, "admin")) {
-            date_default_timezone_set('America/New_York');
-            $date = date('Y-m-d H:i:s', time());
-            if(dbPut("r_alerts", [getUserID(), sanitizeInput($_POST["adminMessage"]), $date])) {
-                $_GET["displayPopup"] = "Successfully saved new admin message!";
-            } else {
-                $_GET["displayPopup"] = "Error: Something went wrong while saving the message";
+        if (checkPermission(0, "admin")) {
+
+            if (isset($_POST["adminMessageCreate"])) {
+
+                date_default_timezone_set('America/New_York');
+                $date = date('Y-m-d H:i:s', time());
+                if(dbPut("r_alerts", [getUserID(), sanitizeInput($_POST["adminMessage"]), $date])) {
+                    $_GET["displayPopup"] = "Successfully saved new admin message!";
+                } else {
+                    $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
+                }
+
+            } elseif (isset($_POST["adminMessageEdit"])) {
+
+                date_default_timezone_set('America/New_York');
+                $date = date('Y-m-d H:i:s', time());
+                if(dbUpdate("r_alerts", "body='" . sanitizeInput($_POST['adminMessageBody']) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'") &&
+                   dbUpdate("r_alerts", "date='" . sanitizeInput($date) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'")) {
+                    $_GET["displayPopup"] = "Successfully saved admin message!";
+                } else {
+                    $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
+                }
+
+            } elseif (isset($_POST["adminMessageDelete"])) {
+
+                if(dbDelete("r_alerts", "alert_id='" . sanitizeInput($_POST["adminMessageID"]) . "'")) {
+                    $_GET["displayPopup"] = "Successfully deleted admin message!";
+                } else {
+                    $_GET["displayPopup"] = "Error: Something went wrong while deleting the message.";
+                }
+
             }
+
         } else {
-            $_GET["displayPopup"] = "Error: You are not authorized to create admin messages!";
+            $_GET["displayPopup"] = "Error: You are not authorized to use admin messages!";
         }
     } else {
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
@@ -70,7 +95,7 @@ if(isset($_POST["adminMessage"])) {
                                     <textarea id="adminMessage" name="adminMessage" maxlength="1000" placeholder="Enter your message here..." required></textarea>
                                 </label>
                                 <br />
-                                <button class="submitButton" id="createMessage" type="submit">Submit Message</button>
+                                <input type='submit' name='adminMessageCreate' class='submitButton' value='Submit Message' />
                             </form>
                             <ul class="tab-content-ul" id="admin_messages">
                                 <?php
@@ -82,14 +107,14 @@ if(isset($_POST["adminMessage"])) {
                                     $name = dbGet("firstname, lastname", "r_users", "user_id=" . $post["user_id"]);
 
                                     echo "<li><div class='feed_info'>" .
-                                        "<span class='body'>" . $post["body"] . "</span><br />" .
+                                        "<form id='postAdminMessage' method='post'>" .
+                                        "<textarea class='body' name='adminMessageBody'>" . $post["body"] . "</textarea><br />" .
                                         "<span class='smallest' class='postauthor'> Posted by " . $name[0]["firstname"] . " " . $name[0]["lastname"] . "</span>" .
                                         "<span class='smallest' class='postdate'> on " . $post["timestamp"] . "</span><br />" .
-                                        "<button type='button' onclick='makeEditMessage(this);' class='submitButton' id='editMessage'>Edit Message</button>" .
-                                        "<button type='button' onclick='deleteMessage(this);' class='submitButton' id='deleteMessage''>Delete Message</button>" .
-                                        "</div>";
-
-                                    echo "</li>";
+                                        "<input type='hidden' name='adminMessageID' value='" . $post["alert_id"] . "'/>" .
+                                        "<input type='submit' name='adminMessageEdit' class='submitButton' value='Edit Message' />" .
+                                        "<input type='submit' name='adminMessageDelete' class='submitButton' value='Delete Message' />" .
+                                        "</form></div></li>";
                                 }
 
                                 ?>
