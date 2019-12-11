@@ -193,11 +193,17 @@ if(isset($action)) {
                 <form method="post" id="login_box" action="login.php">
                 <?php
                 if(isset($action) && $action == "registerpage") {
-                    echo "<label for='firstname'>First Name </label><input type='text' name='firstname' id='firstname' value='" . $firstname . "' placeholder='SIS'><br />";
+                    echo "<label for='firstname'>First Name </label><input type='text' name='firstname' id='firstname' value='";
+                    if (isset($firstname)) echo $firstname;
+                    echo "' placeholder='SIS'><br />";
                     if(isset($errors["firstname"])) { echo "<p style='color: red'> " . $errors["firstname"] . "</p>"; }
-                    echo "<br /><label for='lastname'>Last Name </label><input type='text' name='lastname' id='lastname' value='" . $lastname . "' placeholder='Man'><br />";
+                    echo "<br /><label for='lastname'>Last Name </label><input type='text' name='lastname' id='lastname' value='";
+                    if (isset($lastname)) echo $lastname;
+                    echo "' placeholder='Man'><br />";
                     if(isset($errors["lastname"])) { echo "<p style='color: red'> " . $errors["lastname"] . "</p>"; }
-                    echo "<br /><label for='email'>eMai </label><br><input type='text' name='email' id='email' value='" . $email . "' placeholder='sisman@rpi.edu'><br />";
+                    echo "<br /><label for='email'>eMail </label><br><input type='text' name='email' id='email' value='";
+                    if (isset($email)) echo $email;
+                    echo "' placeholder='sisman@rpi.edu'><br />";
                     if(isset($errors["email"])) { echo "<p style='color: red'> " . $errors["email"] . "</p>"; }
                     echo "<br /><label for='username'>Username </label><input type='text'  name='username' id='username' value='" . $username . "' placeholder='sisman'><br />";
                     if(isset($errors["username"])) { echo "<p style='color: red'> " . $errors["username"] . "</p>"; }
