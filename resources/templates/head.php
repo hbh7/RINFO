@@ -18,7 +18,7 @@
 
 
 <?php
-    // TODO: Find out wtf this is doing here and get it out most likely
+
     include_once 'db.php';
 
     if (isset($_POST['toggle_attendance'])) {
