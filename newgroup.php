@@ -3,53 +3,75 @@
 // Get POST data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Make sure all values are provided
-    if(isset($_POST["name"]) && isset($_POST["tagline"]) && isset($_POST["publicity"])) {
+    if(!(isset($_POST["edit"]) && $_POST["edit"] == "true")) {
 
-        include_once 'db.php';
+        // Make sure all values are provided
+        if (isset($_POST["name"]) && isset($_POST["tagline"]) && isset($_POST["visibility"])) {
 
-        if (checkValidLogin()) {
+            include_once 'db.php';
 
-            if (!checkPermission(0, "createGroup")) {
-                header("Location: /newgroup.php?displayPopup=Error: You are not allowed to create a group.");
+            if (checkValidLogin()) {
+
+                if (!checkPermission(0, "createGroup")) {
+                    header("Location: /newgroup.php?displayPopup=Error: You are not allowed to create a group.");
+                    die();
+                }
+                if (!isset($_POST["editGroup"])) {
+                    // Check if any groups exist with the same name
+                    $arr = dbGet("name", "r_groups");
+                    $unique = true;
+                    if(!isset($_POST["group_id"])) {
+                        foreach ($arr as $a) {
+                            if ($a["name"] == sanitizeInput($_POST["name"])) {
+                                $unique = false;
+                                break;
+                            }
+                        }
+                    }
+                    if ($unique) {
+
+                        if ($_FILES["fileUpload"]["error"] != 4) {
+                            include 'upload.php';
+                            $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
+                        } else {
+                            $imagePath = null;
+                        }
+
+                        if(isset($_POST["group_id"])) {
+                            // Edit group
+                            // sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["visibility"])]
+                            dbUpdate("r_groups", "name='" . sanitizeInput($_POST["name"]) . "'", "group_id='" . sanitizeInput($_POST["group_id"]) . "'");
+                            dbUpdate("r_groups", "tagline='" . sanitizeInput($_POST["tagline"]) . "'", "group_id='" . sanitizeInput($_POST["group_id"]) . "'");
+                            dbUpdate("r_groups", "visibility='" . sanitizeInput($_POST["visibility"]) . "'", "group_id='" . sanitizeInput($_POST["group_id"]) . "'");
+                            if($imagePath != null) {
+                                dbUpdate("r_groups", "logo='" . $imagePath . "'", "group_id='" . sanitizeInput($_POST["group_id"]) . "'");
+                            }
+
+                            header("Location: /group.php?group_id=" . sanitizeInput($_POST["group_id"]) . "&displayPopup=Group Edited Successfully!");
+                            die();
+
+                        } else {
+                            // New group
+                            dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["visibility"])]);
+                            $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
+                            dbPut("r_subscriptions", [getUserID(), $groupID]);
+
+                            header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
+                            die();
+                        }
+
+                    } else {
+                        // Throw an error that the group name isn't unique.
+                        $_GET['displayPopup'] = "Error, your group name isn't unique";
+                    }
+                }
+            } else {
+                header("Location: /login.php?displayPopup=You must be logged in to do that!");
                 die();
             }
-            if (!isset($_POST["editGroup"])) {
-                // Check if any groups exist with the same name
-                $arr = dbGet("name", "r_groups");
-                $unique = true;
-                foreach ($arr as $a) {
-                    if ($a["name"] == sanitizeInput($_POST["name"])) {
-                        $unique = false;
-                        break;
-                    }
-                }
-                if ($unique) {
-
-                    if (isset($_FILES["fileUpload"])) {
-                        include 'upload.php';
-                        $imagePath = processUpload($_FILES["fileUpload"], "groups", sanitizeInput($_POST["name"]));
-                    } else {
-                        $imagePath = null;
-                    }
-
-                    dbPut("r_groups", [sanitizeInput($_POST["name"]), sanitizeInput($_POST["tagline"]), $imagePath, sanitizeInput($_POST["publicity"])]);
-                    $groupID = dbGet("*", "r_groups", "name='" . sanitizeInput($_POST["name"]) . "'")[0]["group_id"];
-                    dbPut("r_subscriptions", [getUserID(), $groupID]);
-
-                    header("Location: /group.php?group_id=" . $groupID . "&displayPopup=Group Added Successfully!");
-                    die();
-                } else {
-                    // Throw an error that the group name isn't unique.
-                    $_GET['displayPopup'] = "Error, your group name isn't unique";
-                }
-            }
         } else {
-            header("Location: /login.php?displayPopup=You must be logged in to do that!");
-            die();
+            $_GET['displayPopup'] = "Error, some required fields are missing";
         }
-    } else {
-        $_GET['displayPopup'] = "Error, some required fields are missing";
     }
 }
 ?>
@@ -87,11 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <label for="publicity">Publicity</label><br />
-                        <input type="radio" id="publicity" name="publicity" value="public" checked> Public <br />
-                        <input type="radio" id="publicity" name="publicity" value="private"> Private <br />
+                        <label for="visibility">Visibility</label><br />
+                        <input type="radio" id="visibility" name="visibility" value="public" checked> Public <br />
+                        <input type="radio" id="visibility" name="visibility" value="private"> Private <br />
                         <div class="help-block with-errors"></div>
                     </div>
+
+                    <?php if(isset($_POST["group_id"])) { echo "<input type='hidden' name='group_id' value='" . sanitizeInput($_POST["group_id"]) . "'>"; } ?>
 
                     <input id="submit_group" type="submit" class="btn btn-secondary btn-send" value="Submit">
                 </div>

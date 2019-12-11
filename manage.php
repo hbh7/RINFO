@@ -125,21 +125,21 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Groups You're Admin Of</h2>
                             <ul class="tab-content-ul" id="your_groups-ul">
-                                <form method="get" action="/newgroup.php" id="createNewGroup">
-                                    <input type="submit" name="newGroup" value="Create New Group">
-                                </form>
+                                <a href="newgroup.php"> Create New Group </a>
                                 <?php
-
                                     $permissions = dbGet("group_id", "r_permissions", "user_id='" . getUserID() . "' AND description='admin'");
                                     foreach ($permissions as $permission) {
                                         $groupName = dbGet("name", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["name"];
                                         $tagline = dbGet("tagline", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["tagline"];
+                                        $visibility = dbGet("tagline", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["visibility"];
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
                                         <form action="/newgroup.php" method="post">
                                             <h4>{$groupName}</h4>
                                             <input type="hidden" name="name" value="{$groupName}">
                                             <input type="hidden" name="tagline" value="{$tagline}">
+                                            <input type="hidden" name="publicity" value="{$visibility}">
+                                            <input type="hidden" name="edit" value="true">
                                             <input type="hidden" name="group_id" value="{$permission['group_id']}">
                                             <input type="submit" name="editGroup" value="Edit Group">
                                         </form>
