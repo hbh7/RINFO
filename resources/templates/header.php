@@ -30,7 +30,7 @@
                     <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
                     </svg>
                 </a>
-                <button id="admin" class="btn btn-light" onclick="window.location='admin.php';">Manage</button>
+                <button id="admin" class="btn btn-light" onclick="window.location=manage.php';">Manage</button>
                 <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
                 <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
                     {$icon}

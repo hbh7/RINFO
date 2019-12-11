@@ -95,7 +95,7 @@ if(isset($action)) {
         }
         if(strlen($password) < 16) {
             $result = [false, "Failed to register: Some items require your attention"];
-            $errors["password"] = "Password cannot be bad (too short)";
+            $errors["password"] = "Password cannot be bad (too short, minimum 16 characters)";
         }
         if(strlen($password) == 0) {
             $result = [false, "Failed to register: Some items require your attention"];

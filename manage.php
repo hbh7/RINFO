@@ -1,6 +1,6 @@
 <html lang="en">
     <head>
-        <?php $title = "Administration Homepage"; ?>
+        <?php $title = "Management Page"; ?>
         <?php include('resources/templates/head.php'); ?>
         <script src="/resources/scripts/admin.js" type="text/javascript" charset="utf-8" async defer></script>
     </head>
