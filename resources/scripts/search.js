@@ -56,7 +56,7 @@ $(document).ready(function () {
                         if(d["group_id"] === 0) {
                             newelem.href = "user.php?user_id=" + d["user_id"];
                         } else {
-                            newelem.href = "group.php?group_id=" + d["group_id"];
+                            newelem.href = "post.php?post_id=" + d["post_id"];
                         }
                         newelem.innerText = d["title"];
                         output.appendChild(newelem);
