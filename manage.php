@@ -72,9 +72,46 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
     } else {
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
+    } 
+} else if(isset($_POST["firstName"]) || isset($_POST["lastName"])) {
+    if(checkValidLogin()) {
+        if (isset($_POST["firstName"])) {
+            $firstName = $_POST["firstName"];
+            // Validate input
+            if(strlen($firstname) > 128) {
+                $_GET["displayPopup"] = "First name is too long.";
+                $valid = false;
+            }
+            if(!ctype_alpha($firstname)) {
+                $_GET["displayPopup"] = "First name contains non letters";
+                $valid = false;
+            }
+            if(strlen($firstname) == 0) {
+                $_GET["displayPopup"] = "First name cannot be empty";
+                $valid = false;
+            }
+            if (isset($valid) && $valid == false) {
+                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+                die();
+            }
+
+            if(dbPut("r_permissions", [sanitizeInput($_POST["user_id"]), sanitizeInput($_POST["group_id"]), sanitizeInput($_POST["permission"])])) {
+                $_GET["displayPopup"] = "Successfully added permission!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong.";
+            }
+        } elseif (isset($_POST["lastName"])) {
+            if(dbDelete("r_permissions", "user_id=" . sanitizeInput($_POST["user_id"]) . " AND group_id=" . sanitizeInput($_POST["group_id"]) . " AND description='" . sanitizeInput($_POST["permission"]) . "'")) {
+                $_GET["displayPopup"] = "Successfully  permission!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong.";
+            }
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
     }
 }
-
 ?>
 
 <html lang="en">
