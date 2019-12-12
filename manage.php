@@ -178,7 +178,7 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
             $valid = false;           
         }
         if (isset($valid) && $valid == false) {
-           header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+            header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
             die();
         }
         // Update table
@@ -187,6 +187,8 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
             // Update cookie
             $loginCookie = ["username" => $user["username"], "passwordHash" => $newHash, "firstname" => $user["firstName"], "lastname" => $user['lastName']];
             setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
+            header("Location: /manage.php?displayPopup=");
+            die();
         } else {
             $_GET["displayPopup"] = "Error: Something went wrong.";
         }
