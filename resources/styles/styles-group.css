@@ -50,6 +50,8 @@ body {
     margin: auto;
     color: white;
     width: 70%;
+    font-size: 1vw;
+    text-align: center;
 }
 #users_logo {
     height: 35px;
