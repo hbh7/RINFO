@@ -62,7 +62,7 @@ $(document).ready(function () {
 
         if(searchText !== "") {
 
-            var searchAreas = JSON.stringify(["group_name", "group_tagline", "post_title", "post_body", "user"]);
+            var searchAreas = JSON.stringify(["user"]);
 
             $.getJSON("db.php?searchtext=" + searchText + "&searchareas=" + searchAreas, function (data) {
 
