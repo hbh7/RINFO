@@ -58,10 +58,6 @@ if(isset($action)) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["email"] = "eMail is too long";
         }
-        if(strlen($email) == 0) {
-            $result = [false, "Failed to register: Some items require your attention"];
-            $errors["email"] = "eMail cannot be empty";
-        }
         if(strlen($email) < 5) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["email"] = "eMail cannot be that short";
@@ -86,9 +82,9 @@ if(isset($action)) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["password"] = "Password is too long";
         }
-        if(strlen($password) < 16) {
+        if(strlen($password) < 8) {
             $result = [false, "Failed to register: Some items require your attention"];
-            $errors["password"] = "Password cannot be bad (too short, minimum 16 characters)";
+            $errors["password"] = "Password cannot be bad (too short, minimum 8 characters)";
         }
         if(strlen($password) == 0) {
             $result = [false, "Failed to register: Some items require your attention"];
@@ -195,20 +191,20 @@ if(isset($action)) {
                 if(isset($action) && $action == "registerpage") {
                     echo "<label for='firstname'>First Name </label><input type='text' name='firstname' id='firstname' value='";
                     if (isset($firstname)) echo $firstname;
-                    echo "' placeholder='SIS'><br />";
-                    if(isset($errors["firstname"])) { echo "<p style='color: red'> " . $errors["firstname"] . "</p>"; }
+                    echo "' placeholder='SIS'><br/>";
+                    if(isset($errors["firstname"])) { echo "<span style='color: red'> " . $errors["firstname"] . "</span>"; }
                     echo "<br /><label for='lastname'>Last Name </label><input type='text' name='lastname' id='lastname' value='";
                     if (isset($lastname)) echo $lastname;
                     echo "' placeholder='Man'><br />";
-                    if(isset($errors["lastname"])) { echo "<p style='color: red'> " . $errors["lastname"] . "</p>"; }
-                    echo "<br /><label for='email'>eMail </label><br><input type='text' name='email' id='email' value='";
+                    if(isset($errors["lastname"])) { echo "<span style='color: red'> " . $errors["lastname"] . "</span>"; }
+                    echo "<br /><label for='email'>eMail </label><br><input type='email' name='email' id='email' value='";
                     if (isset($email)) echo $email;
                     echo "' placeholder='sisman@rpi.edu'><br />";
-                    if(isset($errors["email"])) { echo "<p style='color: red'> " . $errors["email"] . "</p>"; }
+                    if(isset($errors["email"])) { echo "<spanp style='color: red'> " . $errors["email"] . "</span>"; }
                     echo "<br /><label for='username'>Username </label><input type='text'  name='username' id='username' value='" . $username . "' placeholder='sisman'><br />";
-                    if(isset($errors["username"])) { echo "<p style='color: red'> " . $errors["username"] . "</p>"; }
+                    if(isset($errors["username"])) { echo "<span style='color: red'> " . $errors["username"] . "</span>"; }
                     echo "<br /><label for='password'>Password (Don't forget it!)</label><input type='password' name='password' id='password' value='' placeholder='************'><br />";
-                    if(isset($errors["password"])) { echo "<p style='color: red'> " . $errors["password"] . "</p>"; }
+                    if(isset($errors["password"])) { echo "<span style='color: red'> " . $errors["password"] . "</span>"; }
                     echo "<br /><button type='submit' id='register_button' name='action' value='register'>Register</button>";
 
                 } else {

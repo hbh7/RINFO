@@ -40,11 +40,12 @@ body {
 #login_panel {
     float: right;
     width: 49%;
+    font-size: 15px;
     position: relative;
     height: 500px;
 }
 #login_box {
-    margin-top: 130px;
+    margin-top: 70px;
     margin-left: auto;
     margin-right: auto;
     width: 30%;

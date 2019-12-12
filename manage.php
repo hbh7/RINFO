@@ -75,6 +75,8 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
     } 
 } else if(isset($_POST["submitName"])) {
     if(checkValidLogin()) {
+        $changedFirst = false;
+        $changedLast = false;
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
         if (isset($_POST["firstName"]) && $_POST["firstName"] != $user["firstname"]) {
             $firstName = $_POST["firstName"];
@@ -95,10 +97,10 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
                 die();
             }
-            $oldFirstName = $firstName;
             // Update table
             if(dbUpdate("r_users", "firstname='" . $firstName . "'", "firstname='" . $user["firstname"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed first name.";
+                $changedFirst = true;    
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
@@ -126,12 +128,13 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
             // Update table
             if(dbUpdate("r_users", "lastname='" . $lastName . "'", "lastname='" . $user["lastname"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed last name.";
+                $changedLast = true;    
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
         }
-        if (isset($firstName) && isset($lastName) && $firstName != $oldFirstName && $lastName != $oldLastName) {
-            $_GET["displayPopup"] = "Successfully changed your entire name...?";
+        if (isset($changedFirst) && isset($changedLast) && $changedFirst && $changedLast) {
+            $_GET["displayPopup"] = "Successfully changed your entire name for some reason.";
         }
     } else {
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
@@ -140,17 +143,54 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
 } else if(isset($_POST["submitEmail"])) {
     if(checkValidLogin()) {
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["email"])) {
+        if (isset($_POST["email"]) &&  $_POST["email"] != $user["email"]) {
             $email = $_POST["email"];
             // Validate input
-            
-            if (isset($valid) && $valid == false) {
-                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
-                die();
+            if(strlen($email) > 256) {
+                $_GET["displayPopup"] = "Email is too long.";
+                $valid = false;
             }
-
-            if(dbUpdate("r_users", [sanitizeInput($_POST["email"])], "email='" . $user["email"] . "'")) {
+            if(strlen($email) < 5) {
+                $_GET["displayPopup"] = "Invalid Email";
+                $valid = false;
+            }
+            // Update table
+            if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed email.";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong.";
+            }
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
+    }
+} else if(isset($_POST["submitPassword"])) {
+    if(checkValidLogin()) {
+        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+        $currentHash = $user["password"];
+        if (isset($_POST["oldPass"]) && isset($_POST["newPass"]) && isset($_POST["reNewPass"])) {
+            $password = $_POST["newPass"];
+            $newHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
+            $reNewHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
+            // Validate input
+            if(strlen($password) > 256) {
+                $result = [false, "Failed to register: Some items require your attention"];
+                $errors["password"] = "Password is too long.";
+            }
+            if(strlen($password) < 4) {
+                $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
+                $valid = false;
+            }
+            if($newHash != $reNewHash) {
+                $_GET["displayPopup"] = "Passwords don't match.";
+            }
+            if ($_POST["newPass"] == $_POST["oldPass"]) {
+                $_GET["displayPopup"] = "Please enter a NEW password.";                
+            }
+            // Update table
+            if(dbUpdate("r_users", "password='" . $newHash . "'", "password='" . $user["password"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed password.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
@@ -291,7 +331,6 @@ HTML;
                         <!-- Your account right-side box -->
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
-                            <!--TODO: implement change profile pic, change password, username-->
                             <form action="" method="post" class="yourAccount">
                                 <h4>Edit Profile Picture</h4>
                                 <input type="file" name="pic" accept="image/*">
@@ -309,17 +348,17 @@ HTML;
                             </form>
                             <form action="" method="post" class="yourAccount">
                                 <h4>Change Email</h4>
-                                <input type="text" name="email" value="<?php echo $user["email"];?>">
+                                <input type="email" name="email" value="<?php echo $user["email"];?>">
                                 <br />
                                 <input type="submit" name="submitEmail" value="Change Email">
                             </form>
                             <form action="" method="post" class="yourAccount">
                                 <h4>Change Password</h4>
-                                <input type="text" name="oldPass" placeholder="Old Password">
+                                <input type="password" name="oldPass" placeholder="Old Password">
                                 <br />
-                                <input type="text" name="newPass" placeholder="New Password">
+                                <input type="password" name="newPass" placeholder="New Password">
                                 <br />
-                                <input type="text" name="newPass" placeholder="Re-enter new password">
+                                <input type="password" name="reNewPass" placeholder="Re-enter new password">
                                 <br />
                                 <input type="submit" name="submitPassword" value="Change Password">
                             </form>
