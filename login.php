@@ -6,6 +6,8 @@ include_once 'db.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
+    if (isset($_POST['rePassword']))
+        $rePassword = sanitizeInput($_POST['rePassword']);
     $action = sanitizeInput($_POST['action']);
 
     if(isset($_POST['firstname']))
@@ -86,9 +88,9 @@ if(isset($action)) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["password"] = "Password cannot be bad (too short, minimum 8 characters)";
         }
-        if(strlen($password) == 0) {
+        if($password != $rePassword) {
             $result = [false, "Failed to register: Some items require your attention"];
-            $errors["password"] = "Password cannot be empty";
+            $errors["password"] = "Passwords don't match";
         }
 
         // If everything validated:
@@ -204,6 +206,7 @@ if(isset($action)) {
                     echo "<br /><label for='username'>Username </label><input type='text'  name='username' id='username' value='" . $username . "' placeholder='sisman'><br />";
                     if(isset($errors["username"])) { echo "<span style='color: red'> " . $errors["username"] . "</span>"; }
                     echo "<br /><label for='password'>Password (Don't forget it!)</label><input type='password' name='password' id='password' value='' placeholder='************'><br />";
+                    echo "<br /><label for='password'>Re-Type Password </label><input type='password' name='rePassword' id='rePassword' value='' placeholder='************'><br />";
                     if(isset($errors["password"])) { echo "<span style='color: red'> " . $errors["password"] . "</span>"; }
                     echo "<br /><button type='submit' id='register_button' name='action' value='register'>Register</button>";
 
