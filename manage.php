@@ -170,20 +170,27 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
         $currentHash = $user["password"];
         if (isset($_POST["oldPass"]) && isset($_POST["newPass"]) && isset($_POST["reNewPass"])) {
+            $password = $_POST["newPass"];
             $newHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
-            $reNewHash = password_hash($, PASSWORD_DEFAULT);
+            $reNewHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
             // Validate input
-            if(strlen($email) > 256) {
-                $_GET["displayPopup"] = "Email is too long.";
+            if(strlen($password) > 256) {
+                $result = [false, "Failed to register: Some items require your attention"];
+                $errors["password"] = "Password is too long.";
+            }
+            if(strlen($password) < 8) {
+                $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
                 $valid = false;
             }
-            if(strlen($email) < 5) {
-                $_GET["displayPopup"] = "Invalid Email";
-                $valid = false;
+            if($newHash != $reNewHash) {
+                $_GET["displayPopup"] = "Passwords don't match.";
+            }
+            if ($_POST["newPass"] == $_POST["oldPass"]) {
+                $_GET["displayPopup"] = "Please enter a NEW password.";                
             }
             // Update table
-            if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed email.";
+            if(dbUpdate("r_users", "password='" . $newHash . "'", "password='" . $user["password"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed password.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }

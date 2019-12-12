@@ -82,9 +82,9 @@ if(isset($action)) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["password"] = "Password is too long";
         }
-        if(strlen($password) < 16) {
+        if(strlen($password) < 8) {
             $result = [false, "Failed to register: Some items require your attention"];
-            $errors["password"] = "Password cannot be bad (too short, minimum 16 characters)";
+            $errors["password"] = "Password cannot be bad (too short, minimum 8 characters)";
         }
         if(strlen($password) == 0) {
             $result = [false, "Failed to register: Some items require your attention"];
