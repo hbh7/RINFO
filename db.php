@@ -182,7 +182,7 @@ function dbDelete($table, $where) {
 
     $sql = "DELETE FROM " . $table . " WHERE " . $where . ";";
 
-    error_log($sql);
+    //error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();
