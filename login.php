@@ -201,7 +201,7 @@ if(isset($action)) {
                     if (isset($lastname)) echo $lastname;
                     echo "' placeholder='Man'><br />";
                     if(isset($errors["lastname"])) { echo "<p style='color: red'> " . $errors["lastname"] . "</p>"; }
-                    echo "<br /><label for='email'>eMail </label><br><input type='text' name='email' id='email' value='";
+                    echo "<br /><label for='email'>eMail </label><br><input type='email' name='email' id='email' value='";
                     if (isset($email)) echo $email;
                     echo "' placeholder='sisman@rpi.edu'><br />";
                     if(isset($errors["email"])) { echo "<p style='color: red'> " . $errors["email"] . "</p>"; }
