@@ -62,6 +62,13 @@ $numPosts = sizeof(dbGet("post_id", "r_posts", "user_id='" . $user_id . "' AND g
                 <h3 id="name"><?php echo $user["firstname"] . " " . $user["lastname"]; ?></h3>
                 <h3 id="username"><?php echo $user["username"]; ?></h3>
                 <h3 id="email"><?php echo $user["email"]; ?></h3>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action" id="list-your_groups-list" href="newpost.php?destination=self" role="tab" aria-controls="add_post">Add Post</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="activity">
