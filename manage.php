@@ -73,11 +73,11 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     } 
-} else if(isset($_POST["firstName"]) || isset($_POST["lastName"])) {
+} else if(isset($_POST["submitName"])) {
     if(checkValidLogin()) {
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["firstName"])) {
-            $firstname = $_POST["firstName"];
+        if (isset($_POST["firstName"]) && $_POST["firstName"] != $user["firstname"]) {
+            $firstName = $_POST["firstName"];
             // Validate input
             if(strlen($firstName) > 128) {
                 $_GET["displayPopup"] = "First name is too long.";
@@ -95,14 +95,15 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
                 die();
             }
+            $oldFirstName = $firstName;
             // Update table
-            if(dbUpdate("r_users", [sanitizeInput($_POST["firstName"])], "firstname='" . $user["firstname"] . "'")) {
+            if(dbUpdate("r_users", "firstname='" . $firstName . "'", "firstname='" . $user["firstname"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed first name.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
         }
-        if (isset($_POST["lastName"])) {
+        if (isset($_POST["lastName"]) &&  $_POST["lastName"] != $user["lastname"]) {
             $lastName = $_POST["lastName"];
             // Validate input
             if(strlen($lastName) > 128) {
@@ -121,25 +122,26 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
                 die();
             }
+            $oldLastName = $lastName;
             // Update table
-            if(dbUpdate("r_users", [sanitizeInput($_POST["lastName"])], "lastname='" . $user["lastname"] . "'")) {
+            if(dbUpdate("r_users", "lastname='" . $lastName . "'", "lastname='" . $user["lastname"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed last name.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
         }
-        if (isset($_POST["firstName"]) && isset($_POST["lastName"])) {
-            $_GET["displayPopup"] = "Successfully changed your entire name somehow...";
+        if (isset($firstName) && isset($lastName) && $firstName != $oldFirstName && $lastName != $oldLastName) {
+            $_GET["displayPopup"] = "Successfully changed your entire name...?";
         }
     } else {
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
-} else if(isset($_POST["email"])) {
+} else if(isset($_POST["submitEmail"])) {
     if(checkValidLogin()) {
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["firstName"])) {
-            $firstName = $_POST["firstName"];
+        if (isset($_POST["email"])) {
+            $email = $_POST["email"];
             // Validate input
             
             if (isset($valid) && $valid == false) {
@@ -147,8 +149,8 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 die();
             }
 
-            if(dbUpdate("r_users", [sanitizeInput($_POST["firstName"])], "firstname='" . $user["firstname"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed first name.";
+            if(dbUpdate("r_users", [sanitizeInput($_POST["email"])], "email='" . $user["email"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed email.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
