@@ -156,6 +156,8 @@ if(isset($action)) {
         // Handle forgotten passwords by laughing at the user's misfortune
         $result = [False, "Sorry, you're out of luck lol. Should have used a password manager"];
 
+    } else if ($action == "registerpage") {
+        unset($result);
     } else {
         // Invalid action
         $result = [False, "Error: Invalid action"];

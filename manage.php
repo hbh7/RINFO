@@ -165,7 +165,7 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         } else if(strlen($_POST["newPass"]) > 256) {
             $_GET["displayPopup"] = "Password is too long.";
             $valid = false;
-        } else if(strlen($_POST["newPass"]) < 4) {
+        } else if(strlen($_POST["newPass"]) < 8) {
             $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
             $valid = false;
         }
