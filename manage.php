@@ -165,6 +165,33 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
+} else if(isset($_POST["submitPassword"])) {
+    if(checkValidLogin()) {
+        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+        $currentHash = $user["password"];
+        if (isset($_POST["oldPass"]) && isset($_POST["newPass"]) && isset($_POST["reNewPass"])) {
+            $newHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
+            $reNewHash = password_hash($, PASSWORD_DEFAULT);
+            // Validate input
+            if(strlen($email) > 256) {
+                $_GET["displayPopup"] = "Email is too long.";
+                $valid = false;
+            }
+            if(strlen($email) < 5) {
+                $_GET["displayPopup"] = "Invalid Email";
+                $valid = false;
+            }
+            // Update table
+            if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed email.";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong.";
+            }
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
+    }
 }
 ?>
 
@@ -297,7 +324,6 @@ HTML;
                         <!-- Your account right-side box -->
                         <div class="tab-pane fade" id="list-your_account" role="tabpanel" aria-labelledby="list-your_account-list">
                             <h2>Your Account</h2>
-                            <!--TODO: implement change profile pic, change password, username-->
                             <form action="" method="post" class="yourAccount">
                                 <h4>Edit Profile Picture</h4>
                                 <input type="file" name="pic" accept="image/*">
@@ -325,7 +351,7 @@ HTML;
                                 <br />
                                 <input type="text" name="newPass" placeholder="New Password">
                                 <br />
-                                <input type="text" name="newPass" placeholder="Re-enter new password">
+                                <input type="text" name="reNewPass" placeholder="Re-enter new password">
                                 <br />
                                 <input type="submit" name="submitPassword" value="Change Password">
                             </form>
