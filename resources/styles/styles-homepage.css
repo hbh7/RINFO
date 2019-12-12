@@ -18,7 +18,9 @@ body {
 	float: left;
 	width: 33.333%;
 }
-
+.tab_content::-webkit-scrollbar {
+  display: none;
+}
 .display li a {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
