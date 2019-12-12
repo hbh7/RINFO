@@ -1,203 +1,195 @@
 <?php
-
 include_once "db.php";
 
+if (!checkValidLogin()) {
+    header("Location: /login.php?displayPopup=You must be logged in to do that!");
+    die();
+}
+
 if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || isset($_POST["adminMessageDelete"])) {
-    if(checkValidLogin()) {
-        if (checkPermission(0, "admin")) {
+    if (checkPermission(0, "admin")) {
 
-            if (isset($_POST["adminMessageCreate"])) {
+        if (isset($_POST["adminMessageCreate"])) {
 
-                date_default_timezone_set('America/New_York');
-                $date = date('Y-m-d H:i:s', time());
-                if(dbPut("r_alerts", [getUserID(), sanitizeInput($_POST["adminMessage"]), $date])) {
-                    $_GET["displayPopup"] = "Successfully saved new admin message!";
-                } else {
-                    $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
-                }
-
-            } elseif (isset($_POST["adminMessageEdit"])) {
-
-                date_default_timezone_set('America/New_York');
-                $date = date('Y-m-d H:i:s', time());
-                if(dbUpdate("r_alerts", "body='" . sanitizeInput($_POST['adminMessageBody']) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'") &&
-                   dbUpdate("r_alerts", "date='" . sanitizeInput($date) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'")) {
-                    $_GET["displayPopup"] = "Successfully saved admin message!";
-                } else {
-                    $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
-                }
-
-            } elseif (isset($_POST["adminMessageDelete"])) {
-
-                if(dbDelete("r_alerts", "alert_id='" . sanitizeInput($_POST["adminMessageID"]) . "'")) {
-                    $_GET["displayPopup"] = "Successfully deleted admin message!";
-                } else {
-                    $_GET["displayPopup"] = "Error: Something went wrong while deleting the message.";
-                }
-
+            date_default_timezone_set('America/New_York');
+            $date = date('Y-m-d H:i:s', time());
+            if(dbPut("r_alerts", [getUserID(), sanitizeInput($_POST["adminMessage"]), $date])) {
+                $_GET["displayPopup"] = "Successfully saved new admin message!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
             }
 
-        } else {
-            $_GET["displayPopup"] = "Error: You are not authorized to use admin messages!";
+        } elseif (isset($_POST["adminMessageEdit"])) {
+
+            date_default_timezone_set('America/New_York');
+            $date = date('Y-m-d H:i:s', time());
+            if(dbUpdate("r_alerts", "body='" . sanitizeInput($_POST['adminMessageBody']) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'") &&
+               dbUpdate("r_alerts", "date='" . sanitizeInput($date) . "'", "alert_id='" . sanitizeInput($_POST['adminMessageID']) . "'")) {
+                $_GET["displayPopup"] = "Successfully saved admin message!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while saving the message.";
+            }
+
+        } elseif (isset($_POST["adminMessageDelete"])) {
+
+            if(dbDelete("r_alerts", "alert_id='" . sanitizeInput($_POST["adminMessageID"]) . "'")) {
+                $_GET["displayPopup"] = "Successfully deleted admin message!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while deleting the message.";
+            }
+
         }
+
     } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
+        $_GET["displayPopup"] = "Error: You are not authorized to use admin messages!";
     }
 } else if(isset($_POST["addPermission"]) || isset($_POST["removePermission"])) {
-    if(checkValidLogin()) {
-        if (checkPermission(0, "admin")) {
+    if (checkPermission(0, "admin")) {
 
-            if (isset($_POST["addPermission"])) {
+        if (isset($_POST["addPermission"])) {
 
-                if(dbPut("r_permissions", [sanitizeInput($_POST["user_id"]), sanitizeInput($_POST["group_id"]), sanitizeInput($_POST["permission"])])) {
-                    $_GET["displayPopup"] = "Successfully added permission!";
-                } else {
-                    $_GET["displayPopup"] = "Error: Something went wrong while adding the permission.";
-                }
-
-            } elseif (isset($_POST["removePermission"])) {
-
-                if(dbDelete("r_permissions", "user_id=" . sanitizeInput($_POST["user_id"]) . " AND group_id=" . sanitizeInput($_POST["group_id"]) . " AND description='" . sanitizeInput($_POST["permission"]) . "'")) {
-                    $_GET["displayPopup"] = "Successfully deleted permission!";
-                } else {
-                    $_GET["displayPopup"] = "Error: Something went wrong while deleting the permission.";
-                }
-
+            if(dbPut("r_permissions", [sanitizeInput($_POST["user_id"]), sanitizeInput($_POST["group_id"]), sanitizeInput($_POST["permission"])])) {
+                $_GET["displayPopup"] = "Successfully added permission!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while adding the permission.";
             }
 
-        } else {
-            $_GET["displayPopup"] = "Error: You are not authorized to change permissions!";
+        } elseif (isset($_POST["removePermission"])) {
+
+            if(dbDelete("r_permissions", "user_id=" . sanitizeInput($_POST["user_id"]) . " AND group_id=" . sanitizeInput($_POST["group_id"]) . " AND description='" . sanitizeInput($_POST["permission"]) . "'")) {
+                $_GET["displayPopup"] = "Successfully deleted permission!";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong while deleting the permission.";
+            }
+
         }
+
     } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
-    } 
+        $_GET["displayPopup"] = "Error: You are not authorized to change permissions!";
+    }
 } else if(isset($_POST["submitName"])) {
-    if(checkValidLogin()) {
-        $changedFirst = false;
-        $changedLast = false;
-        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["firstName"]) && $_POST["firstName"] != $user["firstname"]) {
-            $firstName = $_POST["firstName"];
-            // Validate input
-            if(strlen($firstName) > 128) {
-                $_GET["displayPopup"] = "First name is too long.";
-                $valid = false;
-            }
-            if(!ctype_alpha($firstName)) {
-                $_GET["displayPopup"] = "First name contains non letters";
-                $valid = false;
-            }
-            if(strlen($firstName) == 0) {
-                $_GET["displayPopup"] = "First name cannot be empty";
-                $valid = false;
-            }
-            if (isset($valid) && $valid == false) {
-                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
-                die();
-            }
-            // Update table
-            if(dbUpdate("r_users", "firstname='" . $firstName . "'", "firstname='" . $user["firstname"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed first name.";
-                $changedFirst = true;    
-            } else {
-                $_GET["displayPopup"] = "Error: Something went wrong.";
-            }
+    $changedFirst = false;
+    $changedLast = false;
+    $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+    if (isset($_POST["firstName"]) && $_POST["firstName"] != $user["firstname"]) {
+        $firstName = $_POST["firstName"];
+        // Validate input
+        if(strlen($firstName) > 128) {
+            $_GET["displayPopup"] = "First name is too long.";
+            $valid = false;
         }
-        if (isset($_POST["lastName"]) &&  $_POST["lastName"] != $user["lastname"]) {
-            $lastName = $_POST["lastName"];
-            // Validate input
-            if(strlen($lastName) > 128) {
-                $_GET["displayPopup"] = "Last name is too long.";
-                $valid = false;
-            }
-            if(!ctype_alpha($lastName)) {
-                $_GET["displayPopup"] = "Last name contains non letters";
-                $valid = false;
-            }
-            if(strlen($lastName) == 0) {
-                $_GET["displayPopup"] = "Last name cannot be empty";
-                $valid = false;
-            }
-            if (isset($valid) && $valid == false) {
-                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
-                die();
-            }
-            $oldLastName = $lastName;
-            // Update table
-            if(dbUpdate("r_users", "lastname='" . $lastName . "'", "lastname='" . $user["lastname"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed last name.";
-                $changedLast = true;    
-            } else {
-                $_GET["displayPopup"] = "Error: Something went wrong.";
-            }
+        if(!ctype_alpha($firstName)) {
+            $_GET["displayPopup"] = "First name contains non letters";
+            $valid = false;
         }
-        if (isset($changedFirst) && isset($changedLast) && $changedFirst && $changedLast) {
-            $_GET["displayPopup"] = "Successfully changed your entire name for some reason.";
+        if(strlen($firstName) == 0) {
+            $_GET["displayPopup"] = "First name cannot be empty";
+            $valid = false;
         }
-    } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
+        if (isset($valid) && $valid == false) {
+            header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+            die();
+        }
+        // Update table
+        if(dbUpdate("r_users", "firstname='" . $firstName . "'", "firstname='" . $user["firstname"] . "'")) {
+            $_GET["displayPopup"] = "Successfully changed first name.";
+            $changedFirst = true;    
+        } else {
+            $_GET["displayPopup"] = "Error: Something went wrong.";
+        }
+    }
+    if (isset($_POST["lastName"]) &&  $_POST["lastName"] != $user["lastname"]) {
+        $lastName = $_POST["lastName"];
+        // Validate input
+        if(strlen($lastName) > 128) {
+            $_GET["displayPopup"] = "Last name is too long.";
+            $valid = false;
+        }
+        if(!ctype_alpha($lastName)) {
+            $_GET["displayPopup"] = "Last name contains non letters";
+            $valid = false;
+        }
+        if(strlen($lastName) == 0) {
+            $_GET["displayPopup"] = "Last name cannot be empty";
+            $valid = false;
+        }
+        if (isset($valid) && $valid == false) {
+            header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+            die();
+        }
+        $oldLastName = $lastName;
+        // Update table
+        if(dbUpdate("r_users", "lastname='" . $lastName . "'", "lastname='" . $user["lastname"] . "'")) {
+            $_GET["displayPopup"] = "Successfully changed last name.";
+            $changedLast = true;    
+        } else {
+            $_GET["displayPopup"] = "Error: Something went wrong.";
+        }
+    }
+    if (isset($changedFirst) && isset($changedLast) && $changedFirst && $changedLast) {
+        $_GET["displayPopup"] = "Successfully changed your entire name for some reason.";
     }
 } else if(isset($_POST["submitEmail"])) {
-    if(checkValidLogin()) {
-        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["email"]) &&  $_POST["email"] != $user["email"]) {
-            $email = $_POST["email"];
-            // Validate input
-            if(strlen($email) > 256) {
-                $_GET["displayPopup"] = "Email is too long.";
-                $valid = false;
-            }
-            if(strlen($email) < 5) {
-                $_GET["displayPopup"] = "Invalid Email";
-                $valid = false;
-            }
-            // Update table
-            if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed email.";
-            } else {
-                $_GET["displayPopup"] = "Error: Something went wrong.";
-            }
+    $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+    if (isset($_POST["email"]) &&  $_POST["email"] != $user["email"]) {
+        $email = $_POST["email"];
+        // Validate input
+        if(strlen($email) > 256) {
+            $_GET["displayPopup"] = "Email is too long.";
+            $valid = false;
         }
-    } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
+        if(strlen($email) < 5) {
+            $_GET["displayPopup"] = "Invalid Email";
+            $valid = false;
+        }
+        if (isset($valid) && $valid == false) {
+            header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+            die();
+        }
+        // Update table
+        if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
+            $_GET["displayPopup"] = "Successfully changed email.";
+        } else {
+            $_GET["displayPopup"] = "Error: Something went wrong.";
+        }
     }
 } else if(isset($_POST["submitPassword"])) {
-    if(checkValidLogin()) {
-        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        $currentHash = $user["password"];
-        if (isset($_POST["oldPass"]) && isset($_POST["newPass"]) && isset($_POST["reNewPass"])) {
-            $password = $_POST["newPass"];
-            $newHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
-            $reNewHash = password_hash($POST_["newPass"], PASSWORD_DEFAULT);
-            // Validate input
-            if(strlen($password) > 256) {
-                $result = [false, "Failed to register: Some items require your attention"];
-                $errors["password"] = "Password is too long.";
-            }
-            if(strlen($password) < 4) {
-                $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
-                $valid = false;
-            }
-            if($newHash != $reNewHash) {
-                $_GET["displayPopup"] = "Passwords don't match.";
-            }
-            if ($_POST["newPass"] == $_POST["oldPass"]) {
-                $_GET["displayPopup"] = "Please enter a NEW password.";                
-            }
-            // Update table
-            if(dbUpdate("r_users", "password='" . $newHash . "'", "password='" . $user["password"] . "'")) {
-                $_GET["displayPopup"] = "Successfully changed password.";
-            } else {
-                $_GET["displayPopup"] = "Error: Something went wrong.";
-            }
+    $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+    $currentHash = $user["password"];
+    if (isset($_POST["oldPass"]) && isset($_POST["newPass"]) && isset($_POST["reNewPass"])) {
+        $newHash = password_hash($_POST["newPass"], PASSWORD_DEFAULT);
+        // Validate input
+        if (!password_verify($_POST["oldPass"], $user["password"])) {
+            $_GET["displayPopup"] = "Invalid current password.";
+            $valid = false;
+        } else if(strlen($_POST["newPass"]) > 256) {
+            $_GET["displayPopup"] = "Password is too long.";
+            $valid = false;
+        } else if(strlen($_POST["newPass"]) < 4) {
+            $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
+            $valid = false;
         }
-    } else {
-        header("Location: /login.php?displayPopup=You must be logged in to do that!");
-        die();
+        if(!password_verify($_POST["reNewPass"], $newHash)) {
+            $_GET["displayPopup"] = "Passwords do not match.";
+            $valid = false;
+        }
+        if (password_verify($_POST["oldPass"], $newHash)) {
+            $_GET["displayPopup"] = "Please enter a NEW password.";     
+            $valid = false;           
+        }
+        if (isset($valid) && $valid == false) {
+           header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+            die();
+        }
+        // Update table
+        if(dbUpdate("r_users", "password='" . $newHash . "'", "password='" . $user["password"] . "'")) {
+            $_GET["displayPopup"] = "Successfully changed password.";
+            // Update cookie
+            $loginCookie = ["username" => $user["username"], "passwordHash" => $newHash, "firstname" => $user["firstName"], "lastname" => $user['lastName']];
+            setcookie("login", json_encode($loginCookie), time() + (86400 * 30), "/");
+        } else {
+            $_GET["displayPopup"] = "Error: Something went wrong.";
+        }
     }
 }
 ?>
