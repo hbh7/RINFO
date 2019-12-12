@@ -78,6 +78,7 @@ HTML;
                         $("#popupParent").delay(5000).fadeOut();
                     </script>
 HTML;
+        unset($_GET['displayPopup']);
     }
     ?>
 </header>

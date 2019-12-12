@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $output = [];
         $areas = [];
         if(isset($_GET['searchareas'])) {
-            $areas = json_decode(sanitizeInput($_GET['searchareas']));
+            $areas = json_decode($_GET['searchareas']);
         }
         if(in_array("group_name", $areas)) {
             $output["group_name"] = dbGet("name, group_id", "r_groups", "visibility='public' AND name LIKE '%" . sanitizeInput($_GET['searchtext']) . "%'", true);
@@ -28,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         echo json_encode($output);
 
     }
-
 
 }
 
@@ -183,7 +182,7 @@ function dbDelete($table, $where) {
 
     $sql = "DELETE FROM " . $table . " WHERE " . $where . ";";
 
-    //error_log($sql);
+    error_log($sql);
 
     if ($conn->query($sql) === TRUE) {
         $conn->close();

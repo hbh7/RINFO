@@ -44,6 +44,35 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
+} else if(isset($_POST["addPermission"]) || isset($_POST["removePermission"])) {
+    if(checkValidLogin()) {
+        if (checkPermission(0, "admin")) {
+
+            if (isset($_POST["addPermission"])) {
+
+                if(dbPut("r_permissions", [sanitizeInput($_POST["user_id"]), sanitizeInput($_POST["group_id"]), sanitizeInput($_POST["permission"])])) {
+                    $_GET["displayPopup"] = "Successfully added permission!";
+                } else {
+                    $_GET["displayPopup"] = "Error: Something went wrong while adding the permission.";
+                }
+
+            } elseif (isset($_POST["removePermission"])) {
+
+                if(dbDelete("r_permissions", "user_id=" . sanitizeInput($_POST["user_id"]) . " AND group_id=" . sanitizeInput($_POST["group_id"]) . " AND description='" . sanitizeInput($_POST["permission"]) . "'")) {
+                    $_GET["displayPopup"] = "Successfully deleted permission!";
+                } else {
+                    $_GET["displayPopup"] = "Error: Something went wrong while deleting the permission.";
+                }
+
+            }
+
+        } else {
+            $_GET["displayPopup"] = "Error: You are not authorized to change permissions!";
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
+    }
 }
 
 ?>
@@ -125,21 +154,26 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                         <div class="tab-pane fade" id="list-your_groups" role="tabpanel" aria-labelledby="list-your_groups-list">
                             <h2>Groups You're Admin Of</h2>
                             <ul class="tab-content-ul" id="your_groups-ul">
-                                <form method="get" action="/newgroup.php" id="createNewGroup">
-                                    <input type="submit" name="newGroup" value="Create New Group">
-                                </form>
+                                <a href="newgroup.php"> Create New Group </a>
                                 <?php
-
                                     $permissions = dbGet("group_id", "r_permissions", "user_id='" . getUserID() . "' AND description='admin'");
                                     foreach ($permissions as $permission) {
+
+                                        if($permission["group_id"] == 0) {
+                                            continue;
+                                        }
+
                                         $groupName = dbGet("name", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["name"];
                                         $tagline = dbGet("tagline", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["tagline"];
+                                        $visibility = dbGet("visibility", "r_groups", "group_id='" . $permission["group_id"] . "'")[0]["visibility"];
                                         echo "<li class='admin_group_name'>";
                                         echo <<<HTML
                                         <form action="/newgroup.php" method="post">
                                             <h4>{$groupName}</h4>
                                             <input type="hidden" name="name" value="{$groupName}">
                                             <input type="hidden" name="tagline" value="{$tagline}">
+                                            <input type="hidden" name="visibility" value="{$visibility}">
+                                            <input type="hidden" name="edit" value="true">
                                             <input type="hidden" name="group_id" value="{$permission['group_id']}">
                                             <input type="submit" name="editGroup" value="Edit Group">
                                         </form>
@@ -152,12 +186,21 @@ HTML;
                         <!-- User Permissions right-side box -->
                         <div class="tab-pane fade" id="list-user_permissions" role="tabpanel" aria-labelledby="list-user_permissions-list">
                             <h2>User Permissions</h2>
-                            <!--TODO: implement a (watered-down) user search - nothing fancy required
-                                    because there is no way im listing out every single user and forcing an admin to spend an hour scrolling or forcing them to use ctrl+f (first option is torture, second option is tacky)
-                                it's passable with the admin messages because there shouldnt be that many of them anyway and theoretically they are all important, but there's no cap on the potential number of users-->
-                            <!--TODO: implement a way to search for partial names as well (right now only usernames are supported)-->
-                            <input id="searchtextbox" type="text" name="userIdentifier" placeholder="Enter username" size="35px"></input>
-                            <div id="results"></div>
+                            <form action="" method="post">
+                                <label> User ID
+                                    <input type="text" name="user_id">
+                                </label>
+                                <label> Group ID
+                                    <input type="text" name="group_id">
+                                </label>
+                                <label> Permission
+                                    <input type="text" name="permission">
+                                </label>
+                                <input type='submit' name='addPermission' class='submitButton' value='Add Permission' />
+                                <input type='submit' name='removePermission' class='submitButton' value='Remove Permission' />
+                            </form>
+                            <!-- <input id="searchtextbox" type="text" name="userIdentifier" placeholder="Look up user..." size="35px" />
+                            <div id="results"></div> -->
                         </div>
 
                         <!-- Your account right-side box -->
@@ -173,9 +216,9 @@ HTML;
                             </form>
                             <form action="" method="post" class="yourAccount">
                                 <h4>Change Name</h4>
-                                <input type="text" name="firstName" value="<?php echo $firstname;?>">
+                                <input type="text" name="firstName" value="<?php echo $user["firstname"];?>">
                                 <br />
-                                <input type="text" name="lastName" value="<?php echo $lastname;?>">
+                                <input type="text" name="lastName" value="<?php echo $user["lastname"];?>">
                                 <br />
                                 <input type="submit" name="submitName" value="Change Name">
                             </form>
