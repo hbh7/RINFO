@@ -76,7 +76,7 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
 } else if(isset($_POST["firstName"]) || isset($_POST["lastName"])) {
     if(checkValidLogin()) {
         if (isset($_POST["firstName"])) {
-            $firstName = $_POST["firstName"];
+            $firstname = $_POST["firstName"];
             // Validate input
             if(strlen($firstname) > 128) {
                 $_GET["displayPopup"] = "First name is too long.";
