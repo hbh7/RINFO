@@ -75,18 +75,19 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
     } 
 } else if(isset($_POST["firstName"]) || isset($_POST["lastName"])) {
     if(checkValidLogin()) {
+        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
         if (isset($_POST["firstName"])) {
             $firstname = $_POST["firstName"];
             // Validate input
-            if(strlen($firstname) > 128) {
+            if(strlen($firstName) > 128) {
                 $_GET["displayPopup"] = "First name is too long.";
                 $valid = false;
             }
-            if(!ctype_alpha($firstname)) {
+            if(!ctype_alpha($firstName)) {
                 $_GET["displayPopup"] = "First name contains non letters";
                 $valid = false;
             }
-            if(strlen($firstname) == 0) {
+            if(strlen($firstName) == 0) {
                 $_GET["displayPopup"] = "First name cannot be empty";
                 $valid = false;
             }
@@ -94,15 +95,60 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
                 die();
             }
-
-            if(dbPut("r_permissions", [sanitizeInput($_POST["user_id"]), sanitizeInput($_POST["group_id"]), sanitizeInput($_POST["permission"])])) {
-                $_GET["displayPopup"] = "Successfully added permission!";
+            // Update table
+            if(dbUpdate("r_users", [sanitizeInput($_POST["firstName"])], "firstname='" . $user["firstname"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed first name.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
-        } elseif (isset($_POST["lastName"])) {
-            if(dbDelete("r_permissions", "user_id=" . sanitizeInput($_POST["user_id"]) . " AND group_id=" . sanitizeInput($_POST["group_id"]) . " AND description='" . sanitizeInput($_POST["permission"]) . "'")) {
-                $_GET["displayPopup"] = "Successfully  permission!";
+        }
+        if (isset($_POST["lastName"])) {
+            $lastName = $_POST["lastName"];
+            // Validate input
+            if(strlen($lastName) > 128) {
+                $_GET["displayPopup"] = "Last name is too long.";
+                $valid = false;
+            }
+            if(!ctype_alpha($lastName)) {
+                $_GET["displayPopup"] = "Last name contains non letters";
+                $valid = false;
+            }
+            if(strlen($lastName) == 0) {
+                $_GET["displayPopup"] = "Last name cannot be empty";
+                $valid = false;
+            }
+            if (isset($valid) && $valid == false) {
+                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+                die();
+            }
+            // Update table
+            if(dbUpdate("r_users", [sanitizeInput($_POST["lastName"])], "lastname='" . $user["lastname"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed last name.";
+            } else {
+                $_GET["displayPopup"] = "Error: Something went wrong.";
+            }
+        }
+        if (isset($_POST["firstName"]) && isset($_POST["lastName"])) {
+            $_GET["displayPopup"] = "Successfully changed your entire name somehow...";
+        }
+    } else {
+        header("Location: /login.php?displayPopup=You must be logged in to do that!");
+        die();
+    }
+} else if(isset($_POST["email"])) {
+    if(checkValidLogin()) {
+        $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
+        if (isset($_POST["firstName"])) {
+            $firstName = $_POST["firstName"];
+            // Validate input
+            
+            if (isset($valid) && $valid == false) {
+                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
+                die();
+            }
+
+            if(dbUpdate("r_users", [sanitizeInput($_POST["firstName"])], "firstname='" . $user["firstname"] . "'")) {
+                $_GET["displayPopup"] = "Successfully changed first name.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";
             }
@@ -111,7 +157,6 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
-}
 ?>
 
 <html lang="en">
