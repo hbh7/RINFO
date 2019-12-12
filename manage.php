@@ -178,7 +178,7 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
                 $result = [false, "Failed to register: Some items require your attention"];
                 $errors["password"] = "Password is too long.";
             }
-            if(strlen($password) < 8) {
+            if(strlen($password) < 4) {
                 $_GET["displayPopup"] = "Password is too short. Must be at least 8 characters in length.";
                 $valid = false;
             }
@@ -354,11 +354,11 @@ HTML;
                             </form>
                             <form action="" method="post" class="yourAccount">
                                 <h4>Change Password</h4>
-                                <input type="text" name="oldPass" placeholder="Old Password">
+                                <input type="password" name="oldPass" placeholder="Old Password">
                                 <br />
-                                <input type="text" name="newPass" placeholder="New Password">
+                                <input type="password" name="newPass" placeholder="New Password">
                                 <br />
-                                <input type="text" name="reNewPass" placeholder="Re-enter new password">
+                                <input type="password" name="reNewPass" placeholder="Re-enter new password">
                                 <br />
                                 <input type="submit" name="submitPassword" value="Change Password">
                             </form>
