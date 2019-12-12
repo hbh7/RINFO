@@ -51,11 +51,27 @@ h1 {
     max-height: 25px;
   }
 }
-#manage, #logout, #login, #search {
+#manage, #logout, #login {
     height: 32px;
     width: 23%;
     min-width: fit-content;
     margin: 3px 2px 3px 2px;
+    font-size: 100%;
+    line-height: initial;
+}
+#search {
+    height: 32px;
+    width: 100%;
+    min-width: fit-content;
+    margin: 3px 15px 3px 2px;
+    font-size: 100%;
+    line-height: initial;
+}
+#search_link {
+    height: 32px;
+    width: 23%;
+    min-width: fit-content;
+    margin: 0px 10px 3px 2px;
     font-size: 100%;
     line-height: initial;
 }

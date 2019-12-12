@@ -7,22 +7,22 @@
         <?php echo "<h1 id='page_title'>" . $title . "</h1>"; ?>
     </div>
     <div id="rightbox">
-            <?php
+        <?php
 
-            if (checkValidLogin()) {
-                $firstname = json_decode($_COOKIE["login"], true)["firstname"];
-                $lastname = json_decode($_COOKIE["login"], true)["lastname"];
-                $id = getUserID();
-                echo "<span id='logintext'> Logged in as " . $firstname . " " . $lastname . " </span>";
+        if (checkValidLogin()) {
+            $firstname = json_decode($_COOKIE["login"], true)["firstname"];
+            $lastname = json_decode($_COOKIE["login"], true)["lastname"];
+            $id = getUserID();
+            echo "<span id='logintext'> Logged in as " . $firstname . " " . $lastname . " </span>";
 
-                $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
-                if($iconPath != "" && file_exists($iconPath)) {
-                    $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
-                } else {
-                    $icon = "<img id = 'user_icon' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'User Picture' >";
-                }
+            $iconPath = dbGet("logo", "r_users", "user_id='" . getUserID() . "'")[0]["logo"];
+            if ($iconPath != "" && file_exists($iconPath)) {
+                $icon = "<img id = 'user_icon' src = '../../" . $iconPath . "' title = 'User Profile Icon' alt = 'User Picture' >";
+            } else {
+                $icon = "<img id = 'user_icon' src = 'resources/images/icon1.png' title = 'User Profile Icon' alt = 'User Picture' >";
+            }
 
-                echo <<<HTML
+            echo <<<HTML
                 <button id="search" class="btn btn-light" onclick="window.location='search.php'">
                     <a class="text-muted">
                     <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
@@ -30,29 +30,28 @@
                     <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
                     </svg>
                 </a>
-                <button id="manage" class="btn btn-light" onclick="window.location='manage.php';">Manage</button>
-                <button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button>
+                <a href="manage.php"><button id="manage" class="btn btn-light" onclick="window.location='manage.php';">Manage</button></a>
+                <a href="logout.php"><button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button></a>
                 <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
                     {$icon}
                 </a>
     </div>
 HTML;
-
-            } else {
-                echo <<<HTML
+        } else {
+            echo <<<HTML
+                    <a id="search_link" href="search.php" class="text-muted">
                     <button id="search" class="btn btn-light" onclick="window.location='search.php'">
-                        <a class="text-muted">
-                            <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
-                                <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                                <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                            </svg>
-                        </a>
+                        <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                        </svg>
                     </button>
-                    <button id="login" class="btn btn-light" onclick="window.location='login.php';">Log In</button>
+                    </a>
+                    <button id="login" class="btn btn-light" onclick="window.location='login.php';"><a href="login.php">Log In</a></button>
                     </div>
 HTML;
-            }
-            ?>
+        }
+        ?>
     </div>
     <!-- END MAIN HEADER CONTENT (nothing but the popup should be below here) -->
     <?php
