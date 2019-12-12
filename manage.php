@@ -157,6 +157,7 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
         header("Location: /login.php?displayPopup=You must be logged in to do that!");
         die();
     }
+}
 ?>
 
 <html lang="en">
