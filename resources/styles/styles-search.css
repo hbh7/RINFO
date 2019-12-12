@@ -44,6 +44,7 @@ body{
 }
  .container input {
 	position: absolute;
+	text-align: center;
 	margin: auto;
 	top: 0;
 	right: 0;
