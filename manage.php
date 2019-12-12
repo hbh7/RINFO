@@ -315,7 +315,7 @@ HTML;
                             </form>
                             <form action="" method="post" class="yourAccount">
                                 <h4>Change Email</h4>
-                                <input type="text" name="email" value="<?php echo $user["email"];?>">
+                                <input type="email" name="email" value="<?php echo $user["email"];?>">
                                 <br />
                                 <input type="submit" name="submitEmail" value="Change Email">
                             </form>
