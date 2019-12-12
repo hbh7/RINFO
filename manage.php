@@ -143,16 +143,19 @@ if(isset($_POST["adminMessageCreate"]) || isset($_POST["adminMessageEdit"]) || i
 } else if(isset($_POST["submitEmail"])) {
     if(checkValidLogin()) {
         $user = dbGet("*", "r_users", "user_id='" . getUserID() . "'")[0];
-        if (isset($_POST["email"])) {
+        if (isset($_POST["email"]) &&  $_POST["email"] != $user["email"]) {
             $email = $_POST["email"];
             // Validate input
-            
-            if (isset($valid) && $valid == false) {
-                header("Location: /manage.php?displayPopup=" . $_GET["displayPopup"]);
-                die();
+            if(strlen($email) > 256) {
+                $_GET["displayPopup"] = "Email is too long.";
+                $valid = false;
             }
-
-            if(dbUpdate("r_users", [sanitizeInput($_POST["email"])], "email='" . $user["email"] . "'")) {
+            if(strlen($email) < 5) {
+                $_GET["displayPopup"] = "Invalid Email";
+                $valid = false;
+            }
+            // Update table
+            if(dbUpdate("r_users", "email='" . $email . "'", "email='" . $user["email"] . "'")) {
                 $_GET["displayPopup"] = "Successfully changed email.";
             } else {
                 $_GET["displayPopup"] = "Error: Something went wrong.";

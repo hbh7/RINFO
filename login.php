@@ -58,10 +58,6 @@ if(isset($action)) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["email"] = "eMail is too long";
         }
-        if(strlen($email) == 0) {
-            $result = [false, "Failed to register: Some items require your attention"];
-            $errors["email"] = "eMail cannot be empty";
-        }
         if(strlen($email) < 5) {
             $result = [false, "Failed to register: Some items require your attention"];
             $errors["email"] = "eMail cannot be that short";
