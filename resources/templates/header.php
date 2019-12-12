@@ -23,15 +23,14 @@
             }
 
             echo <<<HTML
-                <a id="search_link" href="search.php" class="text-muted">
-                <button id="search" class="btn btn-light" onclick="window.location='search.php'">
-                    <a class="text-muted">
-                    <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
+                <a id="search_link2" href="search.php" class="text-muted">
+                    <button id="search" class="btn btn-light" onclick="window.location='search.php'">
+                        <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3">
                             <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                    <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                    </svg>
+                            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                        </svg>
+                    </button>
                     </a>
-                </button></a>
                 <a href="manage.php"><button id="manage" class="btn btn-light" onclick="window.location='manage.php';">Manage</button></a>
                 <a href="logout.php"><button id="logout" class="btn btn-light" onclick="window.location='logout.php';">Log Out</button></a>
                 <a id="user_icon_link" href="#" onclick="window.location='user.php?user_id={$id}';">
